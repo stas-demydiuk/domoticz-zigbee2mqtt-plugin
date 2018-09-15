@@ -7,4 +7,4 @@ class AqaraCube(SelectorSwitchAdopter):
         self.selector_style = self.SELECTOR_TYPE_MENU
 
     def get_level_name(self, message):
-        return message['action']
+        return message['action'] if 'action' in message else 'Off'

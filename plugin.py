@@ -26,6 +26,7 @@ import time
 from mqtt import MqttClient
 from adopters.aqara_cube import AqaraCube
 from adopters.sensor_86sw2 import Sensor86Sw2
+from adopters.sensor_wleak import SensorWleak
 
 class BasePlugin:
     mqttClient = None
@@ -52,7 +53,6 @@ class BasePlugin:
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("Command: " + Command + " (" + str(Level) + ") Color:" + Color)
-        # self.controller.onCommand(self.mqttClient, Unit, Command, Level, Color)
 
     def onConnect(self, Connection, Status, Description):
         self.mqttClient.onConnect(Connection, Status, Description)
@@ -86,13 +86,19 @@ class BasePlugin:
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
 
+        controller = None
         modelId = message['device']['modelId']
 
         if (modelId == 'lumi.sensor_cube'):
             controller = AqaraCube(Devices)
-            controller.handleMqttMessage(message)
         elif (modelId == 'lumi.sensor_86sw2\x00Un' or modelId == 'lumi.sensor_86sw2.es1'):
             controller = Sensor86Sw2(Devices)
+        elif (modelId == 'lumi.sensor_wleak.aq1'):
+            controller = SensorWleak(Devices)
+        else:
+            Domoticz.Debug('Unsupported zigbee device type with model ' + modelId)
+
+        if (controller != None):
             controller.handleMqttMessage(message)
 
 global _plugin

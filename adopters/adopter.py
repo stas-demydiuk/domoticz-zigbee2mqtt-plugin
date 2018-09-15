@@ -28,14 +28,26 @@ class Adopter:
         else:
             return 255
 
-    def create_device(self, device_data):
+    def _create_device(self, device_data):
         unit = self.get_first_available_unit()
 
         if (unit == None):
             Domoticz.Log('No available plugin units left to create new devices')
             return
 
+    def create_device(self, unit, device_id, device_name, device_data):
         Domoticz.Log('Device creation has not been implemented in this adapter')
+
+    def _create_device(self, device_data):
+        unit = self.get_first_available_unit()
+        device_id = device_data['ieeeAddr']
+        device_name = device_data['friendlyName']
+
+        if (unit == None):
+            Domoticz.Log('No available plugin units left to create new devices')
+            return
+
+        return self.create_device(unit, device_id, device_name, device_data)
 
     def update_device(self, device, message):
         Domoticz.Log('Device update has not been implemented in this adapter')
@@ -48,7 +60,7 @@ class Adopter:
 
         if (device == None):
             Domoticz.Debug('No related device found, creating...')
-            device = self.create_device(message['device'])
+            device = self._create_device(message['device'])
 
         if (device == None):
             Domoticz.Log('Failed to create device with ieeeAddr ' + ieee_addr)
@@ -79,16 +91,7 @@ class SelectorSwitchAdopter(Adopter):
     def get_level_name(self, message):
         Domoticz.Log('Unable to get device level name, action is not implemented in adapter')
 
-    def create_device(self, device_data):
-        unit = self.get_first_available_unit()
-
-        if (unit == None):
-            Domoticz.Log('No available plugin units left to create new devices')
-            return
-
-        ieee_addr = device_data['ieeeAddr']
-        name = device_data['friendlyName']
-
+    def create_device(self, unit, device_id, device_name, device_data):
         selector_options = {
             "LevelActions": "",
             "LevelNames": '|'.join(self.level_names),
@@ -96,8 +99,8 @@ class SelectorSwitchAdopter(Adopter):
             "SelectorStyle": "1"
         }
         
-        Domoticz.Debug('Creating selector switch for device with ieeeAddr ' + ieee_addr)
-        return Domoticz.Device(DeviceID=ieee_addr, Name=name, Unit=unit, TypeName="Selector Switch", Options=selector_options).Create()
+        Domoticz.Debug('Creating selector switch for device with ieeeAddr ' + device_id)
+        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Selector Switch", Options=selector_options).Create()
 
     def update_device(self, device, message):
         level_value = str(self.get_level_value(self.get_level_name(message)))
