@@ -17,6 +17,17 @@ class Adopter:
     def get_signal_level(self, message):
         return int(int(message['linkquality']) * 100 / 255)
 
+    def get_battery_level(self, message):
+        power_source = message['device']['powerSource']
+
+        if (power_source == 'Battery'):
+            if ('battery' in message):
+                return int(float(message['battery']))
+            else:
+                return None
+        else:
+            return 255
+
     def create_device(self, device_data):
         unit = self.get_first_available_unit()
 
@@ -83,6 +94,11 @@ class SelectorSwitchAdopter(Adopter):
 
     def update_device(self, device, message):
         signal_level = self.get_signal_level(message)
+        battery_level = self.get_battery_level(message)
+
+        if (battery_level == None):
+            battery_level = device.BatteryLevel
+
         level_name = message['action']
 
-        device.Update(nValue=1, sValue=str(self.get_level_value(level_name)), SignalLevel=signal_level)
+        device.Update(nValue=1, sValue=str(self.get_level_value(level_name)), SignalLevel=signal_level, BatteryLevel=battery_level)
