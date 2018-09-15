@@ -25,6 +25,7 @@ import json
 import time
 from mqtt import MqttClient
 from adopters.aqara_cube import AqaraCube
+from adopters.sensor_86sw2 import Sensor86Sw2
 
 class BasePlugin:
     mqttClient = None
@@ -89,6 +90,9 @@ class BasePlugin:
 
         if (modelId == 'lumi.sensor_cube'):
             controller = AqaraCube(Devices)
+            controller.handleMqttMessage(message)
+        elif (modelId == 'lumi.sensor_86sw2\x00Un' or modelId == 'lumi.sensor_86sw2.es1'):
+            controller = Sensor86Sw2(Devices)
             controller.handleMqttMessage(message)
 
 global _plugin

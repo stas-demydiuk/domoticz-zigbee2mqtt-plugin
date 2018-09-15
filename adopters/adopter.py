@@ -58,9 +58,13 @@ class Adopter:
         self.update_device(device, message)
 
 class SelectorSwitchAdopter(Adopter):
+    SELECTOR_TYPE_BUTTONS = 0
+    SELECTOR_TYPE_MENU = 1
+
     def __init__(self, devices):
         super().__init__(devices)
         self.level_names = ['Off']
+        self.selector_style = self.SELECTOR_TYPE_MENU
 
     def get_level_value(self, level_name):
         level = 0
@@ -71,6 +75,9 @@ class SelectorSwitchAdopter(Adopter):
             level += 10
 
         return 0
+
+    def get_level_name(self, message):
+        Domoticz.Log('Unable to get device level name, action is not implemented in adapter')
 
     def create_device(self, device_data):
         unit = self.get_first_available_unit()
@@ -89,16 +96,15 @@ class SelectorSwitchAdopter(Adopter):
             "SelectorStyle": "1"
         }
         
-        Domoticz.Debug('Creating Aqara Cube device for ieeeAddr ' + ieee_addr)
+        Domoticz.Debug('Creating selector switch for device with ieeeAddr ' + ieee_addr)
         return Domoticz.Device(DeviceID=ieee_addr, Name=name, Unit=unit, TypeName="Selector Switch", Options=selector_options).Create()
 
     def update_device(self, device, message):
+        level_value = str(self.get_level_value(self.get_level_name(message)))
         signal_level = self.get_signal_level(message)
         battery_level = self.get_battery_level(message)
 
         if (battery_level == None):
             battery_level = device.BatteryLevel
 
-        level_name = message['action']
-
-        device.Update(nValue=1, sValue=str(self.get_level_value(level_name)), SignalLevel=signal_level, BatteryLevel=battery_level)
+        device.Update(nValue=1, sValue=level_value, SignalLevel=signal_level, BatteryLevel=battery_level)

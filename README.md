@@ -20,6 +20,7 @@ Once plugin receive any message from zigbee2mqtt server it will try to create ap
 
 ## Supported devices
 
-- Xiaomi Mi / Aqara smart home cube
+- Xiaomi / Aqara smart home cube
+- Xiaomi Aqara double wireless wall switch
 
 If your device is not listed here but zigbee2mqtt supports it, support can be added (fairly) easy by creating special adopter.
