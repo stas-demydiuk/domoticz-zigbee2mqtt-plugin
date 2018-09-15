@@ -1,4 +1,4 @@
-# H801 LED WiFi Controller - Domoticz Python Plugin
+# Zigbee2MQTT - Domoticz Python Plugin
 Python plugin for Domoticz to add support for [zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt) project
 
 ## Prerequisites
