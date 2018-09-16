@@ -1,17 +1,17 @@
 import Domoticz
 from adapters.adapter import Adapter
 
-class SensorWleak(Adapter):
+class SensorMotion(Adapter):
     def create_device(self, unit, device_id, device_name, message):
-        Domoticz.Debug('Creating dusk sensor for device with ieeeAddr ' + device_id)
+        Domoticz.Debug('Creating motion sensor for device with ieeeAddr ' + device_id)
         options = self.get_device_options(message)
-        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=2, Options=options).Create()
+        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=8, Options=options).Create()
 
     def update_device(self, device, message):
-        if ('water_leak' not in message.raw):
+        if ('occupancy' not in message.raw):
             return
 
-        value = message.raw['water_leak']
+        value = message.raw['occupancy']
         signal_level = message.get_signal_level()
         battery_level = message.get_battery_level()
 

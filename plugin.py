@@ -28,6 +28,7 @@ from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_86sw2 import Sensor86Sw2
+from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
@@ -55,6 +56,7 @@ class BasePlugin:
             'lumi.sensor_cube': SensorCube,
             'lumi.sensor_86sw2.es1': Sensor86Sw2,
             'lumi.sensor_86sw2\x00Un': Sensor86Sw2,
+            'lumi.sensor_motion': SensorMotion,
             'lumi.sensor_wleak.aq1': SensorWleak,
             'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch
         }
