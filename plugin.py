@@ -23,10 +23,13 @@
 import Domoticz
 import json
 import time
+import re
 from mqtt import MqttClient
-from adopters.aqara_cube import AqaraCube
-from adopters.sensor_86sw2 import Sensor86Sw2
-from adopters.sensor_wleak import SensorWleak
+from zigbee_message import ZigbeeMessage
+from adopters.lumi.sensor_cube import SensorCube
+from adopters.lumi.sensor_86sw2 import Sensor86Sw2
+from adopters.lumi.sensor_wleak import SensorWleak
+from adopters.lumi.plug import Plug
 
 class BasePlugin:
     mqttClient = None
@@ -41,8 +44,8 @@ class BasePlugin:
 
         self.topics = list(["zigbee2mqtt/+"])
 
-        self.mqttserveraddress = Parameters["Address"].replace(" ", "")
-        self.mqttserverport = Parameters["Port"].replace(" ", "")
+        self.mqttserveraddress = Parameters["Address"].strip()
+        self.mqttserverport = Parameters["Port"].strip()
         self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
     def checkDevices(self):
@@ -53,6 +56,17 @@ class BasePlugin:
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("Command: " + Command + " (" + str(Level) + ") Color:" + Color)
+
+        device = Devices[Unit]
+        ieee_addr = re.sub(r"_\d", "", device.DeviceID)
+
+        if (device.Type == 244 and device.SwitchType == 0):
+            topic = 'zigbee2mqtt/' + ieee_addr + '/set'
+            payload = json.dumps({
+                "state": Command
+            })
+
+            self.mqttClient.Publish(topic, payload)
 
     def onConnect(self, Connection, Status, Description):
         self.mqttClient.onConnect(Connection, Status, Description)
@@ -89,8 +103,10 @@ class BasePlugin:
         controller = None
         modelId = message['device']['modelId']
 
-        if (modelId == 'lumi.sensor_cube'):
-            controller = AqaraCube(Devices)
+        if (modelId == 'lumi.plug'):
+            controller = Plug(Devices)
+        elif (modelId == 'lumi.sensor_cube'):
+            controller = SensorCube(Devices)
         elif (modelId == 'lumi.sensor_86sw2\x00Un' or modelId == 'lumi.sensor_86sw2.es1'):
             controller = Sensor86Sw2(Devices)
         elif (modelId == 'lumi.sensor_wleak.aq1'):
@@ -99,7 +115,7 @@ class BasePlugin:
             Domoticz.Debug('Unsupported zigbee device type with model ' + modelId)
 
         if (controller != None):
-            controller.handleMqttMessage(message)
+            controller.handleMqttMessage(ZigbeeMessage(message))
 
 global _plugin
 _plugin = BasePlugin()

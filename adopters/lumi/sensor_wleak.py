@@ -7,12 +7,12 @@ class SensorWleak(Adopter):
         return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=2).Create()
 
     def update_device(self, device, message):
-        if ('water_leak' not in message):
+        if ('water_leak' not in message.raw):
             return
 
-        water_leak = message['water_leak']
-        signal_level = self.get_signal_level(message)
-        battery_level = self.get_battery_level(message)
+        water_leak = message.raw['water_leak']
+        signal_level = message.get_signal_level()
+        battery_level = message.get_battery_level()
 
         if (battery_level == None):
             battery_level = device.BatteryLevel

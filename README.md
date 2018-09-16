@@ -23,5 +23,6 @@ Once plugin receive any message from zigbee2mqtt server it will try to create ap
 - Xiaomi Aqara smart home cube
 - Xiaomi Aqara double wireless wall switch
 - Xiaomi Aqara water leak sensor
+- Xiaomi Mi power plug ZigBee
 
-If your device is not listed here but zigbee2mqtt supports it, support can be added (fairly) easy by creating special adopter.
+If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adopter.
