@@ -1,6 +1,6 @@
 import Domoticz
 
-class Adopter:
+class Adapter:
     def __init__(self, devices):
         self.devices = devices
         self.available_units =  self._get_available_units()
@@ -18,6 +18,12 @@ class Adopter:
                 available_units.append(i)
 
         return available_units
+
+    def get_device_options(self, message):
+        return {
+            "model": message.get_device_model(),
+            "address": message.get_device_ieee_addr()
+        }
 
     def get_first_available_unit(self):
         return self.available_units.pop(0) if len(self.available_units) > 0 else None
@@ -58,3 +64,6 @@ class Adopter:
 
         device = self.get_device(message)
         self.update_device(device, message)
+
+    def handleCommand(self, device, command, level, color):
+        Domoticz.Log('Device update has not been implemented in this adapter')

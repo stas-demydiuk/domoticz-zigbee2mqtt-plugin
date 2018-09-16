@@ -1,4 +1,4 @@
-from adopters.selector_switch import SelectorSwitchAdopter
+from adapters.selector_switch import SelectorSwitchAdopter
 
 class Sensor86Sw2(SelectorSwitchAdopter):
     def __init__(self, devices):

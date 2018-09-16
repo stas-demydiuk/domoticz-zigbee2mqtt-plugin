@@ -1,4 +1,4 @@
-from adopters.selector_switch import SelectorSwitchAdopter
+from adapters.selector_switch import SelectorSwitchAdopter
 
 class SensorCube(SelectorSwitchAdopter):
     def __init__(self, devices):

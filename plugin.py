@@ -26,10 +26,11 @@ import time
 import re
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
-from adopters.lumi.sensor_cube import SensorCube
-from adopters.lumi.sensor_86sw2 import Sensor86Sw2
-from adopters.lumi.sensor_wleak import SensorWleak
-from adopters.lumi.plug import Plug
+from adapters.lumi.sensor_cube import SensorCube
+from adapters.lumi.sensor_86sw2 import Sensor86Sw2
+from adapters.lumi.sensor_wleak import SensorWleak
+from adapters.lumi.plug import Plug
+from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
 
 class BasePlugin:
     mqttClient = None
@@ -42,11 +43,21 @@ class BasePlugin:
         if self.debugging == "Debug":
             Domoticz.Debugging(2)
 
-        self.topics = list(["zigbee2mqtt/+"])
+        self.base_topic = 'zigbee2mqtt/'
+        self.topics = list([self.base_topic + '+'])
 
         self.mqttserveraddress = Parameters["Address"].strip()
         self.mqttserverport = Parameters["Port"].strip()
         self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
+
+        self.adapter_by_model = {
+            'lumi.plug': Plug,
+            'lumi.sensor_cube': SensorCube,
+            'lumi.sensor_86sw2.es1': Sensor86Sw2,
+            'lumi.sensor_86sw2\x00Un': Sensor86Sw2,
+            'lumi.sensor_wleak.aq1': SensorWleak,
+            'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch
+        }
 
     def checkDevices(self):
         Domoticz.Debug("checkDevices called")
@@ -58,15 +69,24 @@ class BasePlugin:
         Domoticz.Debug("Command: " + Command + " (" + str(Level) + ") Color:" + Color)
 
         device = Devices[Unit]
-        ieee_addr = re.sub(r"_\d", "", device.DeviceID)
 
-        if (device.Type == 244 and device.SwitchType == 0):
-            topic = 'zigbee2mqtt/' + ieee_addr + '/set'
-            payload = json.dumps({
-                "state": Command
-            })
+        if ('model' not in device.Options):
+            Domoticz.Log('Device ' + device.Name + ' does not have saved model')
+            return
 
-            self.mqttClient.Publish(topic, payload)
+        modelId = device.Options['model']
+        
+        if (modelId in self.adapter_by_model):
+            adapter = self.adapter_by_model[modelId](Devices)
+            message = adapter.handleCommand(device, Command, Level, Color)
+
+            if (message == None):
+                Domoticz.Log('Device ' + device.Name + ' does not support command')
+                return
+
+            self.mqttClient.Publish(self.base_topic + message['topic'], message['payload'])
+        else:
+            Domoticz.Log('Device ' + device.Name + ' does not have adapter')
 
     def onConnect(self, Connection, Status, Description):
         self.mqttClient.onConnect(Connection, Status, Description)
@@ -99,23 +119,14 @@ class BasePlugin:
 
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        zigbee_message = ZigbeeMessage(message)
+        model = zigbee_message.get_device_model()
 
-        controller = None
-        modelId = message['device']['modelId']
-
-        if (modelId == 'lumi.plug'):
-            controller = Plug(Devices)
-        elif (modelId == 'lumi.sensor_cube'):
-            controller = SensorCube(Devices)
-        elif (modelId == 'lumi.sensor_86sw2\x00Un' or modelId == 'lumi.sensor_86sw2.es1'):
-            controller = Sensor86Sw2(Devices)
-        elif (modelId == 'lumi.sensor_wleak.aq1'):
-            controller = SensorWleak(Devices)
+        if (model in self.adapter_by_model):
+            adapter = self.adapter_by_model[model](Devices)
+            adapter.handleMqttMessage(zigbee_message)
         else:
-            Domoticz.Debug('Unsupported zigbee device type with model ' + modelId)
-
-        if (controller != None):
-            controller.handleMqttMessage(ZigbeeMessage(message))
+            Domoticz.Debug('Unsupported zigbee device type with model ' + model)
 
 global _plugin
 _plugin = BasePlugin()

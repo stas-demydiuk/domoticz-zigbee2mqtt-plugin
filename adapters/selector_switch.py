@@ -1,7 +1,7 @@
 import Domoticz
-from adopters.adopter import Adopter
+from adapters.adapter import Adapter
 
-class SelectorSwitchAdopter(Adopter):
+class SelectorSwitchAdopter(Adapter):
     SELECTOR_TYPE_BUTTONS = 0
     SELECTOR_TYPE_MENU = 1
 
@@ -23,16 +23,21 @@ class SelectorSwitchAdopter(Adopter):
     def get_level_name(self, message):
         Domoticz.Log('Unable to get device level name, action is not implemented in adapter')
 
-    def create_device(self, unit, device_id, device_name, device_data):
-        selector_options = {
-            "LevelActions": "",
-            "LevelNames": '|'.join(self.level_names),
-            "LevelOffHiddden": "false",
-            "SelectorStyle": "1"
-        }
+    def get_device_options(self, message):
+        options = super().get_device_options(message)
+
+        options['LevelActions'] = ''
+        options['LevelNames'] = '|'.join(self.level_names)
+        options['LevelOffHiddden'] = 'false'
+        options['SelectorStyle'] = 1
+
+        return options
+
+    def create_device(self, unit, device_id, device_name, message):
+        options = self.get_device_options(message)
         
         Domoticz.Debug('Creating selector switch for device with ieeeAddr ' + device_id)
-        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Selector Switch", Options=selector_options).Create()
+        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Selector Switch", Options=options).Create()
 
     def update_device(self, device, message):
         level_value = str(self.get_level_value(self.get_level_name(message)))

@@ -8,6 +8,9 @@ class ZigbeeMessage:
     def get_device_name(self):
         return self.raw['device']['friendlyName']
 
+    def get_device_model(self):
+        return self.raw['device']['modelId']
+
     def get_signal_level(self):
         return int(int(self.raw['linkquality']) * 100 / 255)
 

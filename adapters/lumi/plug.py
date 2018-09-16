@@ -1,7 +1,8 @@
 import Domoticz
-from adopters.adopter import Adopter
+import json
+from adapters.adapter import Adapter
 
-class Plug(Adopter):
+class Plug(Adapter):
     def get_switch_device(self, message):
         ieee_addr = message.get_device_ieee_addr()
         device_id = ieee_addr + '_0'
@@ -17,7 +18,11 @@ class Plug(Adopter):
                 return
             
             device_name = message.get_device_name()
-            device = Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Switch", Image=1).Create()
+            options = self.get_device_options(message)
+            options['update_topic'] = ieee_addr + '/set'
+
+            device = Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Switch", Image=1, Options=options).Create()
+            Domoticz.Log('Created switch for device with ieeeAddr ' + ieee_addr)
 
         return device
 
@@ -94,4 +99,15 @@ class Plug(Adopter):
             s_value = str(n_value)
 
             kwh_device.Update(nValue=n_value, sValue=s_value, SignalLevel=signal_level, BatteryLevel=battery_level)
+
+    def handleCommand(self, device, command, level, color):
+        if ('update_topic' not in device.Options):
+            return
+
+        return {
+            'topic': device.Options['update_topic'],
+            'payload': json.dumps({
+                "state": command
+            })
+        }
                 

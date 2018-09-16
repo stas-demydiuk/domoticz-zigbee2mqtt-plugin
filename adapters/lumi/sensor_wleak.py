@@ -1,7 +1,7 @@
 import Domoticz
-from adopters.adopter import Adopter
+from adapters.adapter import Adapter
 
-class SensorWleak(Adopter):
+class SensorWleak(Adapter):
     def create_device(self, unit, device_id, device_name, device_data):
         Domoticz.Debug('Creating dusk sensor for device with ieeeAddr ' + device_id)
         return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=2).Create()
