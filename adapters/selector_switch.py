@@ -2,8 +2,8 @@ import Domoticz
 from adapters.adapter import Adapter
 
 class SelectorSwitchAdopter(Adapter):
-    SELECTOR_TYPE_BUTTONS = 0
-    SELECTOR_TYPE_MENU = 1
+    SELECTOR_TYPE_BUTTONS = '0'
+    SELECTOR_TYPE_MENU = '1'
 
     def __init__(self, devices):
         super().__init__(devices)
@@ -29,7 +29,7 @@ class SelectorSwitchAdopter(Adapter):
         options['LevelActions'] = ''
         options['LevelNames'] = '|'.join(self.level_names)
         options['LevelOffHiddden'] = 'false'
-        options['SelectorStyle'] = 1
+        options['SelectorStyle'] = self.selector_style
 
         return options
 
@@ -37,7 +37,7 @@ class SelectorSwitchAdopter(Adapter):
         options = self.get_device_options(message)
         
         Domoticz.Debug('Creating selector switch for device with ieeeAddr ' + device_id)
-        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Selector Switch", Options=options).Create()
+        return Domoticz.Device(DeviceID=device_id, Name=device_name, Unit=unit, TypeName="Selector Switch", Options=options, Image=9).Create()
 
     def update_device(self, device, message):
         level_value = str(self.get_level_value(self.get_level_name(message)))
@@ -47,4 +47,4 @@ class SelectorSwitchAdopter(Adapter):
         if (battery_level == None):
             battery_level = device.BatteryLevel
 
-        device.Update(nValue=1, sValue=level_value, SignalLevel=signal_level, BatteryLevel=battery_level)
+        device.Update(nValue=0, sValue=level_value, SignalLevel=signal_level, BatteryLevel=battery_level)

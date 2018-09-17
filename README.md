@@ -24,6 +24,7 @@ Once plugin receive any message from zigbee2mqtt server it will try to create ap
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara water leak sensor
 - Xiaomi MiJia human body movement sensor
+- Xiaomi MiJia wireless switch
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee
 
