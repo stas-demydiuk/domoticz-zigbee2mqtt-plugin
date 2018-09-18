@@ -34,6 +34,7 @@ from adapters.lumi.sensor_switch import SensorSwitch
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
+from adapters.lumi.weather import Weather
 
 class BasePlugin:
     mqttClient = None
@@ -62,7 +63,8 @@ class BasePlugin:
             'lumi.sensor_motion': SensorMotion,
             'lumi.sensor_switch': SensorSwitch,
             'lumi.sensor_wleak.aq1': SensorWleak,
-            'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch
+            'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch,
+            'lumi.weather': Weather
         }
 
     def checkDevices(self):
