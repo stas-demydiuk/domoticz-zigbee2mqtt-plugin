@@ -3,7 +3,8 @@ Python plugin for Domoticz to add support for [zigbee2mqtt](https://github.com/K
 
 ## Prerequisites
 
-Finish setup and run zigbee2mqtt server (https://github.com/Koenkk/zigbee2mqtt/wiki)
+1. Finish setup and run zigbee2mqtt server (https://github.com/Koenkk/zigbee2mqtt/wiki).
+2. Enable `include_device_information` flag in zigbee2mqtt config (https://github.com/Koenkk/zigbee2mqtt/wiki/Configuration)
 
 ## Installation
 
