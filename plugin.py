@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.1">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.2">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -60,6 +60,7 @@ class BasePlugin:
             'lumi.sensor_86sw2.es1': Sensor86Sw2,
             'lumi.sensor_86sw2\x00Un': Sensor86Sw2,
             'lumi.sensor_magnet': SensorMagnet,
+            'lumi.sensor_magnet.aq2': SensorMagnet,
             'lumi.sensor_motion': SensorMotion,
             'lumi.sensor_switch': SensorSwitch,
             'lumi.sensor_wleak.aq1': SensorWleak,
@@ -128,6 +129,11 @@ class BasePlugin:
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
         zigbee_message = ZigbeeMessage(message)
+
+        if (zigbee_message.has_device_info() == False):
+            Domoticz.Error('MQTT message does not have device information. Please check if "include_device_information" flag is enabled in your zigbee2mqtt config.')
+            return
+
         model = zigbee_message.get_device_model()
 
         if (model in self.adapter_by_model):

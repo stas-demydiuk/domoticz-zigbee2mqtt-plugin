@@ -2,6 +2,9 @@ class ZigbeeMessage:
     def __init__(self, message):
         self.raw = message
 
+    def has_device_info(self):
+        return 'device' in self.raw
+
     def get_device_ieee_addr(self):
         return self.raw['device']['ieeeAddr']
 

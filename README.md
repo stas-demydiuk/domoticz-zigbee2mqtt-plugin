@@ -23,6 +23,7 @@ Once plugin receive any message from zigbee2mqtt server it will try to create ap
 
 ## Supported devices
 
+- Xiaomi Aqara door & window contact sensor
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara temperature, humidity and pressure sensor
