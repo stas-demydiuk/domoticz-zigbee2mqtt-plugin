@@ -7,7 +7,7 @@ class SensorSwitch(SelectorSwitchAdopter):
         self.selector_type = self.SELECTOR_TYPE_MENU
 
     def get_level_name(self, message):
-        actions = ['single', 'double', 'triple', 'quadruple', 'many' 'long', 'long_release']
+        actions = ['single', 'double', 'triple', 'quadruple', 'many', 'long', 'long_release']
 
         if ('click' not in message.raw):
             return 'Off'
