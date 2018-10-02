@@ -1,7 +1,7 @@
-from adapters.boolean_sensor import BooleanSensor
+from adapters.base_adapter import Adapter
+from devices.motion_sensor import MotionSensor
 
-class SensorMotion(BooleanSensor):
+class SensorMotion(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.sensor_type = self.SENSOR_TYPE_MOTION
-        self.senor_value_key = 'occupancy'
+        self.devices.append(MotionSensor(devices, 'motion', 'occupancy'))

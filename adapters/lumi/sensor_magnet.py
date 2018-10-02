@@ -1,10 +1,7 @@
-from adapters.boolean_sensor import BooleanSensor
+from adapters.base_adapter import Adapter
+from devices.door_contact_sensor import DoorContactSensor
 
-class SensorMagnet(BooleanSensor):
+class SensorMagnet(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.sensor_type = self.SENSOR_TYPE_DOOR_CONTACT
-        self.senor_value_key = 'contact'
-
-    def get_device_value(self, sensor_value):
-        return 0 if sensor_value else 1
+        self.devices.append(DoorContactSensor(devices, 'contact', 'contact'))

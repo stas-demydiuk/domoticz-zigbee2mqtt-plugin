@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.2">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.3">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -9,6 +9,7 @@
     <params>
         <param field="Address" label="MQTT Server address" width="300px" required="true" default="127.0.0.1"/>
         <param field="Port" label="Port" width="300px" required="true" default="1883"/>
+        <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
 
         <param field="Mode6" label="Debug" width="75px">
             <options>
@@ -30,6 +31,7 @@ from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_86sw2 import Sensor86Sw2
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
+from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_switch import SensorSwitch
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
@@ -47,7 +49,7 @@ class BasePlugin:
         if self.debugging == "Debug":
             Domoticz.Debugging(2)
 
-        self.base_topic = 'zigbee2mqtt/'
+        self.base_topic = Parameters["Mode1"] + '/'
         self.topics = list([self.base_topic + '+'])
 
         self.mqttserveraddress = Parameters["Address"].strip()
@@ -62,6 +64,7 @@ class BasePlugin:
             'lumi.sensor_magnet': SensorMagnet,
             'lumi.sensor_magnet.aq2': SensorMagnet,
             'lumi.sensor_motion': SensorMotion,
+            'lumi.sensor_motion.aq2': SensorMotionAq2,
             'lumi.sensor_switch': SensorSwitch,
             'lumi.sensor_wleak.aq1': SensorWleak,
             'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch,
