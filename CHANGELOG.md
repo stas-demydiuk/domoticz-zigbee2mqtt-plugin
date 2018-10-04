@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.4
+- Added IKEA TRADFRI wireless dimmer support
+
 ## 0.0.3
 - [Breaking change] Added ability to set Zigbee2Mqtt topic in plugin settings
     Requires to manually set topic for those who used previous plugin version (default topic is zigbee2mqtt)
