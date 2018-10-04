@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.3">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.4">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -27,6 +27,7 @@ import time
 import re
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
+from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_86sw2 import Sensor86Sw2
 from adapters.lumi.sensor_magnet import SensorMagnet
@@ -57,6 +58,7 @@ class BasePlugin:
         self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
         self.adapter_by_model = {
+            'TRADFRI wireless dimmer': TradfriWirelessDimmer,
             'lumi.plug': Plug,
             'lumi.sensor_cube': SensorCube,
             'lumi.sensor_86sw2.es1': Sensor86Sw2,

@@ -15,7 +15,10 @@ class ZigbeeMessage:
         return self.raw['device']['modelId']
 
     def get_signal_level(self):
-        return int(int(self.raw['linkquality']) * 100 / 255)
+        if ('linkquality' in self.raw):
+            return int(int(self.raw['linkquality']) * 100 / 255)
+        else:
+            return None
 
     def get_battery_level(self):
         power_source = self.raw['device']['powerSource']

@@ -80,6 +80,9 @@ class Device():
         signal_level = message.get_signal_level()
         battery_level = message.get_battery_level()
 
+        if (signal_level == None):
+            signal_level = device.SignalLevel
+
         if (battery_level == None):
             battery_level = device.BatteryLevel
 
