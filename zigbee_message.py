@@ -9,12 +9,7 @@ class ZigbeeMessage:
             return None
 
     def get_battery_level(self):
-        power_source = self.raw['device']['powerSource']
-
-        if (power_source == 'Battery'):
-            if ('battery' in self.raw):
-                return int(float(self.raw['battery']))
-            else:
-                return None
+        if ('battery' in self.raw):
+            return int(float(self.raw['battery']))
         else:
-            return 255
+            return None
