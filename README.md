@@ -18,6 +18,16 @@ git clone https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin.git zigbe
 
 Once plugin receive any message from zigbee2mqtt server it will try to create appropriate device.
 
+## Plugin update
+
+1. Stop domoticz
+2. Go to plugin folder and pull new version
+```
+cd domoticz/plugins/zigbee2mqtt
+git pull
+```
+3. Start domoticz
+
 ## Supported devices
 
 - IKEA TRADFRI wireless dimmer
@@ -25,10 +35,12 @@ Once plugin receive any message from zigbee2mqtt server it will try to create ap
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
+- Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
 - Xiaomi Aqara water leak sensor
 - Xiaomi MiJia door & window contact sensor
 - Xiaomi MiJia human body movement sensor
+- Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee

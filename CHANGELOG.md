@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.6
+New features:
+- Added Xiaomi Aqara socket Zigbee support
+- Added Xiaomi MiJia temperature & humidity sensor support
+
 ## 0.0.5
 Breaking changes: 
 - Avoid using Domoticz Device Options to store device internal data

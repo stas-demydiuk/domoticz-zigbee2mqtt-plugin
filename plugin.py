@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.5">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.6">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -35,6 +35,7 @@ from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_switch import SensorSwitch
+from adapters.lumi.sensor_temp_hum import SensorTemperatureHumidity
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
@@ -63,6 +64,7 @@ class BasePlugin:
         self.adapter_by_model = {
             'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
             'ZNCZ02LM': Plug,           # Xiaomi Mi power plug ZigBee
+            'QBCZ11LM': Plug,           # Xiaomi Aqara socket Zigbee (on/off, power measurement)
             'MFKZQ01LM': SensorCube,    # Xiaomi Mi smart home cube
             'WXKG02LM': Sensor86Sw2,    # Xiaomi Aqara double key wireless wall switch
             'MCCGQ01LM': SensorMagnet,  # Xiaomi MiJia door & window contact sensor
@@ -71,7 +73,9 @@ class BasePlugin:
             'RTCGQ11LM': SensorMotionAq2,   # Xiaomi Aqara human body movement and illuminance sensor 
             'WXKG01LM': SensorSwitch,   # Xiaomi MiJia wireless switch
             'SJCGQ11LM': SensorWleak,   # Xiaomi Aqara water leak sensor
-            'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
+            'QBKG03LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch
+            'QBKG12LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch
+            'WSDCGQ01LM': SensorTemperatureHumidity,    # Xiaomi MiJia temperature & humidity sensor
             'WSDCGQ11LM': Weather       # Xiaomi Aqara temperature, humidity and pressure sensor 
         }
 
