@@ -1,18 +1,20 @@
-from adapters.selector_switch import SelectorSwitchAdopter
+from adapters.base_adapter import Adapter
+from devices.selector_switch import SelectorSwitch
 
-class SensorSwitch(SelectorSwitchAdopter):
+
+class SensorSwitch(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.level_names = ['Off', 'Click', 'Double Click', 'Triple Click', 'Quadruple Click', 'Many clicks', 'Long Click', 'Long Click Release']
-        self.selector_type = self.SELECTOR_TYPE_MENU
 
-    def get_level_name(self, message):
-        actions = ['single', 'double', 'triple', 'quadruple', 'many', 'long', 'long_release']
+        switch = SelectorSwitch(devices, 'switch', 'click')
+        switch.add_level('Off', None)
+        switch.add_level('Click', 'single')
+        switch.add_level('Double Click', 'double')
+        switch.add_level('Triple Click', 'triple')
+        switch.add_level('Quadruple Click', 'quadruple')
+        switch.add_level('Many clicks', 'many')
+        switch.add_level('Long Click', 'long')
+        switch.add_level('Long Click Release', 'long_release')
+        switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
-        if ('click' not in message.raw):
-            return 'Off'
-
-        action = message.raw['click']
-        action_index = actions.index(action)
-        
-        return self.level_names[action_index + 1]
+        self.devices.append(switch)

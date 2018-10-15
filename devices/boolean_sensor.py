@@ -9,13 +9,13 @@ class BooleanSensor(Device):
     def __init__(self, devices, alias, value_key, sensor_type):
         super().__init__(devices, alias, value_key)
         self.sensor_type = sensor_type
-        
-    def create_device(self, unit, device_name, options, message):
+
+    def create_device(self, unit, device_id, device_name, message):
         if (self.sensor_type == None):
             Domoticz.Error('Sensor type is not specified')
             return
 
-        return Domoticz.Device(Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=self.sensor_type, Options=options).Create()
+        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=self.sensor_type).Create()
 
     def get_numeric_value(self, value, device):
         return 1 if value else 0

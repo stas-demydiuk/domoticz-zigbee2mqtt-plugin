@@ -2,8 +2,8 @@ import Domoticz
 from devices.device import Device
 
 class HumiditySensor(Device):
-    def create_device(self, unit, device_name, options, message):
-        return Domoticz.Device(Name=device_name, Unit=unit, TypeName="Humidity", Options=options).Create()
+    def create_device(self, unit, device_id, device_name, message):
+        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Humidity").Create()
 
     def get_numeric_value(self, value, device):
         return int(value)

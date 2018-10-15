@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.4">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.5">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -27,6 +27,7 @@ import time
 import re
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
+from device_storage import DeviceStorage
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_86sw2 import Sensor86Sw2
@@ -50,27 +51,28 @@ class BasePlugin:
         if self.debugging == "Debug":
             Domoticz.Debugging(2)
 
-        self.base_topic = Parameters["Mode1"] + '/'
-        self.topics = list([self.base_topic + '+'])
+        self.base_topic = Parameters["Mode1"].strip()
+        self.subscribed_for_devices = False
 
         self.mqttserveraddress = Parameters["Address"].strip()
         self.mqttserverport = Parameters["Port"].strip()
         self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
+        self.available_devices = DeviceStorage.getInstance()
+
         self.adapter_by_model = {
-            'TRADFRI wireless dimmer': TradfriWirelessDimmer,
-            'lumi.plug': Plug,
-            'lumi.sensor_cube': SensorCube,
-            'lumi.sensor_86sw2.es1': Sensor86Sw2,
-            'lumi.sensor_86sw2\x00Un': Sensor86Sw2,
-            'lumi.sensor_magnet': SensorMagnet,
-            'lumi.sensor_magnet.aq2': SensorMagnet,
-            'lumi.sensor_motion': SensorMotion,
-            'lumi.sensor_motion.aq2': SensorMotionAq2,
-            'lumi.sensor_switch': SensorSwitch,
-            'lumi.sensor_wleak.aq1': SensorWleak,
-            'lumi.ctrl_neutral2': AqaraDoubleWiredSwitch,
-            'lumi.weather': Weather
+            'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
+            'ZNCZ02LM': Plug,           # Xiaomi Mi power plug ZigBee
+            'MFKZQ01LM': SensorCube,    # Xiaomi Mi smart home cube
+            'WXKG02LM': Sensor86Sw2,    # Xiaomi Aqara double key wireless wall switch
+            'MCCGQ01LM': SensorMagnet,  # Xiaomi MiJia door & window contact sensor
+            'MCCGQ11LM': SensorMagnet,  # Xiaomi Aqara door & window contact sensor
+            'RTCGQ01LM': SensorMotion,  # Xiaomi MiJia human body movement sensor
+            'RTCGQ11LM': SensorMotionAq2,   # Xiaomi Aqara human body movement and illuminance sensor 
+            'WXKG01LM': SensorSwitch,   # Xiaomi MiJia wireless switch
+            'SJCGQ11LM': SensorWleak,   # Xiaomi Aqara water leak sensor
+            'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
+            'WSDCGQ11LM': Weather       # Xiaomi Aqara temperature, humidity and pressure sensor 
         }
 
     def checkDevices(self):
@@ -83,24 +85,25 @@ class BasePlugin:
         Domoticz.Debug("Command: " + Command + " (" + str(Level) + ") Color:" + Color)
 
         device = Devices[Unit]
+        device_params = device.DeviceID.split('_')
+        device_id = device_params[0]
+        alias = device_params[1]
+        device_data = self.available_devices.get_device_by_id(device_id)
 
-        if ('model' not in device.Options):
-            Domoticz.Log('Device ' + device.Name + ' does not have saved model')
+        if (device_data == None):
+            Domoticz.Log('Device ' + device.Name + ' does not have registered zigbee2mqtt device')
             return
 
-        modelId = device.Options['model']
-        
-        if (modelId in self.adapter_by_model):
-            adapter = self.adapter_by_model[modelId](Devices)
-            message = adapter.handleCommand(device, Command, Level, Color)
+        model = device_data['model']
 
-            if (message == None):
-                Domoticz.Log('Device ' + device.Name + ' does not support command')
-                return
+        if (model in self.adapter_by_model):
+            adapter = self.adapter_by_model[model](Devices)
+            message = adapter.handleCommand(alias, device, device_data, Command, Level, Color)
 
-            self.mqttClient.Publish(self.base_topic + message['topic'], message['payload'])
+            if (message != None):
+                self.mqttClient.Publish(self.base_topic + '/' + message['topic'], message['payload'])
         else:
-            Domoticz.Log('Device ' + device.Name + ' does not have adapter')
+            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')        
 
     def onConnect(self, Connection, Status, Description):
         self.mqttClient.onConnect(Connection, Status, Description)
@@ -122,8 +125,7 @@ class BasePlugin:
             self.mqttClient.Ping()
 
     def onMQTTConnected(self):
-        Domoticz.Debug("onMQTTConnected")
-        self.mqttClient.Subscribe(self.topics)
+        self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])
 
     def onMQTTDisconnected(self):
         Domoticz.Debug("onMQTTDisconnected")
@@ -133,19 +135,36 @@ class BasePlugin:
 
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
-        zigbee_message = ZigbeeMessage(message)
 
-        if (zigbee_message.has_device_info() == False):
-            Domoticz.Error('MQTT message does not have device information. Please check if "include_device_information" flag is enabled in your zigbee2mqtt config.')
+        if (topic == self.base_topic + '/bridge/state'):
+            if message == 'online':
+                self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+
+            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
             return
 
-        model = zigbee_message.get_device_model()
+        if (topic == self.base_topic + '/bridge/log'):
+            if message['type'] == 'devices':
+                Domoticz.Log('Received available devices list from bridge')
+                self.available_devices.update(message['message'])
 
-        if (model in self.adapter_by_model):
-            adapter = self.adapter_by_model[model](Devices)
-            adapter.handleMqttMessage(zigbee_message)
-        else:
-            Domoticz.Debug('Unsupported zigbee device type with model ' + model)
+                if self.subscribed_for_devices == False:
+                    self.mqttClient.Subscribe([self.base_topic + '/+'])
+                    self.subscribed_for_devices = True
+            return
+
+        device_name = topic.replace(self.base_topic + "/", "")
+        device_data = self.available_devices.get_device_by_name(device_name)
+
+        if (device_data != None):
+            zigbee_message = ZigbeeMessage(message)
+            model = device_data['model']
+
+            if (model in self.adapter_by_model):
+                adapter = self.adapter_by_model[model](Devices)
+                adapter.handleMqttMessage(device_data, zigbee_message)
+            else:
+                Domoticz.Debug('Unsupported zigbee device type with model "' + model + '"')
 
 global _plugin
 _plugin = BasePlugin()

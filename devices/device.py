@@ -2,10 +2,15 @@ import Domoticz
 
 
 class Device():
+    MAX_ALIAS_LENGTH = 6
+
     def __init__(self, devices, alias, value_key):
         self.devices = devices
         self.alias = alias
         self.value_key = value_key
+
+        if len(self.alias) > self.MAX_ALIAS_LENGTH:
+            raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
 
     def get_first_available_unit(self):
         for i in range(1, 255):
@@ -13,38 +18,30 @@ class Device():
                 return i
 
     def get_device(self, address, alias):
+        device_id = address + '_' + alias
+
         for unit, device in self.devices.items():
-            if (
-                'address' in device.Options and
-                'alias' in device.Options and
-                device.Options['address'] == address and
-                device.Options['alias'] == alias
-            ):
+            if device.DeviceID == device_id:
                 return device
 
-    def get_device_options(self, message):
-        return {
-            "model": message.get_device_model(),
-            "address": message.get_device_ieee_addr(),
-            "alias": self.alias
-        }
+    def _create_device(self, device_data, message):
+        device_address = device_data['ieee_addr']
 
-    def _create_device(self, message):
         Domoticz.Debug(
             'Creating domoticz device to handle ' + self.value_key +
-            ' key for device with ieeeAddr ' + message.get_device_ieee_addr()
+            ' key for device with ieeeAddr ' + device_address
         )
 
-        device_name = message.get_device_name()
+        device_id = device_address + '_' + self.alias
+        device_name = device_data['friendly_name']
         unit = self.get_first_available_unit()
-        options = self.get_device_options(message)
 
-        return self.create_device(unit, device_name, options, message)
+        return self.create_device(unit, device_id, device_name, message)
 
-    def create_device(self, unit, device_name, options, message):
+    def create_device(self, unit, device_id, device_name, message):
         Domoticz.Error(
             'Unable to create device to handle ' + self.value_key +
-            ' value for device ' + message.get_device_ieee_addr()
+            ' value for device "' + device_name + '"'
         )
 
     def get_numeric_value(self, value, device):
@@ -59,15 +56,15 @@ class Device():
             self.value_key + ' can not calculate string value'
         )
 
-    def handle_message(self, message):
-        device_address = message.get_device_ieee_addr()
+    def handle_message(self, device_data, message):
+        device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
 
         if (device == None):
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
             # so just create and exit for now
-            # device = self._create_device(message)
-            return self._create_device(message)
+            # device = self._create_device(device_data, message)
+            return self._create_device(device_data, message)
 
         if (self.value_key in message.raw):
             value = message.raw[self.value_key]

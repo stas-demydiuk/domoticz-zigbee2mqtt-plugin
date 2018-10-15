@@ -6,7 +6,7 @@ from devices.pressure_sensor import PressureSensor
 class Weather(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(TemperatureSensor(devices, 'temperature', 'temperature'))
-        self.devices.append(HumiditySensor(devices, 'humidity', 'humidity'))
-        self.devices.append(PressureSensor(devices, 'pressure', 'pressure'))
+        self.devices.append(TemperatureSensor(devices, 'temp', 'temperature'))
+        self.devices.append(HumiditySensor(devices, 'hum', 'humidity'))
+        self.devices.append(PressureSensor(devices, 'pres', 'pressure'))
                 

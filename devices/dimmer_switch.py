@@ -3,8 +3,8 @@ from devices.device import Device
 
 
 class DimmerSwitch(Device):
-    def create_device(self, unit, device_name, options, message):
-        return Domoticz.Device(Name=device_name, Unit=unit, Type=244, Subtype=73, Switchtype=7, Options=options).Create()
+    def create_device(self, unit, device_id, device_name, message):
+        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=7).Create()
 
     def get_numeric_value(self, value, device):
         return 1 if value > 0 else 0
