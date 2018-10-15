@@ -30,7 +30,7 @@ class SelectorSwitch(Device):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=9).Create()
 
     def get_numeric_value(self, value, device):
-        return 1 if self.get_string_value(value, device) > 0 else 0
+        return 1 if self.get_string_value(value, device) != '0' else 0
 
     def get_string_value(self, value, device):
         try:
@@ -39,4 +39,4 @@ class SelectorSwitch(Device):
             Domoticz.Debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
             index = 0
 
-        return index * 10
+        return str(index * 10)
