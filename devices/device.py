@@ -89,3 +89,9 @@ class Device():
             SignalLevel=signal_level,
             BatteryLevel=battery_level
         )
+
+    def handle_command(self, device_data, command, level, color):
+        device_address = device_data['ieee_addr']
+        device = self.get_device(device_address, self.alias)
+
+        Domoticz.Debug('Command "' + command + '" from device "' + device.Name + '"')

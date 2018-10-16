@@ -40,3 +40,14 @@ class SelectorSwitch(Device):
             index = 0
 
         return str(index * 10)
+
+    def handle_command(self, device_data, command, level, color):
+        device_address = device_data['ieee_addr']
+        device = self.get_device(device_address, self.alias)
+
+        Domoticz.Debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
+
+        device.Update(
+            nValue=1 if level > 0 else 0,
+            sValue=str(level)
+        )

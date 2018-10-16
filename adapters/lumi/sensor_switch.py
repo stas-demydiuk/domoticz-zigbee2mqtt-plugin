@@ -6,15 +6,18 @@ class SensorSwitch(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
-        switch = SelectorSwitch(devices, 'switch', 'click')
-        switch.add_level('Off', None)
-        switch.add_level('Click', 'single')
-        switch.add_level('Double Click', 'double')
-        switch.add_level('Triple Click', 'triple')
-        switch.add_level('Quadruple Click', 'quadruple')
-        switch.add_level('Many clicks', 'many')
-        switch.add_level('Long Click', 'long')
-        switch.add_level('Long Click Release', 'long_release')
-        switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        self.switch = SelectorSwitch(devices, 'switch', 'click')
+        self.switch.add_level('Off', None)
+        self.switch.add_level('Click', 'single')
+        self.switch.add_level('Double Click', 'double')
+        self.switch.add_level('Triple Click', 'triple')
+        self.switch.add_level('Quadruple Click', 'quadruple')
+        self.switch.add_level('Many clicks', 'many')
+        self.switch.add_level('Long Click', 'long')
+        self.switch.add_level('Long Click Release', 'long_release')
+        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
-        self.devices.append(switch)
+        self.devices.append(self.switch)
+
+    def handleCommand(self, alias, device, device_data, command, level, color):
+        self.switch.handle_command(device_data, command, level, color)

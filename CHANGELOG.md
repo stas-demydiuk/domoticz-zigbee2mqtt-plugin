@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.7
+- Added ability to change Xiaomi Switch, Wireless Wall Switch and Cube device states from Domoticz
+
 ## 0.0.6
 New features:
 - Added Xiaomi Aqara socket Zigbee support
