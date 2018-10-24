@@ -4,7 +4,7 @@ class ZigbeeMessage:
 
     def get_signal_level(self):
         if ('linkquality' in self.raw):
-            return int(int(self.raw['linkquality']) * 100 / 255)
+            return int(int(self.raw['linkquality']) * 11 / 255)
         else:
             return None
 
