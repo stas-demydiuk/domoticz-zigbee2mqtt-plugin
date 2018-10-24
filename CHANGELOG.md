@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.8
+- Fix device link quality processing (#5)
+- Fix falsy device updates (#14)
+
 ## 0.0.7
 - Added ability to change Xiaomi Switch, Wireless Wall Switch and Cube device states from Domoticz
 
