@@ -66,13 +66,14 @@ class Device():
             # device = self._create_device(device_data, message)
             return self._create_device(device_data, message)
 
-        if (self.value_key in message.raw):
-            value = message.raw[self.value_key]
-            n_value = self.get_numeric_value(value, device)
-            s_value = self.get_string_value(value, device)
-        else:
-            n_value = device.nValue
-            s_value = device.sValue
+        if (self.value_key not in message.raw):
+            # There is no way to properly handle heartbeat messages as nValue and sValue are mandatory for device update
+            Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
+            return None
+
+        value = message.raw[self.value_key]
+        n_value = self.get_numeric_value(value, device)
+        s_value = self.get_string_value(value, device)
 
         signal_level = message.get_signal_level()
         battery_level = message.get_battery_level()
