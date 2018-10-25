@@ -1,5 +1,5 @@
 from adapters.base_adapter import Adapter
-from devices.selector_switch import SelectorSwitch
+from devices.switch.selector_switch import SelectorSwitch
 
 
 class WXKG11LM(Adapter):

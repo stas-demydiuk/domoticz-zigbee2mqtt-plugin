@@ -3,6 +3,7 @@
 ## 0.0.9
 New features:
 - Added Xiaomi Aqara wireless switch (WXKG11LM) support
+- Added Xiaomi Aqara single key wireless wall switch (WXKG03LM) support
 
 ## 0.0.8
 - Fix device link quality processing (#5)

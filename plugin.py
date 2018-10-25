@@ -39,6 +39,7 @@ from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
 from adapters.lumi.WXKG01LM import WXKG01LM
 from adapters.lumi.WXKG02LM import WXKG02LM
+from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.weather import Weather
 
@@ -68,6 +69,7 @@ class BasePlugin:
             'QBCZ11LM': Plug,           # Xiaomi Aqara socket Zigbee (on/off, power measurement)
             'MFKZQ01LM': SensorCube,    # Xiaomi Mi smart home cube
             'WXKG02LM': WXKG02LM,       # Xiaomi Aqara double key wireless wall switch
+            'WXKG03LM': WXKG03LM,       # Xiaomi Aqara single key wireless wall switch
             'MCCGQ01LM': SensorMagnet,  # Xiaomi MiJia door & window contact sensor
             'MCCGQ11LM': SensorMagnet,  # Xiaomi Aqara door & window contact sensor
             'RTCGQ01LM': SensorMotion,  # Xiaomi MiJia human body movement sensor

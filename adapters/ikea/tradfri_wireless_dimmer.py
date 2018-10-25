@@ -1,5 +1,5 @@
 from adapters.base_adapter import Adapter
-from devices.dimmer_switch import DimmerSwitch
+from devices.switch.dimmer_switch import DimmerSwitch
 
 class TradfriWirelessDimmer(Adapter):
     def __init__(self, devices):
