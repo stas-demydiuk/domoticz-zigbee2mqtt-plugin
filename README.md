@@ -35,6 +35,7 @@ git pull
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
+- Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
 - Xiaomi Aqara water leak sensor
