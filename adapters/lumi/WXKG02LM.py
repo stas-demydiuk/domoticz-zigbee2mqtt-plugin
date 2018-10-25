@@ -2,7 +2,7 @@ from adapters.base_adapter import Adapter
 from devices.selector_switch import SelectorSwitch
 
 
-class Sensor86Sw2(Adapter):
+class WXKG02LM(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 

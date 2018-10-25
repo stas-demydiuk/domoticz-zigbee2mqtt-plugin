@@ -2,7 +2,7 @@ from adapters.base_adapter import Adapter
 from devices.selector_switch import SelectorSwitch
 
 
-class SensorSwitch(Adapter):
+class WXKG11LM(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
@@ -12,9 +12,6 @@ class SensorSwitch(Adapter):
         self.switch.add_level('Double Click', 'double')
         self.switch.add_level('Triple Click', 'triple')
         self.switch.add_level('Quadruple Click', 'quadruple')
-        self.switch.add_level('Many clicks', 'many')
-        self.switch.add_level('Long Click', 'long')
-        self.switch.add_level('Long Click Release', 'long_release')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
         self.devices.append(self.switch)

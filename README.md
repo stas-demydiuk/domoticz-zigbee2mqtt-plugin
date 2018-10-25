@@ -38,6 +38,7 @@ git pull
 - Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
 - Xiaomi Aqara water leak sensor
+- Xiaomi Aqara wireless switch (WXKG11LM)
 - Xiaomi MiJia door & window contact sensor
 - Xiaomi MiJia human body movement sensor
 - Xiaomi MiJia temperature & humidity sensor

@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.8">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.9">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -30,15 +30,16 @@ from zigbee_message import ZigbeeMessage
 from device_storage import DeviceStorage
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
-from adapters.lumi.sensor_86sw2 import Sensor86Sw2
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
-from adapters.lumi.sensor_switch import SensorSwitch
 from adapters.lumi.sensor_temp_hum import SensorTemperatureHumidity
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
+from adapters.lumi.WXKG01LM import WXKG01LM
+from adapters.lumi.WXKG02LM import WXKG02LM
+from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.weather import Weather
 
 class BasePlugin:
@@ -66,12 +67,13 @@ class BasePlugin:
             'ZNCZ02LM': Plug,           # Xiaomi Mi power plug ZigBee
             'QBCZ11LM': Plug,           # Xiaomi Aqara socket Zigbee (on/off, power measurement)
             'MFKZQ01LM': SensorCube,    # Xiaomi Mi smart home cube
-            'WXKG02LM': Sensor86Sw2,    # Xiaomi Aqara double key wireless wall switch
+            'WXKG02LM': WXKG02LM,       # Xiaomi Aqara double key wireless wall switch
             'MCCGQ01LM': SensorMagnet,  # Xiaomi MiJia door & window contact sensor
             'MCCGQ11LM': SensorMagnet,  # Xiaomi Aqara door & window contact sensor
             'RTCGQ01LM': SensorMotion,  # Xiaomi MiJia human body movement sensor
             'RTCGQ11LM': SensorMotionAq2,   # Xiaomi Aqara human body movement and illuminance sensor 
-            'WXKG01LM': SensorSwitch,   # Xiaomi MiJia wireless switch
+            'WXKG01LM': WXKG01LM,       # Xiaomi MiJia wireless switch
+            'WXKG11LM': WXKG11LM,       # Xiaomi Aqara wireless switch
             'SJCGQ11LM': SensorWleak,   # Xiaomi Aqara water leak sensor
             'QBKG03LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch
             'QBKG12LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch
