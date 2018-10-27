@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.9">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.10">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -41,6 +41,7 @@ from adapters.lumi.WXKG01LM import WXKG01LM
 from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
+from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.weather import Weather
 
 class BasePlugin:
@@ -76,6 +77,7 @@ class BasePlugin:
             'RTCGQ11LM': SensorMotionAq2,   # Xiaomi Aqara human body movement and illuminance sensor 
             'WXKG01LM': WXKG01LM,       # Xiaomi MiJia wireless switch
             'WXKG11LM': WXKG11LM,       # Xiaomi Aqara wireless switch
+            'WXKG12LM': WXKG12LM,       # Xiaomi Aqara wireless switch (with gyroscope)
             'SJCGQ11LM': SensorWleak,   # Xiaomi Aqara water leak sensor
             'QBKG03LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch
             'QBKG12LM': AqaraDoubleWiredSwitch,         # Xiaomi Aqara double key wired wall switch

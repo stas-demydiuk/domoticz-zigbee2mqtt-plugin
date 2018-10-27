@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.10
+New features:
+- Added Xiaomi Aqara wireless switch with gyroscope (WXKG12LM) support
+
 ## 0.0.9
 New features:
 - Added Xiaomi Aqara wireless switch (WXKG11LM) support
