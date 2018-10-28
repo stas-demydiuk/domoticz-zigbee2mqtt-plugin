@@ -21,14 +21,17 @@ class DeviceStorage:
 
     def update(self, devices):
         for item in devices:
-            self.devices[item['ieeeAddr']] = {
-                'type': item['type'],
-                'model': item['model'],
-                'ieee_addr': item['ieeeAddr'],
-                'friendly_name': item['friendly_name']
-            }
+            if 'model' in item:
+                self.devices[item['ieeeAddr']] = {
+                    'type': item['type'],
+                    'model': item['model'],
+                    'ieee_addr': item['ieeeAddr'],
+                    'friendly_name': item['friendly_name']
+                }
 
-            Domoticz.Debug('Device ' + item['model'] + ' ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ')')
+                Domoticz.Debug('Device ' + item['model'] + ' ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ')')
+            else:
+                Domoticz.Debug('Device ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ') doesn\'t have "model" attribute, skipped')
 
     def get_device_by_id(self, ieee_addr):
         return self.devices[ieee_addr] if ieee_addr in self.devices else None
