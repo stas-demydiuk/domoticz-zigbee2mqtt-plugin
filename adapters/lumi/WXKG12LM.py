@@ -19,9 +19,9 @@ class WXKG12LM(Adapter):
 
     def convert_message(self, message):
         if 'click' in message.raw:
-            message.raw['state'] = message['click']
+            message.raw['state'] = message.raw['click']
         elif 'action' in message.raw:
-            message.raw['state'] = message['action']
+            message.raw['state'] = message.raw['action']
 
         return message
 
