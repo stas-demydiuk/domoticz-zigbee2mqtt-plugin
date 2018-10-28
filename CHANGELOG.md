@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.11
+- Fix error when receive device without model data (#20)
+- Fix WXKG12LM message convertion error (#21)
+
 ## 0.0.10
 New features:
 - Added Xiaomi Aqara wireless switch with gyroscope (WXKG12LM) support
