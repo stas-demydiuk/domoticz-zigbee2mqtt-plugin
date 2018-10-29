@@ -1,5 +1,5 @@
 import Domoticz
-
+import json
 
 class Device():
     MAX_ALIAS_LENGTH = 6
