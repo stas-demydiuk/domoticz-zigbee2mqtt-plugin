@@ -1,5 +1,5 @@
 import Domoticz
-
+from adapters import adapter_by_model
 
 class DeviceStorage:
     # Here will be the instance stored.
@@ -19,17 +19,27 @@ class DeviceStorage:
             DeviceStorage.__instance = self
             self.devices = {}
 
-    def update(self, devices):
-        for item in devices:
+    def _register_device(self, domoticz_devices, device_data):
+        model = device_data['model']
+        Domoticz.Debug('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
+
+        self.devices[device_data['ieee_addr']] = device_data
+        
+        if model in adapter_by_model:
+            adapter = adapter_by_model[model](domoticz_devices)
+            adapter.register(device_data)
+
+    def update(self, domoticz_devices, zigbee_devices):
+        for item in zigbee_devices:
             if 'model' in item:
-                self.devices[item['ieeeAddr']] = {
+                device_data = {
                     'type': item['type'],
                     'model': item['model'],
                     'ieee_addr': item['ieeeAddr'],
                     'friendly_name': item['friendly_name']
                 }
 
-                Domoticz.Debug('Device ' + item['model'] + ' ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ')')
+                self._register_device(domoticz_devices, device_data)
             else:
                 Domoticz.Debug('Device ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ') doesn\'t have "model" attribute, skipped')
 

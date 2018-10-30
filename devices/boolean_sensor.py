@@ -10,7 +10,7 @@ class BooleanSensor(Device):
         super().__init__(devices, alias, value_key)
         self.sensor_type = sensor_type
 
-    def create_device(self, unit, device_id, device_name, message):
+    def create_device(self, unit, device_id, device_name):
         if (self.sensor_type == None):
             Domoticz.Error('Sensor type is not specified')
             return

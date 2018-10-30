@@ -20,7 +20,7 @@ class SelectorSwitch(Device):
     def set_selector_style(self, selector_style):
         self.selector_style = selector_style
 
-    def create_device(self, unit, device_id, device_name, message):
+    def create_device(self, unit, device_id, device_name):
         options = {}
         options['LevelActions'] = ''
         options['LevelNames'] = '|'.join(self.level_names)

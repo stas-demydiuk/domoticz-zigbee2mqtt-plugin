@@ -3,7 +3,7 @@ from devices.device import Device
 
 class DimLight(Device):
     """device class for a dimmable light"""
-    def create_device(self, unit, device_id, device_name, message):
+    def create_device(self, unit, device_id, device_name):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=7).Create()
 
     def get_numeric_value(self, value, device):

@@ -4,7 +4,7 @@ from devices.device import Device
 
 class ColorLight(Device):
     """device class for a color controllable light bulb"""
-    def create_device(self, unit, device_id, device_name, message):
+    def create_device(self, unit, device_id, device_name):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=1, Switchtype=7).Create()
 
     def get_numeric_value(self, value, device):

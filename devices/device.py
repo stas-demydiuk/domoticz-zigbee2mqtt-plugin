@@ -24,25 +24,33 @@ class Device():
             if device.DeviceID == device_id:
                 return device
 
-    def _create_device(self, device_data, message):
+    def _create_device(self, device_data):
         device_address = device_data['ieee_addr']
 
         Domoticz.Debug(
-            'Creating domoticz device to handle ' + "_".join(self.value_keys) +
-            ' key for device with ieeeAddr ' + device_address
+            'Creating domoticz device to handle "' + "_".join(self.value_keys) +
+            '" key for device with ieeeAddr ' + device_address
         )
 
         device_id = device_address + '_' + self.alias
         device_name = device_data['friendly_name']
         unit = self.get_first_available_unit()
 
-        return self.create_device(unit, device_id, device_name, message)
+        return self.create_device(unit, device_id, device_name)
 
-    def create_device(self, unit, device_id, device_name, message):
+    def create_device(self, unit, device_id, device_name):
         Domoticz.Error(
             'Unable to create device to handle ' + "_".join(self.value_keys) +
             ' value for device "' + device_name + '"'
         )
+
+    # Register device in Domoticz
+    def register(self, device_data):
+        device_address = device_data['ieee_addr']
+        device = self.get_device(device_address, self.alias)
+
+        if (device == None):
+            self._create_device(device_data)
 
     def get_numeric_value(self, value, device):
         Domoticz.Error(
@@ -55,6 +63,7 @@ class Device():
             'Device with alias "' + self.alias + '" for key ' +
             "_".join(self.value_keys) + ' can not calculate string value'
         )
+        
     def get_color_value(self, message):
         Domoticz.Error(
             'Device with alias "' + self.alias + '" for key ' +
@@ -71,6 +80,7 @@ class Device():
         s_value = None
         color_value = None
         Domoticz.Debug("handle_message for device: '"+str(device)+"', alias: '"+self.alias+"' with # items: '"+str(len(message.raw))+"'")
+        
         for item in message.raw:
             Domoticz.Debug("handle_message the message item: '"+item+"' message: '"+str(message.raw[item])+"'")
 
@@ -78,7 +88,7 @@ class Device():
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
             # so just create and exit for now
             # device = self._create_device(device_data, message)
-            return self._create_device(device_data, message)
+            return self._create_device(device_data)
 
         for key in self.value_keys:
             if (key not in message.raw):

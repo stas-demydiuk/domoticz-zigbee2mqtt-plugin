@@ -8,6 +8,10 @@ class Adapter():
     def convert_message(self, message):
         return message
 
+    def register(self, device_data):
+        for device in self.devices:
+            device.register(device_data)
+
     def handleMqttMessage(self, device_data, message):
         converted_message = self.convert_message(message)
 
