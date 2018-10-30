@@ -6,3 +6,4 @@ class DoorContactSensor(BooleanSensor):
     
     def get_numeric_value(self, value, device):
         return 0 if value else 1
+        

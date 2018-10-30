@@ -28,6 +28,8 @@ import re
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
 from device_storage import DeviceStorage
+from adapters.nanoleaf.NL08_0800 import NL08_0800
+from adapters.ikea.tradfri_color_light import TradfriColorLight
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
@@ -65,6 +67,8 @@ class BasePlugin:
         self.available_devices = DeviceStorage.getInstance()
 
         self.adapter_by_model = {
+            'NL08-0800': NL08_0800,  # Nanoleaf Ivy smart bulb
+            'LED1624G9': TradfriColorLight,  # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
             'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
             'ZNCZ02LM': Plug,           # Xiaomi Mi power plug ZigBee
             'QBCZ11LM': Plug,           # Xiaomi Aqara socket Zigbee (on/off, power measurement)
@@ -92,9 +96,9 @@ class BasePlugin:
         Domoticz.Debug("onStop called")
 
     def onCommand(self, Unit, Command, Level, Color):
-        Domoticz.Debug("Command: " + Command + " (" + str(Level) + ") Color:" + Color)
+        Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
 
-        device = Devices[Unit]
+        device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
         device_params = device.DeviceID.split('_')
         device_id = device_params[0]
         alias = device_params[1]
@@ -144,7 +148,7 @@ class BasePlugin:
         Domoticz.Debug("onMQTTSubscribed")
 
     def onMQTTPublish(self, topic, message):
-        Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        Domoticz.Debug("MQTT Publish 1: MQTT message: " + topic + " " + str(message))
 
         if (topic == self.base_topic + '/bridge/state'):
             if message == 'online':
@@ -157,6 +161,18 @@ class BasePlugin:
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 self.available_devices.update(message['message'])
+                Domoticz.Debug('available devices: '+str(len(self.available_devices.devices)))
+                for item in self.available_devices.devices:
+                    Domoticz.Debug('item to check: '+str(item))
+                    device_data = self.available_devices.get_device_by_id(str(item))
+                    model = device_data['model']
+
+                    if (model in self.adapter_by_model):
+                        adapter = self.adapter_by_model[model](Devices)
+                        zigbee_message = ZigbeeMessage(message)
+                        adapter.handleMqttMessage(device_data, zigbee_message)
+                        
+                    
 
                 if self.subscribed_for_devices == False:
                     self.mqttClient.Subscribe([self.base_topic + '/+'])
@@ -165,6 +181,8 @@ class BasePlugin:
 
         device_name = topic.replace(self.base_topic + "/", "")
         device_data = self.available_devices.get_device_by_name(device_name)
+        
+        Domoticz.Debug("MQTT Publish 2: MQTT device_name, device_data: " + device_name + ", " + str(device_data))
 
         if (device_data != None):
             zigbee_message = ZigbeeMessage(message)

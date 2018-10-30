@@ -11,4 +11,3 @@ class VoltageSensor(Device):
     def get_string_value(self, value, device):
         return str(value)
 
-    

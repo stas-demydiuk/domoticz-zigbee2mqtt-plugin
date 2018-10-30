@@ -11,3 +11,4 @@ class OnOffSwitch(Device):
 
     def get_string_value(self, value, device):
         return 'On' if value.lower() == 'on' else 'Off'
+        

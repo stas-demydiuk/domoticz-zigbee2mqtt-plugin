@@ -31,6 +31,8 @@ git pull
 ## Supported devices
 
 - IKEA TRADFRI wireless dimmer
+- IKEA TRADFRI LED1624G9 color light
+- Nanoleaf Ivy smart bulb
 - Xiaomi Aqara door & window contact sensor
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch

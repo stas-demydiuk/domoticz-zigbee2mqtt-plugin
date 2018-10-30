@@ -22,3 +22,4 @@ class BooleanSensor(Device):
 
     def get_string_value(self, value, device):
         return str(self.get_numeric_value(value, device))
+                

@@ -11,4 +11,3 @@ class HumiditySensor(Device):
     def get_string_value(self, value, device):
         return '0'
 
-    
