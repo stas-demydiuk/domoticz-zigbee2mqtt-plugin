@@ -1,3 +1,4 @@
+import json
 import Domoticz
 from devices.device import Device
 
@@ -26,8 +27,18 @@ class ColorLight(Device):
             s_value = None
         
         return (s_value,n_value)
+
+    def get_color_value(self, message):
+        colorXY = message.raw['color']
+        color_values = self._get_RGB_from_XY(colorXY['x'],colorXY['y'],message.raw['brightness'])
+        color_value = json.dumps({
+            'ColorMode': 3, #mode 3: RGB
+            'r': color_values[0],
+            'g': color_values[1],
+            'b': color_values[2]})
+        return color_value
         
-    def get_RGB_from_XY(self, x, y, brightness):
+    def _get_RGB_from_XY(self, x, y, brightness):
         """calculate RGB valus from the XY as reported by the bridge"""
         #Calculate XYZ values Convert using the following formulas
         z = 1.0 - x - y

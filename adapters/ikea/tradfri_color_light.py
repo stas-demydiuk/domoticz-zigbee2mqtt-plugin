@@ -9,10 +9,6 @@ class TradfriColorLight(Adapter):
         super().__init__(devices)
         self.devices.append(ColorLight(devices, 'light', 'state_brightness_color'))
         
-    # def handleMqttMessage(self, device_data, message):
-        # for device in self.devices:
-            # device.handle_message(device_data, message)
-
     def handleCommand(self, alias, device, device_data, command, level, color):
         if command.upper() == 'ON' or command.upper() == 'OFF':
             return {

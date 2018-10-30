@@ -55,6 +55,11 @@ class Device():
             'Device with alias "' + self.alias + '" for key ' +
             "_".join(self.value_keys) + ' can not calculate string value'
         )
+    def get_color_value(self, message):
+        Domoticz.Error(
+            'Device with alias "' + self.alias + '" for key ' +
+            "_".join(self.value_keys) + ' can not calculate color value'
+        )
 
     def get_sn_values(self, key, value, device):
         return (self.get_string_value(value, device),self.get_numeric_value(value, device))
@@ -85,11 +90,6 @@ class Device():
                 value = message.raw[key]
                 (s_value, n_value) = self.get_sn_values(key, value, device)
                 
-
-        # value = message.raw[self.value_key]
-        # n_value = self.get_numeric_value(value, device)
-        # s_value = self.get_string_value(value, device)
-
         signal_level = message.get_signal_level()
         battery_level = message.get_battery_level()
         
@@ -97,15 +97,8 @@ class Device():
             s_value = 'Off'
             n_value = 0
 
-
-        if ("color" in message.raw):
-            colorXY = message.raw['color']
-            color_values = self.get_RGB_from_XY(colorXY['x'],colorXY['y'],message.raw['brightness'])
-            color_value = json.dumps({
-                'ColorMode': 3, #mode 3: RGB
-                'r': color_values[0],
-                'g': color_values[1],
-                'b': color_values[2]})
+        if ("color" in message.raw and "color" in self.value_keys):
+            color_value = self.get_color_value(message)
 
         #when no values in message, reuse existing values from device
         
