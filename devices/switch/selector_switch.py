@@ -51,5 +51,3 @@ class SelectorSwitch(Device):
             nValue=1 if level > 0 else 0,
             sValue=str(level)
         )
-    def get_sn_values(self, key, value, device):
-        return (self.get_string_value(value, device),self.get_numeric_value(value, device))

@@ -12,5 +12,3 @@ class DimmerSwitch(Device):
     def get_string_value(self, value, device):
         return str(int(value * 100 / 255))
         
-    def get_sn_values(self, key, value, device):
-        return (self.get_string_value(value, device),self.get_numeric_value(value, device))

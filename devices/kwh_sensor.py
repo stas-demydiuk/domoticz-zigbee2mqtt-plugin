@@ -11,7 +11,4 @@ class KwhSensor(Device):
     def get_string_value(self, value, device):
         return str(value)
 
-        
-    def get_sn_values(self, key, value, device):
-        return (self.get_string_value(value, device),self.get_numeric_value(value, device))
     

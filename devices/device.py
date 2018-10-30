@@ -28,7 +28,7 @@ class Device():
         device_address = device_data['ieee_addr']
 
         Domoticz.Debug(
-            'Creating domoticz device to handle ' + self.value_keys +
+            'Creating domoticz device to handle ' + "_".join(self.value_keys) +
             ' key for device with ieeeAddr ' + device_address
         )
 
@@ -40,27 +40,24 @@ class Device():
 
     def create_device(self, unit, device_id, device_name, message):
         Domoticz.Error(
-            'Unable to create device to handle ' + self.value_keys +
+            'Unable to create device to handle ' + "_".join(self.value_keys) +
             ' value for device "' + device_name + '"'
         )
 
     def get_numeric_value(self, value, device):
         Domoticz.Error(
             'Device with alias "' + self.alias + '" for key ' +
-            self.value_keys + ' can not calculate numeric value'
+            "_".join(self.value_keys) + ' can not calculate numeric value'
         )
 
     def get_string_value(self, value, device):
         Domoticz.Error(
             'Device with alias "' + self.alias + '" for key ' +
-            self.value_keys + ' can not calculate string value'
+            "_".join(self.value_keys) + ' can not calculate string value'
         )
 
     def get_sn_values(self, key, value, device):
-        Domoticz.Error(
-            'Device with alias "' + self.alias + '" for key ' +
-            key + ' can not calculate string + numeric value'
-        )
+        return (self.get_string_value(value, device),self.get_numeric_value(value, device))
 
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']

@@ -6,11 +6,11 @@ class NL08_0800(Adapter):
     """adapter for the Nanoleaf Smart Ivy bulbs"""
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(DimLight(devices, 'dimmer', 'state_brightness'))
+        self.devices.append(DimLight(devices, 'light', 'state_brightness'))
         
-    def handleMqttMessage(self, device_data, message):
-        for device in self.devices:
-            device.handle_message(device_data, message)
+    # def handleMqttMessage(self, device_data, message):
+        # for device in self.devices:
+            # device.handle_message(device_data, message)
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         if command.upper() == 'ON' or command.upper() == 'OFF':
