@@ -14,6 +14,8 @@ class NL08_0800(Adapter):
         elif 'brightness' in message.raw:
             message.raw['value'] = message.raw['brightness']
 
+        return message
+
     def handleCommand(self, alias, device, device_data, command, level, color):
         if command.upper() == 'ON' or command.upper() == 'OFF':
             return {
