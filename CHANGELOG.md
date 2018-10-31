@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.12
+New features:
+ - Added support for IKEA Tradfri LED1624G9 (Thanks to @JanJaapKo)
+ - Added support for Nanoleaf Smart Ivy bulb (Thanks to @JanJaapKo)
+ - Create devices in Domoticz after plugin receive device list from zigbee gateway
+
 ## 0.0.11
 - Fix error when receive device without model data (#20)
 - Fix WXKG12LM message convertion error (#21)

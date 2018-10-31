@@ -20,4 +20,3 @@ class Plug(Adapter):
                 "state": command
             })
         }
-                

@@ -21,7 +21,7 @@ class DeviceStorage:
 
     def _register_device(self, domoticz_devices, device_data):
         model = device_data['model']
-        Domoticz.Debug('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
+        Domoticz.Log('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
 
         self.devices[device_data['ieee_addr']] = device_data
         
@@ -41,7 +41,7 @@ class DeviceStorage:
 
                 self._register_device(domoticz_devices, device_data)
             else:
-                Domoticz.Debug('Device ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ') doesn\'t have "model" attribute, skipped')
+                Domoticz.Log('Device ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ') doesn\'t have "model" attribute, skipped')
 
     def get_device_by_id(self, ieee_addr):
         return self.devices[ieee_addr] if ieee_addr in self.devices else None

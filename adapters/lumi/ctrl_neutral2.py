@@ -14,6 +14,6 @@ class AqaraDoubleWiredSwitch(Adapter):
         return {
             'topic': '/'.join([device_data['friendly_name'], alias, 'set']),
             'payload': json.dumps({
-                "state": command
+                "state": command.upper()
             })
         }
