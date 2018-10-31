@@ -1,5 +1,6 @@
 from adapters.nanoleaf.NL08_0800 import NL08_0800
 from adapters.ikea.tradfri_color_light import TradfriColorLight
+from adapters.ikea.tradfri_dimmable_bulb import TradfriDimmableBulb
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
@@ -18,7 +19,11 @@ from adapters.lumi.weather import Weather
 
 adapter_by_model = {
     'NL08-0800': NL08_0800,             # Nanoleaf Ivy smart bulb
+    'LED1622G12': TradfriDimmableBulb,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
+    'LED1623G12': TradfriDimmableBulb,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
     'LED1624G9': TradfriColorLight,     # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+    'LED1649C5': TradfriDimmableBulb,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
+    'LED1650R5': TradfriDimmableBulb,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
     'ZNCZ02LM': Plug,                   # Xiaomi Mi power plug ZigBee
     'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)

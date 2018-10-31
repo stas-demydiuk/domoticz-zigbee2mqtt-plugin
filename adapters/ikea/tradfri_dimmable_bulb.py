@@ -1,0 +1,36 @@
+import Domoticz
+import json
+from adapters.base_adapter import Adapter
+from devices.switch.dimmer_switch import DimmerSwitch
+
+
+class TradfriDimmableBulb(Adapter):
+    def __init__(self, devices):
+        super().__init__(devices)
+        self.devices.append(DimmerSwitch(devices, 'light', 'value'))
+
+    def convert_message(self, message):
+        if 'state' in message.raw and message.raw['state'].upper() == 'OFF':
+            message.raw['value'] = 0
+        elif 'brightness' in message.raw:
+            message.raw['value'] = message.raw['brightness']
+
+    def handleCommand(self, alias, device, device_data, command, level, color):
+        cmd = command.upper()
+
+        if cmd == 'ON' or cmd == 'OFF':
+            return {
+                'topic': device_data['friendly_name'] + '/set',
+                'payload': json.dumps({
+                    "state": cmd
+                })
+            }
+
+        if cmd == 'SET LEVEL':
+            return {
+                'topic': device_data['friendly_name'] + '/set',
+                'payload': json.dumps({
+                    "state": "ON",
+                    "brightness": int(level*255/100)
+                })
+            }
