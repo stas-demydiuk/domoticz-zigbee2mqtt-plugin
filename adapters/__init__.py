@@ -7,6 +7,7 @@ from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_temp_hum import SensorTemperatureHumidity
+from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
@@ -41,5 +42,6 @@ adapter_by_model = {
     'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'WSDCGQ01LM': SensorTemperatureHumidity,    # Xiaomi MiJia temperature & humidity sensor
-    'WSDCGQ11LM': Weather               # Xiaomi Aqara temperature, humidity and pressure sensor 
+    'WSDCGQ11LM': Weather,              # Xiaomi Aqara temperature, humidity and pressure sensor 
+    'DJT11LM': SensorVibration          # Xiaomi Aqara vibration sensor (drop, tilt and touch)
 }
