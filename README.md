@@ -30,9 +30,17 @@ git pull
 
 ## Supported devices
 
+### Ikea
+
 - IKEA TRADFRI wireless dimmer
-- IKEA TRADFRI LED1624G9 color light
-- Nanoleaf Ivy smart bulb
+- LED1622G12 IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
+- LED1623G12 IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+- LED1624G9 IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+- LED1649C5 IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
+- LED1650R5 IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
+
+### Xiaomi
+
 - Xiaomi Aqara door & window contact sensor
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
@@ -40,6 +48,7 @@ git pull
 - Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
+- Xiaomi Aqara vibration sensor
 - Xiaomi Aqara water leak sensor
 - Xiaomi Aqara wireless switch (WXKG11LM)
 - Xiaomi Aqara wireless switch with gyroscope (WXKG12LM)
@@ -49,5 +58,9 @@ git pull
 - Xiaomi MiJia wireless switch
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee
+
+### Other
+
+- Nanoleaf Ivy smart bulb
 
 If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adapter.

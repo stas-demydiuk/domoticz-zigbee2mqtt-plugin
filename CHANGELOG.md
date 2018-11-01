@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.13
+- Added Xiaomi Aqara vibration sensor support
+- Added IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white support
+- Added IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white support
+- Added IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal support
+- Added IKEA TRADFRI LED bulb GU10 400 lumen, dimmable support
+- Fix issue with levels for different models of Xiaomi Aqara wireless switch (WXKG11LM)
+- Fix issue with creating PushOnButton
+- Fix issue with handling MQTT messages for Nanoleaf NL08-0800 Bulb
+
 ## 0.0.12
 New features:
  - Added support for IKEA Tradfri LED1624G9 (Thanks to @JanJaapKo)
