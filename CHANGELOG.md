@@ -1,5 +1,19 @@
 # Changelog
 
+## master
+- Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
+
+New devices:
+- Custom devices (DiY) DNCKAT single key wired wall light switch
+- Iris Smart plug
+- IKEA TRADFRI control outlet
+- Ksentry Electronics Zigbee OnOff Controller
+- Nue ZigBee one gang smart switch
+- OSRAM Smart+ plug
+- Philips Hue dimmer switch
+- Sylvania SMART+ Smart Plug
+- Xiaomi Aqara single key wired wall switch
+
 ## 0.0.13
 - Added Xiaomi Aqara vibration sensor support
 - Added IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white support

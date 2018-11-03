@@ -32,6 +32,7 @@ git pull
 
 ### Ikea
 
+- IKEA TRADFRI control outlet
 - IKEA TRADFRI wireless dimmer
 - LED1622G12 IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
 - LED1623G12 IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
@@ -39,12 +40,22 @@ git pull
 - LED1649C5 IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
 - LED1650R5 IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
 
+### OSRAM
+- OSRAM Smart+ plug
+
+### Philips
+- Philips Hue dimmer switch
+
+### Sylvania
+- Sylvania SMART+ Smart Plug
+
 ### Xiaomi
 
 - Xiaomi Aqara door & window contact sensor
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
+- Xiaomi Aqara single key wired wall switch
 - Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
@@ -61,6 +72,10 @@ git pull
 
 ### Other
 
+- Custom devices (DiY) DNCKAT single key wired wall light switch
+- Iris Smart plug
+- Ksentry Electronics Zigbee OnOff Controller
 - Nanoleaf Ivy smart bulb
+- Nue ZigBee one gang smart switch
 
 If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adapter.

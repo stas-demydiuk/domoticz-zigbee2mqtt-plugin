@@ -1,3 +1,4 @@
+from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.nanoleaf.NL08_0800 import NL08_0800
 from adapters.ikea.tradfri_color_light import TradfriColorLight
 from adapters.ikea.tradfri_dimmable_bulb import TradfriDimmableBulb
@@ -20,12 +21,25 @@ from adapters.lumi.weather import Weather
 
 adapter_by_model = {
     'NL08-0800': NL08_0800,             # Nanoleaf Ivy smart bulb
+    '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
+    'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
+    'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
+    'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
+    # Ikea
     'LED1622G12': TradfriDimmableBulb,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
     'LED1623G12': TradfriDimmableBulb,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
     'LED1624G9': TradfriColorLight,     # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
     'LED1649C5': TradfriDimmableBulb,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
     'LED1650R5': TradfriDimmableBulb,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
+    'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
+    # OSRAM
+    'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
+    # Philips
+    '324131092621': OnOffSwitchAdapter, # Philips Hue dimmer switch
+    # Sylvania
+    '72922-A': OnOffSwitchAdapter,      # Sylvania SMART+ Smart Plug
+    # Xiaomi
     'ZNCZ02LM': Plug,                   # Xiaomi Mi power plug ZigBee
     'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
@@ -40,6 +54,7 @@ adapter_by_model = {
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'SJCGQ11LM': SensorWleak,           # Xiaomi Aqara water leak sensor
     'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
+    'QBKG04LM': OnOffSwitchAdapter,     # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'WSDCGQ01LM': SensorTemperatureHumidity,    # Xiaomi MiJia temperature & humidity sensor
     'WSDCGQ11LM': Weather,              # Xiaomi Aqara temperature, humidity and pressure sensor 
