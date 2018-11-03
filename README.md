@@ -30,23 +30,55 @@ git pull
 
 ## Supported devices
 
-### Ikea
+### GE
+- GE Link smart LED light bulb, BR30 soft white (2700K)
+- GE ZigBee plug-in smart dimmer
+- GE ZigBee in-wall smart dimmer
 
+### Ikea
 - IKEA TRADFRI control outlet
 - IKEA TRADFRI wireless dimmer
-- LED1622G12 IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
-- LED1623G12 IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
-- LED1624G9 IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
-- LED1649C5 IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
-- LED1650R5 IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
+- IKEA TRADFRI driver for wireless control (10 watt)
+- IKEA TRADFRI driver for wireless control (30 watt)
+- IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
+- IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
+- IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+- IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
+- IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
+
+### Innr
+- Innr E27 Bulb
+- Innr E27 Bulb warm dimming
+- Innr GU10 Spot
+- Innr E14 Candle
+- Innr B22 Bulb dimmable
+- Innr Puck Light
+- Innr Strip Light
+- Innr Under Cabinet Light
+- Innr Spot narrow
+- Innr Spot wide
+- Innr Spot Flex narrow
+- Innr Spot Flex medium
+- Innr Spot Flex wide
 
 ### OSRAM
 - OSRAM Smart+ plug
+- OSRAM LIGHTIFY LED Classic A60 clear
 
 ### Philips
 - Philips Hue dimmer switch
+- Philips Hue Lux A19 bulb E27
+- Philips Hue white A60 bulb E27
+- Philips Hue White Single bulb B22
+
+### Sengled
+- Sengled Element Classic (A19)
+- Sengled Element Classic (A60)
+- Sengled Element Touch (A19)
 
 ### Sylvania
+- Sylvania LIGHTIFY LED soft white dimmable A19
+- Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania SMART+ Smart Plug
 
 ### Xiaomi
@@ -71,11 +103,14 @@ git pull
 - Xiaomi Mi power plug ZigBee
 
 ### Other
-
+- Belkin WeMo smart LED bulb
 - Custom devices (DiY) DNCKAT single key wired wall light switch
+- Hive Active light dimmable
 - Iris Smart plug
 - Ksentry Electronics Zigbee OnOff Controller
 - Nanoleaf Ivy smart bulb
 - Nue ZigBee one gang smart switch
+- Paulmann SmartHome Zigbee LED-stripe
+- Trust Smart Dimmable LED Bulb
 
 If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adapter.

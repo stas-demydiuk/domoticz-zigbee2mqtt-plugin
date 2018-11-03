@@ -4,14 +4,34 @@
 - Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
 
 New devices:
+- Belkin WeMo smart LED bulb
 - Custom devices (DiY) DNCKAT single key wired wall light switch
+- GE Link smart LED light bulb, BR30 soft white (2700K)
+- GE ZigBee plug-in smart dimmer
+- GE ZigBee in-wall smart dimmer
+- Hive Active light dimmable
 - Iris Smart plug
-- IKEA TRADFRI control outlet
 - Ksentry Electronics Zigbee OnOff Controller
+- IKEA TRADFRI control outlet
+- IKEA TRADFRI driver for wireless control (10 watt)
+- IKEA TRADFRI driver for wireless control (30 watt)
+- Innr bulbs
+- Nanoleaf Ivy smart bulb
 - Nue ZigBee one gang smart switch
 - OSRAM Smart+ plug
+- OSRAM LIGHTIFY LED Classic A60 clear
+- Paulmann SmartHome Zigbee LED-stripe
 - Philips Hue dimmer switch
+- Philips Hue Lux A19 bulb E27
+- Philips Hue white A60 bulb E27
+- Philips Hue White Single bulb B22
+- Sengled Element Classic (A19)
+- Sengled Element Classic (A60)
+- Sengled Element Touch (A19)
+- Sylvania LIGHTIFY LED soft white dimmable A19
+- Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania SMART+ Smart Plug
+- Trust Smart Dimmable LED Bulb
 - Xiaomi Aqara single key wired wall switch
 
 ## 0.0.13
