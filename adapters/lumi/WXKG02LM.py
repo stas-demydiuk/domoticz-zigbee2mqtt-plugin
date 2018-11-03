@@ -1,8 +1,8 @@
-from adapters.base_adapter import Adapter
+from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 
 
-class WXKG02LM(Adapter):
+class WXKG02LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 

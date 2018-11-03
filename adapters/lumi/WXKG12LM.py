@@ -1,8 +1,8 @@
-from adapters.base_adapter import Adapter
+from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 
 
-class WXKG12LM(Adapter):
+class WXKG12LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
@@ -18,6 +18,8 @@ class WXKG12LM(Adapter):
         self.devices.append(self.switch)
 
     def convert_message(self, message):
+        message = super().convert_message(message)
+
         if 'click' in message.raw:
             message.raw['state'] = message.raw['click']
         elif 'action' in message.raw:

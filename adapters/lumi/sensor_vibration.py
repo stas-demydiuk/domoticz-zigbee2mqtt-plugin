@@ -1,8 +1,8 @@
-from adapters.base_adapter import Adapter
+from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 
 
-class SensorVibration(Adapter):
+class SensorVibration(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 

@@ -1,9 +1,11 @@
 import Domoticz
+from devices.custom_sensor import CustomSensor
 
 
 class Adapter():
     def __init__(self, devices):
         self.devices = []
+        self.devices.append(CustomSensor(devices, 'signal', 'linkquality', ' (Link Quality)'))
 
     def convert_message(self, message):
         return message

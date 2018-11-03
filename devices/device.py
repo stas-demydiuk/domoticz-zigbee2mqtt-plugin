@@ -4,10 +4,11 @@ import json
 class Device():
     MAX_ALIAS_LENGTH = 6
 
-    def __init__(self, devices, alias, value_key):
+    def __init__(self, devices, alias, value_key, device_name_suffix = ''):
         self.devices = devices
         self.alias = alias
         self.value_key = value_key
+        self.device_name_suffix = device_name_suffix
 
         if len(self.alias) > self.MAX_ALIAS_LENGTH:
             raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
@@ -33,7 +34,7 @@ class Device():
         )
 
         device_id = device_address + '_' + self.alias
-        device_name = device_data['friendly_name']
+        device_name = device_data['friendly_name'] + self.device_name_suffix
         unit = self.get_first_available_unit()
 
         return self.create_device(unit, device_id, device_name)
