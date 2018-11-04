@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.0.14
 - Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
 
 New devices:
