@@ -1,6 +1,6 @@
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
-
+from devices.custom_sensor import CustomSensor
 
 class SensorCube(AdapterWithBattery):
     def __init__(self, devices):
@@ -17,8 +17,19 @@ class SensorCube(AdapterWithBattery):
         self.switch.add_level('Rotate Left', 'rotate_left')
         self.switch.add_level('Rotate Right', 'rotate_right')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
-
         self.devices.append(self.switch)
+        
+        self.devices.append(CustomSensor(devices, 'angle', 'angle'))
+        self.devices.append(CustomSensor(devices, 'side', 'side'))
+        
+    def convert_message(self, message):
+        message = super().convert_message(message)
+	
+        if 'to_side' in message.raw:
+            message.raw['side'] = message.raw['to_side']
+
+        return message
+
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         self.switch.handle_command(device_data, command, level, color)
