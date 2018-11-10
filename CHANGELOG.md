@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+- Handle switch state change for PushOnButton
+- Added Domoticz devices to represent Xiaomi Cube rotation angle and current side
+
 ## 0.0.14
 - Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
 
