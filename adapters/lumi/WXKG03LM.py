@@ -5,7 +5,9 @@ from devices.switch.push_on_button import PushOnButton
 class WXKG03LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(PushOnButton(devices, 'switch', 'state'))
+
+        self.switch = PushOnButton(devices, 'switch', 'state')
+        self.devices.append(self.switch)
 
     def convert_message(self, message):
         message = super().convert_message(message)
@@ -14,3 +16,6 @@ class WXKG03LM(AdapterWithBattery):
             message.raw['state'] = 'on' if message['click'] == 'single' else 'off'
 
         return message
+
+    def handleCommand(self, alias, device, device_data, command, level, color):
+        self.switch.handle_command(device_data, command, level, color)
