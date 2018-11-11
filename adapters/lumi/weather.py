@@ -17,12 +17,10 @@ class Weather(AdapterWithBattery):
         message = super().convert_message(message)
 
         if 'temperature' in message.raw and 'humidity' in message.raw and 'pressure' in message.raw:
-            message.raw['combined'] = ';'.join([
-                str(message.raw['temperature']),
-                str(message.raw['humidity']),
-                '0', # Humidity status (0 - Normal, 1 - Comfort, 2 - Dry, 3 - Wet)
-                str(message.raw['pressure']),
-                '0' # Forecast (0 - None, 1 - Sunny, 2 - PartlyCloudy, 3 - Cloudy, 4 - Rain)
-            ])
+            message.raw['combined'] = {
+                'temperature': message.raw['temperature'],
+                'humidity': message.raw['humidity'],
+                'pressure': message.raw['pressure']
+            }
 
         return message

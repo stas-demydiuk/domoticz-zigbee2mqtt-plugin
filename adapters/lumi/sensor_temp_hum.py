@@ -15,10 +15,9 @@ class SensorTemperatureHumidity(AdapterWithBattery):
         message = super().convert_message(message)
 	
         if 'temperature' in message.raw and 'humidity' in message.raw:
-            message.raw['combined'] = ';'.join([
-                str(message.raw['temperature']),
-                str(message.raw['humidity']),
-                '0' # Humidity status (0 - Normal, 1 - Comfort, 2 - Dry, 3 - Wet)
-            ])
+            message.raw['combined'] = {
+                'temperature': message.raw['temperature'],
+                'humidity': message.raw['humidity']
+            }
 
         return message

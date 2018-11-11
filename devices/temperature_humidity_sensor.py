@@ -1,3 +1,4 @@
+from decimal import Decimal
 import Domoticz
 from devices.device import Device
 
@@ -10,4 +11,8 @@ class TemperatureHumiditySensor(Device):
         return 0
 
     def get_string_value(self, value, device):
-        return str(value)
+        return ';'.join([
+            str(round(Decimal(value['temperature']), 1)),
+            str(value['humidity']),
+            '0'  # Humidity status (0 - Normal, 1 - Comfort, 2 - Dry, 3 - Wet)
+        ])
