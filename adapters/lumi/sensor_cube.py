@@ -19,8 +19,8 @@ class SensorCube(AdapterWithBattery):
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         self.devices.append(self.switch)
         
-        self.devices.append(CustomSensor(devices, 'angle', 'angle'))
-        self.devices.append(CustomSensor(devices, 'side', 'side'))
+        self.devices.append(CustomSensor(devices, 'angle', 'angle', ' (Rotation Angle)'))
+        self.devices.append(CustomSensor(devices, 'side', 'side', ' (Side)'))
         
     def convert_message(self, message):
         message = super().convert_message(message)
