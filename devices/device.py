@@ -53,6 +53,12 @@ class Device():
         if (device == None):
             self._create_device(device_data)
 
+    def get_message_value(self, message):
+        if (self.value_key in message.raw):
+            return message.raw[self.value_key]
+        else:
+            return None
+
     def get_numeric_value(self, value, device):
         Domoticz.Error(
             'Device with alias "' + self.alias + '" for key ' +
@@ -64,10 +70,17 @@ class Device():
             'Device with alias "' + self.alias + '" for key ' +
             self.value_key + ' can not calculate string value'
         )
-        
+
+    def get_device_args(self, value, device, message):
+        return {
+            'nValue': self.get_numeric_value(value, device),
+            'sValue': self.get_string_value(value, device)
+        }
+
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
+        value = self.get_message_value(message)
 
         if (device == None):
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
@@ -75,30 +88,18 @@ class Device():
             # device = self._create_device(device_data, message)
             return self._create_device(device_data)
 
-        if (self.value_key not in message.raw):
+        if (value == None):
             # There is no way to properly handle heartbeat messages as nValue and sValue are mandatory for device update
             Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
             return None
 
-        value = message.raw[self.value_key]
-        n_value = self.get_numeric_value(value, device)
-        s_value = self.get_string_value(value, device)
+        device_values = {
+            'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
+            'SignalLevel': message.get_signal_level() or device.SignalLevel,
+            **self.get_device_args(value, device, message)
+        }
 
-        signal_level = message.get_signal_level()
-        battery_level = message.get_battery_level()
-
-        if (signal_level == None):
-            signal_level = device.SignalLevel
-
-        if (battery_level == None):
-            battery_level = device.BatteryLevel
-
-        device.Update(
-            nValue=n_value,
-            sValue=s_value,
-            SignalLevel=signal_level,
-            BatteryLevel=battery_level
-        )
+        device.Update(**device_values)
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']

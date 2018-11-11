@@ -1,4 +1,5 @@
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
+from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
@@ -20,6 +21,7 @@ from adapters.lumi.weather import Weather
 
 adapter_by_model = {
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
+    '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
     '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
@@ -33,6 +35,10 @@ adapter_by_model = {
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Ikea
+    'LED1536G5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
+    'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
+    'LED1545G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
+    'LED1546G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
     'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
     'LED1623G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
     'LED1624G9': RGBAdapter,            # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
@@ -41,11 +47,15 @@ adapter_by_model = {
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
+    'L1527': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
+    'L1528': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
+    'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     # Innr
     'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
     'RB 175 W': DimmableBulbAdapter,    # Innr E27 Bulb warm dimming
     'RS 125': DimmableBulbAdapter,      # Innr GU10 Spot
+    'RS 128 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm, dimmable, white spectrum
     'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
@@ -57,14 +67,23 @@ adapter_by_model = {
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
     # OSRAM
-    'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
     'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
+    'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
+    'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
+    'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
+    'AB32840': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED Classic B40 tunable white
+    'AB401130055': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY Surface Light LED Tunable White
+    'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
     # Philips
     '7299760PH': RGBAdapter,            # Philips Hue Bloom
     '324131092621': OnOffSwitchAdapter, # Philips Hue dimmer switch
     '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '8718696449691': DimmableBulbAdapter,   # Philips Hue White Single bulb B22
+    '8718696695203': DimmableCtBulbAdapter, # Philips Hue white ambiance E14
+    '8718696598283': DimmableCtBulbAdapter, # Philips Hue white ambiance GU10
+    '8718696548738': DimmableCtBulbAdapter, # Philips Hue white ambiance E26/E27
+    '3261030P7': DimmableCtBulbAdapter, # Philips Hue Being
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
     # Sengled
@@ -72,6 +91,9 @@ adapter_by_model = {
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
     'Z01-CIA19NAE26': DimmableBulbAdapter,  # Sengled Element Touch (A19)
     # Sylvania
+    '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
+    '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
+    '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb
     '74283': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     '74696': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     '72922-A': OnOffSwitchAdapter,      # Sylvania SMART+ Smart Plug

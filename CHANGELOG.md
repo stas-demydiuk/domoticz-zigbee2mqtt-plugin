@@ -6,9 +6,31 @@
 - Added Domoticz devices to represent temperature, humidity and pressure in one device
 
 New devices:
+- Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
+- IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
+- IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
+- IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
+- IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
+- IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
+- Innr GU10 Spot 350 lm, dimmable, white spectrum
+- OSRAM LIGHTIFY LED Classic A60 clear
+- OSRAM SMART+ CLASSIC A 60 TW
+- OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
+- OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
+- OSRAM LIGHTIFY LED Classic B40 tunable white
+- OSRAM LIGHTIFY Surface Light LED Tunable White
 - Philips Hue Bloom
 - Philips Hue white and color ambiance LightStrip
 - Philips Hue Iris
+- Philips Hue white ambiance E14
+- Philips Hue white ambiance GU10
+- Philips Hue white ambiance E26/E27
+- Philips Hue Being
+- Sylvania LIGHTIFY LED adjustable white RT 5/6
+- Sylvania LIGHTIFY LED adjustable white BR30
+- Sylvania Smart Home adjustable white MR16 LED bulb
 
 ## 0.0.14
 - Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
