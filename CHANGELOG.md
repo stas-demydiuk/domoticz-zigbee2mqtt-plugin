@@ -3,6 +3,7 @@
 ## master
 - Handle switch state change for PushOnButton
 - Added Domoticz devices to represent Xiaomi Cube rotation angle and current side
+- Added Domoticz devices to represent temperature, humidity and pressure in one device
 
 New devices:
 - Philips Hue Bloom
