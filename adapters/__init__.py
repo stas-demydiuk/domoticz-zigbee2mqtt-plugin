@@ -1,6 +1,6 @@
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
-from adapters.ikea.tradfri_color_light import TradfriColorLight
+from adapters.rgb_adapter import RGBAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
@@ -35,7 +35,7 @@ adapter_by_model = {
     # Ikea
     'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
     'LED1623G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
-    'LED1624G9': TradfriColorLight,     # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+    'LED1624G9': RGBAdapter,            # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
     'LED1650R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
@@ -60,10 +60,13 @@ adapter_by_model = {
     'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
     'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
     # Philips
+    '7299760PH': RGBAdapter,            # Philips Hue Bloom
     '324131092621': OnOffSwitchAdapter, # Philips Hue dimmer switch
     '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '8718696449691': DimmableBulbAdapter,   # Philips Hue White Single bulb B22
+    '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
+    '7199960PH': RGBAdapter,            # Philips Hue Iris
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)

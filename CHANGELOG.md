@@ -4,6 +4,11 @@
 - Handle switch state change for PushOnButton
 - Added Domoticz devices to represent Xiaomi Cube rotation angle and current side
 
+New devices:
+- Philips Hue Bloom
+- Philips Hue white and color ambiance LightStrip
+- Philips Hue Iris
+
 ## 0.0.14
 - Added new devices in Domoticz to handle link quality and batery level for devices in zigbee network
 
