@@ -12,8 +12,8 @@
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
         <param field="Mode2" label="Zigbee pairing" width="75px" required="true">
             <options>
-                <option label="Enabled" value="true_false"/>
-                <option label="Disabled" value="false_true" default="true" />
+                <option label="Enabled" value="true"/>
+                <option label="Disabled" value="false" default="true" />
             </options>
         </param>
         <param field="Mode6" label="Debug" width="75px">
@@ -48,6 +48,7 @@ class BasePlugin:
 
         Domoticz.Debug("onStart called")
         self.base_topic = Parameters["Mode1"].strip()
+        self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
 
         self.mqttserveraddress = Parameters["Address"].strip()
@@ -55,16 +56,20 @@ class BasePlugin:
         self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
         self.available_devices = DeviceStorage.getInstance()
-        
-        #set pairing mode of the bridge
-        Domoticz.Debug("onStart: set paring mode to :'" + Parameters["Mode2"] + "'")
-        self.pairing_atributes = Parameters["Mode2"].split("_")
 
     def checkDevices(self):
         Domoticz.Debug("checkDevices called")
 
     def onStop(self):
         Domoticz.Debug("onStop called")
+
+    def handlePairingMode(self):
+        if (self.pairing_enabled):
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'true')
+            Domoticz.Log("Joining new devices is enabled on the zigbee bridge")
+        else:
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'false')
+            Domoticz.Log("Joining new devices is disabled on the zigbee bridge")
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
@@ -111,12 +116,6 @@ class BasePlugin:
             self.mqttClient.Ping()
 
     def onMQTTConnected(self):
-        Domoticz.Debug("onMQTTConnected called")
-        #Domoticz.Debug("onMQTTConnected: setting bridge pairing mode")
-        self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', self.pairing_atributes[0])
-        #set LED doesn't seem to work.... yet
-        self.mqttClient.Publish(self.base_topic + '/bridge/config/disable_led', self.pairing_atributes[1])
-        
         self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])
 
     def onMQTTDisconnected(self):
@@ -129,10 +128,12 @@ class BasePlugin:
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
 
         if (topic == self.base_topic + '/bridge/state'):
+            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
+
             if message == 'online':
                 self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+                self.handlePairingMode()
 
-            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
             return
 
         if (topic == self.base_topic + '/bridge/log'):
