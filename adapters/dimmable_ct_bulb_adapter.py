@@ -12,6 +12,14 @@ class DimmableCtBulbAdapter(Adapter):
         self.dimmer = ColorTempDimmerSwitch(devices, 'light', values)
         self.devices.append(self.dimmer)
 
+    def convert_message(self, message):
+        message = super().convert_message(message)
+
+        if 'color_temp' in message.raw:
+            message.raw['color_temp'] = int(message.raw['color_temp'] * 255 / 500)
+
+        return message
+
     def handleCommand(self, alias, device, device_data, command, level, color):
         cmd = command.upper()
 
@@ -41,6 +49,6 @@ class DimmableCtBulbAdapter(Adapter):
                 'payload': json.dumps({
                     "state": "ON",
                     "brightness": int(level * 255 / 100),
-                    "color_temp": color_temp
+                    "color_temp": int(color_temp * 500 / 255)
                 })
             }
