@@ -93,11 +93,10 @@ class Device():
             Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
             return None
 
-        device_values = {
+        device_values = dict({
             'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
             'SignalLevel': message.get_signal_level() or device.SignalLevel,
-            **self.get_device_args(value, device, message)
-        }
+        }, **self.get_device_args(value, device, message))
 
         device.Update(**device_values)
 

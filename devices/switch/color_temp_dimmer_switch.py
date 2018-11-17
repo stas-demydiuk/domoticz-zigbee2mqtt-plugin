@@ -4,7 +4,7 @@ from devices.device import Device
 
 
 class ColorTempDimmerSwitch(Device):
-    def __init__(self, devices, alias, value_key, device_name_suffix = ''):
+    def __init__(self, devices, alias, value_key, device_name_suffix=''):
         super().__init__(devices, alias, ';'.join(value_key), device_name_suffix)
         self.value_keys = value_key
 
@@ -31,11 +31,11 @@ class ColorTempDimmerSwitch(Device):
             return str(int(value['brightness'] * 100 / 255))
         else:
             return device.sValue
-    
+
     def get_color_value(self, value, device):
         if 'color_temp' in value:
             return json.dumps({
-                'ColorMode': 2, # ColorModeTemp
+                'ColorMode': 2,  # ColorModeTemp
                 't': value['color_temp']
             })
         else:
@@ -44,7 +44,4 @@ class ColorTempDimmerSwitch(Device):
     def get_device_args(self, value, device, message):
         args = super().get_device_args(value, device, message)
 
-        return {
-            **args,
-            'Color': self.get_color_value(value, device)
-        }
+        return dict(args, Color=self.get_color_value(value, device))
