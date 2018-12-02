@@ -2,6 +2,7 @@ from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
+from adapters.rgbw_adapter import RGBWAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet

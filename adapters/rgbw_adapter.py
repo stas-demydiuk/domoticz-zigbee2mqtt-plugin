@@ -44,6 +44,9 @@ class RGBWAdapter(Adapter):
             if cwww == 0:
                 payload = json.dumps({
                     "state": "ON",
+              # Disabled the transition time for now because hue bulb/zigbee2mqtt will
+              # publish (acknowledge) the new color value during the transition with
+              # a value between start and end of the transition, not the actual target color
               #      "transition" : ttime,
                     "brightness": int(level * 255 / 100),
                     "color": {
