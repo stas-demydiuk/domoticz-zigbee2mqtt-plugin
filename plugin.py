@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.14">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.15">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -9,8 +9,15 @@
     <params>
         <param field="Address" label="MQTT Server address" width="300px" required="true" default="127.0.0.1"/>
         <param field="Port" label="Port" width="300px" required="true" default="1883"/>
+        <param field="Username" label="MQTT Username" width="300px" required="false" default=""/>
+        <param field="Password" label="MQTT Password" width="300px" required="false" default="" password="true"/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
-
+        <param field="Mode2" label="Zigbee pairing" width="75px" required="true">
+            <options>
+                <option label="Enabled" value="true"/>
+                <option label="Disabled" value="false" default="true" />
+            </options>
+        </param>
         <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="Verbose" value="Verbose"/>
@@ -41,7 +48,9 @@ class BasePlugin:
         if self.debugging == "Debug":
             Domoticz.Debugging(2)
 
+        Domoticz.Debug("onStart called")
         self.base_topic = Parameters["Mode1"].strip()
+        self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
 
         self.mqttserveraddress = Parameters["Address"].strip()
@@ -55,6 +64,14 @@ class BasePlugin:
 
     def onStop(self):
         Domoticz.Debug("onStop called")
+
+    def handlePairingMode(self):
+        if (self.pairing_enabled):
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'true')
+            Domoticz.Log("Joining new devices is enabled on the zigbee bridge")
+        else:
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'false')
+            Domoticz.Log("Joining new devices is disabled on the zigbee bridge")
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
@@ -81,6 +98,7 @@ class BasePlugin:
             Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')        
 
     def onConnect(self, Connection, Status, Description):
+        Domoticz.Debug("onConnect called")
         self.mqttClient.onConnect(Connection, Status, Description)
 
     def onDisconnect(self, Connection):
@@ -112,10 +130,12 @@ class BasePlugin:
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
 
         if (topic == self.base_topic + '/bridge/state'):
+            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
+
             if message == 'online':
                 self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+                self.handlePairingMode()
 
-            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
             return
 
         if (topic == self.base_topic + '/bridge/log'):
