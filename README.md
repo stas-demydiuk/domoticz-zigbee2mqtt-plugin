@@ -107,6 +107,7 @@ git pull
 - Philips Hue white ambiance E14
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance E26/E27
+- Philips Hue white and color ambiance E26/E27
 - Philips Hue Being
 
 ### Sengled

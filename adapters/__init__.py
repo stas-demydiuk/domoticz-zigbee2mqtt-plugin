@@ -86,6 +86,7 @@ adapter_by_model = {
     '3261030P7': DimmableCtBulbAdapter, # Philips Hue Being
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
+    '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
