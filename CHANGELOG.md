@@ -1,6 +1,8 @@
 # Changelog
 
 ## master
+- Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
+
 New devices:
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor

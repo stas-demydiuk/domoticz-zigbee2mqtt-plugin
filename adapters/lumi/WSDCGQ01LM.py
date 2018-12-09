@@ -4,7 +4,8 @@ from devices.humidity_sensor import HumiditySensor
 from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 
 
-class SensorTemperatureHumidity(AdapterWithBattery):
+# Xiaomi MiJia temperature & humidity sensor
+class WSDCGQ01LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
