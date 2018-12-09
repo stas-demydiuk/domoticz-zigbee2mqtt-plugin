@@ -107,13 +107,17 @@ git pull
 - Philips Hue white ambiance E14
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance E26/E27
-- Philips Hue white and color ambiance E26/E27
+- Philips Hue white and color ambiance E26/E27/E14
 - Philips Hue Being
 
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)
 - Sengled Element Touch (A19)
+
+### SmartThings
+- SmartThings SmartSense multi sensor
+- SmartThings Arrival sensor
 
 ### Sylvania
 - Sylvania LIGHTIFY LED adjustable white RT 5/6

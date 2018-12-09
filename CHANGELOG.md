@@ -4,6 +4,7 @@
 New devices:
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor
+- Philips Hue white and color ambiance E26/E27/E14
 
 ## 0.0.15
 - Handle switch state change for PushOnButton
