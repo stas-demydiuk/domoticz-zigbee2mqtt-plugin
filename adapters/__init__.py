@@ -19,6 +19,8 @@ from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.weather import Weather
+from adapters.samsung.sensor_contact import SensorContact
+from adapters.samsung.sensor_arrival import SensorArrival
 
 adapter_by_model = {
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
@@ -92,6 +94,9 @@ adapter_by_model = {
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
     'Z01-CIA19NAE26': DimmableBulbAdapter,  # Sengled Element Touch (A19)
+    # SmartThings
+    'STSS-MULT-001': SensorContact,     # SmartThings SmartSense multi sensor
+    'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
     # Sylvania
     '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30

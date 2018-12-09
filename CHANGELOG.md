@@ -1,5 +1,10 @@
 # Changelog
 
+## master
+New devices:
+- SmartThings SmartSense multi sensor
+- SmartThings SmartThings arrival sensor
+
 ## 0.0.15
 - Handle switch state change for PushOnButton
 - Added Domoticz devices to represent Xiaomi Cube rotation angle and current side
