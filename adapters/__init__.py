@@ -2,6 +2,7 @@ from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
+from adapters.rgbw_adapter import RGBWAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
@@ -86,6 +87,7 @@ adapter_by_model = {
     '3261030P7': DimmableCtBulbAdapter, # Philips Hue Being
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
+    '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
