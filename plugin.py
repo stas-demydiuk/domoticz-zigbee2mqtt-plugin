@@ -11,6 +11,7 @@
         <param field="Port" label="Port" width="300px" required="true" default="1883"/>
         <param field="Username" label="MQTT Username (optional)" width="300px" required="false" default=""/>
         <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
+        <param field="Mode4" label="Light transition time (sec)" width="30px" required="false" default="1"/>
         <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
         <param field="Mode2" label="Zigbee pairing" width="75px" required="true">
@@ -33,6 +34,7 @@ import Domoticz
 import json
 import time
 import re
+import builtins
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
 from device_storage import DeviceStorage
@@ -53,6 +55,10 @@ class BasePlugin:
         self.base_topic = Parameters["Mode1"].strip()
         self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
+        try:
+            builtins.light_transition_time = int(Parameters["Mode4"])
+        except:
+            builtins.light_transition_time = 1
 
         mqtt_server_address = Parameters["Address"].strip()
         mqtt_server_port = Parameters["Port"].strip()
