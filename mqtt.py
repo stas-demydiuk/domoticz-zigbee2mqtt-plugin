@@ -3,6 +3,7 @@ import Domoticz
 import time
 import json
 
+
 class MqttClient:
     Address = ""
     Port = ""
@@ -12,10 +13,12 @@ class MqttClient:
     mqttDisconnectedCb = None
     mqttPublishCb = None
 
-    def __init__(self, destination, port, mqttConnectedCb, mqttDisconnectedCb, mqttPublishCb, mqttSubackCb):
+    def __init__(self, destination, port, clientId, mqttConnectedCb, mqttDisconnectedCb, mqttPublishCb, mqttSubackCb):
         Domoticz.Debug("MqttClient::__init__")
-        self.Address = destination
-        self.Port = port
+        
+        self.address = destination
+        self.port = port
+        self.client_id = clientId if clientId != "" else 'Domoticz_'+str(int(time.time()))
         self.mqttConnectedCb = mqttConnectedCb
         self.mqttDisconnectedCb = mqttDisconnectedCb
         self.mqttPublishCb = mqttPublishCb
@@ -35,11 +38,9 @@ class MqttClient:
             self.Close()
         self.isConnected = False
 
-        Protocol = "MQTT"
-        if (self.Port == "8883"): 
-            Protocol = "MQTTS"
+        protocol = "MQTTS" if self.port == "8883" else "MQTT"
 
-        self.mqttConn = Domoticz.Connection(Name=self.Address, Transport="TCP/IP", Protocol=Protocol, Address=self.Address, Port=self.Port)
+        self.mqttConn = Domoticz.Connection(Name=self.address, Transport="TCP/IP", Protocol=protocol, Address=self.address, Port=self.port)
         self.mqttConn.Connect()
 
     def Connect(self):
@@ -47,9 +48,8 @@ class MqttClient:
         if (self.mqttConn == None):
             self.Open()
         else:
-            ID = 'Domoticz_'+str(int(time.time()))
-            Domoticz.Debug("MQTT CONNECT ID: '" + ID + "'")
-            self.mqttConn.Send({'Verb': 'CONNECT', 'ID': ID})
+            Domoticz.Debug("MQTT CONNECT ID: '" + self.client_id + "'")
+            self.mqttConn.Send({'Verb': 'CONNECT', 'ID': self.client_id})
 
     def Ping(self):
         Domoticz.Debug("MqttClient::Ping")
@@ -94,6 +94,13 @@ class MqttClient:
         # TODO: Reconnect?
         if self.mqttDisconnectedCb != None:
             self.mqttDisconnectedCb()
+
+    def onHeartbeat(self):
+        if self.mqttConn is None or (not self.mqttConn.Connecting() and not self.mqttConn.Connected() or not self.isConnected):
+            Domoticz.Debug("MqttClient::Reconnecting")
+            self.Open()
+        else:
+            self.Ping()
 
     def onMessage(self, Connection, Data):
         topic = ''
