@@ -9,8 +9,9 @@
     <params>
         <param field="Address" label="MQTT Server address" width="300px" required="true" default="127.0.0.1"/>
         <param field="Port" label="Port" width="300px" required="true" default="1883"/>
-        <param field="Username" label="MQTT Username" width="300px" required="false" default=""/>
-        <param field="Password" label="MQTT Password" width="300px" required="false" default="" password="true"/>
+        <param field="Username" label="MQTT Username (optional)" width="300px" required="false" default=""/>
+        <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
+        <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
         <param field="Mode2" label="Zigbee pairing" width="75px" required="true">
             <options>
@@ -53,9 +54,10 @@ class BasePlugin:
         self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
 
-        self.mqttserveraddress = Parameters["Address"].strip()
-        self.mqttserverport = Parameters["Port"].strip()
-        self.mqttClient = MqttClient(self.mqttserveraddress, self.mqttserverport, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
+        mqtt_server_address = Parameters["Address"].strip()
+        mqtt_server_port = Parameters["Port"].strip()
+        mqtt_client_id = Parameters["Mode3"].strip()
+        self.mqttClient = MqttClient(mqtt_server_address, mqtt_server_port, mqtt_client_id, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
         self.available_devices = DeviceStorage.getInstance()
 
@@ -108,14 +110,7 @@ class BasePlugin:
         self.mqttClient.onMessage(Connection, Data)
 
     def onHeartbeat(self):
-        Domoticz.Debug("Heartbeating...")
-
-        # Reconnect if connection has dropped
-        if self.mqttClient.mqttConn is None or (not self.mqttClient.mqttConn.Connecting() and not self.mqttClient.mqttConn.Connected() or not self.mqttClient.isConnected):
-            Domoticz.Debug("Reconnecting")
-            self.mqttClient.Open()
-        else:
-            self.mqttClient.Ping()
+        self.mqttClient.onHeartbeat()
 
     def onMQTTConnected(self):
         self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])

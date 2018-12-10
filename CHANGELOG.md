@@ -1,5 +1,14 @@
 # Changelog
 
+## master
+- Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
+- Ability to manually specify Client ID for MQTT connection using plugin settings
+
+New devices:
+- SmartThings SmartSense multi sensor
+- SmartThings SmartThings arrival sensor
+- Philips Hue white and color ambiance E26/E27/E14
+
 ## 0.0.15
 - Handle switch state change for PushOnButton
 - Added Domoticz devices to represent Xiaomi Cube rotation angle and current side
