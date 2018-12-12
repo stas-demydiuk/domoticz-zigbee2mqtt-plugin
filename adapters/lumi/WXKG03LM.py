@@ -17,5 +17,5 @@ class WXKG03LM(AdapterWithBattery):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
         self.switch.handle_command(device_data, command, level, color)

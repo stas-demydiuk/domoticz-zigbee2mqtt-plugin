@@ -11,7 +11,7 @@ class RGBAdapter(Adapter):
         self.dimmer = ColorLight(devices, 'light', 'state_brightness_color')
         self.devices.append(self.dimmer)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
         cmd = command.upper()
 
         if cmd == 'ON' or cmd == 'OFF':

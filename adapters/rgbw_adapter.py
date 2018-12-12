@@ -10,8 +10,8 @@ class RGBWAdapter(Adapter):
         self.dimmer = RGBWLight(devices, 'light', 'state_brightness_color')
         self.devices.append(self.dimmer)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
+
         cmd = command.upper()
 
         if cmd == 'ON' or cmd == 'OFF':
@@ -23,9 +23,11 @@ class RGBWAdapter(Adapter):
             }
 
         if cmd == 'SET LEVEL':
+            ttime = config['transition_time']
             return {
                 'topic': device_data['friendly_name'] + '/set',
                 'payload': json.dumps({
+                    "transition" : ttime,
                     "state": "ON",
                     "brightness": int(level*255/100)
                 })
@@ -38,15 +40,11 @@ class RGBWAdapter(Adapter):
             blue = colorObject['b']
             color_temp = colorObject['t']
             cwww = colorObject['cw'] + colorObject['ww']
-            ttime = light_transition_time   #'superglobal' variable stored in 'builtin' module called by plugin.py
-            
+            ttime = config['transition_time']
             #only use cwww to determine mode
             if cwww == 0:
                 payload = json.dumps({
                     "state": "ON",
-              # Disabled the transition time for now because hue bulb/zigbee2mqtt will
-              # publish (acknowledge) the new color value during the transition with
-              # a value between start and end of the transition, not the actual target color
                     "transition" : ttime,
                     "brightness": int(level * 255 / 100),
                     "color": {

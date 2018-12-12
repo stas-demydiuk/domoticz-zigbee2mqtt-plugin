@@ -10,7 +10,7 @@ class AqaraDoubleWiredSwitch(Adapter):
         self.devices.append(OnOffSwitch(devices, 'left', 'state_left'))
         self.devices.append(OnOffSwitch(devices, 'right', 'state_right'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
         return {
             'topic': '/'.join([device_data['friendly_name'], alias, 'set']),
             'payload': json.dumps({

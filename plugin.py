@@ -34,7 +34,6 @@ import Domoticz
 import json
 import time
 import re
-import builtins
 from mqtt import MqttClient
 from zigbee_message import ZigbeeMessage
 from device_storage import DeviceStorage
@@ -55,10 +54,11 @@ class BasePlugin:
         self.base_topic = Parameters["Mode1"].strip()
         self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
+        self.adapter_config={}
         try:
-            builtins.light_transition_time = int(Parameters["Mode4"])
+            self.adapter_config['transition_time'] = int(Parameters["Mode4"])
         except:
-            builtins.light_transition_time = 1
+            self.adapter_config['transition_time'] = 1
 
         mqtt_server_address = Parameters["Address"].strip()
         mqtt_server_port = Parameters["Port"].strip()
@@ -98,7 +98,7 @@ class BasePlugin:
 
         if (model in adapter_by_model):
             adapter = adapter_by_model[model](Devices)
-            message = adapter.handleCommand(alias, device, device_data, Command, Level, Color)
+            message = adapter.handleCommand(alias, device, device_data, Command, Level, Color, self.adapter_config)
 
             if (message != None):
                 self.mqttClient.Publish(self.base_topic + '/' + message['topic'], message['payload'])

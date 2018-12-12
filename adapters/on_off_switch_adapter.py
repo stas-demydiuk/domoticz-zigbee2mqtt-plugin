@@ -10,7 +10,7 @@ class OnOffSwitchAdapter(Adapter):
         self.switch = OnOffSwitch(devices, 'switch', 'state')
         self.devices.append(self.switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
         self.switch.handle_command(device_data, command, level, color)
 
         return {

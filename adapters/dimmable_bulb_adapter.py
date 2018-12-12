@@ -18,7 +18,7 @@ class DimmableBulbAdapter(Adapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handleCommand(self, alias, device, device_data, command, level, color, config):
         cmd = command.upper()
 
         if cmd == 'ON' or cmd == 'OFF':
