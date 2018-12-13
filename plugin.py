@@ -135,8 +135,16 @@ class BasePlugin:
 
             if message == 'online':
                 self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+                if (self.debugging == "Verbose" or self.debugging == "Debug"):
+                    self.mqttClient.Publish(self.base_topic + '/bridge/networkmap', 'raw')
                 self.handlePairingMode()
 
+            return
+
+        if (topic == self.base_topic + '/bridge/networkmap/raw'):
+            Domoticz.Status('Zigbee network layout:')
+            for networknode in message:
+                Domoticz.Status(str(networknode))
             return
 
         if (topic == self.base_topic + '/bridge/log'):
