@@ -1,3 +1,4 @@
+from decimal import Decimal
 import Domoticz
 from devices.device import Device
 
@@ -9,5 +10,5 @@ class TemperatureSensor(Device):
         return 0
 
     def get_string_value(self, value, device):
-        return str(value)
+        return str(round(Decimal(value), 1))
 
