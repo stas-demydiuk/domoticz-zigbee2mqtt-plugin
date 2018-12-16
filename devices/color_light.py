@@ -34,18 +34,26 @@ class ColorLight(Device):
         
         return (s_value, n_value)
 
-    def get_color_value(self, message):
-        if 'brightness' in message.raw:
-            bri=message.raw['brightness']/254
+    def get_color_value(self, message, mode):
+        if mode == 1: #mode 1 us XY from zigbee
+            if 'brightness' in message.raw:
+                bri=message.raw['brightness']/254
+            else:
+                bri=1
+            colorXY = message.raw['color']
+            color_values = self.get_rgb_from_xy_and_brightness(colorXY['x'],colorXY['y'],bri)
+            color_value = json.dumps({
+                'm': 3, #mode 3 is RGB for Domoticz
+                'r': int(color_values[0]),
+                'g': int(color_values[1]),
+                'b': int(color_values[2])})
+        elif mode == 2:
+            colorTemp = int((message.raw['color_temp']-154) / 346 * 255)
+            color_value = json.dumps({
+                'm': 2,  # ColorModeTemp
+                't': colorTemp})
         else:
-            bri=1
-        colorXY = message.raw['color']
-        color_values = self.get_rgb_from_xy_and_brightness(colorXY['x'],colorXY['y'],bri)
-        color_value = json.dumps({
-            'm': 3, #mode 3 is RGB for Domoticz
-            'r': color_values[0],
-            'g': color_values[1],
-            'b': color_values[2]})
+            return None
         return color_value
         
     def handle_message(self, device_data, message):
@@ -64,54 +72,54 @@ class ColorLight(Device):
             # so just create and exit for now
             # device = self._create_device(device_data, message)
             return self._create_device(device_data)
-
-        for key in self.value_keys:
-            if (key not in message.raw):
-                # There is no way to properly handle heartbeat messages as nValue and sValue are mandatory for device update
-                Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
-                return None
-
-            if (key != 'color'):
-                value = message.raw[key]
-                (s_value, n_value) = self.get_sn_values(key, value, device)
+            
+        if "brightness" in message.raw:
+            value=message.raw["brightness"]
+            n_value = 1 if value > 0 else 0
+            s_value = str(int(value * 100 / 255))
                 
         signal_level = message.get_signal_level()
-        battery_level = message.get_battery_level()
         
-        if ("state" in message.raw and message.raw['state'].upper()=='OFF'):
-            s_value = 'Off'
-            n_value = 0
+        if "state" in message.raw:
+            if message.raw['state'].upper()=='OFF':
+                n_value = 0
+            else:
+                n_value = 1
 
-        if ("color" in message.raw and "color" in self.value_keys):
-            color_value = self.get_color_value(message)
+        if "color" in message.raw:
+            #Colormode will be included in the message after my PR in zigbee-shepherd-converters is accepted/merged
+            if "color_mode" in message.raw:
+                colormode=message.raw['color_mode']
+            else:
+                colormode=1
+            color_value = self.get_color_value(message, colormode)
 
         #when no values in message, reuse existing values from device
         
-        if (n_value == None):
-            n_value = device.nValue
+        payload={}
+        if (n_value != None):
+            payload['nValue'] = n_value
 
-        if (s_value == None):
-            s_value = device.sValue
+        if (s_value != None):
+            payload['sValue'] = s_value
             
-        if (signal_level == None):
-            signal_level = device.SignalLevel
-
-        if (battery_level == None):
-            battery_level = device.BatteryLevel
+        if (signal_level != None):
+            payload['SignalLevel'] = signal_level
             
-        if (color_value == None):
-            color_value = device.Color
+        if (color_value != None):
+            payload['Color'] = color_value
             
-        Domoticz.Debug("handle_message: update device: nVal: '"+str(n_value)+"', sval: '"+s_value+"'")
+        Domoticz.Debug("update domticz device: '" +str(payload)+"'")
 
-        device.Update(
-            nValue=n_value,
-            sValue=s_value,
-            SignalLevel=signal_level,
-            BatteryLevel=battery_level,
-            Color=color_value
-        )
-
+        if payload:
+            if not 'nValue' in payload:
+                payload['nValue'] = device.nValue
+            if not 'sValue' in payload:
+                payload['sValue'] = device.sValue            
+            device.Update(**payload)
+        else:
+            Domoticz.Debug("no usable data in message... hearbeat message???")
+        
     def get_rgb_from_xy_and_brightness(self, x, y, bri=1):
         """Inverse of `get_xy_point_from_rgb`. Returns (r, g, b) for given x, y values.
         Implementation of the instructions found on the Philips Hue iOS SDK docs: http://goo.gl/kWKXKl
