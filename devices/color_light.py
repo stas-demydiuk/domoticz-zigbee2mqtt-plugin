@@ -12,28 +12,6 @@ class ColorLight(Device):
     def create_device(self, unit, device_id, device_name):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=1, Switchtype=7).Create()
 
-    def get_numeric_value(self, value, device):
-        return 1 if value > 0 else 0
-
-    def get_string_value(self, value, device):
-        return str(int(value * 100 / 255))
-        
-    def get_sn_values(self, key, value, device):
-        s_value = None
-        n_value = None
-        
-        if key == "state" and value.upper() == 'OFF':
-            n_value = 0
-            s_value = value
-        elif key == "brightness":
-            n_value = self.get_numeric_value(value, device)
-            s_value = self.get_string_value(value, device)
-        elif key == "color":
-            n_value = None
-            s_value = None
-        
-        return (s_value, n_value)
-
     def get_color_value(self, message, mode):
         if mode == 1: #mode 1 us XY from zigbee
             if 'brightness' in message.raw:
