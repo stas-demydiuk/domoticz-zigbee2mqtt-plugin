@@ -35,10 +35,14 @@ class ColorLight(Device):
         return (s_value, n_value)
 
     def get_color_value(self, message):
+        if 'brightness' in message.raw:
+            bri=message.raw['brightness']/254
+        else:
+            bri=1
         colorXY = message.raw['color']
-        color_values = self._get_RGB_from_XY(colorXY['x'],colorXY['y'],message.raw['brightness'])
+        color_values = self.get_rgb_from_xy_and_brightness(colorXY['x'],colorXY['y'],bri)
         color_value = json.dumps({
-            'ColorMode': 3, #mode 3: RGB
+            'm': 3, #mode 3 is RGB for Domoticz
             'r': color_values[0],
             'g': color_values[1],
             'b': color_values[2]})
@@ -47,12 +51,15 @@ class ColorLight(Device):
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
+    
+        Domoticz.Debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
         
         n_value = None
         s_value = None
         color_value = None
 
         if (device == None):
+            Domoticz.Status('no device in message')
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
             # so just create and exit for now
             # device = self._create_device(device_data, message)
@@ -105,20 +112,37 @@ class ColorLight(Device):
             Color=color_value
         )
 
-    def _get_RGB_from_XY(self, x, y, brightness):
-        """calculate RGB valus from the XY as reported by the bridge"""
-        #Calculate XYZ values Convert using the following formulas
-        z = 1.0 - x - y
-        Y = brightness
-        X = (Y/y) * x
-        Z = (Y/y) * z
-        #Convert to RGB using Wide RGB D65 conversion (THIS IS A D50 conversion currently)
-        r = X * 1.4628067 - Y * 0.1840623 - Z * 0.2743606
-        g = -X * 0.5217933 + Y * 1.4472381 + Z * 0.0677227
-        b = X * 0.0349342 - Y * 0.0968930 + Z * 1.2884099
-        #Apply reverse gamma correction
-        
-        R = 12.92 * r if r <= 0.0031308 else (1.0 + 0.055) * pow(r, (1.0 / 2.4)) - 0.055
-        G = 12.92 * g if g <= 0.0031308 else (1.0 + 0.055) * pow(g, (1.0 / 2.4)) - 0.055
-        B = 12.92 * b if b <= 0.0031308 else (1.0 + 0.055) * pow(b, (1.0 / 2.4)) - 0.055
-        return (R,G,B)
+    def get_rgb_from_xy_and_brightness(self, x, y, bri=1):
+        """Inverse of `get_xy_point_from_rgb`. Returns (r, g, b) for given x, y values.
+        Implementation of the instructions found on the Philips Hue iOS SDK docs: http://goo.gl/kWKXKl
+        """
+        # Adapted from https://github.com/benknight/hue-python-rgb-converter
+
+        # Calculate XYZ values Convert using the following formulas:
+        Y = bri
+        X = (Y / y) * x
+        Z = (Y / y) * (1 - x - y)
+
+        # Convert to RGB using Wide RGB D65 conversion
+        r = X * 1.656492 - Y * 0.354851 - Z * 0.255038
+        g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152
+        b = X * 0.051713 - Y * 0.121364 + Z * 1.011530
+
+        # Apply reverse gamma correction
+        r, g, b = map(
+            lambda x: (12.92 * x) if (x <= 0.0031308) else ((1.0 + 0.055) * pow(x, (1.0 / 2.4)) - 0.055),
+            [r, g, b]
+        )
+
+        # Bring all negative components to zero
+        r, g, b = map(lambda x: max(0, x), [r, g, b])
+
+        # If one component is greater than 1, weight components by that value.
+        max_component = max(r, g, b)
+        if max_component > 1:
+            r, g, b = map(lambda x: x / max_component, [r, g, b])
+
+        r, g, b = map(lambda x: int(x * 255), [r, g, b])
+
+        # Convert the RGB values to your color object The rgb values from the above formulas are between 0.0 and 1.0.
+        return (r, g, b)
