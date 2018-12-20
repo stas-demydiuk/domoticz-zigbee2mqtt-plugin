@@ -97,8 +97,9 @@ class Device():
             'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
             'SignalLevel': message.get_signal_level() or device.SignalLevel,
         }, **self.get_device_args(value, device, message))
-
-        device.Update(**device_values)
+        
+        if device.sValue != self.get_string_value(value, device):
+            device.Update(**device_values)
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
