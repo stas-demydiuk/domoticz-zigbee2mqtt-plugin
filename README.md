@@ -41,6 +41,9 @@ git pull
 - GE ZigBee plug-in smart dimmer
 - GE ZigBee in-wall smart dimmer
 
+### Gledopto
+- Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
+
 ### Hive
 - Hive Active light dimmable
 
@@ -145,6 +148,7 @@ git pull
 - Xiaomi Aqara wireless switch (WXKG11LM)
 - Xiaomi Aqara wireless switch with gyroscope (WXKG12LM)
 - Xiaomi MiJia door & window contact sensor
+- Xiaomi MiJia Honeywell smoke detector
 - Xiaomi MiJia human body movement sensor
 - Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch

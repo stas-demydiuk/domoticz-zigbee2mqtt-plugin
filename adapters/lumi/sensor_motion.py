@@ -1,5 +1,5 @@
 from adapters.adapter_with_battery import AdapterWithBattery
-from devices.motion_sensor import MotionSensor
+from devices.sensor.motion import MotionSensor
 
 
 class SensorMotion(AdapterWithBattery):

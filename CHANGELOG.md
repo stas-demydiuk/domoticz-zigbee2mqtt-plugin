@@ -5,9 +5,11 @@
 - Ability to manually specify Client ID for MQTT connection using plugin settings
 
 New devices:
+- Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor
 - Philips Hue white and color ambiance E26/E27/E14
+- Xiaomi MiJia Honeywell smoke detector
 
 ## 0.0.15
 - Handle switch state change for PushOnButton
