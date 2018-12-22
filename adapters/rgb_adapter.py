@@ -39,6 +39,7 @@ class RGBAdapter(Adapter):
             color_temp = colorObject['t']
             cwww = colorObject['cw'] + colorObject['ww']
             ttime = 1
+            Domoticz.Debug('RGB adapter: preparing payload: color_temp ' + str(color_temp) + ' cwww: ' + str(cwww))
 
             #only use cwww to determine mode
             if cwww == 0:
