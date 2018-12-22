@@ -1,3 +1,4 @@
+from adapters.base_adapter import Adapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
@@ -24,6 +25,7 @@ from adapters.samsung.sensor_contact import SensorContact
 from adapters.samsung.sensor_arrival import SensorArrival
 
 adapter_by_model = {
+    'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
