@@ -3,7 +3,6 @@ import json
 from adapters.base_adapter import Adapter
 from devices.color_light import ColorLight
 
-
 class RGBAdapter(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
@@ -39,7 +38,6 @@ class RGBAdapter(Adapter):
             color_temp = colorObject['t']
             cwww = colorObject['cw'] + colorObject['ww']
             ttime = 1
-            Domoticz.Debug('RGB adapter: preparing payload: color_temp ' + str(color_temp) + ' cwww: ' + str(cwww))
 
             #only use cwww to determine mode
             if cwww == 0:
