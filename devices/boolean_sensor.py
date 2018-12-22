@@ -3,6 +3,7 @@ from devices.device import Device
 
 class BooleanSensor(Device):
     SENSOR_TYPE_CONTACT = 2
+    SENSOR_TYPE_SMOKE = 5
     SENSOR_TYPE_MOTION = 8
     SENSOR_TYPE_DOOR_CONTACT = 11
 

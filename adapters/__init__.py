@@ -8,6 +8,7 @@ from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
+from adapters.lumi.sensor_smoke import SensorSmoke
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
@@ -125,5 +126,6 @@ adapter_by_model = {
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
     'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor 
-    'DJT11LM': SensorVibration          # Xiaomi Aqara vibration sensor (drop, tilt and touch)
+    'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
+    'JTYJ-GD-01LM/BW': SensorSmoke      # Xiaomi MiJia Honeywell smoke detector
 }
