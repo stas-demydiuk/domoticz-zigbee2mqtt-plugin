@@ -2,7 +2,7 @@ import json
 import Domoticz
 from devices.base_colortemp_light import BaseRGBWLight
 
-class RGBWLight(Device):
+class RGBWLight(BaseRGBWLight):
     """device class for a color controllable rgbw light bulb"""
 
     def __init__(self, devices, alias, value_keys):
