@@ -1,5 +1,5 @@
 from adapters.adapter_with_battery import AdapterWithBattery
-from devices.water_leak_sensor import WaterLeakSensor
+from devices.sensor.water_leak import WaterLeakSensor
 
 
 class SensorWleak(AdapterWithBattery):
