@@ -41,6 +41,9 @@ git pull
 - GE ZigBee plug-in smart dimmer
 - GE ZigBee in-wall smart dimmer
 
+### Gledopto
+- Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
+
 ### Hive
 - Hive Active light dimmable
 
