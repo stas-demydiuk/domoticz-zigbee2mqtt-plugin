@@ -23,6 +23,7 @@ from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.samsung.sensor_contact import SensorContact
 from adapters.samsung.sensor_arrival import SensorArrival
+from adapters.philips.sensor_motion_phlps import SensorMotionPhlps
 
 adapter_by_model = {
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
@@ -95,6 +96,7 @@ adapter_by_model = {
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
+    '9290012607':SensorMotionPhlps,     # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
