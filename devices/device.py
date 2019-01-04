@@ -98,7 +98,9 @@ class Device():
             'SignalLevel': message.get_signal_level() or device.SignalLevel,
         }, **self.get_device_args(value, device, message))
         
-        if device.sValue != self.get_string_value(value, device) and device.SwitchType not in [2, 8, 11, 12]:
+        if device.SwitchType in [2, 8, 11, 12]:
+            if device.sValue != self.get_string_value(value, device): device.Update(**device_values)
+        else:
             device.Update(**device_values)
 
     def handle_command(self, device_data, command, level, color):
