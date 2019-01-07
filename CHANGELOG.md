@@ -3,12 +3,14 @@
 ## master
 - Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
 - Ability to manually specify Client ID for MQTT connection using plugin settings
+- Suppress device update if no state change for door/motion/dusk sensors
 
 New devices:
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor
 - Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue Motion Sensor
 - Xiaomi MiJia Honeywell smoke detector
 
 ## 0.0.15

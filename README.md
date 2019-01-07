@@ -112,6 +112,7 @@ git pull
 - Philips Hue white ambiance E26/E27
 - Philips Hue white and color ambiance E26/E27/E14
 - Philips Hue Being
+- Philips Hue Motion Sensor
 
 ### Sengled
 - Sengled Element Classic (A19)
