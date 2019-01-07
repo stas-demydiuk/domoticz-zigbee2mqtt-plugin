@@ -3,7 +3,7 @@
 ## master
 - Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
 - Ability to manually specify Client ID for MQTT connection using plugin settings
-- Suppress device update if no state change for door/motion/dusk sensors
+- Suppress device update if no state change for boolean sensors
 
 New devices:
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer

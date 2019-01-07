@@ -45,6 +45,9 @@ class Device():
             '" value for device "' + device_name + '"'
         )
 
+    def update_device(self, device, values):
+        device.Update(**values)
+
     # Register device in Domoticz
     def register(self, device_data):
         device_address = device_data['ieee_addr']
@@ -98,10 +101,7 @@ class Device():
             'SignalLevel': message.get_signal_level() or device.SignalLevel,
         }, **self.get_device_args(value, device, message))
         
-        if device.SwitchType in [2, 8, 11, 12]:
-            if device.sValue != self.get_string_value(value, device): device.Update(**device_values)
-        else:
-            device.Update(**device_values)
+        self.update_device(device, device_values)
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
