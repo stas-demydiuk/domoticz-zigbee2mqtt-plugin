@@ -21,6 +21,7 @@ from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
+from adapters.osram.sensor_motion import SensorMotionOsram
 from adapters.samsung.sensor_contact import SensorContact
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.philips.sensor_motion_phlps import SensorMotionPhlps
@@ -87,6 +88,7 @@ adapter_by_model = {
     'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
     'AC03645': RGBWAdapter,             # OSRAM LIGHTIFY LED CLA60 E27 RGBW
     'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
+    'AC01353010G': SensorMotionOsram,   # OSRAM SMART+ Motion Sensor
     '4052899926110': RGBWAdapter,       # OSRAM Flex RGBW
     '4052899926158': DimmableBulbAdapter,   # OSRAM LIGHTIFY Surface Light TW
     '4058075036185': RGBWAdapter,       # OSRAM Outdoor Flex RGBW

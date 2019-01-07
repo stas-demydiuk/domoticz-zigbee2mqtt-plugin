@@ -105,8 +105,9 @@ git pull
 - OSRAM Smart+ Ceiling TW
 - OSRAM Smart+ Classic A 60 TW
 - OSRAM Smart+ Gardenpole RGBW
-- OSRAM Smart+ outdoor wall lantern RGBW
-- OSRAM Smart+ plug
+- OSRAM Smart+ Motion Sensor
+- OSRAM Smart+ Outdoor Wall Lantern RGBW
+- OSRAM Smart+ Plug
 - OSRAM Smart+ Spot GU10 Multicolor
 - OSRAM Flex RGBW
 - OSRAM Outdoor Flex RGBW

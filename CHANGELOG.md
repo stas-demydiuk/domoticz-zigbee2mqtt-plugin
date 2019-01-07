@@ -10,8 +10,9 @@ New devices:
 - OSRAM Flex RGBW
 - OSRAM Outdoor Flex RGBW
 - OSRAM Smart+ Gardenpole RGBW
-- OSRAM SMART+ outdoor wall lantern RGBW
+- OSRAM Smart+ outdoor wall lantern RGBW
 - OSRAM Smart+ Ceiling TW
+- OSRAM Smart+ Motion Sensor
 - OSRAM Smart+ Spot GU10 Multicolor
 - OSRAM Classic A60 RGBW
 - OSRAM LIGHTIFY LED CLA60 E27 RGBW
