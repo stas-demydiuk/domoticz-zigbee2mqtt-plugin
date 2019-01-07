@@ -2,6 +2,7 @@
 import Domoticz
 import time
 import json
+import random
 
 
 class MqttClient:
@@ -18,7 +19,7 @@ class MqttClient:
         
         self.address = destination
         self.port = port
-        self.client_id = clientId if clientId != "" else 'Domoticz_'+str(int(time.time()))
+        self.client_id = clientId if clientId != "" else 'Domoticz_'+str(int(time.time()))+'_'+str(random.randint(1000, 9999))
         self.mqttConnectedCb = mqttConnectedCb
         self.mqttDisconnectedCb = mqttDisconnectedCb
         self.mqttPublishCb = mqttPublishCb
