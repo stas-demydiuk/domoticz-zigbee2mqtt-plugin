@@ -94,13 +94,23 @@ git pull
 - Nue ZigBee one gang smart switch
 
 ### OSRAM
-- OSRAM SMART+ CLASSIC A 60 TW
 - OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW 
 - OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
 - OSRAM LIGHTIFY LED Classic B40 tunable white
 - OSRAM LIGHTIFY LED Classic A60 clear
+- OSRAM LIGHTIFY LED CLA60 E27 RGBW
 - OSRAM LIGHTIFY Surface Light LED Tunable White
+- OSRAM LIGHTIFY Surface Light TW
+- OSRAM Smart+ Candle E14 Dimmable White
+- OSRAM Smart+ Ceiling TW
+- OSRAM Smart+ Classic A 60 TW
+- OSRAM Smart+ Gardenpole RGBW
+- OSRAM Smart+ outdoor wall lantern RGBW
 - OSRAM Smart+ plug
+- OSRAM Smart+ Spot GU10 Multicolor
+- OSRAM Flex RGBW
+- OSRAM Outdoor Flex RGBW
+- OSRAM Classic A60 RGBW
 
 ### Philips
 - Philips Hue dimmer switch
