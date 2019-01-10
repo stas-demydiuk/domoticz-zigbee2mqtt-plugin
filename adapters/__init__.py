@@ -1,3 +1,4 @@
+from adapters.base_adapter import Adapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
@@ -8,6 +9,7 @@ from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
+from adapters.lumi.sensor_smoke import SensorSmoke
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
@@ -19,10 +21,13 @@ from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
+from adapters.osram.sensor_motion import SensorMotionOsram
 from adapters.samsung.sensor_contact import SensorContact
 from adapters.samsung.sensor_arrival import SensorArrival
+from adapters.philips.sensor_motion_phlps import SensorMotionPhlps
 
 adapter_by_model = {
+    'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
@@ -37,6 +42,8 @@ adapter_by_model = {
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
+    # Gledopto
+    'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
     # Ikea
     'LED1536G5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
     'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
@@ -70,13 +77,24 @@ adapter_by_model = {
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
     # OSRAM
-    'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
-    'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
-    'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
     'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
+    'AA69697': RGBWAdapter,             # OSRAM Classic A60 RGBW
+    'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
     'AB32840': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED Classic B40 tunable white
+    'AB35996': RGBWAdapter,             # OSRAM Smart+ Spot GU10 Multicolor
     'AB401130055': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY Surface Light LED Tunable White
     'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
+    'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
+    'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
+    'AC03645': RGBWAdapter,             # OSRAM LIGHTIFY LED CLA60 E27 RGBW
+    'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
+    'AC01353010G': SensorMotionOsram,   # OSRAM SMART+ Motion Sensor
+    '4052899926110': RGBWAdapter,       # OSRAM Flex RGBW
+    '4052899926158': DimmableBulbAdapter,   # OSRAM LIGHTIFY Surface Light TW
+    '4058075036185': RGBWAdapter,       # OSRAM Outdoor Flex RGBW
+    '4058075036147': RGBWAdapter,       # OSRAM Smart+ Gardenpole RGBW
+    '4058075816718': RGBWAdapter,       # OSRAM SMART+ outdoor wall lantern RGBW
+    '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Philips
     '7299760PH': RGBAdapter,            # Philips Hue Bloom
     '324131092621': OnOffSwitchAdapter, # Philips Hue dimmer switch
@@ -90,6 +108,7 @@ adapter_by_model = {
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
+    '9290012607':SensorMotionPhlps,     # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
@@ -123,5 +142,6 @@ adapter_by_model = {
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
     'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor 
-    'DJT11LM': SensorVibration          # Xiaomi Aqara vibration sensor (drop, tilt and touch)
+    'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
+    'JTYJ-GD-01LM/BW': SensorSmoke      # Xiaomi MiJia Honeywell smoke detector
 }

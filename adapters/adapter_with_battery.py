@@ -1,5 +1,5 @@
 from adapters.base_adapter import Adapter
-from devices.voltage_sensor import VoltageSensor
+from devices.sensor.voltage import VoltageSensor
 
 
 class AdapterWithBattery(Adapter):

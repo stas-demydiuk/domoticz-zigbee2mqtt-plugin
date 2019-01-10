@@ -1,5 +1,5 @@
 from adapters.adapter_with_battery import AdapterWithBattery
-from devices.contact_sensor import ContactSensor
+from devices.sensor.contact import ContactSensor
 
 
 class SensorContact(AdapterWithBattery):

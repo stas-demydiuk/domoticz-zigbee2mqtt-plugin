@@ -1,5 +1,5 @@
 from adapters.adapter_with_battery import AdapterWithBattery
-from devices.door_contact_sensor import DoorContactSensor
+from devices.sensor.door_contact import DoorContactSensor
 
 
 class SensorMagnet(AdapterWithBattery):

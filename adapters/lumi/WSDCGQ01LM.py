@@ -1,6 +1,6 @@
 from adapters.adapter_with_battery import AdapterWithBattery
-from devices.temperature_sensor import TemperatureSensor
-from devices.humidity_sensor import HumiditySensor
+from devices.sensor.temperature import TemperatureSensor
+from devices.sensor.humidity import HumiditySensor
 from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 
 

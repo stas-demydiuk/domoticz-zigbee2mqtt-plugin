@@ -1,6 +1,7 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
-from devices.voltage_sensor import VoltageSensor
-from devices.kwh_sensor import KwhSensor
+from devices.sensor.voltage import VoltageSensor
+from devices.sensor.kwh import KwhSensor
+
 
 class Plug(OnOffSwitchAdapter):
     def __init__(self, devices):

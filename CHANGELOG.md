@@ -3,11 +3,25 @@
 ## master
 - Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
 - Ability to manually specify Client ID for MQTT connection using plugin settings
+- Suppress device update if no state change for boolean sensors
 
 New devices:
+- Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
+- OSRAM Flex RGBW
+- OSRAM Outdoor Flex RGBW
+- OSRAM Smart+ Gardenpole RGBW
+- OSRAM Smart+ outdoor wall lantern RGBW
+- OSRAM Smart+ Ceiling TW
+- OSRAM Smart+ Motion Sensor
+- OSRAM Smart+ Spot GU10 Multicolor
+- OSRAM Classic A60 RGBW
+- OSRAM LIGHTIFY LED CLA60 E27 RGBW
+- OSRAM LIGHTIFY Surface Light TW
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor
 - Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue Motion Sensor
+- Xiaomi MiJia Honeywell smoke detector
 
 ## 0.0.15
 - Handle switch state change for PushOnButton
