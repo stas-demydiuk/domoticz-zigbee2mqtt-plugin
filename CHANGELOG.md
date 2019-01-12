@@ -6,10 +6,15 @@
 - Suppress device update if no state change for boolean sensors
 
 New devices:
+- Calex LED A60 Zigbee GLS-lamp
+- Climax Power plug
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast 
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
+- HEIMAN Door sensor
 - Innr E27 Bulb RGBW
 - Innr B22 Bulb RGBW
+- Innr E14 Candle with white spectrum
+- Iris Contact sensor
 - JIAWEN Wireless Bulb E27 9W RGBW
 - OSRAM Flex RGBW
 - OSRAM Outdoor Flex RGBW
@@ -21,13 +26,17 @@ New devices:
 - OSRAM Classic A60 RGBW
 - OSRAM LIGHTIFY LED CLA60 E27 RGBW
 - OSRAM LIGHTIFY Surface Light TW
+- Paulmann SmartHome Zigbee LED-stripe
+- Paulmann SmartHome Yourled RGB Controller
 - Philips Hue Go
+- Philips Hue white ambiance Aurelle Rectangle Panel Light
 - Philips Hue white and color ambiance E26/E27/E14
 - Philips Hue white and color ambiance GU10
 - Philips Hue white and color ambiance LightStrip plus
 - Philips Hue White and color ambiance Play Lightbar
 - Philips Hue white and color ambiance BR30
 - Philips Hue Motion Sensor
+- Sengled Element Plus (A19)
 - Sengled Element Plus Color (A19)
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor

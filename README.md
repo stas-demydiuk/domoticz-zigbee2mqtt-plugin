@@ -33,6 +33,12 @@ git pull
 ### Belkin
 - Belkin WeMo smart LED bulb
 
+### Calex
+- Calex LED A60 Zigbee GLS-lamp
+
+### Climax
+- Climax Power plug
+
 ### Commercial Electric
 - Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
 
@@ -46,6 +52,9 @@ git pull
 
 ### Gledopto
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
+
+### HEIMAN
+- HEIMAN Door sensor
 
 ### Hive
 - Hive Active light dimmable
@@ -75,6 +84,7 @@ git pull
 - Innr GU10 Spot
 - Innr GU10 Spot 350 lm, dimmable, white spectrum
 - Innr E14 Candle
+- Innr E14 Candle with white spectrum
 - Innr B22 Bulb dimmable
 - Innr B22 Bulb RGBW
 - Innr Puck Light
@@ -88,6 +98,7 @@ git pull
 
 ### Iris
 - Iris Smart plug
+- Iris Contact sensor
 
 ### JIAWEN
 - JIAWEN Wireless Bulb E27 9W RGBW
@@ -121,6 +132,10 @@ git pull
 - OSRAM Outdoor Flex RGBW
 - OSRAM Classic A60 RGBW
 
+### Paulmann
+- Paulmann SmartHome Zigbee LED-stripe
+- Paulmann SmartHome Yourled RGB Controller
+
 ### Philips
 - Philips Hue dimmer switch
 - Philips Hue Go
@@ -130,6 +145,7 @@ git pull
 - Philips Hue white ambiance E14
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance E26/E27
+- Philips Hue white ambiance Aurelle Rectangle Panel Light
 - Philips Hue white and color ambiance BR30
 - Philips Hue white and color ambiance GU10
 - Philips Hue white and color ambiance E26/E27/E14
@@ -141,6 +157,7 @@ git pull
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)
+- Sengled Element Plus (A19)
 - Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
 
@@ -184,6 +201,5 @@ git pull
 
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
-- Paulmann SmartHome Zigbee LED-stripe
 
 If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adapter.
