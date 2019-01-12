@@ -7,6 +7,7 @@ from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
+from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_smoke import SensorSmoke
@@ -164,8 +165,8 @@ adapter_by_model = {
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
     'WXKG02LM': WXKG02LM,               # Xiaomi Aqara double key wireless wall switch
     'WXKG03LM': WXKG03LM,               # Xiaomi Aqara single key wireless wall switch
-    'MCCGQ01LM': ContactAdapter,        # Xiaomi MiJia door & window contact sensor
-    'MCCGQ11LM': ContactAdapter,        # Xiaomi Aqara door & window contact sensor
+    'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
+    'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'RTCGQ01LM': SensorMotion,          # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
