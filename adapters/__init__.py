@@ -39,6 +39,8 @@ adapter_by_model = {
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
+    # Dresden Elektronik
+    'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
@@ -63,20 +65,25 @@ adapter_by_model = {
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     # Innr
-    'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
-    'RB 175 W': DimmableBulbAdapter,    # Innr E27 Bulb warm dimming
-    'RS 125': DimmableBulbAdapter,      # Innr GU10 Spot
-    'RS 128 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm, dimmable, white spectrum
-    'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
-    'PL 110': DimmableBulbAdapter,      # Innr Puck Light
-    'ST 110': DimmableBulbAdapter,      # Innr Strip Light
-    'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
+    'BY 185 C': RGBWAdapter,            # Innr B22 Bulb RGBW
     'DL 110 N': DimmableBulbAdapter,    # Innr Spot narrow
     'DL 110 W': DimmableBulbAdapter,    # Innr Spot wide
-    'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
+    'PL 110': DimmableBulbAdapter,      # Innr Puck Light
+    'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
+    'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
+    'RB 175 W': DimmableBulbAdapter,    # Innr E27 Bulb warm dimming
+    'RB 185 C': RGBWAdapter,            # Innr E27 Bulb RGBW
+    'RB 285 C': RGBWAdapter,            # Innr E27 Bulb RGBW
+    'RS 125': DimmableBulbAdapter,      # Innr GU10 Spot
+    'RS 128 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm, dimmable, white spectrum
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
+    'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
+    'ST 110': DimmableBulbAdapter,      # Innr Strip Light
+    'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
+    # JIAWEN
+    'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
     # OSRAM
     'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
     'AA69697': RGBWAdapter,             # OSRAM Classic A60 RGBW
@@ -97,27 +104,34 @@ adapter_by_model = {
     '4058075816718': RGBWAdapter,       # OSRAM SMART+ outdoor wall lantern RGBW
     '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Philips
-    '7299760PH': RGBAdapter,            # Philips Hue Bloom
     '324131092621': HueDimmerSwitch,    # Philips Hue dimmer switch
-    '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
-    '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
-    '8718696449691': DimmableBulbAdapter,   # Philips Hue White Single bulb B22
-    '8718696695203': DimmableCtBulbAdapter, # Philips Hue white ambiance E14
-    '8718696598283': DimmableCtBulbAdapter, # Philips Hue white ambiance GU10
-    '8718696548738': DimmableCtBulbAdapter, # Philips Hue white ambiance E26/E27
     '3261030P7': DimmableCtBulbAdapter, # Philips Hue Being
-    '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
+    '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
+    '7146060PH': RGBWAdapter,           # Philips Hue Go
     '7199960PH': RGBAdapter,            # Philips Hue Iris
+    '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
+    '7299760PH': RGBAdapter,            # Philips Hue Bloom
+    '8718696449691': DimmableBulbAdapter,   # Philips Hue White Single bulb B22
+    '8718696485880': RGBWAdapter,           # Philips Hue white and color ambiance GU10
+    '8718696548738': DimmableCtBulbAdapter, # Philips Hue white ambiance E26/E27
+    '8718696598283': DimmableCtBulbAdapter, # Philips Hue white ambiance GU10
+    '8718696695203': DimmableCtBulbAdapter, # Philips Hue white ambiance E14
+    '915005106701': RGBWAdapter,        # Philips Hue white and color ambiance LightStrip plus
+    '915005733701': RGBWAdapter,        # Philips Hue White and color ambiance Play Lightbar
+    '9290002579A': RGBWAdapter,         # Philips Hue white and color ambiance BR30
+    '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)
+    'E11-N1EA': RGBWAdapter,            # Sengled Element Plus Color (A19)
     'Z01-CIA19NAE26': DimmableBulbAdapter,  # Sengled Element Touch (A19)
     # SmartThings
     'STSS-MULT-001': SensorContact,     # SmartThings SmartSense multi sensor
     'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
     # Sylvania
+    '73693': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW A19
     '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
     '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb

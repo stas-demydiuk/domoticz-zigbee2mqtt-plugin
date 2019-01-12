@@ -36,6 +36,9 @@ git pull
 ### Commercial Electric
 - Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
 
+### Dresden Elektronik
+- Dresden Elektronik ZigBee Light Link wireless electronic ballast
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
@@ -68,10 +71,12 @@ git pull
 ### Innr
 - Innr E27 Bulb
 - Innr E27 Bulb warm dimming
+- Innr E27 Bulb RGBW
 - Innr GU10 Spot
 - Innr GU10 Spot 350 lm, dimmable, white spectrum
 - Innr E14 Candle
 - Innr B22 Bulb dimmable
+- Innr B22 Bulb RGBW
 - Innr Puck Light
 - Innr Strip Light
 - Innr Under Cabinet Light
@@ -83,6 +88,9 @@ git pull
 
 ### Iris
 - Iris Smart plug
+
+### JIAWEN
+- JIAWEN Wireless Bulb E27 9W RGBW
 
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
@@ -115,19 +123,25 @@ git pull
 
 ### Philips
 - Philips Hue dimmer switch
+- Philips Hue Go
 - Philips Hue Lux A19 bulb E27
 - Philips Hue white A60 bulb E27
 - Philips Hue White Single bulb B22
 - Philips Hue white ambiance E14
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance E26/E27
+- Philips Hue white and color ambiance BR30
+- Philips Hue white and color ambiance GU10
 - Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue white and color ambiance LightStrip plus
+- Philips Hue White and color ambiance Play Lightbar
 - Philips Hue Being
 - Philips Hue Motion Sensor
 
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)
+- Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
 
 ### SmartThings
@@ -137,6 +151,7 @@ git pull
 ### Sylvania
 - Sylvania LIGHTIFY LED adjustable white RT 5/6
 - Sylvania LIGHTIFY LED adjustable white BR30
+- Sylvania LIGHTIFY LED RGBW A19
 - Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania SMART+ Smart Plug

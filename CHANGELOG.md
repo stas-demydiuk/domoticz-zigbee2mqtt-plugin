@@ -6,7 +6,11 @@
 - Suppress device update if no state change for boolean sensors
 
 New devices:
+- Dresden Elektronik ZigBee Light Link wireless electronic ballast 
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
+- Innr E27 Bulb RGBW
+- Innr B22 Bulb RGBW
+- JIAWEN Wireless Bulb E27 9W RGBW
 - OSRAM Flex RGBW
 - OSRAM Outdoor Flex RGBW
 - OSRAM Smart+ Gardenpole RGBW
@@ -17,10 +21,17 @@ New devices:
 - OSRAM Classic A60 RGBW
 - OSRAM LIGHTIFY LED CLA60 E27 RGBW
 - OSRAM LIGHTIFY Surface Light TW
+- Philips Hue Go
+- Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue white and color ambiance GU10
+- Philips Hue white and color ambiance LightStrip plus
+- Philips Hue White and color ambiance Play Lightbar
+- Philips Hue white and color ambiance BR30
+- Philips Hue Motion Sensor
+- Sengled Element Plus Color (A19)
 - SmartThings SmartSense multi sensor
 - SmartThings SmartThings arrival sensor
-- Philips Hue white and color ambiance E26/E27/E14
-- Philips Hue Motion Sensor
+- Sylvania LIGHTIFY LED RGBW A19
 - Xiaomi MiJia Honeywell smoke detector
 
 ## 0.0.15
