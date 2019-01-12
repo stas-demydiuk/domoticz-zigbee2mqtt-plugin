@@ -24,7 +24,8 @@ from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.osram.sensor_motion import SensorMotionOsram
 from adapters.samsung.sensor_contact import SensorContact
 from adapters.samsung.sensor_arrival import SensorArrival
-from adapters.philips.sensor_motion_phlps import SensorMotionPhlps
+from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
+from adapters.philips.hue_motion_sensor import HueMotionSensor
 
 adapter_by_model = {
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
@@ -97,7 +98,7 @@ adapter_by_model = {
     '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Philips
     '7299760PH': RGBAdapter,            # Philips Hue Bloom
-    '324131092621': OnOffSwitchAdapter, # Philips Hue dimmer switch
+    '324131092621': HueDimmerSwitch,    # Philips Hue dimmer switch
     '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '8718696449691': DimmableBulbAdapter,   # Philips Hue White Single bulb B22
@@ -108,7 +109,7 @@ adapter_by_model = {
     '7299355PH': RGBAdapter,            # Philips Hue white and color ambiance LightStrip
     '7199960PH': RGBAdapter,            # Philips Hue Iris
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
-    '9290012607':SensorMotionPhlps,     # Philips Hue Motion Sensor (occupancy, temperature, illimination)
+    '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     # Sengled
     'E11-G13': DimmableBulbAdapter,     # Sengled Element Classic (A19)
     'E11-G23': DimmableBulbAdapter,     # Sengled Element Classic (A60)

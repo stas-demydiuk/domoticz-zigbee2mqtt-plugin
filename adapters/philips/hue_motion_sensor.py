@@ -4,7 +4,7 @@ from devices.sensor.lux import LuxSensor
 from devices.sensor.temperature import TemperatureSensor
 
 
-class SensorMotionPhlps(AdapterWithBattery):
+class HueMotionSensor(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(MotionSensor(devices, 'motion', 'occupancy'))
