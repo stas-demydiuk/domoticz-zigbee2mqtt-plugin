@@ -7,9 +7,6 @@ class BaseRGBWLight(Device):
     #The specific device classes need to creat specific Domoticz devices and can create/override specific logics
     """base device class for a color controllable rgbw light bulb"""
 
-    def __init__(self, devices, alias, value_keys):
-        super().__init__(devices, alias, value_keys)
-
     def get_color_value(self, message, mode):
         if mode == 1: #mode 1 us XY from zigbee
             if 'brightness' in message.raw:

@@ -3,6 +3,7 @@ import json
 from adapters.base_adapter import Adapter
 from devices.color_colortemp_light import RGBWLight
 
+
 class RGBWAdapter(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
@@ -11,7 +12,6 @@ class RGBWAdapter(Adapter):
         self.devices.append(self.dimmer)
 
     def handleCommand(self, alias, device, device_data, command, level, color):
-        
         cmd = command.upper()
 
         if cmd == 'ON' or cmd == 'OFF':
@@ -39,15 +39,15 @@ class RGBWAdapter(Adapter):
             color_temp = colorObject['t']
             cwww = colorObject['cw'] + colorObject['ww']
             ttime = 1
-            
-            #only use cwww to determine mode
+
+            # only use cwww to determine mode
             if cwww == 0:
                 payload = json.dumps({
                     "state": "ON",
-              # Disabled the transition time for now because hue bulb/zigbee2mqtt will
-              # publish (acknowledge) the new color value during the transition with
-              # a value between start and end of the transition, not the actual target color
-              #      "transition" : ttime,
+                    # Disabled the transition time for now because hue bulb/zigbee2mqtt will
+                    # publish (acknowledge) the new color value during the transition with
+                    # a value between start and end of the transition, not the actual target color
+                    #      "transition" : ttime,
                     "brightness": int(level * 255 / 100),
                     "color": {
                         "r": red,
@@ -58,7 +58,7 @@ class RGBWAdapter(Adapter):
             else:
                 payload = json.dumps({
                     "state": "ON",
-               #     "transition" : ttime,
+                    #     "transition" : ttime,
                     "color_temp": int((color_temp / 255 * 346) + 154),
                     "brightness": int(level * 255 / 100)
                 })
