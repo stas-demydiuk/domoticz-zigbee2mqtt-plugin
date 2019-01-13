@@ -1,5 +1,8 @@
 # Changelog
 
+## master
+- Fix power consumption meter for Xiaomi Plugs
+
 ## 0.0.16
 - Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
 - Ability to manually specify Client ID for MQTT connection using plugin settings
