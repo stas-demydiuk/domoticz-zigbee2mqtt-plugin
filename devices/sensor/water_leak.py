@@ -6,4 +6,4 @@ class WaterLeakSensor(BooleanSensor):
         super().__init__(devices, alias, value_key, BooleanSensor.SENSOR_TYPE_CONTACT)
 
     def get_numeric_value(self, value, device):
-        return 0 if value else 1
+        return 1 if value else 0
