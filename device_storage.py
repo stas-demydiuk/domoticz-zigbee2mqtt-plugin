@@ -55,4 +55,6 @@ class DeviceStorage:
         for key, device in self.devices.items():
             if (device['ieee_addr'] == ieee_addr):
                 self.devices.pop(key)
+                Domoticz.Debug('device '+ ieee_addr + ', removed, ' + str(len(self.devices)) + ' devices remaining')
                 return
+        Domoticz.Debug('device '+ ieee_addr + ' was not removed')
