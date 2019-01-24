@@ -52,5 +52,7 @@ class DeviceStorage:
                 return device
               
     def remove_device(self, ieee_addr):
-        self.devices.pop(get_device_by_id(ieee_addr))
-        return
+        for key, device in self.devices.items():
+            if (device['ieee_addr'] == ieee_addr):
+                self.devices.pop(key)
+                return
