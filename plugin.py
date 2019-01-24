@@ -149,7 +149,10 @@ class BasePlugin:
                     "old": friendly_name,
                     "new": device.Name
                 })
+            #send new name to Zigbee2MQTT
             self.mqttClient.Publish(self.base_topic + '/bridge/config/rename', payload)
+            #update device_storage
+            self.available_devices.set_friendly_name(friendly_name, device.Name)
 
         return
 

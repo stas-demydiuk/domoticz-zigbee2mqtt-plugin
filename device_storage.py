@@ -58,3 +58,14 @@ class DeviceStorage:
                 Domoticz.Debug('device '+ ieee_addr + ' removed, ' + str(len(self.devices)) + ' devices remaining')
                 return
         Domoticz.Debug('device '+ ieee_addr + ' was not removed')
+        
+        
+    def set_friendly_name(self, old, new):
+        for key, device in self.devices.items():
+            if (device['friendly_name'] == old):
+                device['friendly_name'] = new
+                self.devices[device['ieee_addr']] = device
+                Domoticz.Debug('device '+ old + ' renamed to ' + new )
+                return
+        Domoticz.Debug('device '+ old + ' was not renamed')
+
