@@ -124,6 +124,11 @@ class BasePlugin:
         if (device_data == None):
             Domoticz.Log('Device ' + device.Name + ' does not have registered zigbee2mqtt device')
             return
+        
+        #remove device from Zigbee2MQTT
+        self.mqttClient.Publish(self.base_topic + '/bridge/config/remove', device_data['friendly_name'])
+        
+        #remove device from device_storage
         adress = device_data['ieee_addr']
         self.available_devices.remove_device(adress)
 

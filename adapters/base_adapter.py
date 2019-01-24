@@ -22,6 +22,3 @@ class Adapter():
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         Domoticz.Debug('Update command has not been implemented for device "' + device.Name + '"')
-
-    def remove(self):
-        pass
