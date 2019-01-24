@@ -154,6 +154,11 @@ class BasePlugin:
             return
 
         if (topic == self.base_topic + '/bridge/log'):
+            if message['type'] == 'device_removed':
+                Domoticz.Debug('Device ' + message['message'] + ' removed from bridge')
+                #do we need to handle the situation where the removal is triggered from the bridge?
+                #normally the removal is triggered from Domoticz itself (via the OnDeviceRemoved method)
+            
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 
