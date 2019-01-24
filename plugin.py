@@ -111,6 +111,21 @@ class BasePlugin:
 
     def onHeartbeat(self):
         self.mqttClient.onHeartbeat()
+        
+    def onDeviceRemoved(self, Unit):
+        device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
+        device_params = device.DeviceID.split('_')
+        device_id = device_params[0]
+        alias = device_params[1]
+        Domoticz.Debug("onDeviceRemoved: " + device.Name + " (" + str(device_id) + ") has been removed")
+
+        device_data = self.available_devices.get_device_by_id(device_id)
+
+        if (device_data == None):
+            Domoticz.Log('Device ' + device.Name + ' does not have registered zigbee2mqtt device')
+            return
+        adress = device_data['ieee_addr']
+        self.available_devices.remove_device(adress)
 
     def onMQTTConnected(self):
         self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])
@@ -185,6 +200,10 @@ def onMessage(Connection, Data):
 def onCommand(Unit, Command, Level, Color):
     global _plugin
     _plugin.onCommand(Unit, Command, Level, Color)
+
+def onDeviceRemoved(Unit):
+    global _plugin
+    _plugin.onDeviceRemoved(Unit)
 
 def onHeartbeat():
     global _plugin
