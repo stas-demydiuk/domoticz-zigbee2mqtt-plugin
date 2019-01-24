@@ -144,11 +144,12 @@ class BasePlugin:
 
         if (device.Name != friendly_name):
             #device has been renamed
+            Domoticz.Debug("Renaming from: '" + friendly_name + "' to '" + device.Name + "'")
             payload = json.dumps({
                     "old": friendly_name,
                     "new": device.Name
                 })
-            self.mqttClient.Publish(self.base_topic + '/bridge/config/rename', device_data['friendly_name'])
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/rename', payload)
 
         return
 
