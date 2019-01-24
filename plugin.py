@@ -131,6 +131,26 @@ class BasePlugin:
         #remove device from device_storage
         adress = device_data['ieee_addr']
         self.available_devices.remove_device(adress)
+        
+    def onDeviceModified (self, Unit):
+        device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
+        device_params = device.DeviceID.split('_')
+        device_id = device_params[0]
+        alias = device_params[1]
+        Domoticz.Debug("onDeviceModified : " + device.Name + " (" + str(device_id) + ") has been modified")
+        
+        device_data = self.available_devices.get_device_by_id(device_id)
+        friendly_name = device_data['friendly_name']
+
+        if (device.Name != friendly_name):
+            #device has been renamed
+            payload = json.dumps({
+                    "old": friendly_name,
+                    "new": device.Name
+                })
+            self.mqttClient.Publish(self.base_topic + '/bridge/config/rename', device_data['friendly_name'])
+
+        return
 
     def onMQTTConnected(self):
         self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])
@@ -215,6 +235,10 @@ def onDeviceRemoved(Unit):
     global _plugin
     _plugin.onDeviceRemoved(Unit)
 
+def onDeviceModified (Unit):
+    global _plugin
+    _plugin.onDeviceModified (Unit)
+    
 def onHeartbeat():
     global _plugin
     _plugin.onHeartbeat()
