@@ -1,6 +1,9 @@
 ---
 name: New device support
 about: Ask to add support for new device
+title: ''
+labels: new device
+assignees: ''
 
 ---
 
