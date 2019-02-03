@@ -77,6 +77,7 @@ git pull
 
 ### HEIMAN
 - HEIMAN Door sensor
+- HEIMAN Smoke detector
 
 ### Hive
 - Hive Active smart bulb white LED (E27)
@@ -255,4 +256,4 @@ git pull
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
 
-If your device is not listed here but [zigbee2mqtt supports](https://github.com/Koenkk/zigbee2mqtt/wiki/Supported-devices) it, support can be added (fairly) easy by creating device adapter.
+If your device is not listed here but [zigbee2mqtt supports](https://koenkk.github.io/zigbee2mqtt/information/supported_devices.html) it, support can be added (fairly) easy by creating device adapter.

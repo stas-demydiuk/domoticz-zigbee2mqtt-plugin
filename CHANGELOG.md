@@ -20,6 +20,7 @@ New devices:
 - Gledopto Smart RGBW GU10
 - Gledopto Smart RGBW GU10
 - HEIMAN Door sensor
+- HEIMAN Smoke detector
 - Hive Active smart bulb white LED (B22)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white

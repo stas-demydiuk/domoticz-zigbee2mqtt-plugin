@@ -5,12 +5,12 @@ from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
-from adapters.sensor_motion import SensorMotion
+from adapters.generic.motion_sensor import MotionSensorAdapter
+from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
-from adapters.lumi.sensor_smoke import SensorSmoke
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
@@ -35,7 +35,7 @@ adapter_by_model = {
     # Belkin
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bitron
-    'AV2010/22': SensorMotion,          # Bitron Wireless motion detector
+    'AV2010/22': MotionSensorAdapter,   # Bitron Wireless motion detector
     # Calex
     '421786': DimmableBulbAdapter,      # Calex LED A60 Zigbee GLS-lamp
     # Climax
@@ -69,6 +69,8 @@ adapter_by_model = {
     # HEIMAN
     'HS1DS': ContactAdapter,            # HEIMAN Door sensor
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
+    'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
+    'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
@@ -198,11 +200,11 @@ adapter_by_model = {
     'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
     # Trust
     'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
-    'ZPIR-8000': SensorMotion,          # Trust Motion Sensor
+    'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor
     'ZCTS-808': ContactAdapter,         # Trust Wireless contact sensor
     # Xiaomi
     'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
-    'JTYJ-GD-01LM/BW': SensorSmoke,     # Xiaomi MiJia Honeywell smoke detector
+    'JTYJ-GD-01LM/BW': SmokeSensorAdapter,  # Xiaomi MiJia Honeywell smoke detector
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
@@ -210,7 +212,7 @@ adapter_by_model = {
     'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'QBKG04LM': OnOffSwitchAdapter,     # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
-    'RTCGQ01LM': SensorMotion,          # Xiaomi MiJia human body movement sensor
+    'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 
     'SJCGQ11LM': SensorWleak,           # Xiaomi Aqara water leak sensor
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
