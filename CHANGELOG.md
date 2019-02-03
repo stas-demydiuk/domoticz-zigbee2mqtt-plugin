@@ -3,6 +3,45 @@
 ## master
 - Fix power consumption meter for Xiaomi Plugs
 
+New devices:
+- AduroSmart ERIA colors and white shades smart light bulb A19
+- Airam LED OP A60 ZB 9W/827 E27
+- Bitron Wireless motion detector
+- Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
+- EcoSmart A19 RGB bulb
+- EcoSmart A19 bright white bulb
+- EcoSmart A19 soft white bulb
+- GE ZigBee in-wall smart switch
+- Gledopto Zigbee LED Driver
+- Gledopto Smart 6W E27 RGB / CW LED bulb
+- Gledopto Smart 12W E27 RGB / CW LED bulb
+- Gledopto Zigbee LED controller WW/CW Dimmer
+- Gledopto LED RGB + CCT downlight
+- Gledopto Smart RGBW GU10
+- Gledopto Smart RGBW GU10
+- HEIMAN Door sensor
+- Hive Active smart bulb white LED (B22)
+- IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+- Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
+- Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
+- Nue ZigBee smart light controller
+- OSRAM SMART+ Switch Mini
+- Paul Neuhaus Q-INIGO LED ceiling light
+- Philips Hue white ambiance BR30 flood light
+- Philips Hue white ambiance Still
+- Philips Hue white ambiance Aurelle round panel light
+- Sengled Element Classic (BR30)
+- Sengled Element downlight smart LED bulb
+- Smart Home Pty RGBW Downlight
+- Smart Home Pty Power plug
+- Sylvania Smart Home adjustable white A19 LED bulb
+- Sylvania LIGHTIFY LED gardenspot mini RGB
+- Trust Motion Sensor
+- Trust Wireless contact sensor
+- Xiaomi Aqara smart LED bulb
+- iCasa Zigbee 3.0 Dimmer
+- ilux Dimmable A60 E27 LED Bulb
+
 ## 0.0.16
 - Added Domoticz devices to represent temperature + humidity for WSDCGQ11LM device
 - Ability to manually specify Client ID for MQTT connection using plugin settings

@@ -30,8 +30,17 @@ git pull
 
 ## Supported devices
 
+### AduroSmart
+- AduroSmart ERIA colors and white shades smart light bulb A19
+
+### Airam
+- Airam LED OP A60 ZB 9W/827 E27
+
 ### Belkin
 - Belkin WeMo smart LED bulb
+
+### Bitron
+- Bitron Wireless motion detector
 
 ### Calex
 - Calex LED A60 Zigbee GLS-lamp
@@ -44,20 +53,34 @@ git pull
 
 ### Dresden Elektronik
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast
+- Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
+
+### EcoSmart
+- EcoSmart A19 RGB bulb
+- EcoSmart A19 bright white bulb
+- EcoSmart A19 soft white bulb
 
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
 - GE ZigBee in-wall smart dimmer
+- GE ZigBee in-wall smart switch
 
 ### Gledopto
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
+- Gledopto Zigbee LED controller WW/CW Dimmer
+- Gledopto Zigbee LED Driver
+- Gledopto Smart 6W E27 RGB / CW LED bulb
+- Gledopto Smart 12W E27 RGB / CW LED bulb
+- Gledopto LED RGB + CCT downlight
+- Gledopto Smart RGBW GU10
 
 ### HEIMAN
 - HEIMAN Door sensor
 
 ### Hive
-- Hive Active light dimmable
+- Hive Active smart bulb white LED (E27)
+- Hive Active smart bulb white LED (B22)
 
 ### Ikea
 - IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
@@ -75,6 +98,7 @@ git pull
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
+- IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
 - IKEA TRADFRI control outlet
 
 ### Innr
@@ -106,11 +130,16 @@ git pull
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
 
+### Müller Licht
+- Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
+- Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
+
 ### Nanoleaf
 - Nanoleaf Ivy smart bulb
 
 ### Nue
 - Nue ZigBee one gang smart switch
+- Nue ZigBee smart light controller
 
 ### OSRAM
 - OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW 
@@ -128,54 +157,71 @@ git pull
 - OSRAM Smart+ Outdoor Wall Lantern RGBW
 - OSRAM Smart+ Plug
 - OSRAM Smart+ Spot GU10 Multicolor
+- OSRAM Smart+ Switch Mini
 - OSRAM Flex RGBW
 - OSRAM Outdoor Flex RGBW
 - OSRAM Classic A60 RGBW
+
+### Paul Neuhaus
+- Paul Neuhaus Q-INIGO LED ceiling light
 
 ### Paulmann
 - Paulmann SmartHome Zigbee LED-stripe
 - Paulmann SmartHome Yourled RGB Controller
 
 ### Philips
-- Philips Hue dimmer switch
+- Philips Hue Being
 - Philips Hue Go
 - Philips Hue Lux A19 bulb E27
-- Philips Hue white A60 bulb E27
-- Philips Hue White Single bulb B22
-- Philips Hue white ambiance E14
-- Philips Hue white ambiance GU10
-- Philips Hue white ambiance E26/E27
-- Philips Hue white ambiance Aurelle Rectangle Panel Light
-- Philips Hue white and color ambiance BR30
-- Philips Hue white and color ambiance GU10
-- Philips Hue white and color ambiance E26/E27/E14
-- Philips Hue white and color ambiance LightStrip plus
-- Philips Hue White and color ambiance Play Lightbar
-- Philips Hue Being
 - Philips Hue Motion Sensor
+- Philips Hue White Single bulb B22
+- Philips Hue White and color ambiance Play Lightbar
+- Philips Hue dimmer switch
+- Philips Hue white A60 bulb E27
+- Philips Hue white ambiance Aurelle Rectangle Panel Light
+- Philips Hue white ambiance Aurelle round panel light
+- Philips Hue white ambiance BR30 flood light
+- Philips Hue white ambiance E14
+- Philips Hue white ambiance E26/E27
+- Philips Hue white ambiance GU10
+- Philips Hue white ambiance Still
+- Philips Hue white and color ambiance BR30
+- Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue white and color ambiance GU10
+- Philips Hue white and color ambiance LightStrip plus
 
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)
+- Sengled Element Classic (BR30)
+- Sengled Element downlight smart LED bulb
 - Sengled Element Plus (A19)
 - Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
+
+### Smart Home Pty
+- Smart Home Pty RGBW Downlight
+- Smart Home Pty Power plug
 
 ### SmartThings
 - SmartThings SmartSense multi sensor
 - SmartThings Arrival sensor
 
 ### Sylvania
-- Sylvania LIGHTIFY LED adjustable white RT 5/6
-- Sylvania LIGHTIFY LED adjustable white BR30
 - Sylvania LIGHTIFY LED RGBW A19
+- Sylvania LIGHTIFY LED adjustable white BR30
+- Sylvania LIGHTIFY LED adjustable white RT 5/6
+- Sylvania LIGHTIFY LED gardenspot mini RGB
 - Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania LIGHTIFY LED soft white dimmable A19
 - Sylvania SMART+ Smart Plug
+- Sylvania Smart Home adjustable white A19 LED bulb
 - Sylvania Smart Home adjustable white MR16 LED bulb
 
 ### Trust
 - Trust Smart Dimmable LED Bulb
+- Trust Motion Sensor
+- Trust Wireless contact sensor
 
 ### Xiaomi
 
@@ -186,6 +232,7 @@ git pull
 - Xiaomi Aqara single key wired wall switch
 - Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee
+- Xiaomi Aqara smart LED bulb
 - Xiaomi Aqara temperature, humidity and pressure sensor
 - Xiaomi Aqara vibration sensor
 - Xiaomi Aqara water leak sensor
@@ -198,6 +245,12 @@ git pull
 - Xiaomi MiJia wireless switch
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee
+
+### iCasa
+- iCasa Zigbee 3.0 Dimmer
+
+### ilux
+- ilux Dimmable A60 E27 LED Bulb
 
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
