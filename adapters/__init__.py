@@ -6,6 +6,7 @@ from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
+from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
@@ -22,7 +23,6 @@ from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
-from adapters.osram.sensor_motion import SensorMotionOsram
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
@@ -114,6 +114,7 @@ adapter_by_model = {
     # Iris
     '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
     '3320-L': ContactAdapter,           # Iris Contact sensor
+    '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # JIAWEN
     'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
     # Ksentry
@@ -138,7 +139,7 @@ adapter_by_model = {
     'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
     'AC03645': RGBWAdapter,             # OSRAM LIGHTIFY LED CLA60 E27 RGBW
     'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
-    'AC01353010G': SensorMotionOsram,   # OSRAM SMART+ Motion Sensor
+    'AC01353010G': MotionAndTemperatureSensorAdapter,   # OSRAM SMART+ Motion Sensor
     'AC0251100NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
     '4052899926110': RGBWAdapter,       # OSRAM Flex RGBW
     '4052899926158': DimmableBulbAdapter,   # OSRAM LIGHTIFY Surface Light TW
@@ -188,6 +189,7 @@ adapter_by_model = {
     # SmartThings
     'STSS-MULT-001': ContactAdapter,    # SmartThings SmartSense multi sensor
     'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
+    '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
     # Sylvania
     '71831': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white A19 LED bulb
     '72922-A': OnOffSwitchAdapter,      # Sylvania SMART+ Smart Plug

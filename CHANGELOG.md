@@ -23,6 +23,7 @@ New devices:
 - HEIMAN Smoke detector
 - Hive Active smart bulb white LED (B22)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+- Iris Motion and temperature sensor
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
 - Nue ZigBee smart light controller
@@ -35,6 +36,7 @@ New devices:
 - Sengled Element downlight smart LED bulb
 - Smart Home Pty RGBW Downlight
 - Smart Home Pty Power plug
+- SmartThings Motion sensor (2015 model)
 - Sylvania Smart Home adjustable white A19 LED bulb
 - Sylvania LIGHTIFY LED gardenspot mini RGB
 - Trust Motion Sensor

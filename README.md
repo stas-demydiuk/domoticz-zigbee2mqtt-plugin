@@ -122,8 +122,9 @@ git pull
 - Innr Spot Flex wide
 
 ### Iris
-- Iris Smart plug
 - Iris Contact sensor
+- Iris Motion and temperature sensor
+- Iris Smart plug
 
 ### JIAWEN
 - JIAWEN Wireless Bulb E27 9W RGBW
@@ -207,6 +208,7 @@ git pull
 ### SmartThings
 - SmartThings SmartSense multi sensor
 - SmartThings Arrival sensor
+- SmartThings Motion sensor (2015 model)
 
 ### Sylvania
 - Sylvania LIGHTIFY LED RGBW A19

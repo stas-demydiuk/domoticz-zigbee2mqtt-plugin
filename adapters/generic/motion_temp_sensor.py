@@ -3,7 +3,7 @@ from devices.sensor.motion import MotionSensor
 from devices.sensor.temperature import TemperatureSensor
 
 
-class SensorMotionOsram(AdapterWithBattery):
+class MotionAndTemperatureSensorAdapter(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(MotionSensor(devices, 'motion', 'occupancy'))
