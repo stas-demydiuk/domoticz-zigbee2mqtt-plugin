@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.0.17
 - Fix power consumption meter for Xiaomi Plugs
 
 New devices:
