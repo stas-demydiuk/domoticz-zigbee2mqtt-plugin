@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+- Fix duplicate state in Domoticz log for On/Off switches
+- Handle devices connect and removal from zigbee network
+
 ## 0.0.17
 - Fix power consumption meter for Xiaomi Plugs
 

@@ -29,6 +29,9 @@ class DeviceStorage:
             adapter = adapter_by_model[model](domoticz_devices)
             adapter.register(device_data)
 
+    def clear(self):
+        self.devices = {}
+
     def update(self, domoticz_devices, zigbee_devices):
         for item in zigbee_devices:
             if 'model' in item:

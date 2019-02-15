@@ -68,12 +68,8 @@ class BasePlugin:
         Domoticz.Debug("onStop called")
 
     def handlePairingMode(self):
-        if (self.pairing_enabled):
-            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'true')
-            Domoticz.Log("Joining new devices is enabled on the zigbee bridge")
-        else:
-            self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', 'false')
-            Domoticz.Log("Joining new devices is disabled on the zigbee bridge")
+        permit_join = 'true' if self.pairing_enabled else 'false'
+        self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', permit_join)
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
@@ -124,6 +120,12 @@ class BasePlugin:
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
 
+        if (topic == self.base_topic + '/bridge/config'):
+            permit_join = 'enabled' if message['permit_join'] else 'disabled'
+            Domoticz.Debug('Zigbee2mqtt log level is ' + message['log_level'])
+            Domoticz.Log('Joining new devices is ' + permit_join + ' on the zigbee bridge')
+            return
+
         if (topic == self.base_topic + '/bridge/state'):
             Domoticz.Log('Zigbee2mqtt bridge is ' + message)
 
@@ -137,11 +139,16 @@ class BasePlugin:
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 
+                self.available_devices.clear()
                 self.available_devices.update(Devices, message['message'])
                 
                 if self.subscribed_for_devices == False:
                     self.mqttClient.Subscribe([self.base_topic + '/+'])
                     self.subscribed_for_devices = True
+
+            if message['type'] == 'device_connected' or message['type'] == 'device_removed':
+                self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+
             return
 
         device_name = topic.replace(self.base_topic + "/", "")
