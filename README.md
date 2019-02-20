@@ -13,20 +13,20 @@ cd domoticz/plugins
 git clone https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin.git zigbee2mqtt
 ```
 2. Restart domoticz
-3. Go to "Hardware" page and add new item with type "Zigbee2MQTT"
-4. Set your MQTT server address and port to plugin settings
+3. Make sure that "Accept new Hardware Devices" is enabled in Domoticz settings
+4. Go to "Hardware" page and add new item with type "Zigbee2MQTT"
+5. Set your MQTT server address and port to plugin settings
 
-Once plugin receive any message from zigbee2mqtt server it will try to create appropriate device.
+Once plugin receive device list from zigbee2mqtt server it will create appropriate domoticz devices. You will find these devices on `Setup -> Devices` page.
 
 ## Plugin update
 
-1. Stop domoticz
-2. Go to plugin folder and pull new version
+1. Go to plugin folder and pull new version
 ```
 cd domoticz/plugins/zigbee2mqtt
 git pull
 ```
-3. Start domoticz
+2. Restart domoticz
 
 ## Supported devices
 
