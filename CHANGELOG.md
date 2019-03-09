@@ -2,6 +2,7 @@
 
 ## master
 - Fix duplicate state in Domoticz log for On/Off switches
+- Fix issue with reconnect after MQTT server restart (#84)
 - Handle devices connect and removal from zigbee network
 
 ## 0.0.17

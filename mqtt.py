@@ -1,4 +1,10 @@
 # Based on https://github.com/emontnemery/domoticz_mqtt_discovery
+# version: 1.0.1
+#
+# Changelog
+# 1.0.1: Aligned with PEP8 styleguide
+
+
 import Domoticz
 import time
 import json
@@ -6,129 +12,156 @@ import random
 
 
 class MqttClient:
-    Address = ""
-    Port = ""
-    mqttConn = None
+    address = ""
+    port = ""
+    _connection = None
     isConnected = False
-    mqttConnectedCb = None
-    mqttDisconnectedCb = None
-    mqttPublishCb = None
+    on_mqtt_connected_cb = None
+    on_mqtt_disconnected_cb = None
+    on_mqtt_message_cb = None
 
-    def __init__(self, destination, port, clientId, mqttConnectedCb, mqttDisconnectedCb, mqttPublishCb, mqttSubackCb):
+    def __init__(self, address, port, client_id, on_mqtt_connected_cb, on_mqtt_disconnected_cb, on_mqtt_message_cb, on_mqtt_subscribed_cb):
         Domoticz.Debug("MqttClient::__init__")
-        
-        self.address = destination
+
+        self.address = address
         self.port = port
-        self.client_id = clientId if clientId != "" else 'Domoticz_'+str(int(time.time()))+'_'+str(random.randint(1000, 9999))
-        self.mqttConnectedCb = mqttConnectedCb
-        self.mqttDisconnectedCb = mqttDisconnectedCb
-        self.mqttPublishCb = mqttPublishCb
-        self.mqttSubackCb = mqttSubackCb
-        self.Open()
+        self.client_id = client_id if client_id != "" else self._generate_mqtt_client_id()
+        self.on_mqtt_connected_cb = on_mqtt_connected_cb
+        self.on_mqtt_disconnected_cb = on_mqtt_disconnected_cb
+        self.on_mqtt_subscribed_cb = on_mqtt_subscribed_cb
+        self.on_mqtt_message_cb = on_mqtt_message_cb
+
+        self._open()
 
     def __str__(self):
         Domoticz.Debug("MqttClient::__str__")
-        if (self.mqttConn != None):
-            return str(self.mqttConn)
+
+        if (self._connection != None):
+            return str(self._connection)
         else:
             return "None"
 
-    def Open(self):
-        Domoticz.Debug("MqttClient::Open")
-        if (self.mqttConn != None):
-            self.Close()
+    def _generate_mqtt_client_id(self):
+        return 'Domoticz_' + str(int(time.time()))+'_'+str(random.randint(1000, 9999))
+
+    def _open(self):
+        Domoticz.Debug("MqttClient::open")
+
+        if (self._connection != None):
+            self.close()
+
         self.isConnected = False
 
-        protocol = "MQTTS" if self.port == "8883" else "MQTT"
+        self._connection = Domoticz.Connection(
+            Name=self.address,
+            Transport="TCP/IP",
+            Protocol="MQTTS" if self.port == "8883" else "MQTT",
+            Address=self.address,
+            Port=self.port
+        )
 
-        self.mqttConn = Domoticz.Connection(Name=self.address, Transport="TCP/IP", Protocol=protocol, Address=self.address, Port=self.port)
-        self.mqttConn.Connect()
+        self._connection.Connect()
 
-    def Connect(self):
-        Domoticz.Debug("MqttClient::Connect")
-        if (self.mqttConn == None):
-            self.Open()
+    def ping(self):
+        Domoticz.Debug("MqttClient::ping")
+        if (self._connection == None or not self.isConnected):
+            self._open()
         else:
-            Domoticz.Debug("MQTT CONNECT ID: '" + self.client_id + "'")
-            self.mqttConn.Send({'Verb': 'CONNECT', 'ID': self.client_id})
+            self._connection.Send({'Verb': 'PING'})
 
-    def Ping(self):
-        Domoticz.Debug("MqttClient::Ping")
-        if (self.mqttConn == None or not self.isConnected):
-            self.Open()
+    def publish(self, topic, payload, retain=0):
+        Domoticz.Debug("MqttClient::publish " + topic + " (" + payload + ")")
+
+        if (self._connection == None or not self.isConnected):
+            self._open()
         else:
-            self.mqttConn.Send({'Verb': 'PING'})
+            self._connection.Send({
+                'Verb': 'PUBLISH',
+                'Topic': topic,
+                'Payload': bytearray(payload, 'utf-8'),
+                'Retain': retain
+            })
 
-    def Publish(self, topic, payload, retain = 0):
-        Domoticz.Debug("MqttClient::Publish " + topic + " (" + payload + ")")
-        if (self.mqttConn == None or not self.isConnected):
-            self.Open()
-        else:
-            self.mqttConn.Send({'Verb': 'PUBLISH', 'Topic': topic, 'Payload': bytearray(payload, 'utf-8'), 'Retain': retain})
-
-    def Subscribe(self, topics):
-        Domoticz.Debug("MqttClient::Subscribe")
+    def subscribe(self, topics):
+        Domoticz.Debug("MqttClient::subscribe")
         subscriptionlist = []
         for topic in topics:
-            subscriptionlist.append({'Topic':topic, 'QoS':0})
-        if (self.mqttConn == None or not self.isConnected):
-            self.Open()
+            subscriptionlist.append({'Topic': topic, 'QoS': 0})
+        
+        if (self._connection == None or not self.isConnected):
+            self._open()
         else:
-            self.mqttConn.Send({'Verb': 'SUBSCRIBE', 'Topics': subscriptionlist})
+            self._connection.Send({'Verb': 'SUBSCRIBE', 'Topics': subscriptionlist})
 
-    def Close(self):
-        Domoticz.Debug("MqttClient::Close")
-        #TODO: Disconnect from server
-        self.mqttConn = None
+    def close(self):
+        Domoticz.Debug("MqttClient::close")
+
+        if self._connection != None and self._connection.Connected():
+            self._connection.Send({ 'Verb' : 'DISCONNECT' })
+            self._connection.Disconnect()
+
+        self._connection = None
         self.isConnected = False
 
     def onConnect(self, Connection, Status, Description):
+        if (self._connection != Connection):
+            return
+
         if (Status == 0):
-            Domoticz.Debug("MQTT connected successfully.")
-            self.Connect()
+            Domoticz.Log("Connected to MQTT Server: {}:{}".format(
+                Connection.Address, Connection.Port)
+            )
+            Domoticz.Debug("MQTT CLIENT ID: '" + self.client_id + "'")
+            self._connection.Send({'Verb': 'CONNECT', 'ID': self.client_id})
         else:
-            Domoticz.Log("Failed to connect to: " + Connection.Address + ":" + Connection.Port + ", Description: " + Description)
+            Domoticz.Error("Failed to connect to: {}:{}, Description: {}".format(
+                Connection.Address, Connection.Port, Description)
+            )
 
     def onDisconnect(self, Connection):
-        Domoticz.Debug("MqttClient::onDisonnect Disconnected from: " + Connection.Address+":" + Connection.Port)
-        self.Close()
-        # TODO: Reconnect?
-        if self.mqttDisconnectedCb != None:
-            self.mqttDisconnectedCb()
+        if (self._connection != Connection):
+            return
+
+        Domoticz.Debug("MqttClient::onDisonnect")
+        Domoticz.Error("Disconnected from MQTT Server: {}:{}".format(
+            Connection.Address, Connection.Port)
+        )
+
+        self.close()
+
+        if self.on_mqtt_disconnected_cb != None:
+            self.on_mqtt_disconnected_cb()
 
     def onHeartbeat(self):
-        if self.mqttConn is None or (not self.mqttConn.Connecting() and not self.mqttConn.Connected() or not self.isConnected):
+        if self._connection is None or (not self._connection.Connecting() and not self._connection.Connected() or not self.isConnected):
             Domoticz.Debug("MqttClient::Reconnecting")
-            self.Open()
+            self._open()
         else:
-            self.Ping()
+            self.ping()
 
     def onMessage(self, Connection, Data):
-        topic = ''
-        if 'Topic' in Data:
-            topic = Data['Topic']
-        payloadStr = ''
-        if 'Payload' in Data:
-            payloadStr = Data['Payload'].decode('utf8','replace')
-            payloadStr = str(payloadStr.encode('unicode_escape'))
+        if (self._connection != Connection):
+            return
+
+        topic = Data['Topic'] if 'Topic' in Data else ''
+        payload =  Data['Payload'].decode('utf8') if 'Payload' in Data else ''
 
         if Data['Verb'] == "CONNACK":
             self.isConnected = True
-            if self.mqttConnectedCb != None:
-                self.mqttConnectedCb()
+            if self.on_mqtt_connected_cb != None:
+                self.on_mqtt_connected_cb()
 
         if Data['Verb'] == "SUBACK":
-            if self.mqttSubackCb != None:
-                self.mqttSubackCb()
+            if self.on_mqtt_subscribed_cb != None:
+                self.on_mqtt_subscribed_cb()
 
         if Data['Verb'] == "PUBLISH":
-            if self.mqttPublishCb != None:
-                rawmessage = Data['Payload'].decode('utf8')
+            if self.on_mqtt_message_cb != None:
                 message = ""
 
                 try:
-                    message = json.loads(rawmessage)
+                    message = json.loads(payload)
                 except ValueError:
-                    message = rawmessage
-                    
-                self.mqttPublishCb(topic, message)
+                    message = payload
+
+                self.on_mqtt_message_cb(topic, message)

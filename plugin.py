@@ -69,7 +69,7 @@ class BasePlugin:
 
     def handlePairingMode(self):
         permit_join = 'true' if self.pairing_enabled else 'false'
-        self.mqttClient.Publish(self.base_topic + '/bridge/config/permit_join', permit_join)
+        self.mqttClient.publish(self.base_topic + '/bridge/config/permit_join', permit_join)
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
@@ -91,7 +91,7 @@ class BasePlugin:
             message = adapter.handleCommand(alias, device, device_data, Command, Level, Color)
 
             if (message != None):
-                self.mqttClient.Publish(self.base_topic + '/' + message['topic'], message['payload'])
+                self.mqttClient.publish(self.base_topic + '/' + message['topic'], message['payload'])
         else:
             Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')        
 
@@ -109,16 +109,19 @@ class BasePlugin:
         self.mqttClient.onHeartbeat()
 
     def onMQTTConnected(self):
-        self.mqttClient.Subscribe([self.base_topic + '/bridge/#'])
+        self.mqttClient.subscribe([self.base_topic + '/bridge/#'])
 
     def onMQTTDisconnected(self):
-        Domoticz.Debug("onMQTTDisconnected")
+        self.subscribed_for_devices = False
 
     def onMQTTSubscribed(self):
         Domoticz.Debug("onMQTTSubscribed")
 
     def onMQTTPublish(self, topic, message):
         Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+
+        if (topic == self.base_topic + '/bridge/config/permit_join' or topic == self.base_topic + '/bridge/config/devices'):
+            return
 
         if (topic == self.base_topic + '/bridge/config'):
             permit_join = 'enabled' if message['permit_join'] else 'disabled'
@@ -130,7 +133,7 @@ class BasePlugin:
             Domoticz.Log('Zigbee2mqtt bridge is ' + message)
 
             if message == 'online':
-                self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+                self.mqttClient.publish(self.base_topic + '/bridge/config/devices', '')
                 self.handlePairingMode()
 
             return
@@ -143,11 +146,11 @@ class BasePlugin:
                 self.available_devices.update(Devices, message['message'])
                 
                 if self.subscribed_for_devices == False:
-                    self.mqttClient.Subscribe([self.base_topic + '/+'])
+                    self.mqttClient.subscribe([self.base_topic + '/+'])
                     self.subscribed_for_devices = True
 
             if message['type'] == 'device_connected' or message['type'] == 'device_removed':
-                self.mqttClient.Publish(self.base_topic + '/bridge/config/devices', '')
+                self.mqttClient.publish(self.base_topic + '/bridge/config/devices', '')
 
             return
 
