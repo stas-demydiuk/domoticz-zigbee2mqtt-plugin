@@ -13,7 +13,7 @@ class WXKG03LM(AdapterWithBattery):
         message = super().convert_message(message)
 
         if 'click' in message.raw:
-            message.raw['state'] = 'on' if message['click'] == 'single' else 'off'
+            message.raw['state'] = 'on' if message.raw['click'] == 'single' else 'off'
 
         return message
 
