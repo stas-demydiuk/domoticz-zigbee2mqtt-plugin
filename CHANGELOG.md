@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+New devices:
+- IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
+
 ## 0.0.18
 - Fix duplicate state in Domoticz log for On/Off switches
 - Fix issue with reconnect after MQTT server restart (#84)

@@ -84,6 +84,7 @@ adapter_by_model = {
     'LED1624G9': RGBAdapter,            # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
     'LED1650R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
+    'LED1732G11': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
