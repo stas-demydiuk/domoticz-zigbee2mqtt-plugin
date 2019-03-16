@@ -34,17 +34,23 @@ class DeviceStorage:
 
     def update(self, domoticz_devices, zigbee_devices):
         for item in zigbee_devices:
+            if item['type'] == 'Coordinator':
+                Domoticz.Debug('Coordinator address is ' + item['ieeeAddr'])
+                continue
+
+            friendly_name = item['friendly_name'] if 'friendly_name' in item else item['ieeeAddr']
+
             if 'model' in item:
                 device_data = {
                     'type': item['type'],
                     'model': item['model'],
                     'ieee_addr': item['ieeeAddr'],
-                    'friendly_name': item['friendly_name']
+                    'friendly_name': friendly_name
                 }
 
                 self._register_device(domoticz_devices, device_data)
             else:
-                Domoticz.Log('Device ' + item['ieeeAddr'] + ' (' + item['friendly_name'] + ') doesn\'t have "model" attribute, skipped')
+                Domoticz.Log('Device ' + item['ieeeAddr'] + ' (' + friendly_name + ') doesn\'t have "model" attribute, skipped')
 
     def get_device_by_id(self, ieee_addr):
         return self.devices[ieee_addr] if ieee_addr in self.devices else None
