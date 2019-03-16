@@ -1,6 +1,8 @@
 # Changelog
 
 ## master
+- Add temperature sensor support for Xiaomi Mi power plug
+
 New devices:
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 
