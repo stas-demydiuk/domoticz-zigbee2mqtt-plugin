@@ -11,7 +11,13 @@ class WXKG02LM(AdapterWithBattery):
         self.switch.add_level('Switch 1', 'left')
         self.switch.add_level('Switch 2', 'right')
         self.switch.add_level('Both_Click', 'both')
-        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.switch.add_level('Switch 1 Double Click', 'left_double')
+        self.switch.add_level('Switch 2 Double Click', 'right_double')
+        self.switch.add_level('Both Double Click', 'both_double')
+        self.switch.add_level('Switch 1 Long Click', 'left_long')
+        self.switch.add_level('Switch 2 Long Click', 'right_long')
+        self.switch.add_level('Both Long Click', 'both_long')
+        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
         self.devices.append(self.switch)
 
