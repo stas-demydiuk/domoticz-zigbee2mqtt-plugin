@@ -32,14 +32,15 @@ class HueDimmerSwitch(AdapterWithBattery):
         
     def convert_message(self, message):
         message = super().convert_message(message)
-        simpleaction = str(message.raw['action'])
-        if simpleaction.endswith('press'):
-            if message.raw['counter'] == 2:
-                addstring = '-double'
-            elif message.raw['counter'] == 3:
-                addstring = '-triple'
-            else:
-                addstring = ''
-            message.raw['action'] = message.raw['action'] + addstring
+        if 'action' in message.raw and 'counter' in message.raw:
+            simpleaction = str(message.raw['action'])
+            if simpleaction.endswith('press'):
+                if message.raw['counter'] == 2:
+                    addstring = '-double'
+                elif message.raw['counter'] == 3:
+                    addstring = '-triple'
+                else:
+                    addstring = ''
+                message.raw['action'] = message.raw['action'] + addstring
 
         return message
