@@ -42,6 +42,10 @@ git pull
 ### Bitron
 - Bitron Wireless motion detector
 
+### Bosch
+- Bosch Motion sensor
+- Bosch Wireless motion detector
+
 ### Calex
 - Calex LED A60 Zigbee GLS-lamp
 
@@ -70,6 +74,7 @@ git pull
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
 - Gledopto Zigbee LED controller WW/CW Dimmer
 - Gledopto Zigbee LED Driver
+- Gledopto Zigbee 10W floodlight RGB CCT
 - Gledopto Smart 6W E27 RGB / CW LED bulb
 - Gledopto Smart 12W E27 RGB / CW LED bulb
 - Gledopto LED RGB + CCT downlight
@@ -78,6 +83,7 @@ git pull
 ### HEIMAN
 - HEIMAN Door sensor
 - HEIMAN Smoke detector
+- HEIMAN Water leakage sensor
 
 ### Hive
 - Hive Active smart bulb white LED (E27)
@@ -97,16 +103,22 @@ git pull
 - IKEA TRADFRI wireless dimmer
 - IKEA TRADFRI driver for wireless control (10 watt)
 - IKEA TRADFRI driver for wireless control (30 watt)
+- IKEA TRADFRI control outlet
+- IKEA TRADFRI ON/OFF switch
+- IKEA TRADFRI motion sensor
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
-- IKEA TRADFRI control outlet
+
+### Immax
+- Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
 
 ### Innr
 - Innr E27 Bulb
 - Innr E27 Bulb warm dimming
 - Innr E27 Bulb RGBW
+- Innr E27 Smart bulb tunable white
 - Innr GU10 Spot
 - Innr GU10 Spot 350 lm, dimmable, white spectrum
 - Innr E14 Candle
@@ -159,6 +171,7 @@ git pull
 - OSRAM Smart+ Motion Sensor
 - OSRAM Smart+ Outdoor Wall Lantern RGBW
 - OSRAM Smart+ Plug
+- OSRAM SMART+ spot GU5.3 tunable white
 - OSRAM Smart+ Spot GU10 Multicolor
 - OSRAM Smart+ Switch Mini
 - OSRAM Flex RGBW
@@ -167,6 +180,7 @@ git pull
 
 ### Paul Neuhaus
 - Paul Neuhaus Q-INIGO LED ceiling light
+- Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
 
 ### Paulmann
 - Paulmann SmartHome Zigbee LED-stripe
@@ -176,11 +190,13 @@ git pull
 - Philips Hue Being
 - Philips Hue Go
 - Philips Hue Lux A19 bulb E27
-- Philips Hue Motion Sensor
-- Philips Hue White Single bulb B22
-- Philips Hue White and color ambiance Play Lightbar
+- Philips Hue motion sensor
+- Philips Hue motion outdoor sensor
+- Philips Hue Sana
 - Philips Hue dimmer switch
 - Philips Hue white A60 bulb E27
+- Philips Hue white GU10
+- Philips Hue white Single bulb B22
 - Philips Hue white ambiance Aurelle Rectangle Panel Light
 - Philips Hue white ambiance Aurelle round panel light
 - Philips Hue white ambiance BR30 flood light
@@ -188,10 +204,13 @@ git pull
 - Philips Hue white ambiance E26/E27
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance Still
+- Philips Hue white ambiance suspension Fair
 - Philips Hue white and color ambiance BR30
 - Philips Hue white and color ambiance E26/E27/E14
+- Philips Hue white and color ambiance Flourish ceiling light
 - Philips Hue white and color ambiance GU10
 - Philips Hue white and color ambiance LightStrip plus
+- Philips Hue white and color ambiance Play Lightbar
 
 ### Sengled
 - Sengled Element Classic (A19)
@@ -207,12 +226,21 @@ git pull
 - Smart Home Pty Power plug
 
 ### SmartThings
-- SmartThings SmartSense multi sensor
 - SmartThings Arrival sensor
+- SmartThings Door sensor
+- SmartThings Motion sensor (2014 model)
 - SmartThings Motion sensor (2015 model)
+- SmartThings Motion sensor (2016 model)
+- SmartThings Multi sensor (2015 model)
+- SmartThings Multipurpose sensor
+- SmartThings Outlet
+
+### Stelpro
+- Stelpro Built-in electronic thermostat
 
 ### Sylvania
 - Sylvania LIGHTIFY LED RGBW A19
+- Sylvania LIGHTIFY LED RGBW BR30
 - Sylvania LIGHTIFY LED adjustable white BR30
 - Sylvania LIGHTIFY LED adjustable white RT 5/6
 - Sylvania LIGHTIFY LED gardenspot mini RGB

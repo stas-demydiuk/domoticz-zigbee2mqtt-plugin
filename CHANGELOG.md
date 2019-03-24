@@ -4,7 +4,28 @@
 - Add temperature sensor support for Xiaomi Mi power plug
 
 New devices:
+- Bosch Motion sensor
+- Bosch Wireless motion detector
+- Gledopto Zigbee 10W floodlight RGB CCT
+- HEIMAN Water leakage sensor
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI ON/OFF switch
+- IKEA TRADFRI motion sensor
+- Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
+- Innr E27 Smart bulb tunable white
+- OSRAM SMART+ spot GU5.3 tunable white
+- Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
+- Philips Hue white GU10
+- Philips Hue Flourish white and color ambiance ceiling light
+- Philips Hue Sana
+- Philips Hue white ambiance suspension Fair
+- Philips Hue motion outdoor sensor
+- SmartThings Outlet
+- SmartThings Motion sensor (2014 model)
+- SmartThings Motion sensor (2016 model)
+- SmartThings Multi Sensor (2015 model)
+- SmartThings Door sensor
+- Sylvania LIGHTIFY LED RGBW BR30
 
 ## 0.0.18
 - Fix duplicate state in Domoticz log for On/Off switches

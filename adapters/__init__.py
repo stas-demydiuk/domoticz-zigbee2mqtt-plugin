@@ -8,12 +8,13 @@ from adapters.rgbw_adapter import RGBWAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
+from adapters.generic.temperature_sensor import TemperatureSensorAdapter
+from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_vibration import SensorVibration
-from adapters.lumi.sensor_wleak import SensorWleak
 from adapters.lumi.plug import Plug
 from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
 from adapters.lumi.WSDCGQ01LM import WSDCGQ01LM
@@ -25,6 +26,7 @@ from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
 from adapters.samsung.sensor_arrival import SensorArrival
+from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
 
@@ -37,6 +39,9 @@ adapter_by_model = {
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bitron
     'AV2010/22': MotionSensorAdapter,   # Bitron Wireless motion detector
+    # Bosch
+    'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
+    'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
     # Calex
     '421786': DimmableBulbAdapter,      # Calex LED A60 Zigbee GLS-lamp
     # Climax
@@ -65,12 +70,14 @@ adapter_by_model = {
     'GL-C-006': DimmableCtBulbAdapter,  # Gledopto Zigbee LED controller WW/CW Dimmer
     'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
     'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
+    'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
     'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     # HEIMAN
     'HS1DS': ContactAdapter,            # HEIMAN Door sensor
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
+    'HS1WL': WaterLeakSensorAdapter,    # HEIMAN Water leakage sensor
     'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
@@ -93,7 +100,11 @@ adapter_by_model = {
     'L1528': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'L1531': DimmableCtBulbAdapter,     # IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+    'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
+    'E1743': OnOffSwitchAdapter,        # IKEA TRADFRI ON/OFF switch
+    # Immax
+    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
     # Innr
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
     'BY 185 C': RGBWAdapter,            # Innr B22 Bulb RGBW
@@ -101,13 +112,16 @@ adapter_by_model = {
     'DL 110 W': DimmableBulbAdapter,    # Innr Spot wide
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
     'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
-    'RB 248 T': DimmableCtBulbAdapter,  # Innr E14 Candle with white spectrum
     'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
     'RB 175 W': DimmableBulbAdapter,    # Innr E27 Bulb warm dimming
+    'RB 178 T': DimmableCtBulbAdapter,  # Innr Smart bulb tunable white E27
     'RB 185 C': RGBWAdapter,            # Innr E27 Bulb RGBW
+    'RB 248 T': DimmableCtBulbAdapter,  # Innr E14 Candle with white spectrum
+    'RB 265': DimmableBulbAdapter,      # Innr E27 Bulb
     'RB 285 C': RGBWAdapter,            # Innr E27 Bulb RGBW
     'RS 125': DimmableBulbAdapter,      # Innr GU10 Spot
     'RS 128 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm, dimmable, white spectrum
+    'RS 225': DimmableBulbAdapter,      # Innr GU10 Spot
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
@@ -140,6 +154,7 @@ adapter_by_model = {
     'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
     'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
     'AC03645': RGBWAdapter,             # OSRAM LIGHTIFY LED CLA60 E27 RGBW
+    'AC03648': DimmableCtBulbAdapter,   # OSRAM SMART+ spot GU5.3 tunable white
     'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
     'AC01353010G': MotionAndTemperatureSensorAdapter,   # OSRAM SMART+ Motion Sensor
     'AC0251100NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
@@ -151,6 +166,7 @@ adapter_by_model = {
     '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
+    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
     # Paulmann
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
@@ -160,6 +176,9 @@ adapter_by_model = {
     '324131092621': HueDimmerSwitch,    # Philips Hue dimmer switch
     '3261030P7': DimmableCtBulbAdapter, # Philips Hue Being
     '3261331P7': DimmableCtBulbAdapter, # Philips Hue white ambiance Still
+    '4033930P7': DimmableCtBulbAdapter, # Philips Hue white ambiance suspension Fair
+    '4090130P7': RGBWAdapter,           # Philips Hue Sana
+    '4090531P7': RGBWAdapter,           # Philips Hue Flourish white and color ambiance ceiling light
     '433714': DimmableBulbAdapter,      # Philips Hue Lux A19 bulb E27
     '464800': DimmableCtBulbAdapter,    # Philips Hue white ambiance BR30 flood light
     '7146060PH': RGBWAdapter,           # Philips Hue Go
@@ -177,6 +196,8 @@ adapter_by_model = {
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
+    '9290018195': DimmableBulbAdapter,  # Philips Hue white GU10
+    '9290019758': HueMotionSensor,      # Philips Hue motion outdoor sensor
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
     'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
@@ -189,13 +210,21 @@ adapter_by_model = {
     'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
     'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug
     # SmartThings
-    'STSS-MULT-001': ContactAdapter,    # SmartThings SmartSense multi sensor
+    'STSS-MULT-001': ContactAdapter,    # SmartThings Multipurpose sensor
     'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
+    'STS-IRM-250': MotionAndTemperatureSensorAdapter,   # SmartThings Motion sensor (2016 model)
+    '3305-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2014 model)
     '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
+    'IM6001-OTP05': OnOffSwitchAdapter, # SmartThings Outlet
+    '3300-S': SmartThingsDoorSensor,    # SmartThings Door sensor
+    '3321-S': SmartThingsDoorSensor,    # SmartThings Multi Sensor (2015 model)
+    # Stelpro
+    'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
     # Sylvania
     '71831': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white A19 LED bulb
     '72922-A': OnOffSwitchAdapter,      # Sylvania SMART+ Smart Plug
     '73693': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW A19
+    '73739': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW BR30
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
     '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
     '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb
@@ -218,7 +247,7 @@ adapter_by_model = {
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 
-    'SJCGQ11LM': SensorWleak,           # Xiaomi Aqara water leak sensor
+    'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
     'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor 
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
