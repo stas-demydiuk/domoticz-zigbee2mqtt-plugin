@@ -145,6 +145,7 @@ adapter_by_model = {
     # Nue
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     'HGZB-01A': DimmableBulbAdapter,    # Nue ZigBee smart light controller
+    'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
     # OSRAM
     'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
     'AA69697': RGBWAdapter,             # OSRAM Classic A60 RGBW
