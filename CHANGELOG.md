@@ -11,6 +11,7 @@ New devices:
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI ON/OFF switch
 - IKEA TRADFRI motion sensor
+- IKEA TRADFRI remote control
 - Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
 - Innr E27 Smart bulb tunable white
 - OSRAM SMART+ spot GU5.3 tunable white

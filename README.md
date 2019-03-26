@@ -101,6 +101,7 @@ git pull
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
 - IKEA TRADFRI wireless dimmer
+- IKEA TRADFRI remote control
 - IKEA TRADFRI driver for wireless control (10 watt)
 - IKEA TRADFRI driver for wireless control (30 watt)
 - IKEA TRADFRI control outlet
