@@ -58,3 +58,22 @@ class TradfriRemoteControl(AdapterWithBattery):
 
         if alias == self.brightness_down.alias:
             self.brightness_down.handle_command(device_data, command, level, color)
+
+    def handleMqttMessage(self, device_data, message):
+        converted_message = self.convert_message(message)
+        action = message.raw['action']
+        
+        if action == 'toggle':
+            self.switch.handle_message(device_data, converted_message)
+        
+        if action.startswith('brightness_up'):
+            self.brightness_up.handle_message(device_data, converted_message)
+
+        if action.startswith('brightness_down'):
+            self.brightness_down.handle_message(device_data, converted_message)
+
+        if action.startswith('arrow_right'):
+            self.arrow_right.handle_message(device_data, converted_message)
+
+        if action.startswith('arrow_left'):
+            self.arrow_left.handle_message(device_data, converted_message)
