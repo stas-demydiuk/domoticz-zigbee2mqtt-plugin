@@ -49,6 +49,8 @@ adapter_by_model = {
     'PSS-23ZBS': OnOffSwitchAdapter,    # Climax Power plug
     # Commercial Electric
     '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
+    # Connex
+    'ZG9101SAC-HP': DimmableBulbAdapter,# CONNEX Zigbee Phasendimmer 230V bis 400W
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
