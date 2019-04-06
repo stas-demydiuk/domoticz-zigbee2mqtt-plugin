@@ -14,6 +14,7 @@ from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
+from adapters.innr.SP120 import InnrSP120Plug
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
@@ -138,6 +139,7 @@ adapter_by_model = {
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
+    'SP 120': InnrSP120Plug,
     'ST 110': DimmableBulbAdapter,      # Innr Strip Light
     'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
     # Iris
