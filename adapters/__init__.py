@@ -5,6 +5,7 @@ from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
+from adapters.innr.SP120 import InnrSP120Plug
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion import SensorMotion
@@ -74,6 +75,7 @@ adapter_by_model = {
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
+    'SP 120': InnrSP120Plug,
     # OSRAM
     'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
     'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
