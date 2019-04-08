@@ -8,6 +8,7 @@ New devices:
 - Bosch Wireless motion detector
 - Connex Zigbee Phasendimmer 230V bis 400W
 - Gledopto Zigbee 10W floodlight RGB CCT
+- Gledopto Smart Wnite GU10
 - HEIMAN Water leakage sensor
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI ON/OFF switch

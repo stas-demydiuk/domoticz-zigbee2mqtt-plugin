@@ -79,6 +79,7 @@ git pull
 - Gledopto Smart 12W E27 RGB / CW LED bulb
 - Gledopto LED RGB + CCT downlight
 - Gledopto Smart RGBW GU10
+- Gledopto Smart Wnite GU10
 
 ### HEIMAN
 - HEIMAN Door sensor
