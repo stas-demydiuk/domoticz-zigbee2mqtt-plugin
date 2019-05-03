@@ -4,6 +4,7 @@
 - Add temperature sensor support for Xiaomi Mi power plug
 - Add barometer sensor for Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)
 - Add forecast support for WSDCGQ11LM
+- Use Domoticz device.Touch method for heartbeat messages
 
 New devices:
 - Bosch Motion sensor

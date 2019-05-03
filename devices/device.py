@@ -46,7 +46,21 @@ class Device():
         )
 
     def update_device(self, device, values):
-        device.Update(**values)
+        nValueChanged = values['nValue'] != device.nValue
+        sValueChanged = values['sValue'] != device.sValue
+        colorChanged = 'Color' in values and values['Color'] != device.Color
+
+        if nValueChanged or sValueChanged or colorChanged:
+            device.Update(**values)
+        else:
+            self.touch_device(device)
+
+    def touch_device(self, device):
+        # Touch has been added in recent Domoticz beta, so check if it exists for backward compatibility
+        if hasattr(device, 'Touch') and callable(getattr(device, 'Touch')):
+            device.Touch()
+        else:
+            Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
 
     # Register device in Domoticz
     def register(self, device_data):
@@ -92,8 +106,7 @@ class Device():
             return self._create_device(device_data)
 
         if (value == None):
-            # There is no way to properly handle heartbeat messages as nValue and sValue are mandatory for device update
-            Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
+            self.touch_device(device)
             return None
 
         device_values = dict({

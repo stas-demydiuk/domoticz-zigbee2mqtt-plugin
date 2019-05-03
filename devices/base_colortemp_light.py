@@ -82,16 +82,15 @@ class BaseRGBWLight(Device):
         if (color_value != None):
             payload['Color'] = color_value
             
-        Domoticz.Debug("update domticz device: '" +str(payload)+"'")
-
         if payload:
             if not 'nValue' in payload:
                 payload['nValue'] = device.nValue
             if not 'sValue' in payload:
                 payload['sValue'] = device.sValue            
-            device.Update(**payload)
+
+            self.update_device(device, payload)
         else:
-            Domoticz.Debug("no usable data in message... hearbeat message???")
+            self.touch_device(device)
         
     def get_rgb_from_xy_and_brightness(self, x, y, bri=1):
         """Inverse of `get_xy_point_from_rgb`. Returns (r, g, b) for given x, y values.
