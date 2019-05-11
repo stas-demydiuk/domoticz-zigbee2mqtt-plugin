@@ -31,6 +31,7 @@ from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
+from adapters.swo.KEF1PA import KEF1PA
 
 adapter_by_model = {
     # AduroSmart
@@ -241,6 +242,8 @@ adapter_by_model = {
     '74283': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     '74696': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
+    # Swann One
+    'SWO-KEF1PA': KEF1PA,					# Swann Key fob remote (panic, home, away, sleep)
     # Trust
     'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
     'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor
