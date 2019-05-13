@@ -7,12 +7,15 @@
 - Use Domoticz device.Touch method for heartbeat messages
 
 New devices:
+- Anchor Vetaar smart plug
 - Bosch Motion sensor
 - Bosch Wireless motion detector
 - Connex Zigbee Phasendimmer 230V bis 400W
+- GE ZigBee plug-in smart switch
 - Gledopto Zigbee 10W floodlight RGB CCT
 - Gledopto Smart Wnite GU10
 - HEIMAN Water leakage sensor
+- Hive Active plug
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI ON/OFF switch
 - IKEA TRADFRI motion sensor
@@ -31,6 +34,8 @@ New devices:
 - SmartThings Motion sensor (2016 model)
 - SmartThings Multi Sensor (2015 model)
 - SmartThings Door sensor
+- Swann Key fob remote
+- Swann Window/door sensor
 - Sylvania LIGHTIFY LED RGBW BR30
 
 ## 0.0.18

@@ -38,6 +38,8 @@ adapter_by_model = {
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Airam
     '4713407': DimmableBulbAdapter,     # Airam LED OP A60 ZB 9W/827 E27
+    # Anchor
+    '67200BL': OnOffSwitchAdapter,      # Anchor Vetaar smart plug
     # Belkin
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bitron
@@ -66,6 +68,7 @@ adapter_by_model = {
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
+    '45853GE': OnOffSwitchAdapter,      # GE ZigBee plug-in smart switch
     '45856GE': OnOffSwitchAdapter,      # GE ZigBee in-wall smart switch
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Gledopto
@@ -89,6 +92,7 @@ adapter_by_model = {
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
+    '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # Ikea
     'LED1536G5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
     'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
@@ -222,11 +226,14 @@ adapter_by_model = {
     'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug
     # SmartThings
     'STSS-MULT-001': ContactAdapter,    # SmartThings Multipurpose sensor
+    'F-MLT-US-2': ContactAdapter,       # SmartThings Multipurpose sensor (2016 model)
     'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
     'STS-IRM-250': MotionAndTemperatureSensorAdapter,   # SmartThings Motion sensor (2016 model)
     '3305-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2014 model)
     '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
+    'IM6001-MTP01': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor
     'IM6001-OTP05': OnOffSwitchAdapter, # SmartThings Outlet
+    'IM6001-MPP01': ContactAdapter,     # SmartThings Multipurpose sensor (2018 model)
     '3300-S': SmartThingsDoorSensor,    # SmartThings Door sensor
     '3321-S': SmartThingsDoorSensor,    # SmartThings Multi Sensor (2015 model)
     # Stelpro
@@ -243,7 +250,8 @@ adapter_by_model = {
     '74696': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
     # Swann One
-    'SWO-KEF1PA': KEF1PA,					# Swann Key fob remote (panic, home, away, sleep)
+    'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
+    'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     # Trust
     'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
     'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor

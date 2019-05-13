@@ -36,6 +36,9 @@ git pull
 ### Airam
 - Airam LED OP A60 ZB 9W/827 E27
 
+### Anchor
+- Anchor Vetaar smart plug
+
 ### Belkin
 - Belkin WeMo smart LED bulb
 
@@ -67,6 +70,7 @@ git pull
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
+- GE ZigBee plug-in smart switch
 - GE ZigBee in-wall smart dimmer
 - GE ZigBee in-wall smart switch
 
@@ -230,15 +234,17 @@ git pull
 ### SmartThings
 - SmartThings Arrival sensor
 - SmartThings Door sensor
-- SmartThings Motion sensor (2014 model)
-- SmartThings Motion sensor (2015 model)
-- SmartThings Motion sensor (2016 model)
-- SmartThings Multi sensor (2015 model)
-- SmartThings Multipurpose sensor
+- SmartThings Motion sensor (2014, 2015, 2016, 2018 models)
+- SmartThings Multi sensor (2015, 2016, 2018 models)
+- SmartThings Multipurpose sensor (2015, 2016, 2018 models)
 - SmartThings Outlet
 
 ### Stelpro
 - Stelpro Built-in electronic thermostat
+
+### Swann
+- Swann Key fob remote
+- Swann Window/door sensor
 
 ### Sylvania
 - Sylvania LIGHTIFY LED RGBW A19
