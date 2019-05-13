@@ -11,6 +11,7 @@ from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
+from adapters.heiman.HS1WLE import HS1WLE
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.lumi.sensor_cube import SensorCube
@@ -87,7 +88,7 @@ adapter_by_model = {
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'HS1WL': WaterLeakSensorAdapter,    # HEIMAN Water leakage sensor
-    'HS1-WL-E': WaterLeakSensorAdapter, # HEIMAN Water leakage sensor
+    'HS1-WL-E': HS1WLE, # HEIMAN Water leakage sensor
     'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
