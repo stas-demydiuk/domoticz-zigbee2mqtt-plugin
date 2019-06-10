@@ -268,6 +268,7 @@ adapter_by_model = {
     'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)
     'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'QBKG04LM': OnOffSwitchAdapter,     # Xiaomi Aqara single key wired wall switch
+    'QBKG11LM': Plug,                   # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 

@@ -37,6 +37,7 @@ New devices:
 - Swann Key fob remote
 - Swann Window/door sensor
 - Sylvania LIGHTIFY LED RGBW BR30
+- Xiaomi Aqara single key wired wall switch
 
 ## 0.0.18
 - Fix duplicate state in Domoticz log for On/Off switches
