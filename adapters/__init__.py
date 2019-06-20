@@ -89,7 +89,7 @@ adapter_by_model = {
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'HS1WL': WaterLeakSensorAdapter,    # HEIMAN Water leakage sensor
-    'HS1-WL-E': HS1WLE, # HEIMAN Water leakage sensor
+    'HS1-WL-E': HS1WLE,                 # HEIMAN Water leakage sensor
     'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
