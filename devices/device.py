@@ -9,6 +9,7 @@ class Device():
         self.alias = alias
         self.value_key = value_key
         self.device_name_suffix = device_name_suffix
+        self.check_values_on_update = True
 
         if len(self.alias) > self.MAX_ALIAS_LENGTH:
             raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
@@ -45,12 +46,15 @@ class Device():
             '" value for device "' + device_name + '"'
         )
 
+    def disable_value_check_on_update(self):
+        self.check_values_on_update = False
+
     def update_device(self, device, values):
         nValueChanged = values['nValue'] != device.nValue
         sValueChanged = values['sValue'] != device.sValue
         colorChanged = 'Color' in values and values['Color'] != device.Color
 
-        if nValueChanged or sValueChanged or colorChanged:
+        if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
             device.Update(**values)
         else:
             self.touch_device(device)

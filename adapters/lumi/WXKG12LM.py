@@ -14,6 +14,7 @@ class WXKG12LM(AdapterWithBattery):
         self.switch.add_level('Hold', 'hold')
         self.switch.add_level('Release', 'release')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        self.switch.disable_value_check_on_update()
 
         self.devices.append(self.switch)
 
