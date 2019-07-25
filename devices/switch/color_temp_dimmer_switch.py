@@ -35,7 +35,7 @@ class ColorTempDimmerSwitch(Device):
     def get_color_value(self, value, device):
         if 'color_temp' in value:
             return json.dumps({
-                'ColorMode': 2,  # ColorModeTemp
+                'm': 2,  # ColorModeTemp
                 't': value['color_temp']
             })
         else:
