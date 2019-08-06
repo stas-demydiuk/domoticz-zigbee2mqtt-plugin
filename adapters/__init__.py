@@ -117,6 +117,7 @@ adapter_by_model = {
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': OnOffSwitchAdapter,        # IKEA TRADFRI ON/OFF switch
+    'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     # Immax
     'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
     # Innr
