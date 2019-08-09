@@ -29,6 +29,7 @@ from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
+from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
@@ -283,6 +284,7 @@ adapter_by_model = {
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
     'ZNLDP12LM': DimmableCtBulbAdapter, # Xiaomi Aqara smart LED bulb
+    'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
     # ilux
