@@ -274,6 +274,7 @@ git pull
 - Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara smart LED bulb
 - Xiaomi Aqara temperature, humidity and pressure sensor
+- Xiaomi Aqara two-way control module
 - Xiaomi Aqara vibration sensor
 - Xiaomi Aqara water leak sensor
 - Xiaomi Aqara wireless switch (WXKG11LM)

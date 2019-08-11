@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
 - Add barometer sensor for Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)
 - Add forecast support for WSDCGQ11LM
@@ -20,6 +20,7 @@ New devices:
 - IKEA TRADFRI ON/OFF switch
 - IKEA TRADFRI motion sensor
 - IKEA TRADFRI remote control
+- IKEA TRADFRI control outlet
 - Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
 - Innr E27 Smart bulb tunable white
 - OSRAM SMART+ spot GU5.3 tunable white
@@ -38,6 +39,7 @@ New devices:
 - Swann Window/door sensor
 - Sylvania LIGHTIFY LED RGBW BR30
 - Xiaomi Aqara single key wired wall switch
+- Xiaomi Aqara two-way control module
 
 ## 0.0.18
 - Fix duplicate state in Domoticz log for On/Off switches
