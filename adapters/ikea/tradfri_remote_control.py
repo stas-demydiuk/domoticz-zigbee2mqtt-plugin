@@ -60,6 +60,9 @@ class TradfriRemoteControl(AdapterWithBattery):
             self.brightness_down.handle_command(device_data, command, level, color)
 
     def handleMqttMessage(self, device_data, message):
+        if 'action' not in message.raw:
+            return
+
         converted_message = self.convert_message(message)
         action = message.raw['action']
         

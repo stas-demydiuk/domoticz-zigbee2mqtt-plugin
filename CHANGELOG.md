@@ -1,5 +1,8 @@
 # Changelog
 
+## master
+- Properly handle heartbeat message from IKEA TRADFRI Remote Control
+
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
 - Add barometer sensor for Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)
