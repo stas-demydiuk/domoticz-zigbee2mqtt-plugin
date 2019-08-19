@@ -3,6 +3,9 @@
 ## master
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
 
+New devices:
+- Xiaomi MiJia gas leak detector
+
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
 - Add barometer sensor for Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)
