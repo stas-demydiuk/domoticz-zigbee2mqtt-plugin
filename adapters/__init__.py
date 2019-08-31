@@ -219,7 +219,7 @@ adapter_by_model = {
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     '9290018195': DimmableBulbAdapter,  # Philips Hue white GU10
     '9290019758': HueMotionSensor,      # Philips Hue motion outdoor sensor
-    '440400977899': RGBWAdapter,        # Philips Hue lily outdoor spotlight
+    '1741830P7': RGBWAdapter,        # Philips Hue lily outdoor spotlight
 
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
