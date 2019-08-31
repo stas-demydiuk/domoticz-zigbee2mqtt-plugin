@@ -102,7 +102,7 @@ adapter_by_model = {
     'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
     'LED1545G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
     'LED1546G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
-    'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white 
+    'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
     'LED1623G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
     'LED1624G9': RGBAdapter,            # IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
@@ -121,7 +121,7 @@ adapter_by_model = {
     'E1743': OnOffSwitchAdapter,        # IKEA TRADFRI ON/OFF switch
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     # Immax
-    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
+    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Innr
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
     'BY 185 C': RGBWAdapter,            # Innr B22 Bulb RGBW
@@ -187,7 +187,7 @@ adapter_by_model = {
     '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
-    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
+    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
     # Paulmann
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
@@ -219,6 +219,8 @@ adapter_by_model = {
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
     '9290018195': DimmableBulbAdapter,  # Philips Hue white GU10
     '9290019758': HueMotionSensor,      # Philips Hue motion outdoor sensor
+    '440400977899': RGBWAdapter,        # Philips Hue lily outdoor spotlight
+
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
     'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
@@ -233,7 +235,7 @@ adapter_by_model = {
     # SmartThings
     'STSS-MULT-001': ContactAdapter,    # SmartThings Multipurpose sensor
     'F-MLT-US-2': ContactAdapter,       # SmartThings Multipurpose sensor (2016 model)
-    'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor 
+    'STS-PRS-251': SensorArrival,       # SmartThings SmartThings arrival sensor
     'STS-IRM-250': MotionAndTemperatureSensorAdapter,   # SmartThings Motion sensor (2016 model)
     '3305-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2014 model)
     '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
@@ -275,10 +277,10 @@ adapter_by_model = {
     'QBKG11LM': Plug,                   # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
-    'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor 
+    'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
     'WSDCGQ01LM': WSDCGQ01LM,           # Xiaomi MiJia temperature & humidity sensor
-    'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor 
+    'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
     'WXKG02LM': WXKG02LM,               # Xiaomi Aqara double key wireless wall switch
     'WXKG03LM': WXKG03LM,               # Xiaomi Aqara single key wireless wall switch
