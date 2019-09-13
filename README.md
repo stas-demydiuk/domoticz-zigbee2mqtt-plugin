@@ -44,6 +44,7 @@ git pull
 
 ### Bitron
 - Bitron Wireless motion detector
+- Bitron Wireless smart plug
 
 ### Bosch
 - Bosch Motion sensor
