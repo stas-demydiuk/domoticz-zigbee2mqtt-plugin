@@ -5,6 +5,8 @@
 
 New devices:
 - Xiaomi MiJia gas leak detector
+- Bitron Wireless smart plug
+- ROBB ZigBee AC phase-cut dimmer
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
