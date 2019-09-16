@@ -48,6 +48,7 @@ adapter_by_model = {
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bitron
     'AV2010/22': MotionSensorAdapter,   # Bitron Wireless motion detector
+    'AV2010/25': OnOffKwhAdapter,       # Bitron Wireless smart plug
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
