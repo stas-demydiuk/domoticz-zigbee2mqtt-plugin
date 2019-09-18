@@ -36,6 +36,7 @@ from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
 from adapters.swo.KEF1PA import KEF1PA
+from adapters.thermostat import ThermostatAdapter
 
 adapter_by_model = {
     # AduroSmart
@@ -294,5 +295,7 @@ adapter_by_model = {
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
     # ilux
-    '900008-WW': DimmableBulbAdapter    # ilux Dimmable A60 E27 LED Bulb
+    '900008-WW': DimmableBulbAdapter,    # ilux Dimmable A60 E27 LED Bulb
+    # Eurotronic
+    'SPZB0001': ThermostatAdapter       # SPZB0001 thermostat
 }
