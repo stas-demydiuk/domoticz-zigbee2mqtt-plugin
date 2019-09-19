@@ -9,8 +9,8 @@ class ThermostatAdapter(AdapterWithBattery):
 
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature', '( Temperature)'))
-        self.devices.append(SetPoint(devices, 'setpoint', 'current_heating_setpoint', '( Setpoint)'))
+        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)'))
+        self.devices.append(SetPoint(devices, 'spoint', 'current_heating_setpoint',' (Setpoint)'))
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         if command == 'Set Level':

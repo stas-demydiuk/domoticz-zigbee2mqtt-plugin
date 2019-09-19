@@ -1,4 +1,5 @@
 import Domoticz
+import sys
 from adapters import adapter_by_model
 
 class DeviceStorage:
@@ -10,7 +11,7 @@ class DeviceStorage:
         if DeviceStorage.__instance == None:
             DeviceStorage()
 
-        return DeviceStorage.__instance 
+        return DeviceStorage.__instance
 
     def __init__(self):
         if DeviceStorage.__instance != None:
@@ -24,10 +25,15 @@ class DeviceStorage:
         Domoticz.Log('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
 
         self.devices[device_data['ieee_addr']] = device_data
-        
+
         if model in adapter_by_model:
-            adapter = adapter_by_model[model](domoticz_devices)
-            adapter.register(device_data)
+            try:
+                adapter = adapter_by_model[model](domoticz_devices)
+                adapter.register(device_data)
+            except:
+                Domoticz.Log("ERROR")
+                #Domoticz.Log(repr(sys.exc_info()))
+                #Domoticz.Log(str(sys.exc_info()))
 
     def clear(self):
         self.devices = {}
