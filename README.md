@@ -295,6 +295,9 @@ git pull
 ### ilux
 - ilux Dimmable A60 E27 LED Bulb
 
+### Eurotronic
+- Eurotronic SPZB0001 thermostat
+
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
 
