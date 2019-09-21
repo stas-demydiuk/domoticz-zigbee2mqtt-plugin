@@ -12,6 +12,8 @@ New devices:
 - Innr E27 bulb filament clea
 - Innr E27 filament bulb dimmable
 - Innr E14 bulb RGBW
+- Konke Multi-function button
+- Konke Temperature and humidity sensor
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug

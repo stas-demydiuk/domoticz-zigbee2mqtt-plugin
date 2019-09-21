@@ -155,6 +155,10 @@ git pull
 ### JIAWEN
 - JIAWEN Wireless Bulb E27 9W RGBW
 
+### Konke
+- Konke Multi-function button
+- Konke Temperature and humidity sensor
+
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
 
