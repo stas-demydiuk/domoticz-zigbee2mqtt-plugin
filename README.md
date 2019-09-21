@@ -75,6 +75,9 @@ git pull
 - GE ZigBee in-wall smart dimmer
 - GE ZigBee in-wall smart switch
 
+### Gira
+- Gira ZigBee Light Link wall transmitter
+
 ### Gledopto
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
 - Gledopto Zigbee LED controller WW/CW Dimmer

@@ -11,6 +11,7 @@ from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
+from adapters.gira.light_link import GiraLightLink
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
@@ -77,6 +78,8 @@ adapter_by_model = {
     '45853GE': OnOffSwitchAdapter,      # GE ZigBee plug-in smart switch
     '45856GE': OnOffSwitchAdapter,      # GE ZigBee in-wall smart switch
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
+    # Gira
+    '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
     # Gledopto
     'GD-CZ-006': DimmableBulbAdapter,   # Gledopto Zigbee LED Driver
     'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
