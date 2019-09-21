@@ -127,10 +127,13 @@ git pull
 ### Innr
 - Innr E27 Bulb
 - Innr E27 Bulb warm dimming
+- Innr E27 Bulb filament clea
 - Innr E27 Bulb RGBW
+- Innr E27 filament bulb dimmable
 - Innr E27 Smart bulb tunable white
 - Innr GU10 Spot
 - Innr GU10 Spot 350 lm, dimmable, white spectrum
+- Innr E14 Bulb RGBW
 - Innr E14 Candle
 - Innr E14 Candle with white spectrum
 - Innr B22 Bulb dimmable

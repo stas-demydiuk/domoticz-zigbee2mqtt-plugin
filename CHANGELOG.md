@@ -9,6 +9,9 @@ New devices:
 - ROBB ZigBee AC phase-cut dimmer
 - Eurotronic SPZB0001 thermostat
 - Gira ZigBee Light Link wall transmitter
+- Innr E27 bulb filament clea
+- Innr E27 filament bulb dimmable
+- Innr E14 bulb RGBW
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
