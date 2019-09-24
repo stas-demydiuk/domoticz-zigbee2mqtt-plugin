@@ -7,7 +7,7 @@ class TradfriRemoteSwitchOnOff(AdapterWithBattery):
         super().__init__(devices)
 
         self.switch = SelectorSwitch(devices, 'switch', 'click')
-        self.switch.add_level('Off', None)
+        self.switch.add_level('Off', 'off')
         self.switch.add_level('On', 'on')
         self.switch.add_level('Brightness Up', 'brightness_up')
         self.switch.add_level('Brightness Down', 'brightness_down')
