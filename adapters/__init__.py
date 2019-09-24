@@ -11,10 +11,13 @@ from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
+from adapters.gira.light_link import GiraLightLink
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.innr.SP120 import InnrSP120Plug
+from adapters.konke.button import KonkeButton
+from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
@@ -77,6 +80,8 @@ adapter_by_model = {
     '45853GE': OnOffSwitchAdapter,      # GE ZigBee plug-in smart switch
     '45856GE': OnOffSwitchAdapter,      # GE ZigBee in-wall smart switch
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
+    # Gira
+    '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
     # Gledopto
     'GD-CZ-006': DimmableBulbAdapter,   # Gledopto Zigbee LED Driver
     'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
@@ -110,6 +115,7 @@ adapter_by_model = {
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
     'LED1650R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'LED1732G11': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
+    'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 805 lumen, dimmable, opal white
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
@@ -127,6 +133,7 @@ adapter_by_model = {
     # Innr
     'BY 165': DimmableBulbAdapter,      # Innr B22 Bulb dimmable
     'BY 185 C': RGBWAdapter,            # Innr B22 Bulb RGBW
+    'BY 285 C': RGBWAdapter,            # Innr B22 Bulb RGBW
     'DL 110 N': DimmableBulbAdapter,    # Innr Spot narrow
     'DL 110 W': DimmableBulbAdapter,    # Innr Spot wide
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
@@ -135,16 +142,23 @@ adapter_by_model = {
     'RB 175 W': DimmableBulbAdapter,    # Innr E27 Bulb warm dimming
     'RB 178 T': DimmableCtBulbAdapter,  # Innr Smart bulb tunable white E27
     'RB 185 C': RGBWAdapter,            # Innr E27 Bulb RGBW
+    'RB 245': DimmableBulbAdapter,      # Innr E14 Candle
     'RB 248 T': DimmableCtBulbAdapter,  # Innr E14 Candle with white spectrum
+    'RB 250 C': RGBWAdapter,            # Innr E14 Bulb RGBW
     'RB 265': DimmableBulbAdapter,      # Innr E27 Bulb
+    'RB 278 T': DimmableBulbAdapter,    # Innr E27 Bulb
     'RB 285 C': RGBWAdapter,            # Innr E27 Bulb RGBW
+    'RF 263': DimmableBulbAdapter,      # Innr E27 filament bulb dimmable
+    'RF 265': DimmableBulbAdapter,      # Innr E27 bulb filament clea
+    'RS 122': DimmableBulbAdapter,      # Innr GU10 Spot
     'RS 125': DimmableBulbAdapter,      # Innr GU10 Spot
     'RS 128 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm, dimmable, white spectrum
     'RS 225': DimmableBulbAdapter,      # Innr GU10 Spot
+    'RS 228 T': DimmableCtBulbAdapter,  # Innr GU10 Spot 350 lm
     'SL 110 M': DimmableBulbAdapter,    # Innr Spot Flex medium
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
-    'SP 120': InnrSP120Plug,
+    'SP 120': InnrSP120Plug,            # Innr Smart plug
     'ST 110': DimmableBulbAdapter,      # Innr Strip Light
     'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
     # Iris
@@ -153,10 +167,13 @@ adapter_by_model = {
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # JIAWEN
     'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
+    # Konke
+    '2AJZ4KPKEY': KonkeButton,                      # Konke Multi-function button
+    '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
     # Müller Licht
-    '404000/404005/404012': RGBWAdapter,    # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
+    '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
