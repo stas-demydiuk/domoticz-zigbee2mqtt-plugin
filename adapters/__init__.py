@@ -15,6 +15,7 @@ from adapters.gira.light_link import GiraLightLink
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
+from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
 from adapters.innr.SP120 import InnrSP120Plug
 from adapters.konke.button import KonkeButton
 from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
@@ -126,7 +127,7 @@ adapter_by_model = {
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
-    'E1743': OnOffSwitchAdapter,        # IKEA TRADFRI ON/OFF switch
+    'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     # Immax
     'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
