@@ -125,6 +125,7 @@ adapter_by_model = {
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'L1531': DimmableCtBulbAdapter,     # IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
+    'E1524/E1810': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
