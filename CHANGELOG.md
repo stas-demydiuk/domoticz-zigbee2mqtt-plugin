@@ -14,6 +14,7 @@ New devices:
 - Innr E14 bulb RGBW
 - Konke Multi-function button
 - Konke Temperature and humidity sensor
+- Gledopto Zigbee USB mini LED controller RGB + CCT
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug

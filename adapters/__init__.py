@@ -91,6 +91,7 @@ adapter_by_model = {
     'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
     'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
     'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
+    'GL-MC-001': RGBWAdapter,           # Gledopto Zigbee USB mini LED controller RGB + CCT
     'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10

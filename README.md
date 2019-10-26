@@ -83,6 +83,7 @@ git pull
 - Gledopto Zigbee LED controller WW/CW Dimmer
 - Gledopto Zigbee LED Driver
 - Gledopto Zigbee 10W floodlight RGB CCT
+- Gledopto Zigbee USB mini LED controller RGB + CCT
 - Gledopto Smart 6W E27 RGB / CW LED bulb
 - Gledopto Smart 12W E27 RGB / CW LED bulb
 - Gledopto LED RGB + CCT downlight
