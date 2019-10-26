@@ -177,6 +177,8 @@ adapter_by_model = {
     '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
+    # Lingan
+    'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
