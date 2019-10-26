@@ -17,6 +17,7 @@ New devices:
 - Gledopto Zigbee USB mini LED controller RGB + CCT
 - IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
 - Lingan Zigbee OnOff Controller
+- Livolo Switch TI0001
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug

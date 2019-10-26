@@ -19,6 +19,7 @@ from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
 from adapters.innr.SP120 import InnrSP120Plug
 from adapters.konke.button import KonkeButton
 from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
+from adapters.livolo.TI0001 import TI0001
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
@@ -179,6 +180,8 @@ adapter_by_model = {
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
     # Lingan
     'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
+    # Livolo
+    'TI0001': TI0001,                   # Livolo Switch TI0001
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
