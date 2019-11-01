@@ -19,6 +19,7 @@ from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
 from adapters.innr.SP120 import InnrSP120Plug
 from adapters.konke.button import KonkeButton
 from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
+from adapters.livolo.TI0001 import TI0001
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
@@ -91,6 +92,7 @@ adapter_by_model = {
     'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
     'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
     'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
+    'GL-MC-001': RGBWAdapter,           # Gledopto Zigbee USB mini LED controller RGB + CCT
     'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
@@ -116,7 +118,9 @@ adapter_by_model = {
     'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
     'LED1650R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'LED1732G11': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
+    'LED1733G7': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
     'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 805 lumen, dimmable, opal white
+    'LED1837R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
@@ -174,6 +178,10 @@ adapter_by_model = {
     '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
+    # Lingan
+    'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
+    # Livolo
+    'TI0001': TI0001,                   # Livolo Switch TI0001
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white

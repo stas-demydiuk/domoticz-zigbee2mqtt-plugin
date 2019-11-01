@@ -3,7 +3,8 @@ Python plugin for Domoticz to add integration with [zigbee2mqtt](https://github.
 
 ## Prerequisites
 
-Setup and run zigbee2mqtt server (https://www.zigbee2mqtt.io).
+- Setup and run zigbee2mqtt server (https://www.zigbee2mqtt.io).
+- Make sure that your Domoticz supports Python plugins (https://www.domoticz.com/wiki/Using_Python_plugins)
 
 
 ## Installation
@@ -84,6 +85,7 @@ git pull
 - Gledopto Zigbee LED controller WW/CW Dimmer
 - Gledopto Zigbee LED Driver
 - Gledopto Zigbee 10W floodlight RGB CCT
+- Gledopto Zigbee USB mini LED controller RGB + CCT
 - Gledopto Smart 6W E27 RGB / CW LED bulb
 - Gledopto Smart 12W E27 RGB / CW LED bulb
 - Gledopto LED RGB + CCT downlight
@@ -110,6 +112,7 @@ git pull
 - IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
+- IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI wireless dimmer
 - IKEA TRADFRI remote control
 - IKEA TRADFRI driver for wireless control (10 watt)
@@ -162,6 +165,12 @@ git pull
 
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
+
+### Ligan
+- Lingan Zigbee OnOff Controller
+
+### Livolo
+- Livolo Switch TI0001
 
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
