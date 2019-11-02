@@ -13,6 +13,7 @@ class TradfriRemoteSwitchOnOff(AdapterWithBattery):
         self.switch.add_level('Down', 'brightness_down')
         self.switch.add_level('Stop', 'brightness_stop')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.switch.disable_value_check_on_update()
 
 
         self.devices.append(self.switch)

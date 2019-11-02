@@ -15,6 +15,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.arrow_left.add_level('Hold', 'arrow_left_hold')
         self.arrow_left.add_level('Release', 'arrow_left_release')
         self.arrow_left.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.arrow_left.disable_value_check_on_update()
 
         self.arrow_right = SelectorSwitch(devices, 'arrowR', 'action', ' (Right Arrow)')
         self.arrow_right.add_level('Off', None)
@@ -22,6 +23,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.arrow_right.add_level('Hold', 'arrow_right_hold')
         self.arrow_right.add_level('Release', 'arrow_right_release')
         self.arrow_right.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.arrow_right.disable_value_check_on_update()
 
         self.brightness_up = SelectorSwitch(devices, 'brUp', 'action', ' (Brightness Up)')
         self.brightness_up.add_level('Off', None)
@@ -29,6 +31,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.brightness_up.add_level('Hold', 'brightness_up_hold')
         self.brightness_up.add_level('Release', 'brightness_up_release')
         self.brightness_up.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.brightness_up.disable_value_check_on_update()
 
         self.brightness_down = SelectorSwitch(devices, 'brDown', 'action', ' (Brightness Down)')
         self.brightness_down.add_level('Off', None)
@@ -36,12 +39,14 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.brightness_down.add_level('Hold', 'brightness_down_hold')
         self.brightness_down.add_level('Release', 'brightness_down_release')
         self.brightness_down.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
+        self.brightness_down.disable_value_check_on_update()
 
         self.devices.append(self.switch)
         self.devices.append(self.arrow_left)
         self.devices.append(self.arrow_right)
         self.devices.append(self.brightness_up)
         self.devices.append(self.brightness_down)
+
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         if alias == self.switch.alias:
