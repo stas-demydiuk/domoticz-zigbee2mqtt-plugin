@@ -17,6 +17,8 @@ from adapters.heiman.HS2SK import HS2SK
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
+from adapters.ikea.tradfri_remote_close_open import TradfriRemoteCloseOpen
+from adapters.ikea.tradfri_roller_blind import TradfriRollerBlind
 from adapters.innr.SP120 import InnrSP120Plug
 from adapters.konke.button import KonkeButton
 from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
@@ -136,6 +138,8 @@ adapter_by_model = {
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
+    'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
+    'E1757': TradfriRollerBlind,        # IKEA TRADFRI roller blind
     # Immax
     'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Innr

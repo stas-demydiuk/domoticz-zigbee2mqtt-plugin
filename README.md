@@ -123,6 +123,7 @@ git pull
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+- IKEA FYRTUR block-out roller blind
 
 ### Immax
 - Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
