@@ -248,6 +248,7 @@ adapter_by_model = {
     '8718696598283': DimmableCtBulbAdapter, # Philips Hue white ambiance GU10
     '8718696695203': DimmableCtBulbAdapter, # Philips Hue white ambiance E14
     '915005106701': RGBWAdapter,        # Philips Hue white and color ambiance LightStrip plus
+    '9290018187B' : RGBWAdapter,        # Philips Hue white and color ambiance LightStrip outdoor
     '915005733701': RGBWAdapter,        # Philips Hue white and color ambiance Play Lightbar
     '9290002579A': RGBWAdapter,         # Philips Hue white and color ambiance BR30
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
