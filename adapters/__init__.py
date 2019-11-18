@@ -141,6 +141,8 @@ adapter_by_model = {
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
     'E1757': TradfriRollerBlind,        # IKEA TRADFRI roller blind
+    # ITEAD
+    'BASICZBR3': OnOffSwitchAdapter,    # ITEAD SONOFF ZigBee DIY Smart Switch
     # Immax
     'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Innr
@@ -248,12 +250,12 @@ adapter_by_model = {
     '8718696598283': DimmableCtBulbAdapter, # Philips Hue white ambiance GU10
     '8718696695203': DimmableCtBulbAdapter, # Philips Hue white ambiance E14
     '915005106701': RGBWAdapter,        # Philips Hue white and color ambiance LightStrip plus
-    '9290018187B' : RGBWAdapter,        # Philips Hue white and color ambiance LightStrip outdoor
     '915005733701': RGBWAdapter,        # Philips Hue white and color ambiance Play Lightbar
     '9290002579A': RGBWAdapter,         # Philips Hue white and color ambiance BR30
     '9290011370': DimmableBulbAdapter,  # Philips Hue white A60 bulb E27
     '9290012573A': RGBWAdapter,         # Philips Hue white and color ambiance E26/E27 (with Color Temperature)
     '9290012607': HueMotionSensor,      # Philips Hue Motion Sensor (occupancy, temperature, illimination)
+    '9290018187B': RGBWAdapter,         # Philips Hue white and color ambiance LightStrip outdoor
     '9290018195': DimmableBulbAdapter,  # Philips Hue white GU10
     '9290019758': HueMotionSensor,      # Philips Hue motion outdoor sensor
     '1741830P7': RGBWAdapter,           # Philips Hue lily outdoor spotlight
