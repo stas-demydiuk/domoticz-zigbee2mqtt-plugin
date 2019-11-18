@@ -220,6 +220,7 @@ git pull
 ### Philips
 - Philips Hue Being
 - Philips Hue Go
+- Philips Hue Fillament Bulb G93
 - Philips Hue Lux A19 bulb E27
 - Philips Hue motion sensor
 - Philips Hue motion outdoor sensor

@@ -21,6 +21,7 @@ New devices:
 - IKEA TRADFRI LED bulb E27 250 lumen, dimmable, clear
 - ITEAD SONOFF ZigBee DIY Smart Switch
 - Philips Hue white and color ambiance LightStrip outdoor
+- Philips Hue Fillament Bulb G93
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
