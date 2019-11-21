@@ -96,6 +96,7 @@ git pull
 - HEIMAN Door sensor
 - HEIMAN Smoke detector
 - HEIMAN Water leakage sensor
+- HEIMANN Carbon monoxide sensor
 
 ### Hive
 - Hive Active smart bulb white LED (E27)

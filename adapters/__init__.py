@@ -12,6 +12,7 @@ from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
+from adapters.heiman.HS1CAE import HS1CAE
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.heiman.HS2SK import HS2SK
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
@@ -100,6 +101,7 @@ adapter_by_model = {
     'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     # HEIMAN
+    'HS1CA-E': HS1CAE,                  # HEIMAN Monoxyde detector
     'HS1DS': ContactAdapter,            # HEIMAN Door sensor
     'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector

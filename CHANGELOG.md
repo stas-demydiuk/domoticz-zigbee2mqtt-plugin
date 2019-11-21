@@ -22,6 +22,7 @@ New devices:
 - ITEAD SONOFF ZigBee DIY Smart Switch
 - Philips Hue white and color ambiance LightStrip outdoor
 - Philips Hue Fillament Bulb G93
+- Heiman Carbon monoxyde HS1CA-E
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
