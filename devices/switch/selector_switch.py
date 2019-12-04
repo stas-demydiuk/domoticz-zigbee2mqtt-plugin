@@ -6,8 +6,8 @@ class SelectorSwitch(Device):
     SELECTOR_TYPE_BUTTONS = '0'
     SELECTOR_TYPE_MENU = '1'
 
-    def __init__(self, devices, alias, value_key):
-        super().__init__(devices, alias, value_key)
+    def __init__(self, devices, alias, value_key, device_name_suffix = ''):
+        super().__init__(devices, alias, value_key, device_name_suffix)
 
         self.level_names = []
         self.level_values = []

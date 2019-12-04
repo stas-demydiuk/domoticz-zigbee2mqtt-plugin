@@ -1,19 +1,17 @@
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 
-
-class WXKG02LM(AdapterWithBattery):
+class KEF1PA(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'switch', 'click')
+        self.switch = SelectorSwitch(devices, 'KEF1PA', 'action')
         self.switch.add_level('Off', None)
-        self.switch.add_level('Switch 1', 'left')
-        self.switch.add_level('Switch 2', 'right')
-        self.switch.add_level('Both_Click', 'both')
-        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
-        self.switch.disable_value_check_on_update()
-
+        self.switch.add_level('Panic', 'panic')
+        self.switch.add_level('Home', 'home')
+        self.switch.add_level('Away', 'away')
+        self.switch.add_level('Sleep', 'sleep')
+        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         self.devices.append(self.switch)
 
     def handleCommand(self, alias, device, device_data, command, level, color):

@@ -34,7 +34,7 @@ class DeviceStorage:
 
     def update(self, domoticz_devices, zigbee_devices):
         for item in zigbee_devices:
-            if item['type'] == 'Coordinator':
+            if 'type' in item and item['type'] == 'Coordinator':
                 Domoticz.Debug('Coordinator address is ' + item['ieeeAddr'])
                 continue
 

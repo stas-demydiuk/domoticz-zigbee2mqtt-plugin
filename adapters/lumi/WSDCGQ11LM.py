@@ -2,6 +2,7 @@ from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.humidity import HumiditySensor
 from devices.sensor.pressure import PressureSensor
+from devices.sensor.barometer import BarometerSensor
 from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 from devices.temperature_humidity_barometer_sensor import TemperatureHumidityBarometerSensor
 
@@ -13,6 +14,7 @@ class WSDCGQ11LM(AdapterWithBattery):
         self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
         self.devices.append(HumiditySensor(devices, 'hum', 'humidity', ' (Humidity)'))
         self.devices.append(PressureSensor(devices, 'pres', 'pressure', ' (Pressure)'))
+        self.devices.append(BarometerSensor(devices, 'bar', 'pressure', ' (Barometer)'))
         self.devices.append(TemperatureHumiditySensor(devices, 'th', 'combined', ' (Temperature + Humidity)'))
         self.devices.append(TemperatureHumidityBarometerSensor(devices, 'all', 'combined', ' (Temperature + Humidity + Barometer)'))
 

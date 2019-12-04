@@ -1,10 +1,69 @@
 # Changelog
 
 ## master
-- Add temperature sensor support for Xiaomi Mi power plug
+- Properly handle heartbeat message from IKEA TRADFRI Remote Control
 
 New devices:
+- Xiaomi MiJia gas leak detector
+- Bitron Wireless smart plug
+- ROBB ZigBee AC phase-cut dimmer
+- Eurotronic SPZB0001 thermostat
+- Gira ZigBee Light Link wall transmitter
+- Innr E27 bulb filament clea
+- Innr E27 filament bulb dimmable
+- Innr E14 bulb RGBW
+- Konke Multi-function button
+- Konke Temperature and humidity sensor
+- Gledopto Zigbee USB mini LED controller RGB + CCT
+- IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
+- Lingan Zigbee OnOff Controller
+- Livolo Switch TI0001
+- IKEA TRADFRI LED bulb E27 250 lumen, dimmable, clear
+- ITEAD SONOFF ZigBee DIY Smart Switch
+- Philips Hue white and color ambiance LightStrip outdoor
+- Philips Hue Fillament Bulb G93
+- Heiman Carbon monoxyde HS1CA-E
+
+## 0.0.19
+- Add temperature sensor support for Xiaomi Mi power plug
+- Add barometer sensor for Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)
+- Add forecast support for WSDCGQ11LM
+- Use Domoticz device.Touch method for heartbeat messages
+
+New devices:
+- Anchor Vetaar smart plug
+- Bosch Motion sensor
+- Bosch Wireless motion detector
+- Connex Zigbee Phasendimmer 230V bis 400W
+- GE ZigBee plug-in smart switch
+- Gledopto Zigbee 10W floodlight RGB CCT
+- Gledopto Smart Wnite GU10
+- HEIMAN Water leakage sensor
+- Hive Active plug
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI ON/OFF switch
+- IKEA TRADFRI motion sensor
+- IKEA TRADFRI remote control
+- IKEA TRADFRI control outlet
+- Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
+- Innr E27 Smart bulb tunable white
+- OSRAM SMART+ spot GU5.3 tunable white
+- Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
+- Philips Hue white GU10
+- Philips Hue Flourish white and color ambiance ceiling light
+- Philips Hue Sana
+- Philips Hue white ambiance suspension Fair
+- Philips Hue motion outdoor sensor
+- SmartThings Outlet
+- SmartThings Motion sensor (2014 model)
+- SmartThings Motion sensor (2016 model)
+- SmartThings Multi Sensor (2015 model)
+- SmartThings Door sensor
+- Swann Key fob remote
+- Swann Window/door sensor
+- Sylvania LIGHTIFY LED RGBW BR30
+- Xiaomi Aqara single key wired wall switch
+- Xiaomi Aqara two-way control module
 
 ## 0.0.18
 - Fix duplicate state in Domoticz log for On/Off switches

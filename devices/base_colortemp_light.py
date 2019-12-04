@@ -7,26 +7,28 @@ class BaseRGBWLight(Device):
     #The specific device classes need to creat specific Domoticz devices and can create/override specific logics
     """base device class for a color controllable rgbw light bulb"""
 
-    def get_color_value(self, message, mode):
-        if mode == 1: #mode 1 us XY from zigbee
-            if 'brightness' in message.raw:
-                bri=message.raw['brightness']/254
-            else:
-                bri=1
-            colorXY = message.raw['color']
-            color_values = self.get_rgb_from_xy_and_brightness(colorXY['x'],colorXY['y'],bri)
+    def get_color_value(self, message):
+        color_mode = message.raw['color_mode'] if 'color_mode' in message.raw else 1
+
+        if color_mode == 2 and 'color_temp' in message.raw:
+            color_temp = int((message.raw['color_temp']-154) / 346 * 255)
+            color_value = json.dumps({
+                'm': 2, # White with color temperature
+                't': color_temp
+            })
+        elif 'color' in message.raw: #use XY from zigbee
+            bri = message.raw['brightness']/254 if 'brightness' in message.raw else 1
+            color = message.raw['color']
+            color_values = self.get_rgb_from_xy_and_brightness(color['x'], color['y'], bri)
             color_value = json.dumps({
                 'm': 3, #mode 3 is RGB for Domoticz
                 'r': int(color_values[0]),
                 'g': int(color_values[1]),
-                'b': int(color_values[2])})
-        elif mode == 2:
-            colorTemp = int((message.raw['color_temp']-154) / 346 * 255)
-            color_value = json.dumps({
-                'm': 2,  # ColorModeTemp
-                't': colorTemp})
+                'b': int(color_values[2])
+            })
         else:
             return None
+
         return color_value
         
     def handle_message(self, device_data, message):
@@ -60,12 +62,7 @@ class BaseRGBWLight(Device):
                 n_value = 1
 
         if "color" in message.raw:
-            #Colormode will be included in the message after my PR in zigbee-shepherd-converters is accepted/merged
-            if "color_mode" in message.raw:
-                colormode=message.raw['color_mode']
-            else:
-                colormode=1
-            color_value = self.get_color_value(message, colormode)
+            color_value = self.get_color_value(message)
 
         #when no values in message, reuse existing values from device
         
@@ -82,16 +79,15 @@ class BaseRGBWLight(Device):
         if (color_value != None):
             payload['Color'] = color_value
             
-        Domoticz.Debug("update domticz device: '" +str(payload)+"'")
-
         if payload:
             if not 'nValue' in payload:
                 payload['nValue'] = device.nValue
             if not 'sValue' in payload:
                 payload['sValue'] = device.sValue            
-            device.Update(**payload)
+
+            self.update_device(device, payload)
         else:
-            Domoticz.Debug("no usable data in message... hearbeat message???")
+            self.touch_device(device)
         
     def get_rgb_from_xy_and_brightness(self, x, y, bri=1):
         """Inverse of `get_xy_point_from_rgb`. Returns (r, g, b) for given x, y values.

@@ -7,6 +7,7 @@ class WXKG03LM(AdapterWithBattery):
         super().__init__(devices)
 
         self.switch = PushOnButton(devices, 'switch', 'state')
+        self.switch.disable_value_check_on_update()
         self.devices.append(self.switch)
 
     def convert_message(self, message):

@@ -12,10 +12,6 @@ class OnOffSwitch(Device):
     def get_string_value(self, value, device):
         return 'On' if value.lower() == 'on' else 'Off'
 
-    def update_device(self, device, values):
-        if values['nValue'] != device.nValue or values['sValue'] != device.sValue:
-            super().update_device(device, values)
-
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)

@@ -16,6 +16,7 @@ class WXKG01LM(AdapterWithBattery):
         self.switch.add_level('Long Click', 'long')
         self.switch.add_level('Long Click Release', 'long_release')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        self.switch.disable_value_check_on_update()
 
         self.devices.append(self.switch)
 

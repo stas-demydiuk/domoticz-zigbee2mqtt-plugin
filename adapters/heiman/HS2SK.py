@@ -3,7 +3,7 @@ from devices.sensor.voltage import VoltageSensor
 from devices.sensor.kwh import KwhSensor
 
 
-class Plug(OnOffSwitchAdapter):
+class HS2SK(OnOffSwitchAdapter):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(VoltageSensor(devices, 'volt', 'voltage'))
