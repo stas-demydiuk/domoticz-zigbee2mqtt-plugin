@@ -46,6 +46,7 @@ from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.thermostat import ThermostatAdapter
+from adapters.diy.ptvo_switch import PtvoSwitch
 
 adapter_by_model = {
     # AduroSmart
@@ -337,5 +338,7 @@ adapter_by_model = {
     # ilux
     '900008-WW': DimmableBulbAdapter,    # ilux Dimmable A60 E27 LED Bulb
     # Eurotronic
-    'SPZB0001': ThermostatAdapter       # SPZB0001 thermostat
+    'SPZB0001': ThermostatAdapter,       # SPZB0001 thermostat
+    # Unbranded DIY adapters
+    'ptvo.switch': PtvoSwitch            # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 }
