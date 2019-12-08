@@ -184,6 +184,9 @@ git pull
 ### Nanoleaf
 - Nanoleaf Ivy smart bulb
 
+### Netvox
+- Netvox Power socket with power consumption monitoring
+
 ### Nue
 - Nue ZigBee one gang smart switch
 - Nue ZigBee smart light controller

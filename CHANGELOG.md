@@ -23,6 +23,7 @@ New devices:
 - Philips Hue white and color ambiance LightStrip outdoor
 - Philips Hue Fillament Bulb G93
 - Heiman Carbon monoxyde HS1CA-E
+- Netvox Power socket with power consumption monitoring
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
