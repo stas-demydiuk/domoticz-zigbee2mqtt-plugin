@@ -222,6 +222,7 @@ adapter_by_model = {
     'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
     'AC01353010G': MotionAndTemperatureSensorAdapter,   # OSRAM SMART+ Motion Sensor
     'AC0251100NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
+    'AC0251100NJ/AC0251700NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
     '4052899926110': RGBWAdapter,       # OSRAM Flex RGBW
     '4052899926158': DimmableBulbAdapter,   # OSRAM LIGHTIFY Surface Light TW
     '4058075036185': RGBWAdapter,       # OSRAM Outdoor Flex RGBW
