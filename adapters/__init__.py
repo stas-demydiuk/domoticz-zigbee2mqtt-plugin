@@ -200,7 +200,7 @@ adapter_by_model = {
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
-    'Z809A': OnOffKwhAdapter,           # Netvox Power socket with power consumption monitoring
+    'Z809A': Plug,                      # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
