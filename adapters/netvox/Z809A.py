@@ -4,7 +4,7 @@ from devices.sensor.voltage import VoltageSensor
 from devices.sensor.kwh import KwhSensor
 
 
-class InnrSP120Plug(OnOffSwitchAdapter):
+class NetvoxZ809A(OnOffSwitchAdapter):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(VoltageSensor(devices, 'volt', 'voltage', ' (Voltage)'))

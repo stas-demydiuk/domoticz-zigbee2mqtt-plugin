@@ -40,6 +40,7 @@ from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
 from adapters.lumi.LLKZMK11LM import LLKZMK11LM
+from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
@@ -200,7 +201,7 @@ adapter_by_model = {
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
-    'Z809A': Plug,                      # Netvox Power socket with power consumption monitoring
+    'Z809A': NetvoxZ809A,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
