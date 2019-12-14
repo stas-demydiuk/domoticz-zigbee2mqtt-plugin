@@ -9,7 +9,7 @@ class AqaraOppleSwitch(AdapterWithBattery):
 
         self.buttons_count = buttons_count
 
-        for btn_index in range(1, self.buttons_count):
+        for btn_index in range(1, self.buttons_count + 1):
             self.devices.append(self.create_button(devices, btn_index))
 
     def create_button(self, devices, index):
@@ -37,7 +37,7 @@ class AqaraOppleSwitch(AdapterWithBattery):
         converted_message = self.convert_message(message)
         action = message.raw['action']
 
-        for btn_index in range(1, self.buttons_count):
+        for btn_index in range(1, self.buttons_count + 1):
             if action.startswith('button_' + str(btn_index)):
                 device = self.get_device_by_alias('btn' + str(btn_index))
                 device.handle_message(device_data, converted_message)
