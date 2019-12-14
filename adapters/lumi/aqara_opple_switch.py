@@ -22,6 +22,8 @@ class AqaraOppleSwitch(AdapterWithBattery):
         button.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         button.disable_value_check_on_update()
 
+        return button
+
     def handleCommand(self, alias, device, device_data, command, level, color):
         device = self.get_device_by_alias(alias)
 
