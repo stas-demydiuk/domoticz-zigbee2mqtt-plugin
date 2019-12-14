@@ -41,6 +41,7 @@ from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
 from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 from adapters.netvox.Z809A import NetvoxZ809A
+from adapters.osram import osram_adapters
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
@@ -49,7 +50,7 @@ from adapters.swo.KEF1PA import KEF1PA
 from adapters.thermostat import ThermostatAdapter
 from adapters.diy.ptvo_switch import PtvoSwitch
 
-adapter_by_model = {
+adapter_by_model = dict({
     # AduroSmart
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Airam
@@ -208,28 +209,6 @@ adapter_by_model = {
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     'HGZB-01A': DimmableBulbAdapter,    # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
-    # OSRAM
-    'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
-    'AA69697': RGBWAdapter,             # OSRAM Classic A60 RGBW
-    'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
-    'AB32840': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED Classic B40 tunable white
-    'AB35996': RGBWAdapter,             # OSRAM Smart+ Spot GU10 Multicolor
-    'AB401130055': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY Surface Light LED Tunable White
-    'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
-    'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
-    'AC03642': DimmableCtBulbAdapter,   # OSRAM SMART+ CLASSIC A 60 TW
-    'AC03645': RGBWAdapter,             # OSRAM LIGHTIFY LED CLA60 E27 RGBW
-    'AC03648': DimmableCtBulbAdapter,   # OSRAM SMART+ spot GU5.3 tunable white
-    'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
-    'AC01353010G': MotionAndTemperatureSensorAdapter,   # OSRAM SMART+ Motion Sensor
-    'AC0251100NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
-    'AC0251100NJ/AC0251700NJ': DimmableBulbAdapter, # OSRAM SMART+ Switch Mini
-    '4052899926110': RGBWAdapter,       # OSRAM Flex RGBW
-    '4052899926158': DimmableBulbAdapter,   # OSRAM LIGHTIFY Surface Light TW
-    '4058075036185': RGBWAdapter,       # OSRAM Outdoor Flex RGBW
-    '4058075036147': RGBWAdapter,       # OSRAM Smart+ Gardenpole RGBW
-    '4058075816718': RGBWAdapter,       # OSRAM SMART+ outdoor wall lantern RGBW
-    '4058075816794': DimmableCtBulbAdapter, # OSRAM Smart+ Ceiling TW
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
@@ -345,4 +324,4 @@ adapter_by_model = {
     'SPZB0001': ThermostatAdapter,       # SPZB0001 thermostat
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch            # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
-}
+}, **osram_adapters)
