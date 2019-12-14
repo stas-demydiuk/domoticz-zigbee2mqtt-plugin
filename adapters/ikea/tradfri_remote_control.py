@@ -85,3 +85,6 @@ class TradfriRemoteControl(AdapterWithBattery):
 
         if action.startswith('arrow_left'):
             self.arrow_left.handle_message(device_data, converted_message)
+
+        self.update_battery_status(device_data, converted_message)
+        self.update_link_quality(device_data, converted_message)

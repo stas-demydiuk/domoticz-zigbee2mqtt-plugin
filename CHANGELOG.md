@@ -24,6 +24,7 @@ New devices:
 - Philips Hue Fillament Bulb G93
 - Heiman Carbon monoxyde HS1CA-E
 - Netvox Power socket with power consumption monitoring
+- Xiaomi Aqara Opple 6-button switch
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug

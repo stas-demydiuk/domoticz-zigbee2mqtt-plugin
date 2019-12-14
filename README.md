@@ -300,6 +300,7 @@ git pull
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
+- Xiaomi Aqara Opple 6-button switch
 - Xiaomi Aqara single key wired wall switch
 - Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee
