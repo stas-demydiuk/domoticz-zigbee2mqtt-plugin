@@ -2,6 +2,7 @@
 
 ## master
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
+- Improve Xiaomi Aqara double key wired wall switch (QBKG03LM) support
 
 New devices:
 - Xiaomi MiJia gas leak detector

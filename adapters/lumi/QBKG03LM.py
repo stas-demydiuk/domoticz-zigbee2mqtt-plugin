@@ -3,7 +3,7 @@ import json
 from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch
 
-class AqaraDoubleWiredSwitch(Adapter):
+class QBKG03LM(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
         

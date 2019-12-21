@@ -8,7 +8,8 @@ from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.plug import Plug
-from adapters.lumi.ctrl_neutral2 import AqaraDoubleWiredSwitch
+from adapters.lumi.QBKG03LM import QBKG03LM
+from adapters.lumi.QBKG12LM import QBKG12LM
 from adapters.lumi.JTQJBF01LM import JTQJBF01LM
 from adapters.lumi.WSDCGQ01LM import WSDCGQ01LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
@@ -29,10 +30,10 @@ lumi_adapters = {
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
     'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)
-    'QBKG03LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
+    'QBKG03LM': QBKG03LM,               # Xiaomi Aqara double key wired wall switch
     'QBKG04LM': OnOffSwitchAdapter,     # Xiaomi Aqara single key wired wall switch
     'QBKG11LM': Plug,                   # Xiaomi Aqara single key wired wall switch
-    'QBKG12LM': AqaraDoubleWiredSwitch, # Xiaomi Aqara double key wired wall switch
+    'QBKG12LM': QBKG12LM,               # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
