@@ -223,31 +223,56 @@ git pull
 
 ### Philips
 - Philips Hue Being
-- Philips Hue Go
+- Philips Hue Cher ceiling light
+- Philips Hue Filament Standard A60/E27 bluetooth
 - Philips Hue Fillament Bulb G93
+- Philips Hue Fuzo outdoor wall light
+- Philips Hue Go
+- Philips Hue Go with Bluetooth
+- Philips Hue Lily outdoor spot light
 - Philips Hue Lux A19 bulb E27
-- Philips Hue motion sensor
-- Philips Hue motion outdoor sensor
 - Philips Hue Sana
+- Philips Hue Struana
+- Philips Hue Welcome white flood light
 - Philips Hue dimmer switch
+- Philips Hue motion outdoor sensor
+- Philips Hue motion sensor
+- Philips Hue smart plug - EU
+- Philips Hue smart plug bluetooth
 - Philips Hue white A60 bulb E27
+- Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white E14
 - Philips Hue white GU10
+- Philips Hue white GU10 bluetooth
+- Philips Hue white PAR38 outdoor
 - Philips Hue white Single bulb B22
+- Philips Hue white ambiance Adore light
 - Philips Hue white ambiance Aurelle Rectangle Panel Light
+- Philips Hue white ambiance Aurelle rectangle panel light
 - Philips Hue white ambiance Aurelle round panel light
+- Philips Hue white ambiance Aurelle square panel light
 - Philips Hue white ambiance BR30 flood light
 - Philips Hue white ambiance E14
+- Philips Hue white ambiance E26
+- Philips Hue white ambiance E26 with Bluetooth
 - Philips Hue white ambiance E26/E27
+- Philips Hue white ambiance E27 with Bluetooth
 - Philips Hue white ambiance GU10
+- Philips Hue white ambiance GU10 with Bluetooth
 - Philips Hue white ambiance Still
 - Philips Hue white ambiance suspension Fair
 - Philips Hue white and color ambiance BR30
+- Philips Hue white and color ambiance BR30 with bluetooth
+- Philips Hue white and color ambiance E26/E27
 - Philips Hue white and color ambiance E26/E27/E14
 - Philips Hue white and color ambiance Flourish ceiling light
 - Philips Hue white and color ambiance GU10
-- Philips Hue white and color ambiance LightStrip plus
 - Philips Hue white and color ambiance LightStrip outdoor
+- Philips Hue white and color ambiance LightStrip plus
 - Philips Hue white and color ambiance Play Lightbar
+- Philips Hue white filament Edison E27 LED
+- Philips LivingColors Aura
+- Philips Phoenix light
 
 ### Sengled
 - Sengled Element Classic (A19)

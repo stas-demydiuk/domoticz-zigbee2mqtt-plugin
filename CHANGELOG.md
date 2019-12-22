@@ -26,6 +26,32 @@ New devices:
 - Heiman Carbon monoxyde HS1CA-E
 - Netvox Power socket with power consumption monitoring
 - Xiaomi Aqara Opple 6-button switch
+- Philips Hue Struana
+- Philips LivingColors Aura
+- Philips Hue Go with Bluetooth
+- Philips Hue white and color ambiance GU10
+- Philips Hue Filament Standard A60/E27 bluetooth
+- Philips Hue white and color ambiance BR30 with bluetooth
+- Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white ambiance E27 with Bluetooth
+- Philips Hue white GU10 bluetooth
+- Philips Hue white and color ambiance E26/E27
+- Philips Hue white E14
+- Philips Hue white ambiance GU10 with Bluetooth
+- Philips Hue white ambiance E26
+- Philips Hue white ambiance E26 with Bluetooth
+- Philips Hue white ambiance Adore light
+- Philips Hue Cher ceiling light
+- Philips Hue white ambiance Aurelle square panel light
+- Philips Hue white PAR38 outdoor
+- Philips Hue smart plug - EU
+- Philips Hue smart plug bluetooth
+- Philips Hue white ambiance Aurelle rectangle panel light
+- Philips Hue Fuzo outdoor wall light
+- Philips Hue Welcome white flood light
+- Philips Hue Lily outdoor spot light
+- Philips Hue white filament Edison E27 LED
+- Philips Phoenix light
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug
