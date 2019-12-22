@@ -114,7 +114,7 @@ adapter_by_model = dict({
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
-    'HGZB-01A': DimmableBulbAdapter,    # Nue ZigBee smart light controller
+    'HGZB-01A': OnOffSwitchAdapter,     # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
