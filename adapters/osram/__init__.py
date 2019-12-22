@@ -12,6 +12,7 @@ osram_adapters = {
     'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
     'AB32840': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED Classic B40 tunable white
     'AB35996': RGBWAdapter,             # OSRAM Smart+ Spot GU10 Multicolor
+    'AC10691': OnOffSwitchAdapter,      # OSRAM Smart+ plug
     'AB401130055': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY Surface Light LED Tunable White
     'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
     'AC03641': DimmableBulbAdapter,     # OSRAM LIGHTIFY LED Classic A60 clear
