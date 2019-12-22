@@ -93,7 +93,8 @@ class BasePlugin:
             if (message != None):
                 self.mqttClient.publish(self.base_topic + '/' + message['topic'], message['payload'])
         else:
-            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')        
+            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')
+            Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
 
     def onConnect(self, Connection, Status, Description):
         Domoticz.Debug("onConnect called")
