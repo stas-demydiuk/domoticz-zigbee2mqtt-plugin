@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
 - Improve Xiaomi Aqara double key wired wall switch (QBKG03LM) support
 
