@@ -3,6 +3,7 @@ from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
+from adapters.ikea.symfonisk import Symfonisk
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
@@ -37,6 +38,7 @@ ikea_adapters = {
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
+    'E1744': Symfonisk,                 # IKEA SYMFONISK sound controller
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
     'E1757': TradfriRollerBlind,        # IKEA TRADFRI roller blind
