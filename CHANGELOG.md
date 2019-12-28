@@ -6,6 +6,7 @@
 
 New devices:
 - IKEA SYMFONISK sound controller
+- Xiaomi Aqara Opple 4-button switch
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
