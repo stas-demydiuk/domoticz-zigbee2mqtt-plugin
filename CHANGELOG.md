@@ -2,6 +2,7 @@
 
 ## master
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
+- Improve Xiaomi Aqara single key wireless wall switch (WXKG03LM) support
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
