@@ -5,7 +5,10 @@
 - Improve Xiaomi Aqara single key wireless wall switch (WXKG03LM) support
 
 New devices:
+- IKEA LEPTITER Recessed spot light
 - IKEA SYMFONISK sound controller
+- IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
+- IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
 - Xiaomi Aqara Opple 4-button switch
 
 ## 0.0.20

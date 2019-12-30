@@ -110,8 +110,10 @@ git pull
 - IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
 - IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
 - IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
 - IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+- IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
 - IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
@@ -126,6 +128,7 @@ git pull
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+- IKEA LEPTITER Recessed spot light
 - IKEA FYRTUR block-out roller blind
 
 ### Itead
