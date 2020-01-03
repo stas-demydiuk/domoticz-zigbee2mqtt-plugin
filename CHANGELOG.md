@@ -11,6 +11,7 @@ New devices:
 - IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
 - Xiaomi Aqara Opple 4-button switch
 - eWeLink Zigbee smart plug
+- Innr Smart plug (SP 222)
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
