@@ -97,6 +97,7 @@ adapter_by_model = dict({
     # Konke
     '2AJZ4KPKEY': KonkeButton,                      # Konke Multi-function button
     '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
+	'2AJZ4KPBS': MotionSensorAdapter,				# Kone motion sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
     # Lingan
