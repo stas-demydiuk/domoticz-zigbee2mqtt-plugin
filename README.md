@@ -350,6 +350,9 @@ git pull
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee
 
+### eWeLink
+- eWeLink Zigbee smart plug
+
 ### iCasa
 - iCasa Zigbee 3.0 Dimmer
 

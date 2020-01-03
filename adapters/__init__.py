@@ -156,14 +156,16 @@ adapter_by_model = dict({
     'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
     'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor
     'ZCTS-808': ContactAdapter,         # Trust Wireless contact sensor
+    # eWeLink
+    'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
     # ilux
-    '900008-WW': DimmableBulbAdapter,    # ilux Dimmable A60 E27 LED Bulb
+    '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Eurotronic
-    'SPZB0001': ThermostatAdapter,       # SPZB0001 thermostat
+    'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
     # Unbranded DIY adapters
-    'ptvo.switch': PtvoSwitch            # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
+    'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 }, 
     **heiman_adapters,
     **ikea_adapters,
