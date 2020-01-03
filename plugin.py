@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.19">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.20">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -93,7 +93,8 @@ class BasePlugin:
             if (message != None):
                 self.mqttClient.publish(self.base_topic + '/' + message['topic'], message['payload'])
         else:
-            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')        
+            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')
+            Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
 
     def onConnect(self, Connection, Status, Description):
         Domoticz.Debug("onConnect called")

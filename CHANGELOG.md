@@ -1,7 +1,19 @@
 # Changelog
 
 ## master
+- Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
+- Improve Xiaomi Aqara single key wireless wall switch (WXKG03LM) support
+
+New devices:
+- IKEA LEPTITER Recessed spot light
+- IKEA SYMFONISK sound controller
+- IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
+- IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
+- Xiaomi Aqara Opple 4-button switch
+
+## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
+- Improve Xiaomi Aqara double key wired wall switch (QBKG03LM) support
 
 New devices:
 - Xiaomi MiJia gas leak detector
@@ -23,6 +35,34 @@ New devices:
 - Philips Hue white and color ambiance LightStrip outdoor
 - Philips Hue Fillament Bulb G93
 - Heiman Carbon monoxyde HS1CA-E
+- Netvox Power socket with power consumption monitoring
+- Xiaomi Aqara Opple 6-button switch
+- Philips Hue Struana
+- Philips LivingColors Aura
+- Philips Hue Go with Bluetooth
+- Philips Hue white and color ambiance GU10
+- Philips Hue Filament Standard A60/E27 bluetooth
+- Philips Hue white and color ambiance BR30 with bluetooth
+- Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white ambiance E27 with Bluetooth
+- Philips Hue white GU10 bluetooth
+- Philips Hue white and color ambiance E26/E27
+- Philips Hue white E14
+- Philips Hue white ambiance GU10 with Bluetooth
+- Philips Hue white ambiance E26
+- Philips Hue white ambiance E26 with Bluetooth
+- Philips Hue white ambiance Adore light
+- Philips Hue Cher ceiling light
+- Philips Hue white ambiance Aurelle square panel light
+- Philips Hue white PAR38 outdoor
+- Philips Hue smart plug - EU
+- Philips Hue smart plug bluetooth
+- Philips Hue white ambiance Aurelle rectangle panel light
+- Philips Hue Fuzo outdoor wall light
+- Philips Hue Welcome white flood light
+- Philips Hue Lily outdoor spot light
+- Philips Hue white filament Edison E27 LED
+- Philips Phoenix light
 
 ## 0.0.19
 - Add temperature sensor support for Xiaomi Mi power plug

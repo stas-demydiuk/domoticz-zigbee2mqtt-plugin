@@ -14,6 +14,18 @@ class Adapter():
         for device in self.devices:
             device.register(device_data)
 
+    def get_device_by_alias(self, alias):
+        for device in self.devices:
+            if device.alias == alias:
+                return device
+
+        return None
+
+    def update_link_quality(self, device_data, message):
+        if 'linkquality' in message.raw:
+            device = self.get_device_by_alias('signal')
+            device.handle_message(device_data, message)
+
     def handleMqttMessage(self, device_data, message):
         converted_message = self.convert_message(message)
 

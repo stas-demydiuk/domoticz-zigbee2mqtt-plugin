@@ -103,14 +103,17 @@ git pull
 - Hive Active smart bulb white LED (B22)
 
 ### Ikea
+- IKEA SYMFONISK sound controller
 - IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
 - IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
 - IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
 - IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
+- IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
 - IKEA TRADFRI LED bulb E27 600 lumen, dimmable, color, opal white
+- IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
 - IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
@@ -125,6 +128,7 @@ git pull
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
+- IKEA LEPTITER Recessed spot light
 - IKEA FYRTUR block-out roller blind
 
 ### Itead
@@ -184,6 +188,9 @@ git pull
 ### Nanoleaf
 - Nanoleaf Ivy smart bulb
 
+### Netvox
+- Netvox Power socket with power consumption monitoring
+
 ### Nue
 - Nue ZigBee one gang smart switch
 - Nue ZigBee smart light controller
@@ -220,31 +227,56 @@ git pull
 
 ### Philips
 - Philips Hue Being
-- Philips Hue Go
+- Philips Hue Cher ceiling light
+- Philips Hue Filament Standard A60/E27 bluetooth
 - Philips Hue Fillament Bulb G93
+- Philips Hue Fuzo outdoor wall light
+- Philips Hue Go
+- Philips Hue Go with Bluetooth
+- Philips Hue Lily outdoor spot light
 - Philips Hue Lux A19 bulb E27
-- Philips Hue motion sensor
-- Philips Hue motion outdoor sensor
 - Philips Hue Sana
+- Philips Hue Struana
+- Philips Hue Welcome white flood light
 - Philips Hue dimmer switch
+- Philips Hue motion outdoor sensor
+- Philips Hue motion sensor
+- Philips Hue smart plug - EU
+- Philips Hue smart plug bluetooth
 - Philips Hue white A60 bulb E27
+- Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white E14
 - Philips Hue white GU10
+- Philips Hue white GU10 bluetooth
+- Philips Hue white PAR38 outdoor
 - Philips Hue white Single bulb B22
+- Philips Hue white ambiance Adore light
 - Philips Hue white ambiance Aurelle Rectangle Panel Light
+- Philips Hue white ambiance Aurelle rectangle panel light
 - Philips Hue white ambiance Aurelle round panel light
+- Philips Hue white ambiance Aurelle square panel light
 - Philips Hue white ambiance BR30 flood light
 - Philips Hue white ambiance E14
+- Philips Hue white ambiance E26
+- Philips Hue white ambiance E26 with Bluetooth
 - Philips Hue white ambiance E26/E27
+- Philips Hue white ambiance E27 with Bluetooth
 - Philips Hue white ambiance GU10
+- Philips Hue white ambiance GU10 with Bluetooth
 - Philips Hue white ambiance Still
 - Philips Hue white ambiance suspension Fair
 - Philips Hue white and color ambiance BR30
+- Philips Hue white and color ambiance BR30 with bluetooth
+- Philips Hue white and color ambiance E26/E27
 - Philips Hue white and color ambiance E26/E27/E14
 - Philips Hue white and color ambiance Flourish ceiling light
 - Philips Hue white and color ambiance GU10
-- Philips Hue white and color ambiance LightStrip plus
 - Philips Hue white and color ambiance LightStrip outdoor
+- Philips Hue white and color ambiance LightStrip plus
 - Philips Hue white and color ambiance Play Lightbar
+- Philips Hue white filament Edison E27 LED
+- Philips LivingColors Aura
+- Philips Phoenix light
 
 ### Sengled
 - Sengled Element Classic (A19)
@@ -297,6 +329,8 @@ git pull
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
+- Xiaomi Aqara Opple 4-button switch
+- Xiaomi Aqara Opple 6-button switch
 - Xiaomi Aqara single key wired wall switch
 - Xiaomi Aqara single key wireless wall switch
 - Xiaomi Aqara socket Zigbee

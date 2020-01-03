@@ -7,5 +7,4 @@ class Plug(OnOffSwitchAdapter):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(VoltageSensor(devices, 'volt', 'voltage'))
-        values = ['power']
-        self.devices.append(KwhSensor(devices, 'kwh', values))
+        self.devices.append(KwhSensor(devices, 'kwh', ['power']))
