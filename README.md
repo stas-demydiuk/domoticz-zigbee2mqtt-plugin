@@ -171,6 +171,9 @@ git pull
 ### Konke
 - Konke Multi-function button
 - Konke Temperature and humidity sensor
+- Konke Motion sensor
+- Konke Contact sensor
+- Konke Water detector
 
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller

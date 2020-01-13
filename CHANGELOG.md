@@ -12,6 +12,8 @@ New devices:
 - Xiaomi Aqara Opple 4-button switch
 - eWeLink Zigbee smart plug
 - Innr Smart plug (SP 222)
+- Konke Contact sensor
+- Konke Water detector
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
