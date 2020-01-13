@@ -45,4 +45,5 @@ ikea_adapters = {
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
     'E1757': TradfriRollerBlind,        # IKEA TRADFRI roller blind
+    'E1926': TradfriRollerBlind,        # IKEA TRADFRI roller blind
 }
