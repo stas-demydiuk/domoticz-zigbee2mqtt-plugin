@@ -34,7 +34,8 @@ class EurotronicThermostatAdapter(AdapterWithBattery):
             }
 
         if alias == 'mode' and command == 'Set Level':
-            msg = json.dumps({ 'system_mode': level })
+            switch = self.get_device_by_alias(alias)
+            msg = json.dumps({ 'system_mode': switch.level_values[level / 10] })
 
             return {
                 'topic': topic,
