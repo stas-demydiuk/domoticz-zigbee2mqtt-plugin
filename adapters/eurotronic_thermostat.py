@@ -13,8 +13,8 @@ class EurotronicThermostatAdapter(AdapterWithBattery):
 
         mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')
-        mode_switch.add_level('Auto', 'auto')
-        mode_switch.add_level('Heat', 'heat')
+        mode_switch.add_level('Auto', 'heat')
+        mode_switch.add_level('Heat', 'auto')
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         mode_switch.set_icon(15)
 
@@ -34,14 +34,9 @@ class EurotronicThermostatAdapter(AdapterWithBattery):
             }
 
         if alias == 'mode':
-            if (level == 10):
-                command = 'heat'
-            elif (level == 20):
-                command = 'auto'
-            else:
-                command = 'off'
-
-            msg = json.dumps({ 'system_mode': command })
+            switch = self.get_device_by_alias(alias)
+            level_index = int(level / 10)
+            msg = json.dumps({ 'system_mode': switch.level_values[level_index] })
 
             return {
                 'topic': topic,
