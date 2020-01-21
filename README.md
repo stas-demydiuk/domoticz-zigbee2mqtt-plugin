@@ -139,6 +139,7 @@ git pull
 - Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
 
 ### Innr
+- Innr Color Flex LED strip
 - Innr E27 Bulb
 - Innr E27 Bulb warm dimming
 - Innr E27 Bulb filament clea

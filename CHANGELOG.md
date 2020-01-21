@@ -13,6 +13,7 @@ New devices:
 - Xiaomi Aqara Opple 4-button switch
 - eWeLink Zigbee smart plug
 - Innr Smart plug (SP 222)
+- Innr Color Flex LED strip
 - Konke Contact sensor
 - Konke Water detector
 
