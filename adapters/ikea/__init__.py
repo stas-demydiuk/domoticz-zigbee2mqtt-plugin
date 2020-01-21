@@ -39,6 +39,7 @@ ikea_adapters = {
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1524/E1810': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
+    'E1525/E1745': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
     'E1744': Symfonisk,                 # IKEA SYMFONISK sound controller
