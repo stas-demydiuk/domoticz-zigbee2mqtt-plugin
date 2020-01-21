@@ -328,6 +328,12 @@ git pull
 - Trust Motion Sensor
 - Trust Wireless contact sensor
 
+### TUYATEC
+- TUYATEC PIR sensor
+- TUYATEC Temperature & humidity sensor
+- TUYATEC Smart light switch - 1 gang without neutral wire
+- TUYATEC Zigbee smart dimmer
+
 ### Xiaomi
 
 - Xiaomi Aqara door & window contact sensor

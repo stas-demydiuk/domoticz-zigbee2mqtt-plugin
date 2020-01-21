@@ -16,6 +16,10 @@ New devices:
 - Innr Color Flex LED strip
 - Konke Contact sensor
 - Konke Water detector
+- TUYATEC PIR sensor
+- TUYATEC Temperature & humidity sensor
+- TUYATEC Smart light switch - 1 gang without neutral wire
+- TUYATEC Zigbee smart dimmer
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

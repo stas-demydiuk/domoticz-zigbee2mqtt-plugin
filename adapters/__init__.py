@@ -23,6 +23,7 @@ from adapters.osram import osram_adapters
 from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
+from adapters.tuyatec import tuyatec_adapters
 from adapters.thermostat import ThermostatAdapter
 from adapters.diy.ptvo_switch import PtvoSwitch
 
@@ -170,4 +171,5 @@ adapter_by_model = dict({
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
+    **tuyatec_adapters,
 )
