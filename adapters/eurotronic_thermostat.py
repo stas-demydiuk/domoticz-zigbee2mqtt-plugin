@@ -13,8 +13,8 @@ class EurotronicThermostatAdapter(AdapterWithBattery):
 
         mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')
-        mode_switch.add_level('Auto', 'heat')
-        mode_switch.add_level('Heat', 'auto')
+        mode_switch.add_level('Auto', 'auto')
+        mode_switch.add_level('Heat', 'heat')
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         mode_switch.set_icon(15)
 
