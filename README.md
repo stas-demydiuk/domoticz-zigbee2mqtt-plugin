@@ -103,6 +103,7 @@ git pull
 - Hive Active smart bulb white LED (B22)
 
 ### Ikea
+- IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
 - IKEA SYMFONISK sound controller
 - IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear

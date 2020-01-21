@@ -9,6 +9,7 @@ New devices:
 - IKEA SYMFONISK sound controller
 - IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
 - IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
+- IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
 - Xiaomi Aqara Opple 4-button switch
 - eWeLink Zigbee smart plug
 - Innr Smart plug (SP 222)
