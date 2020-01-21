@@ -60,6 +60,8 @@ adapter_by_model = dict({
     'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
     'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
+    # ELKO
+    '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
