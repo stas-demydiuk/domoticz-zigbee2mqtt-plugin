@@ -70,6 +70,9 @@ git pull
 - EcoSmart A19 bright white bulb
 - EcoSmart A19 soft white bulb
 
+### ELKO
+- Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
