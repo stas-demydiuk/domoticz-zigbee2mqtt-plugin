@@ -15,8 +15,7 @@ from adapters.gira.light_link import GiraLightLink
 from adapters.heiman import heiman_adapters
 from adapters.ikea import ikea_adapters
 from adapters.innr import innr_adapters
-from adapters.konke.button import KonkeButton
-from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
+from adapters.konke import konke_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.netvox.Z809A import NetvoxZ809A
@@ -25,6 +24,7 @@ from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
+from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
 
 adapter_by_model = dict({
@@ -62,6 +62,8 @@ adapter_by_model = dict({
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
     # Eurotronic
     'SPZB0001': EurotronicThermostatAdapter,      # SPZB0001 thermostat
+    # ELKO
+    '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
@@ -96,10 +98,6 @@ adapter_by_model = dict({
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # JIAWEN
     'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
-    # Konke
-    '2AJZ4KPKEY': KonkeButton,                      # Konke Multi-function button
-    '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
-	'2AJZ4KPBS': MotionSensorAdapter,				# Kone motion sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
     # Lingan
@@ -170,8 +168,10 @@ adapter_by_model = dict({
     **heiman_adapters,
     **ikea_adapters,
     **innr_adapters,
+    **konke_adapters,
     **lumi_adapters,
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
+    **tuyatec_adapters,
 )

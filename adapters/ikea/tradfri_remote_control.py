@@ -49,20 +49,10 @@ class TradfriRemoteControl(AdapterWithBattery):
 
 
     def handleCommand(self, alias, device, device_data, command, level, color):
-        if alias == self.switch.alias:
-            self.switch.handle_command(device_data, command, level, color)
+        device = self.get_device_by_alias(alias)
 
-        if alias == self.arrow_left.alias:
-            self.arrow_left.handle_command(device_data, command, level, color)
-
-        if alias == self.arrow_right.alias:
-            self.arrow_right.handle_command(device_data, command, level, color)
-
-        if alias == self.brightness_up.alias:
-            self.brightness_up.handle_command(device_data, command, level, color)
-
-        if alias == self.brightness_down.alias:
-            self.brightness_down.handle_command(device_data, command, level, color)
+        if device != None:
+            device.handle_command(device_data, command, level, color)
 
     def handleMqttMessage(self, device_data, message):
         if 'action' not in message.raw:

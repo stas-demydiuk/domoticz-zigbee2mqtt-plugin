@@ -36,13 +36,16 @@ ikea_adapters = {
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'L1531': DimmableCtBulbAdapter,     # IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
     'T1820': DimmableCtBulbAdapter,     # IKEA LEPTITER Recessed spot light
+    'T1829': DimmableCtBulbAdapter,     # IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1524/E1810': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
+    'E1525/E1745': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
     'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
     'E1744': Symfonisk,                 # IKEA SYMFONISK sound controller
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
     'E1757': TradfriRollerBlind,        # IKEA TRADFRI roller blind
+    'E1926': TradfriRollerBlind,        # IKEA TRADFRI roller blind
 }

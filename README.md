@@ -70,6 +70,9 @@ git pull
 - EcoSmart A19 bright white bulb
 - EcoSmart A19 soft white bulb
 
+### ELKO
+- Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
@@ -103,6 +106,7 @@ git pull
 - Hive Active smart bulb white LED (B22)
 
 ### Ikea
+- IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
 - IKEA SYMFONISK sound controller
 - IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
 - IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
@@ -138,6 +142,7 @@ git pull
 - Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
 
 ### Innr
+- Innr Color Flex LED strip
 - Innr E27 Bulb
 - Innr E27 Bulb warm dimming
 - Innr E27 Bulb filament clea
@@ -171,6 +176,9 @@ git pull
 ### Konke
 - Konke Multi-function button
 - Konke Temperature and humidity sensor
+- Konke Motion sensor
+- Konke Contact sensor
+- Konke Water detector
 
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
@@ -322,6 +330,12 @@ git pull
 - Trust Smart Dimmable LED Bulb
 - Trust Motion Sensor
 - Trust Wireless contact sensor
+
+### TUYATEC
+- TUYATEC PIR sensor
+- TUYATEC Temperature & humidity sensor
+- TUYATEC Smart light switch - 1 gang without neutral wire
+- TUYATEC Zigbee smart dimmer
 
 ### Xiaomi
 

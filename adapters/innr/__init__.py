@@ -11,6 +11,7 @@ innr_adapters = {
     'BY 285 C': RGBWAdapter,            # Innr B22 Bulb RGBW
     'DL 110 N': DimmableBulbAdapter,    # Innr Spot narrow
     'DL 110 W': DimmableBulbAdapter,    # Innr Spot wide
+    'FL 130 C': RGBWAdapter,            # Innr Color Flex LED strip
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
     'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
     'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
