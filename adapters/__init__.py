@@ -23,8 +23,8 @@ from adapters.osram import osram_adapters
 from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
+from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
 from adapters.tuyatec import tuyatec_adapters
-from adapters.thermostat import ThermostatAdapter
 from adapters.diy.ptvo_switch import PtvoSwitch
 
 adapter_by_model = dict({
@@ -60,6 +60,8 @@ adapter_by_model = dict({
     'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
     'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
+    # Eurotronic
+    'SPZB0001': EurotronicThermostatAdapter,      # SPZB0001 thermostat
     # ELKO
     '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
     # GE
@@ -160,8 +162,6 @@ adapter_by_model = dict({
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
     # ilux
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
-    # Eurotronic
-    'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 }, 
