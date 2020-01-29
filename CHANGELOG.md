@@ -21,6 +21,7 @@ New devices:
 - TUYATEC Temperature & humidity sensor
 - TUYATEC Smart light switch - 1 gang without neutral wire
 - TUYATEC Zigbee smart dimmer
+- Oujiabao Gas and carbon monoxide alarm
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

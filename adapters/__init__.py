@@ -20,6 +20,7 @@ from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
+from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
@@ -117,6 +118,8 @@ adapter_by_model = dict({
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     'HGZB-01A': OnOffSwitchAdapter,     # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
+    # Oujiabao
+    'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW

@@ -225,6 +225,9 @@ git pull
 - OSRAM Outdoor Flex RGBW
 - OSRAM Classic A60 RGBW
 
+### Oujiabao
+- Oujiabao Gas and carbon monoxide alarm
+
 ### Paul Neuhaus
 - Paul Neuhaus Q-INIGO LED ceiling light
 - Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW 
