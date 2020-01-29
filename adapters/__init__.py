@@ -12,6 +12,7 @@ from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
+from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.ikea import ikea_adapters
 from adapters.innr import innr_adapters
@@ -73,18 +74,6 @@ adapter_by_model = dict({
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Gira
     '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
-    # Gledopto
-    'GD-CZ-006': DimmableBulbAdapter,   # Gledopto Zigbee LED Driver
-    'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
-    'GL-B-008Z': RGBWAdapter,           # Gledopto Smart 12W E27 RGB / CW LED bulb
-    'GL-C-006': DimmableCtBulbAdapter,  # Gledopto Zigbee LED controller WW/CW Dimmer
-    'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
-    'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
-    'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
-    'GL-MC-001': RGBWAdapter,           # Gledopto Zigbee USB mini LED controller RGB + CCT
-    'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
-    'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
-    'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
@@ -168,6 +157,7 @@ adapter_by_model = dict({
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 }, 
+    **gledopto_adapters,
     **heiman_adapters,
     **ikea_adapters,
     **innr_adapters,

@@ -22,6 +22,12 @@ New devices:
 - TUYATEC Smart light switch - 1 gang without neutral wire
 - TUYATEC Zigbee smart dimmer
 - Oujiabao Gas and carbon monoxide alarm
+- Gledopto Zigbee LED controller RGB + CCT plus model
+- Gledopto Zigbee LED controller RGB + CCT or RGBW
+- Gledopto Zigbee LED controller dimmer
+- Gledopto Smart RGB+CCT GU10
+- Gledopto Soposh dual white and color
+- Gledopto Zigbee ON/OFF Wall Switch
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
