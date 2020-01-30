@@ -28,6 +28,7 @@ from adapters.swo.KEF1PA import KEF1PA
 from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
 from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
+from adapters.diy.zigup import ZigupAdapter
 
 adapter_by_model = dict({
     # AduroSmart
@@ -55,6 +56,7 @@ adapter_by_model = dict({
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
+    'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature

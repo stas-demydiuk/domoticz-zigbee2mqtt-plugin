@@ -28,6 +28,7 @@ New devices:
 - Gledopto Smart RGB+CCT GU10
 - Gledopto Soposh dual white and color
 - Gledopto Zigbee ON/OFF Wall Switch
+- Custom devices (DiY) ZigUP
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
