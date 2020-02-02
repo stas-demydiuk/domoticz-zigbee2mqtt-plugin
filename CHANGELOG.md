@@ -4,6 +4,7 @@
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
 - Improve Xiaomi Aqara single key wireless wall switch (WXKG03LM) support
 - Improve Ikea TRADFRI remote control (E1524/E1810) support
+- Zigbee groups basic support (get state, turn on/off)
 
 New devices:
 - IKEA LEPTITER Recessed spot light
