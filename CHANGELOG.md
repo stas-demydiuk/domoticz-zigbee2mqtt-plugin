@@ -29,6 +29,7 @@ New devices:
 - Gledopto Soposh dual white and color
 - Gledopto Zigbee ON/OFF Wall Switch
 - Custom devices (DiY) ZigUP
+- Robb ZigBee AC phase-cut rotary dimmer
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

@@ -295,6 +295,10 @@ git pull
 - Philips LivingColors Aura
 - Philips Phoenix light
 
+### ROBB
+- ROBB ZigBee AC phase-cut dimmer
+- ROBB ZigBee AC phase-cut rotary dimmer
+
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)

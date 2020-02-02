@@ -119,6 +119,7 @@ adapter_by_model = dict({
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # ROBB
     'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
+    'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
     'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
