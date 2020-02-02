@@ -30,6 +30,7 @@ New devices:
 - Gledopto Zigbee ON/OFF Wall Switch
 - Custom devices (DiY) ZigUP
 - Robb ZigBee AC phase-cut rotary dimmer
+- Xiaomi Mi power plug ZigBee EU
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

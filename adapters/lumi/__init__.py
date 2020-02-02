@@ -48,6 +48,7 @@ lumi_adapters = {
     'WXKG11LM': WXKG11LM,               # Xiaomi Aqara wireless switch
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
+    'ZNCZ04LM': Plug,                   # Xiaomi Mi power plug ZigBee EU
     'ZNLDP12LM': DimmableCtBulbAdapter, # Xiaomi Aqara smart LED bulb
     'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
 }

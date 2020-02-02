@@ -376,6 +376,7 @@ git pull
 - Xiaomi MiJia wireless switch
 - Xiaomi Mi smart home cube
 - Xiaomi Mi power plug ZigBee
+- Xiaomi Mi power plug ZigBee EU
 
 ### eWeLink
 - eWeLink Zigbee smart plug
