@@ -25,6 +25,7 @@ from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
+from adapters.trust import trust_adapters
 from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
 from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
@@ -147,10 +148,6 @@ adapter_by_model = dict({
     # Swann One
     'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
-    # Trust
-    'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
-    'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor
-    'ZCTS-808': ContactAdapter,         # Trust Wireless contact sensor
     # eWeLink
     'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # iCasa
@@ -169,5 +166,6 @@ adapter_by_model = dict({
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
+    **trust_adapters,
     **tuyatec_adapters,
 )

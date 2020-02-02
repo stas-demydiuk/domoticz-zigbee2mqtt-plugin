@@ -31,6 +31,9 @@ New devices:
 - Custom devices (DiY) ZigUP
 - Robb ZigBee AC phase-cut rotary dimmer
 - Xiaomi Mi power plug ZigBee EU
+- Trust Smart Tunable LED bulb
+- Trust Remote control
+- Trust Water leakage detector
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

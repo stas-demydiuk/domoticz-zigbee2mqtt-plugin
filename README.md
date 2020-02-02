@@ -340,8 +340,11 @@ git pull
 - Sylvania Smart Home adjustable white MR16 LED bulb
 
 ### Trust
+- Trust Remote control
 - Trust Smart Dimmable LED Bulb
+- Trust Smart Tunable LED bulb
 - Trust Motion Sensor
+- Trust Water leakage detector
 - Trust Wireless contact sensor
 
 ### TUYATEC
