@@ -30,11 +30,14 @@ class GroupsManager:
                 'device': device
             }
 
-    def get_group_by_id(self, group_id):
+    def _get_group_by_id(self, group_id):
         return self.groups[group_id] if group_id in self.groups else None
 
+    def get_group_by_deviceid(self, device_id):
+        return self._get_group_by_id(device_id.replace('_grp', '', 1))
+
     def get_group_by_name(self, friendly_name):
-        return self.get_group_by_id(self._get_group_address_by_name(friendly_name))
+        return self._get_group_by_id(self._get_group_address_by_name(friendly_name))
 
     def handle_mqtt_message(self, group_name, message):
         group = self.get_group_by_name(group_name)
@@ -53,9 +56,7 @@ class GroupsManager:
         group['device'].handle_message(device_data, zigbee_message)
 
     def handle_command(self, device, command, level, color):
-        device_params = device.DeviceID.split('_')
-        group_id = device_params[0]
-        group = self.get_group_by_id(group_id)
+        group = self.get_group_by_deviceid(device.DeviceID)
 
         if group == None:
             return None

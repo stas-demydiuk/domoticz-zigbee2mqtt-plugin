@@ -80,7 +80,7 @@ class BasePlugin:
 
         if (self.devices_manager.get_device_by_id(entity_id) != None):
             message = self.devices_manager.handle_command(Devices, device, Command, Level, Color)
-        elif(self.groups_manager.get_group_by_id(entity_id) != None):
+        elif(self.groups_manager.get_group_by_deviceid(device.DeviceID) != None):
             message = self.groups_manager.handle_command(device, Command, Level, Color)
         else:
             Domoticz.Log('Can\'t process command from device "' + device.Name + '"')
