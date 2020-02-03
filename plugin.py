@@ -34,7 +34,7 @@ import json
 import time
 import re
 from mqtt import MqttClient
-from devices_manger import DevicesManager
+from devices_manager import DevicesManager
 from groups_manager import GroupsManager
 
 class BasePlugin:
