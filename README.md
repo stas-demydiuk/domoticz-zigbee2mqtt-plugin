@@ -385,6 +385,9 @@ git pull
 ### Eurotronic
 - Eurotronic SPZB0001 thermostat
 
+### Zemismart
+- Zemismart ZM-CSW002-D 2 gang switch
+
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
 - Custom devices (DiY) ZigUP

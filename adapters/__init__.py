@@ -29,6 +29,7 @@ from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
 from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
 from adapters.diy.zigup import ZigupAdapter
+from adapters.zemismart import zemismart_adapters
 
 adapter_by_model = dict({
     # AduroSmart
@@ -169,4 +170,5 @@ adapter_by_model = dict({
     **philips_adapters,
     **samsung_adapters,
     **tuyatec_adapters,
+    **zemismart_adapters,
 )
