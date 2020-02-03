@@ -59,6 +59,7 @@ adapter_by_model = dict({
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
+    'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature

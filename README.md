@@ -401,5 +401,6 @@ git pull
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
 - Custom devices (DiY) ZigUP
+- DIYRuZ DIYRuZ_magnet
 
 If your device is not listed here but [zigbee2mqtt supports](https://koenkk.github.io/zigbee2mqtt/information/supported_devices.html) it, support can be added (fairly) easy by creating device adapter.
