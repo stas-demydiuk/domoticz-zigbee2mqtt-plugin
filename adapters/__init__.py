@@ -153,6 +153,7 @@ adapter_by_model = dict({
     'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
+    'ICZB-IW11SW': OnOffSwitchAdapter,  # iCasa Zigbee 3.0 Switch
     # ilux
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters

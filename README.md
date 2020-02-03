@@ -387,6 +387,7 @@ git pull
 
 ### iCasa
 - iCasa Zigbee 3.0 Dimmer
+- iCasa Zigbee 3.0 Switch
 
 ### ilux
 - ilux Dimmable A60 E27 LED Bulb

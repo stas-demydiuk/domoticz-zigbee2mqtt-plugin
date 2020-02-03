@@ -36,6 +36,8 @@ New devices:
 - Trust Remote control
 - Trust Water leakage detector
 - IKEA TRADFRI LED bulb E26/E27 806 lumen, dimmable, warm white
+- Zemismart ZM-CSW002-D 2 gang switch
+- iCasa Zigbee 3.0 Switch
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
