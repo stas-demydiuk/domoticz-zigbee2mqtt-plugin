@@ -39,6 +39,7 @@ New devices:
 - Zemismart ZM-CSW002-D 2 gang switch
 - iCasa Zigbee 3.0 Switch
 - DIYRuZ DIYRuZ_magnet
+- Xiaomi Aqara curtain motor
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

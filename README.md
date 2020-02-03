@@ -356,31 +356,32 @@ git pull
 
 ### Xiaomi
 
+- Xiaomi Aqara Opple 4-button switch
+- Xiaomi Aqara Opple 6-button switch
+- Xiaomi Aqara curtain motor
 - Xiaomi Aqara door & window contact sensor
 - Xiaomi Aqara double key wired wall switch
 - Xiaomi Aqara double key wireless wall switch
 - Xiaomi Aqara human body movement and illuminance sensor
-- Xiaomi Aqara Opple 4-button switch
-- Xiaomi Aqara Opple 6-button switch
 - Xiaomi Aqara single key wired wall switch
 - Xiaomi Aqara single key wireless wall switch
-- Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara smart LED bulb
+- Xiaomi Aqara socket Zigbee
 - Xiaomi Aqara temperature, humidity and pressure sensor
 - Xiaomi Aqara two-way control module
 - Xiaomi Aqara vibration sensor
 - Xiaomi Aqara water leak sensor
 - Xiaomi Aqara wireless switch (WXKG11LM)
 - Xiaomi Aqara wireless switch with gyroscope (WXKG12LM)
-- Xiaomi MiJia door & window contact sensor
+- Xiaomi Mi power plug ZigBee
+- Xiaomi Mi power plug ZigBee EU
+- Xiaomi Mi smart home cube
 - Xiaomi MiJia Honeywell smoke detector
+- Xiaomi MiJia door & window contact sensor
 - Xiaomi MiJia gas leak detector
 - Xiaomi MiJia human body movement sensor
 - Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch
-- Xiaomi Mi smart home cube
-- Xiaomi Mi power plug ZigBee
-- Xiaomi Mi power plug ZigBee EU
 
 ### eWeLink
 - eWeLink Zigbee smart plug
