@@ -35,6 +35,7 @@ New devices:
 - Trust Smart Tunable LED bulb
 - Trust Remote control
 - Trust Water leakage detector
+- IKEA TRADFRI LED bulb E26/E27 806 lumen, dimmable, warm white
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
