@@ -40,6 +40,12 @@ New devices:
 - iCasa Zigbee 3.0 Switch
 - DIYRuZ DIYRuZ_magnet
 - Xiaomi Aqara curtain motor
+- CR Smart Home Valve control
+- CR Smart Home Motion sensor
+- CR Smart Home Door sensor
+- CR Smart Home Smoke sensor
+- CR Smart Home Socket
+- CR Smart Home Water leak detector
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
