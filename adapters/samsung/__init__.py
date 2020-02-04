@@ -17,4 +17,5 @@ samsung_adapters = {
     'IM6001-MPP01': ContactAdapter,     # SmartThings Multipurpose sensor (2018 model)
     '3300-S': SmartThingsDoorSensor,    # SmartThings Door sensor
     '3321-S': SmartThingsDoorSensor,    # SmartThings Multi Sensor (2015 model)
+    'STS-OUT-US-2': OnOffSwitchAdapter, # SmartThings Outlet
 }
