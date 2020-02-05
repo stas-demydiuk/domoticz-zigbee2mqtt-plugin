@@ -3,9 +3,9 @@ from devices.custom_sensor import CustomSensor
 
 
 class Adapter():
-    def __init__(self, devices):
+    def __init__(self, domoticz_devices):
         self.devices = []
-        self.devices.append(CustomSensor(devices, 'signal', 'linkquality', ' (Link Quality)'))
+        self.devices.append(CustomSensor(domoticz_devices, 'signal', 'linkquality', ' (Link Quality)'))
 
     def convert_message(self, message):
         return message

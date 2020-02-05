@@ -74,6 +74,7 @@ class BasePlugin:
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
 
+        message = None
         device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
         device_params = device.DeviceID.split('_')
         entity_id = device_params[0]
