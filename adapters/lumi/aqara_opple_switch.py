@@ -17,6 +17,8 @@ class AqaraOppleSwitch(AdapterWithBattery):
         button = SelectorSwitch(devices, 'btn' + str(index), 'action', ' (Button ' + str(index) + ')')
         button.add_level('Off', None)
         button.add_level('Click', action_prefix + 'single')
+        button.add_level('Double', action_prefix + 'double')
+        button.add_level('Triple', action_prefix + 'triple')
         button.add_level('Hold', action_prefix + 'hold')
         button.add_level('Release', action_prefix + 'release')
         button.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
