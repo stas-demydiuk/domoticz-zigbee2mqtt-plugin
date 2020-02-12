@@ -46,6 +46,7 @@ New devices:
 - CR Smart Home Smoke sensor
 - CR Smart Home Socket
 - CR Smart Home Water leak detector
+- IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control

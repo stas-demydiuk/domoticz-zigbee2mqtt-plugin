@@ -29,6 +29,7 @@ ikea_adapters = {
     'LED1837R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 806 lumen, dimmable, warm white
     'LED1842G3': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E27 250 lumen, dimmable, clear
+    'LED1903C5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
@@ -39,11 +40,11 @@ ikea_adapters = {
     'T1820': DimmableCtBulbAdapter,     # IKEA LEPTITER Recessed spot light
     'T1829': DimmableCtBulbAdapter,     # IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
-    'E1524/E1810': TradfriRemoteControl,      # IKEA TRADFRI remote control
+    'E1524/E1810': TradfriRemoteControl,# IKEA TRADFRI remote control
     'E1525': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
-    'E1525/E1745': MotionSensorAdapter,       # IKEA TRADFRI motion sensor
+    'E1525/E1745': MotionSensorAdapter, # IKEA TRADFRI motion sensor
     'E1603': OnOffSwitchAdapter,        # IKEA TRADFRI control outlet
-    'E1743': TradfriRemoteSwitchOnOff,        # IKEA TRADFRI ON/OFF switch
+    'E1743': TradfriRemoteSwitchOnOff,  # IKEA TRADFRI ON/OFF switch
     'E1744': Symfonisk,                 # IKEA SYMFONISK sound controller
     'E1603/E1702': OnOffSwitchAdapter,  # IKEA TRADFRI control outlet
     'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
