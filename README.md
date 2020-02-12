@@ -47,6 +47,7 @@ git pull
 ### Bitron
 - Bitron Wireless motion detector
 - Bitron Wireless smart plug
+- Bitron Wireless wall thermostat with relay
 
 ### Bosch
 - Bosch Motion sensor

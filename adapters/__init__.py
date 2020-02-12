@@ -5,6 +5,7 @@ from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
+from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
@@ -42,9 +43,6 @@ adapter_by_model = dict({
     '67200BL': OnOffSwitchAdapter,      # Anchor Vetaar smart plug
     # Belkin
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
-    # Bitron
-    'AV2010/22': MotionSensorAdapter,   # Bitron Wireless motion detector
-    'AV2010/25': OnOffKwhAdapter,       # Bitron Wireless smart plug
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
@@ -160,7 +158,8 @@ adapter_by_model = dict({
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
-}, 
+},
+    **bitron_adapters,
     **cr_adapters,
     **gledopto_adapters,
     **heiman_adapters,
