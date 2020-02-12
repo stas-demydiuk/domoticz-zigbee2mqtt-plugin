@@ -408,6 +408,7 @@ git pull
 - Zemismart ZM-CSW002-D 2 gang switch
 - Zemismart ZM-L03E-Z 3 gang with neutral wire switch
 - Zemismart RGB LED downlight
+- Zemismart Curtain/roller blind switch
 
 ### Other
 - Custom devices (DiY) DNCKAT single key wired wall light switch
