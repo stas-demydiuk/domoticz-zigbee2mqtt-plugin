@@ -48,6 +48,7 @@ New devices:
 - CR Smart Home Water leak detector
 - IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
 - Zemismart ZM-L03E-Z 3 gang with neutral wire switch
+- Zemismart RGB LED downlight
 
 ## 0.0.20
 - Properly handle heartbeat message from IKEA TRADFRI Remote Control
