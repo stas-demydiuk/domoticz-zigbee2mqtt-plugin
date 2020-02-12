@@ -61,6 +61,14 @@ git pull
 ### Commercial Electric
 - Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
 
+### CR Smart Home
+- CR Smart Home Valve control
+- CR Smart Home Motion sensor
+- CR Smart Home Door sensor
+- CR Smart Home Smoke sensor
+- CR Smart Home Socket
+- CR Smart Home Water leak detector
+
 ### Dresden Elektronik
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature

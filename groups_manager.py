@@ -1,8 +1,10 @@
 import Domoticz
 import json
+import re
 from zigbee_message import ZigbeeMessage
-from devices.switch.on_off_switch import OnOffSwitch
-
+from adapters.on_off_switch_adapter import OnOffSwitchAdapter
+from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
+from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 
 class GroupsManager:
     def __init__(self):
@@ -12,29 +14,47 @@ class GroupsManager:
         self.groups = {}
 
         for item in groups:
-            group_id = self._get_group_address_by_name(item['friendly_name'])
+            group_name = item['friendly_name']
+            group_id = self._get_group_address_by_name(group_name)
+
             device_data = {
                 'type': 'Group',
                 'model': 'Group',
                 'ieee_addr': group_id,
-                'friendly_name': item['friendly_name']
+                'friendly_name': group_name
             }
 
-            Domoticz.Log('Group ' + item['friendly_name'] + ' (' + group_id + '_grp)')
+            Domoticz.Log('Group ' + group_name)
 
-            device = OnOffSwitch(domoticz_devices, 'grp', 'state')
-            device.register(device_data)
+            adapter = self._get_adapter(domoticz_devices, group_name)
+            adapter.register(device_data)
 
             self.groups[group_id] = {
-                'friendly_name': item['friendly_name'],
-                'device': device
+                'friendly_name': group_name,
+                'adapter': adapter
             }
+
+    def _get_adapter(self, domoticz_devices, group_name):
+        if (group_name.endswith('_dimmer')):
+            adapter = DimmableBulbAdapter(domoticz_devices)
+        elif (group_name.endswith('_ct')):
+            adapter = DimmableCtBulbAdapter(domoticz_devices)
+        else:
+            adapter = OnOffSwitchAdapter(domoticz_devices)
+
+        # Remove LinkQuality device from adapter
+        adapter.devices.pop(0)
+        return adapter
 
     def _get_group_by_id(self, group_id):
         return self.groups[group_id] if group_id in self.groups else None
 
     def get_group_by_deviceid(self, device_id):
-        return self._get_group_by_id(device_id.replace('_grp', '', 1))
+        parts = device_id.split('_')
+        parts.pop()
+        group_id = '_'.join(parts)
+
+        return self._get_group_by_id(group_id)
 
     def get_group_by_name(self, friendly_name):
         return self._get_group_by_id(self._get_group_address_by_name(friendly_name))
@@ -46,14 +66,14 @@ class GroupsManager:
             Domoticz.Debug('Group "' + group_name + '" not found')
             return None
 
+        adapter = group['adapter']
         zigbee_message = ZigbeeMessage(message)
-
         device_data = {
             'ieee_addr': self._get_group_address_by_name(group_name),
             'friendly_name': group_name
         }
 
-        group['device'].handle_message(device_data, zigbee_message)
+        adapter.handleMqttMessage(device_data, zigbee_message)
 
     def handle_command(self, device, command, level, color):
         group = self.get_group_by_deviceid(device.DeviceID)
@@ -61,13 +81,17 @@ class GroupsManager:
         if group == None:
             return None
 
-        return {
-            'topic': group['friendly_name'] + '/set',
-            'payload': json.dumps({
-                "state": command.upper()
-            })
+        alias = device.DeviceID.split('_').pop()
+        group_name = group['friendly_name']
+        adapter = group['adapter']
+
+        device_data = {
+            'ieee_addr': self._get_group_address_by_name(group_name),
+            'friendly_name': group['friendly_name']
         }
 
+        return adapter.handleCommand(alias, device, device_data, command, level, color)
+
     def _get_group_address_by_name(self, friendly_name):
-        # Only first 14 characters of group name due to Domoticz Length limitation
-        return friendly_name[0: 14]
+        # Only first 12 characters of group name (to match ieee address length) due to Domoticz Length limitation
+        return friendly_name[0: 12]

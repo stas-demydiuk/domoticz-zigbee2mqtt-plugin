@@ -5,6 +5,7 @@ from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
+from adapters.cr import cr_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
@@ -160,6 +161,7 @@ adapter_by_model = dict({
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 }, 
+    **cr_adapters,
     **gledopto_adapters,
     **heiman_adapters,
     **ikea_adapters,
