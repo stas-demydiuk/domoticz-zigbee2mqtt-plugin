@@ -3,7 +3,7 @@ from adapters.base_adapter import Adapter
 from devices.switch.blind_percentages_switch import BlindSwitch
 
 
-class ZNCLDJ11LM(Adapter):
+class BlindAdapter(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
         self.devices.append(BlindSwitch(devices, 'dimmer', 'position'))

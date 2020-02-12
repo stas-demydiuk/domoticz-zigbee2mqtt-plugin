@@ -1,5 +1,6 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
+from adapters.generic.blind_adapter import BlindAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
@@ -20,7 +21,6 @@ from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
-from adapters.lumi.ZNCLDJ11LM import ZNCLDJ11LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
 from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 
@@ -50,7 +50,8 @@ lumi_adapters = {
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
     'ZNCZ04LM': Plug,                   # Xiaomi Mi power plug ZigBee EU
-    'ZNCLDJ11LM': ZNCLDJ11LM,           # Xiaomi Aqara curtain motor
+    'ZNCLDJ11LM': BlindAdapter,         # Xiaomi Aqara curtain motor
+    'ZNCLDJ12LM': BlindAdapter,         # Xiaomi Aqara B1 curtain motor
     'ZNLDP12LM': DimmableCtBulbAdapter, # Xiaomi Aqara smart LED bulb
     'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
 }
