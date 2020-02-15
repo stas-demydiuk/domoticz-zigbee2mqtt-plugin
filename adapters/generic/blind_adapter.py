@@ -34,3 +34,11 @@ class BlindAdapter(Adapter):
                     "position": int(100 - level)
                 })
             }
+
+        if cmd == 'STOP':
+            return {
+                'topic': device_data['friendly_name'] + '/set',
+                'payload': json.dumps({
+                    "state": "stop"
+                })
+            }
