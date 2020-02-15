@@ -10,6 +10,7 @@ from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.sensor_vibration import SensorVibration
 from adapters.lumi.plug import Plug
+from adapters.lumi.GZCGQ01LM import GZCGQ01LM
 from adapters.lumi.QBKG03LM import QBKG03LM
 from adapters.lumi.QBKG12LM import QBKG12LM
 from adapters.lumi.JTQJBF01LM import JTQJBF01LM
@@ -26,6 +27,7 @@ from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 
 lumi_adapters = {
     'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
+    'GZCGQ01LM': GZCGQ01LM,             # Xiaomi MiJia light intensity sensor
     'JTYJ-GD-01LM/BW': SmokeSensorAdapter,  # Xiaomi MiJia Honeywell smoke detector
     'JTQJ-BF-01LM/BW': JTQJBF01LM,      # Xiaomi MiJia gas leak detector
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor

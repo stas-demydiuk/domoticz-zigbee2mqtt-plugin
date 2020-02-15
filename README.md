@@ -399,6 +399,7 @@ if no suffix will be found then On/Off switch will be created by default
 - Xiaomi MiJia Honeywell smoke detector
 - Xiaomi MiJia door & window contact sensor
 - Xiaomi MiJia gas leak detector
+- Xiaomi MiJia light intensity sensor
 - Xiaomi MiJia human body movement sensor
 - Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch
