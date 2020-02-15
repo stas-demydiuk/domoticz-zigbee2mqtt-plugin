@@ -404,6 +404,10 @@ if no suffix will be found then On/Off switch will be created by default
 - Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch
 
+### Weiser
+- Weiser SmartCode 10
+- Weiser SmartCode 10 Touch
+
 ### eWeLink
 - eWeLink Zigbee smart plug
 

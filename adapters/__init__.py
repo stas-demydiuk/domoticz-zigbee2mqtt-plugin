@@ -5,6 +5,7 @@ from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
+from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
@@ -149,6 +150,9 @@ adapter_by_model = dict({
     # Swann One
     'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
+    # Weiser
+    '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
+    '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
     # eWeLink
     'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # iCasa
