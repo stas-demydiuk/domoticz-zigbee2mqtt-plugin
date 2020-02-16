@@ -18,4 +18,5 @@ samsung_adapters = {
     '3300-S': SmartThingsDoorSensor,    # SmartThings Door sensor
     '3321-S': SmartThingsDoorSensor,    # SmartThings Multi Sensor (2015 model)
     'STS-OUT-US-2': OnOffSwitchAdapter, # SmartThings Outlet
+    'F-APP-UK-V2': OnOffSwitchAdapter,  # SmartThings Outlet
 }
