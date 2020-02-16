@@ -10,6 +10,7 @@ gledopto_adapters = {
     'GL-B-008Z': RGBWAdapter,           # Gledopto Smart 12W E27 RGB / CW LED bulb
     'GL-C-006': DimmableCtBulbAdapter,  # Gledopto Zigbee LED controller WW/CW Dimmer
     'GL-C-007': RGBWAdapter,            # Gledopto Zigbee LED controller RGBW
+    'GL-C-007S': RGBWAdapter,           # Gledopto Zigbee LED controller RGBW plus model    
     'GL-C-007/GL-C-008': RGBWAdapter,   # Gledopto Zigbee LED controller RGB + CCT or RGBW
     'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
     'GL-C-008S': RGBWAdapter,           # Gledopto Zigbee LED controller RGB + CCT plus model
