@@ -340,6 +340,7 @@ if no suffix will be found then On/Off switch will be created by default
 - SmartThings Multi sensor (2015, 2016, 2018 models)
 - SmartThings Multipurpose sensor (2015, 2016, 2018 models)
 - SmartThings Outlet
+- SmartThings Outlet
 
 ### Stelpro
 - Stelpro Built-in electronic thermostat
