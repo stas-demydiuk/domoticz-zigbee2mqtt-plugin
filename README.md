@@ -48,6 +48,9 @@ git pull
 - Bitron Wireless motion detector
 - Bitron Wireless smart plug
 
+### Blitzwolf
+- Blitzwolf BW-IS4 Temperature & humidity sensor with display
+
 ### Bosch
 - Bosch Motion sensor
 - Bosch Wireless motion detector
@@ -336,6 +339,7 @@ git pull
 - TUYATEC Temperature & humidity sensor
 - TUYATEC Smart light switch - 1 gang without neutral wire
 - TUYATEC Zigbee smart dimmer
+- TUYATEC Temperature & humidity sensor with display
 
 ### Xiaomi
 
