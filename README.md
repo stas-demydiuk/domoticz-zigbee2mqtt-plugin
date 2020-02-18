@@ -60,6 +60,9 @@ if no suffix will be found then On/Off switch will be created by default
 - Bitron Wireless smart plug
 - Bitron Wireless wall thermostat with relay
 
+### Blitzwolf
+- Blitzwolf BW-IS4 Temperature & humidity sensor with display
+
 ### Bosch
 - Bosch Motion sensor
 - Bosch Wireless motion detector
@@ -374,6 +377,7 @@ if no suffix will be found then On/Off switch will be created by default
 - TUYATEC Temperature & humidity sensor
 - TUYATEC Smart light switch - 1 gang without neutral wire
 - TUYATEC Zigbee smart dimmer
+- TUYATEC Temperature & humidity sensor with display
 
 ### Xiaomi
 
