@@ -9,4 +9,5 @@ tuyatec_adapters = {
     'TT001ZAV20': TemperatureHumiditySensorAdapter, # TUYATEC Temperature & humidity sensor
     'GDKES-01TZXD': OnOffSwitchAdapter,             # TUYATEC Smart light switch - 1 gang without neutral wire
     'gq8b1uv': DimmableBulbAdapter,                 # TUYATEC Zigbee smart dimmer
+    'TS0201': TemperatureHumiditySensorAdapter,     # TUYATEC Temperature & humidity sensor with display
 }
