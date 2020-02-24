@@ -6,6 +6,7 @@ New devices:
 - Xiaomi MiJia light intensity sensor
 - Weiser SmartCode 10
 - Weiser SmartCode 10 Touch
+- Müller Licht Tint smart switch
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

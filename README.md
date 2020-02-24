@@ -222,6 +222,7 @@ if no suffix will be found then On/Off switch will be created by default
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
+- Müller Licht Tint smart switch
 
 ### Nanoleaf
 - Nanoleaf Ivy smart bulb
