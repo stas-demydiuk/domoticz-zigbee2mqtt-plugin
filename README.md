@@ -119,6 +119,7 @@ if no suffix will be found then On/Off switch will be created by default
 - Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer 
 - Gledopto Zigbee LED controller RGB + CCT or RGBW
 - Gledopto Zigbee LED controller RGB + CCT plus model
+- Gledopto Zigbee LED controller RGBW plus model    
 - Gledopto Zigbee LED controller WW/CW Dimmer
 - Gledopto Zigbee LED controller dimmer
 - Gledopto Zigbee ON/OFF Wall Switch
