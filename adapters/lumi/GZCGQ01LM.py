@@ -6,4 +6,5 @@ from devices.sensor.lux import LuxSensor
 class GZCGQ01LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(LuxSensor(devices, 'lux', 'illuminance'))
+        self.devices.append(LuxSensor(devices, 'lux', 'illuminance', ' (Illuminance)'))
+        self.devices.append(LuxSensor(devices, 'lx', 'illuminance_lux', ' (Illuminance Lux)'))
