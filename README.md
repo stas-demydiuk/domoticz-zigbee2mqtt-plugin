@@ -159,6 +159,7 @@ if no suffix will be found then On/Off switch will be created by default
 - IKEA TRADFRI control outlet
 - IKEA TRADFRI ON/OFF switch
 - IKEA TRADFRI motion sensor
+- IKEA TRADFRI signal repeater
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
 - IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)

@@ -10,6 +10,7 @@ New devices:
 - TuYa Temperature & humidity sensor with display
 - Gledopto Zigbee LED controller RGBW plus model
 - SmartThings Outlet UK
+- IKEA TRADFRI signal repeater
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
