@@ -13,6 +13,7 @@ from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapte
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
+from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
 from adapters.gledopto import gledopto_adapters
@@ -36,6 +37,9 @@ from adapters.diy.zigup import ZigupAdapter
 from adapters.zemismart import zemismart_adapters
 
 adapter_by_model = dict({
+    # Alecto Smart Home
+    'RH3001': ContactAdapter,                   # Alecto Smart Home - Smart sensor door / window
+    'RH3052': TemperatureHumiditySensorAdapter,   # Alecto Smart Home branded Smart sensor temp and humidity / TUYATEC - TT001ZAV20 temp and humidity sensor
     # AduroSmart
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Airam
