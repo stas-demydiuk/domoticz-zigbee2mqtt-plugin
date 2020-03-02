@@ -18,6 +18,16 @@ class TradfriRemoteSwitchOnOff(AdapterWithBattery):
 
         self.devices.append(self.switch)
 
+    def handleMqttMessage(self, device_data, message):
+        if 'click' not in message.raw:
+            return
+        converted_message = self.convert_message(message)
+        click = message.raw['click']
+        if click == '':
+            return
+        else:
+            for device in self.devices:
+                device.handle_message(device_data, converted_message)
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         self.switch.handle_command(device_data, command, level, color)
