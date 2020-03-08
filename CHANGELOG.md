@@ -1,6 +1,8 @@
 # Changelog
 
 ## master
+- Support for "stop" command for blinds adapter
+- Support for "skip" action on Ikea Symfonisk
 
 New devices:
 - Xiaomi MiJia light intensity sensor
@@ -11,6 +13,8 @@ New devices:
 - Gledopto Zigbee LED controller RGBW plus model
 - SmartThings Outlet UK
 - IKEA TRADFRI signal repeater
+- Alecto Smart Home - Smart sensor door / window
+- Alecto Smart Home branded Smart sensor temp and humidity
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
