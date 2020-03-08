@@ -384,6 +384,7 @@ if no suffix will be found then On/Off switch will be created by default
 
 ### Xiaomi
 
+- Xiaomi Aqara Opple 2-button switch
 - Xiaomi Aqara Opple 4-button switch
 - Xiaomi Aqara Opple 6-button switch
 - Xiaomi Aqara curtain motor

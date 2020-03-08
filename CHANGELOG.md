@@ -15,6 +15,7 @@ New devices:
 - IKEA TRADFRI signal repeater
 - Alecto Smart Home - Smart sensor door / window
 - Alecto Smart Home branded Smart sensor temp and humidity
+- Xiaomi Aqara Opple 2-button switch
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

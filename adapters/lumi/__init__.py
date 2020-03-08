@@ -15,6 +15,7 @@ from adapters.lumi.QBKG03LM import QBKG03LM
 from adapters.lumi.QBKG12LM import QBKG12LM
 from adapters.lumi.JTQJBF01LM import JTQJBF01LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
+from adapters.lumi.WXCJKG11LM import WXCJKG11LM
 from adapters.lumi.WXCJKG12LM import WXCJKG12LM
 from adapters.lumi.WXCJKG13LM import WXCJKG13LM
 from adapters.lumi.WXKG01LM import WXKG01LM
@@ -43,6 +44,7 @@ lumi_adapters = {
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
     'WSDCGQ01LM': TemperatureHumiditySensorAdapter, # Xiaomi MiJia temperature & humidity sensor
     'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor
+    'WXCJKG11LM': WXCJKG11LM,           # Xiaomi Aqara Opple 2-button switch
     'WXCJKG12LM': WXCJKG12LM,           # Xiaomi Aqara Opple 4-button switch
     'WXCJKG13LM': WXCJKG13LM,           # Xiaomi Aqara Opple 6-button switch
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
