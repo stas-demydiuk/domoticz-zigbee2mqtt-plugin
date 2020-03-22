@@ -3,8 +3,15 @@ from devices.device import Device
 
 
 class OnOffSwitch(Device):
+    def __init__(self, devices, alias, value_key, device_name_suffix=''):
+        super().__init__(devices, alias, value_key, device_name_suffix)
+        self.icon = 1
+
+    def set_icon(self, icon_number):
+        self.icon = icon_number
+
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=1).Create()
+        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon).Create()
 
     def get_numeric_value(self, value, device):
         if (value.lower() == 'on'):

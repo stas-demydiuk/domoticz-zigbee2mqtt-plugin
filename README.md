@@ -129,7 +129,9 @@ if no suffix will be found then On/Off switch will be created by default
 - HEIMAN Carbon monoxide sensor
 - HEIMAN Door sensor
 - HEIMAN Smart in wall plug
+- HEIMAN Smart metering plug
 - HEIMAN Smart motion sensor
+- HEIMAN Smart siren
 - HEIMAN Smart switch - 1 gang with neutral wire
 - HEIMAN Smart temperature & humidity Sensor
 - HEIMAN Smoke detector
