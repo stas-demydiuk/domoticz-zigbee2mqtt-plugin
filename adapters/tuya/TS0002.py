@@ -3,6 +3,7 @@ import json
 from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch
 
+
 class TS0002(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
