@@ -31,6 +31,8 @@ from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
 from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
+from adapters.tuya import tuya_adapters
+from adapters.tuya.TS0002 import TS0002
 from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
 from adapters.diy.zigup import ZigupAdapter
@@ -103,6 +105,8 @@ adapter_by_model = dict({
     'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
     # Livolo
     'TI0001': TI0001,                   # Livolo Switch TI0001
+    # Lonhonso
+    'X702': TS0002,                     # Lonhonso 2 gang switch
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
@@ -180,6 +184,7 @@ adapter_by_model = dict({
     **philips_adapters,
     **samsung_adapters,
     **trust_adapters,
+    **tuya_adapters,
     **tuyatec_adapters,
     **zemismart_adapters,
 )

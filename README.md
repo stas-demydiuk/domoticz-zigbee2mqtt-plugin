@@ -221,6 +221,9 @@ if no suffix will be found then On/Off switch will be created by default
 ### Livolo
 - Livolo Switch TI0001
 
+### Lonhonso
+- Lonhonso 2 gang switch
+
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
@@ -374,6 +377,10 @@ if no suffix will be found then On/Off switch will be created by default
 - Trust Motion Sensor
 - Trust Water leakage detector
 - Trust Wireless contact sensor
+
+### TuYa
+- TuYa Temperature & humidity sensor with display
+- TuYa 2 gang switch
 
 ### TUYATEC
 - TUYATEC PIR sensor
