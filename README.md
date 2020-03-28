@@ -127,6 +127,7 @@ if no suffix will be found then On/Off switch will be created by default
 
 ### HEIMAN
 - HEIMAN Carbon monoxide sensor
+- HEIMAN Combustible gas sensor
 - HEIMAN Door sensor
 - HEIMAN Smart in wall plug
 - HEIMAN Smart metering plug

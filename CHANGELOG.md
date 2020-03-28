@@ -26,6 +26,7 @@ New devices:
 - HEIMAN Smart motion sensor
 - HEIMAN Water leakage sensor
 - HEIMAN Smart siren
+- HEIMAN Combustible gas sensor
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

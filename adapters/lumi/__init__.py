@@ -1,6 +1,7 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.generic.blind_adapter import BlindAdapter
+from adapters.generic.gas_sensor import GasSensorAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
@@ -13,7 +14,6 @@ from adapters.lumi.plug import Plug
 from adapters.lumi.GZCGQ01LM import GZCGQ01LM
 from adapters.lumi.QBKG03LM import QBKG03LM
 from adapters.lumi.QBKG12LM import QBKG12LM
-from adapters.lumi.JTQJBF01LM import JTQJBF01LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
 from adapters.lumi.WXCJKG11LM import WXCJKG11LM
 from adapters.lumi.WXCJKG12LM import WXCJKG12LM
@@ -30,7 +30,7 @@ lumi_adapters = {
     'DJT11LM': SensorVibration,         # Xiaomi Aqara vibration sensor (drop, tilt and touch)
     'GZCGQ01LM': GZCGQ01LM,             # Xiaomi MiJia light intensity sensor
     'JTYJ-GD-01LM/BW': SmokeSensorAdapter,  # Xiaomi MiJia Honeywell smoke detector
-    'JTQJ-BF-01LM/BW': JTQJBF01LM,      # Xiaomi MiJia gas leak detector
+    'JTQJ-BF-01LM/BW': GasSensorAdapter,    # Xiaomi MiJia gas leak detector
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
