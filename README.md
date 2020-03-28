@@ -126,10 +126,14 @@ if no suffix will be found then On/Off switch will be created by default
 - Gledopto Zigbee USB mini LED controller RGB + CCT
 
 ### HEIMAN
+- HEIMAN Carbon monoxide sensor
 - HEIMAN Door sensor
+- HEIMAN Smart in wall plug
+- HEIMAN Smart motion sensor
+- HEIMAN Smart switch - 1 gang with neutral wire
+- HEIMAN Smart temperature & humidity Sensor
 - HEIMAN Smoke detector
 - HEIMAN Water leakage sensor
-- HEIMANN Carbon monoxide sensor
 
 ### Hive
 - Hive Active smart bulb white LED (E27)

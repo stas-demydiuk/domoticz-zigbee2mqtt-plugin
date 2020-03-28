@@ -19,6 +19,12 @@ New devices:
 - Lonhonso 2 gang switch
 - TuYa 2 gang switch
 - TuYa Temperature & humidity sensor with display
+- HEIMAN Smart switch - 1 gang with neutral wire
+- HEIMAN Water leakage sensor
+- HEIMAN Smart temperature & humidity Sensor
+- HEIMAN Smart in wall plug
+- HEIMAN Smart motion sensor
+- HEIMAN Water leakage sensor
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
