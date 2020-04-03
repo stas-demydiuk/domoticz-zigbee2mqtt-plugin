@@ -28,6 +28,9 @@ New devices:
 - HEIMAN Smart siren
 - HEIMAN Combustible gas sensor
 - Salus Smart plug
+- SmartThings Outlet with power meter
+- SmartThings Zigbee Outlet UK with power meter
+- SmartThings Zigbee smart plug with power meter
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

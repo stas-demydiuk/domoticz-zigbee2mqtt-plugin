@@ -359,7 +359,9 @@ if no suffix will be found then On/Off switch will be created by default
 - SmartThings Multi sensor (2015, 2016, 2018 models)
 - SmartThings Multipurpose sensor (2015, 2016, 2018 models)
 - SmartThings Outlet
-- SmartThings Outlet
+- SmartThings Outlet with power meter
+- SmartThings Zigbee Outlet UK with power meter
+- SmartThings Zigbee smart plug with power meter
 
 ### Stelpro
 - Stelpro Built-in electronic thermostat
