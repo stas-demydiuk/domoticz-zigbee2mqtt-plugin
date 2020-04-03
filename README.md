@@ -336,6 +336,9 @@ if no suffix will be found then On/Off switch will be created by default
 - ROBB ZigBee AC phase-cut dimmer
 - ROBB ZigBee AC phase-cut rotary dimmer
 
+### Salus
+- Salus Smart plug
+
 ### Sengled
 - Sengled Element Classic (A19)
 - Sengled Element Classic (A60)
