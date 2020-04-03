@@ -434,6 +434,7 @@ if no suffix will be found then On/Off switch will be created by default
 - Xiaomi MiJia human body movement sensor
 - Xiaomi MiJia temperature & humidity sensor
 - Xiaomi MiJia wireless switch
+- Xiaomi Vima Smart Lock
 
 ### Weiser
 - Weiser SmartCode 10

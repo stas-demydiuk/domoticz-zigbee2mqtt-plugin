@@ -33,6 +33,7 @@ New devices:
 - SmartThings Zigbee Outlet UK with power meter
 - SmartThings Zigbee smart plug with power meter
 - Bitron Compact magnetic contact sensor
+- Xiaomi Vima Smart Lock
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
