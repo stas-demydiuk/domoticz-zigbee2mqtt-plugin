@@ -5,6 +5,8 @@ from zigbee_message import ZigbeeMessage
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
+from adapters.rgb_adapter import RGBAdapter
+from adapters.rgbw_adapter import RGBWAdapter
 
 class GroupsManager:
     def __init__(self):
@@ -39,6 +41,10 @@ class GroupsManager:
             adapter = DimmableBulbAdapter(domoticz_devices)
         elif (group_name.endswith('_ct')):
             adapter = DimmableCtBulbAdapter(domoticz_devices)
+        elif (group_name.endswith('_rgb')):
+            adapter = RGBAdapter(domoticz_devices)
+        elif (group_name.endswith('_rgbw')):
+            adapter = RGBWAdapter(domoticz_devices)
         else:
             adapter = OnOffSwitchAdapter(domoticz_devices)
 

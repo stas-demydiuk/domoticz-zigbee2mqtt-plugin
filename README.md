@@ -38,6 +38,8 @@ Plugin supports [zigbee groups](https://www.zigbee2mqtt.io/information/groups.ht
 |---------|---------------------------------------|----------------|
 | _dimmer | Dimmer Switch                         | mygroup_dimmer |
 | _ct     | Dimmer Switch with Color Temperature  | mygroup_ct     |
+| _rgb    | RGB Switch                            | mygroup_rgb    |
+| _rgbw   | RGBW Switch                           | mygroup_rgbw   |
 
 if no suffix will be found then On/Off switch will be created by default
 

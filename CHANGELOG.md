@@ -3,6 +3,7 @@
 ## master
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk
+- Support for `rgb` and `rgbw` zigbee groups
 
 New devices:
 - Xiaomi MiJia light intensity sensor
