@@ -56,6 +56,7 @@ if no suffix will be found then On/Off switch will be created by default
 - Belkin WeMo smart LED bulb
 
 ### Bitron
+- Bitron Compact magnetic contact sensor
 - Bitron Wireless motion detector
 - Bitron Wireless smart plug
 - Bitron Wireless wall thermostat with relay
