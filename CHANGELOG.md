@@ -34,6 +34,16 @@ New devices:
 - SmartThings Zigbee smart plug with power meter
 - Bitron Compact magnetic contact sensor
 - Xiaomi Vima Smart Lock
+- OSRAM SMART+ classic E27 dimmable
+- OSRAM SMART+ outdoor lantern RGBW
+- OSRAM SMART+ classic E27 TW
+- OSRAM SMART+ LED PAR16 GU10
+- OSRAM SMART+ LED CLASSIC E27 RGBW
+- OSRAM Smart+ gardenpole 4W RGBW
+- OSRAM Smart+ mini gardenpole RGBW
+- OSRAM SMART+ Spot GU10 Multicolor
+- OSRAM OSRAM SubstiTUBE T8 Advanced UO Connected
+- OSRAM OSRAM LED panel TW 595 UGR22
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
