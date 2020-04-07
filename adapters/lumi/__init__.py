@@ -14,6 +14,8 @@ from adapters.lumi.smart_lock import SmartLock
 from adapters.lumi.plug import Plug
 from adapters.lumi.GZCGQ01LM import GZCGQ01LM
 from adapters.lumi.QBKG03LM import QBKG03LM
+from adapters.lumi.QBKG04LM import QBKG04LM
+from adapters.lumi.QBKG11LM import QBKG11LM
 from adapters.lumi.QBKG12LM import QBKG12LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
 from adapters.lumi.WXCJKG11LM import WXCJKG11LM
@@ -38,8 +40,8 @@ lumi_adapters = {
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
     'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)
     'QBKG03LM': QBKG03LM,               # Xiaomi Aqara double key wired wall switch
-    'QBKG04LM': OnOffSwitchAdapter,     # Xiaomi Aqara single key wired wall switch
-    'QBKG11LM': Plug,                   # Xiaomi Aqara single key wired wall switch
+    'QBKG04LM': QBKG04LM,               # Xiaomi Aqara single key wired wall switch
+    'QBKG11LM': QBKG11LM,               # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': QBKG12LM,               # Xiaomi Aqara double key wired wall switch
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor

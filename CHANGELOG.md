@@ -4,6 +4,7 @@
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk
 - Support for `rgb` and `rgbw` zigbee groups
+- Decoupled mode support for Xiaomi single key wired switches (QBKG04LM, QBKG11LM)
 
 New devices:
 - Xiaomi MiJia light intensity sensor
