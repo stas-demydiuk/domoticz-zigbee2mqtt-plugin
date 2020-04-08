@@ -3,7 +3,7 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class WXKG03LM(AdapterWithBattery):
-    def init(self, devices):
+    def __init__(self, devices):
         super().__init__(devices)
 
         self.switch = SelectorSwitch(devices, 'switch', 'state')

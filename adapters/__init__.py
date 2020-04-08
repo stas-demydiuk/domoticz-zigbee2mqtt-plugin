@@ -5,29 +5,43 @@ from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
+from adapters.weiser_lock import WeiserLock
+from adapters.bitron import bitron_adapters
+from adapters.cr import cr_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
+from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
+from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.ikea import ikea_adapters
 from adapters.innr import innr_adapters
-from adapters.konke.button import KonkeButton
-from adapters.konke.sensor_temp_hum import KonkeTemperatureHumiditySensor
+from adapters.konke import konke_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
+from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.samsung import samsung_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
-from adapters.thermostat import ThermostatAdapter
+from adapters.trust import trust_adapters
+from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
+from adapters.tuya import tuya_adapters
+from adapters.tuya.TS0002 import TS0002
+from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
+from adapters.diy.zigup import ZigupAdapter
+from adapters.zemismart import zemismart_adapters
 
 adapter_by_model = dict({
+    # Alecto Smart Home
+    'RH3001': ContactAdapter,                   # Alecto Smart Home - Smart sensor door / window
+    'RH3052': TemperatureHumiditySensorAdapter,   # Alecto Smart Home branded Smart sensor temp and humidity / TUYATEC - TT001ZAV20 temp and humidity sensor
     # AduroSmart
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Airam
@@ -36,9 +50,6 @@ adapter_by_model = dict({
     '67200BL': OnOffSwitchAdapter,      # Anchor Vetaar smart plug
     # Belkin
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
-    # Bitron
-    'AV2010/22': MotionSensorAdapter,   # Bitron Wireless motion detector
-    'AV2010/25': OnOffKwhAdapter,       # Bitron Wireless smart plug
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
@@ -53,6 +64,8 @@ adapter_by_model = dict({
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
+    'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
+    'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
@@ -60,6 +73,10 @@ adapter_by_model = dict({
     'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
     'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
+    # Eurotronic
+    'SPZB0001': EurotronicThermostatAdapter,      # SPZB0001 thermostat
+    # ELKO
+    '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
@@ -68,18 +85,6 @@ adapter_by_model = dict({
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Gira
     '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
-    # Gledopto
-    'GD-CZ-006': DimmableBulbAdapter,   # Gledopto Zigbee LED Driver
-    'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
-    'GL-B-008Z': RGBWAdapter,           # Gledopto Smart 12W E27 RGB / CW LED bulb
-    'GL-C-006': DimmableCtBulbAdapter,  # Gledopto Zigbee LED controller WW/CW Dimmer
-    'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
-    'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
-    'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
-    'GL-MC-001': RGBWAdapter,           # Gledopto Zigbee USB mini LED controller RGB + CCT
-    'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
-    'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
-    'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     # Hive
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
@@ -94,18 +99,18 @@ adapter_by_model = dict({
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # JIAWEN
     'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
-    # Konke
-    '2AJZ4KPKEY': KonkeButton,                      # Konke Multi-function button
-    '2AJZ4KPFT': KonkeTemperatureHumiditySensor,    # Konke Temperature and humidity sensor
     # Ksentry
     'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
     # Lingan
     'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
     # Livolo
     'TI0001': TI0001,                   # Livolo Switch TI0001
+    # Lonhonso
+    'X702': TS0002,                     # Lonhonso 2 gang switch
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
+    '404021': OnOffSwitchAdapter,                   # Müller Licht Tint smart switch
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
@@ -116,6 +121,8 @@ adapter_by_model = dict({
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     'HGZB-01A': OnOffSwitchAdapter,     # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
+    # Oujiabao
+    'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
@@ -124,6 +131,9 @@ adapter_by_model = dict({
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # ROBB
     'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
+    'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
+    # Salus
+    'SP600': OnOffKwhAdapter,               # Salus Smart plug
     # Sengled
     'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
     'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
@@ -151,24 +161,32 @@ adapter_by_model = dict({
     # Swann One
     'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
-    # Trust
-    'ZLED-2709': DimmableBulbAdapter,   # Trust Smart Dimmable LED Bulb
-    'ZPIR-8000': MotionSensorAdapter,   # Trust Motion Sensor
-    'ZCTS-808': ContactAdapter,         # Trust Wireless contact sensor
+    # Weiser
+    '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
+    '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
+    # eWeLink
+    'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # iCasa
     'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
+    'ICZB-IW11SW': OnOffSwitchAdapter,  # iCasa Zigbee 3.0 Switch
     # ilux
-    '900008-WW': DimmableBulbAdapter,    # ilux Dimmable A60 E27 LED Bulb
-    # Eurotronic
-    'SPZB0001': ThermostatAdapter,       # SPZB0001 thermostat
+    '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
-    'ptvo.switch': PtvoSwitch            # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
-}, 
+    'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
+},
+    **bitron_adapters,
+    **cr_adapters,
+    **gledopto_adapters,
     **heiman_adapters,
     **ikea_adapters,
     **innr_adapters,
+    **konke_adapters,
     **lumi_adapters,
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
+    **trust_adapters,
+    **tuya_adapters,
+    **tuyatec_adapters,
+    **zemismart_adapters,
 )

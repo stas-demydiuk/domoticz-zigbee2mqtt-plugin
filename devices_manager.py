@@ -1,23 +1,10 @@
 import Domoticz
 from adapters import adapter_by_model
+from zigbee_message import ZigbeeMessage
 
-class DeviceStorage:
-    # Here will be the instance stored.
-    __instance = None
-
-    @staticmethod
-    def getInstance():
-        if DeviceStorage.__instance == None:
-            DeviceStorage()
-
-        return DeviceStorage.__instance 
-
+class DevicesManager:
     def __init__(self):
-        if DeviceStorage.__instance != None:
-            raise Exception("This class is a singleton!")
-        else:
-            DeviceStorage.__instance = self
-            self.devices = {}
+        self.devices = {}
 
     def _register_device(self, domoticz_devices, device_data):
         model = device_data['model']
@@ -59,3 +46,35 @@ class DeviceStorage:
         for key, device in self.devices.items():
             if (device['friendly_name'] == friendly_name):
                 return device
+
+    def handle_mqtt_message(self, domoticz_devices, device_name, message):
+        device_data = self.get_device_by_name(device_name)
+
+        if (device_data == None):
+            return
+
+        model = device_data['model']
+
+        if (model in adapter_by_model):
+            zigbee_message = ZigbeeMessage(message)
+            adapter = adapter_by_model[model](domoticz_devices)
+            adapter.handleMqttMessage(device_data, zigbee_message)
+        else:
+            Domoticz.Log('This plugin does not support zigbee device with model "' + model + '" yet')
+            Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
+
+    def handle_command(self, domoticz_devices, device, command, level, color):
+        device_params = device.DeviceID.split('_')
+        device_id = device_params[0]
+        alias = device_params[1]
+
+        device_data = self.get_device_by_id(device_id)
+
+        if (device_data == None):
+            return
+
+        model = device_data['model']
+
+        if (model in adapter_by_model):
+            adapter = adapter_by_model[model](domoticz_devices)
+            return adapter.handleCommand(alias, device, device_data, command, level, color)

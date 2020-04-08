@@ -1,10 +1,10 @@
 import Domoticz
 import json
-from adapters.lumi.QBKG03LM import QBKG03LM
+from adapters.lumi.QBKG04LM import QBKG04LM
 from devices.sensor.kwh import KwhSensor
 
 
-class QBKG12LM(QBKG03LM):
+class QBKG11LM(QBKG04LM):
     def __init__(self, devices):
         super().__init__(devices)
 

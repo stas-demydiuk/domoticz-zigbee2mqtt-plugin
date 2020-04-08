@@ -1,5 +1,6 @@
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
+from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.innr.SP120 import InnrSP120Plug
 
@@ -10,6 +11,7 @@ innr_adapters = {
     'BY 285 C': RGBWAdapter,            # Innr B22 Bulb RGBW
     'DL 110 N': DimmableBulbAdapter,    # Innr Spot narrow
     'DL 110 W': DimmableBulbAdapter,    # Innr Spot wide
+    'FL 130 C': RGBWAdapter,            # Innr Color Flex LED strip
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
     'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
     'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
@@ -33,6 +35,7 @@ innr_adapters = {
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
     'SP 120': InnrSP120Plug,            # Innr Smart plug
+    'SP 222': OnOffSwitchAdapter,       # Innr Smart plug
     'ST 110': DimmableBulbAdapter,      # Innr Strip Light
     'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
 }

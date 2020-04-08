@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.0.20">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.1.0">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -34,9 +34,8 @@ import json
 import time
 import re
 from mqtt import MqttClient
-from zigbee_message import ZigbeeMessage
-from device_storage import DeviceStorage
-from adapters import adapter_by_model
+from devices_manager import DevicesManager
+from groups_manager import GroupsManager
 
 class BasePlugin:
     mqttClient = None
@@ -59,7 +58,8 @@ class BasePlugin:
         mqtt_client_id = Parameters["Mode3"].strip()
         self.mqttClient = MqttClient(mqtt_server_address, mqtt_server_port, mqtt_client_id, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
-        self.available_devices = DeviceStorage.getInstance()
+        self.devices_manager = DevicesManager()
+        self.groups_manager = GroupsManager()
 
     def checkDevices(self):
         Domoticz.Debug("checkDevices called")
@@ -74,27 +74,20 @@ class BasePlugin:
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
 
+        message = None
         device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
         device_params = device.DeviceID.split('_')
-        device_id = device_params[0]
-        alias = device_params[1]
-        device_data = self.available_devices.get_device_by_id(device_id)
+        entity_id = device_params[0]
 
-        if (device_data == None):
-            Domoticz.Log('Device ' + device.Name + ' does not have registered zigbee2mqtt device')
-            return
-
-        model = device_data['model']
-
-        if (model in adapter_by_model):
-            adapter = adapter_by_model[model](Devices)
-            message = adapter.handleCommand(alias, device, device_data, Command, Level, Color)
-
-            if (message != None):
-                self.mqttClient.publish(self.base_topic + '/' + message['topic'], message['payload'])
+        if (self.devices_manager.get_device_by_id(entity_id) != None):
+            message = self.devices_manager.handle_command(Devices, device, Command, Level, Color)
+        elif(self.groups_manager.get_group_by_deviceid(device.DeviceID) != None):
+            message = self.groups_manager.handle_command(device, Command, Level, Color)
         else:
-            Domoticz.Log('Device ' + device.Name + ' does not have adapter (model: "' + model + '"')
-            Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
+            Domoticz.Log('Can\'t process command from device "' + device.Name + '"')
+
+        if (message != None):
+            self.mqttClient.publish(self.base_topic + '/' + message['topic'], message['payload'])
 
     def onConnect(self, Connection, Status, Description):
         Domoticz.Debug("onConnect called")
@@ -135,6 +128,7 @@ class BasePlugin:
 
             if message == 'online':
                 self.mqttClient.publish(self.base_topic + '/bridge/config/devices', '')
+                self.mqttClient.publish(self.base_topic + '/bridge/config/groups', '')
                 self.handlePairingMode()
 
             return
@@ -143,30 +137,28 @@ class BasePlugin:
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 
-                self.available_devices.clear()
-                self.available_devices.update(Devices, message['message'])
+                self.devices_manager.clear()
+                self.devices_manager.update(Devices, message['message'])
                 
                 if self.subscribed_for_devices == False:
                     self.mqttClient.subscribe([self.base_topic + '/+'])
                     self.subscribed_for_devices = True
+
+            if message['type'] == 'groups':
+                Domoticz.Log('Received groups list from bridge')
+                self.groups_manager.register_groups(Devices, message['message'])
 
             if message['type'] == 'device_connected' or message['type'] == 'device_removed':
                 self.mqttClient.publish(self.base_topic + '/bridge/config/devices', '')
 
             return
 
-        device_name = topic.replace(self.base_topic + "/", "")
-        device_data = self.available_devices.get_device_by_name(device_name)
+        entity_name = topic.replace(self.base_topic + "/", "")
         
-        if (device_data != None):
-            model = device_data['model']
-
-            if (model in adapter_by_model):
-                zigbee_message = ZigbeeMessage(message)
-                adapter = adapter_by_model[model](Devices)
-                adapter.handleMqttMessage(device_data, zigbee_message)
-            else:
-                Domoticz.Debug('Unsupported zigbee device type with model "' + model + '"')
+        if (self.devices_manager.get_device_by_name(entity_name) != None):
+            self.devices_manager.handle_mqtt_message(Devices, entity_name, message)
+        elif (self.groups_manager.get_group_by_name(entity_name) != None):
+            self.groups_manager.handle_mqtt_message(entity_name, message)
         else:
             Domoticz.Debug('Unhandled message from zigbee2mqtt: ' + topic + ' ' + str(message))
 

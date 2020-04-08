@@ -12,6 +12,7 @@ class SelectorSwitch(Device):
         self.level_names = []
         self.level_values = []
         self.selector_style = SelectorSwitch.SELECTOR_TYPE_MENU
+        self.icon = 9
 
     def add_level(self, name, value):
         self.level_names.append(name)
@@ -20,6 +21,9 @@ class SelectorSwitch(Device):
     def set_selector_style(self, selector_style):
         self.selector_style = selector_style
 
+    def set_icon(self, icon_number):
+        self.icon = icon_number
+
     def create_device(self, unit, device_id, device_name):
         options = {}
         options['LevelActions'] = ''
@@ -27,7 +31,7 @@ class SelectorSwitch(Device):
         options['LevelOffHiddden'] = 'false'
         options['SelectorStyle'] = self.selector_style
 
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=9).Create()
+        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=self.icon).Create()
 
     def get_numeric_value(self, value, device):
         return 1 if self.get_string_value(value, device) != '0' else 0
