@@ -360,6 +360,11 @@ if no suffix will be found then On/Off switch will be created by default
 - Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
 
+# Shenzhen Homa
+- Shenzhen Homa Smart LED driver
+- Shenzhen Homa Wireless dimmable controller
+- Shenzhen Homa ZigBee AC phase-cut dimmer
+
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight
 - Smart Home Pty Power plug
