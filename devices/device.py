@@ -55,9 +55,13 @@ class Device():
         colorChanged = 'Color' in values and values['Color'] != device.Color
 
         if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
+            Domoticz.Log( self.alias + " / " + device.Name);
             device.Update(**values)
         else:
-            self.touch_device(device)
+            if self.alias != "motion" and self.alias != "sensor":
+                self.touch_device(device)
+            else:
+                Domoticz.Debug("Skip touch for security sensors")
 
     def touch_device(self, device):
         # Touch has been added in recent Domoticz beta, so check if it exists for backward compatibility
