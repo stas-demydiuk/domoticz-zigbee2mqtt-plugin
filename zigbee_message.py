@@ -13,3 +13,9 @@ class ZigbeeMessage:
             return int(float(self.raw['battery']))
         else:
             return None
+
+    def get_update_available(self):
+        if ('update_available' in self.raw):
+            return bool(self.raw['update_available'])
+        else:
+            return None

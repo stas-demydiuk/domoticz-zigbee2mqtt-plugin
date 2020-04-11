@@ -80,6 +80,12 @@ class Device():
         else:
             return None
 
+    def get_update_available(self, message):
+        if ('update_available' in message.raw):
+            return bool(message.raw['update_available'])
+        else:
+            return None
+            
     def get_numeric_value(self, value, device):
         Domoticz.Error(
             'Device with alias "' + self.alias + '" for key ' +
@@ -112,6 +118,9 @@ class Device():
         if (value == None):
             self.touch_device(device)
             return None
+
+        if self.get_update_available(message):
+            Domoticz.Log("There is a firmware update available for device '" + device_data['friendly_name'] + "'")
 
         device_values = dict({
             'BatteryLevel': message.get_battery_level() or device.BatteryLevel,

@@ -19,6 +19,12 @@
                 <option label="Disabled" value="false" default="true" />
             </options>
         </param>
+        <param field="Mode4" label="Over The Air (OTA) updates" width="75px" required="true">
+            <options>
+                <option label="Enabled" value="true"/>
+                <option label="Disabled" value="false" default="true" />
+            </options>
+        </param>
         <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="Verbose" value="Verbose"/>
@@ -51,6 +57,7 @@ class BasePlugin:
         Domoticz.Debug("onStart called")
         self.base_topic = Parameters["Mode1"].strip()
         self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
+        self.OTA_enabled = True if Parameters["Mode4"] == 'true' else False
         self.subscribed_for_devices = False
 
         mqtt_server_address = Parameters["Address"].strip()
@@ -150,6 +157,9 @@ class BasePlugin:
 
             if message['type'] == 'device_connected' or message['type'] == 'device_removed':
                 self.mqttClient.publish(self.base_topic + '/bridge/config/devices', '')
+                
+            if message['type'] == 'ota_update': 
+                Domoticz.Log('OverTheAir update status: "' + message['message'] + '"')
 
             return
 
