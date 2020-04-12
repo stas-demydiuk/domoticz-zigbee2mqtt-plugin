@@ -1,0 +1,31 @@
+<div id="plugin-view"></div>
+
+<link rel="stylesheet" href="/templates/zigbee2mqtt/leaflet.css"/>
+
+<style>
+    .leaflet-container {
+        background-color: white;
+    }
+</style>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/index.html">
+    <div class="container">
+        <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
+        <h2 class="page-header">Zigbee2Mqtt Map</h2>
+        <page-loading-indicator ng-hide="::$ctrl.isMapLoaded"/>
+
+        <div id="image-map" style="height: calc(100vh - 215px);" ng-show="::$ctrl.isMapLoaded"></div>
+    </div>
+</script>
+
+<script>
+    require(['../templates/zigbee2mqtt'], function(data) {
+        angular.element(document).injector().invoke(function($compile) {
+            var $div = angular.element('<zigbee2mqtt-plugin />');
+            angular.element('#plugin-view').append($div);
+
+            var scope = angular.element($div).scope();
+            $compile($div)(scope);
+        });
+    });
+</script>
