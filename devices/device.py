@@ -10,6 +10,7 @@ class Device():
         self.value_key = value_key
         self.device_name_suffix = device_name_suffix
         self.check_values_on_update = True
+        self._update_available = False
 
         if len(self.alias) > self.MAX_ALIAS_LENGTH:
             raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
@@ -80,6 +81,10 @@ class Device():
         else:
             return None
 
+    @property
+    def update_available(self):
+        return self._update_available
+        
     def get_update_available(self, message):
         if ('update_available' in message.raw):
             return bool(message.raw['update_available'])
@@ -121,6 +126,7 @@ class Device():
 
         if self.get_update_available(message):
             Domoticz.Log("There is a firmware update available for device '" + device_data['friendly_name'] + "'")
+            self._update_available = True
 
         device_values = dict({
             'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
