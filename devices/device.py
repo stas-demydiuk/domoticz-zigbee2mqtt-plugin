@@ -15,7 +15,7 @@ class Device():
             raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
 
     def get_first_available_unit(self):
-        for i in range(1, 255):
+        for i in range(1, 254):
             if i not in self.devices:
                 return i
 
