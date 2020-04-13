@@ -25,8 +25,8 @@ class API:
                     self._send_response
                 )
 
-                command.execute(data['params'])
                 self.requests.update({request_id: command})
+                command.execute(data['params'])
             else:
                 self._send_response(data['requestId'], 'unknown command')
 
