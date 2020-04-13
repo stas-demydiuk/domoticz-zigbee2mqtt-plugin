@@ -26,7 +26,11 @@
         <div class="tab-content">
             <div class="tab-pane active" id="zigbee-devices">
                 <page-loading-indicator ng-hide="::$ctrl.zigbeeDevices"/>
-                <zigbee2mqtt-devices-table ng-if="::$ctrl.zigbeeDevices" devices="$ctrl.zigbeeDevices"/>
+                <zigbee2mqtt-devices-table
+                        ng-if="::$ctrl.zigbeeDevices"
+                        devices="$ctrl.zigbeeDevices"
+                        on-update="$ctrl.fetchZigbeeDevices()"
+                />
             </div>
 
             <div class="tab-pane" id="zigbee-map">
@@ -34,6 +38,98 @@
                 <div id="image-map" style="height: calc(100vh - 235px);" ng-show="::$ctrl.isMapLoaded"></div>
             </div>
         </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/deviceRenameModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Rename Device' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="modalForm">
+            <div class="control-group">
+                <label class="control-label" for="device-name">{{:: 'Name' | translate }}:</label>
+                <div class="controls">
+                    <input type="text"
+                           id="device-name"
+                           class="form-control"
+                           required
+                           minlength="1"
+                           maxlength="100"
+                           ng-model="$ctrl.newName"
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                ng-disabled="modalForm.$invalid || $ctrl.isSaving || $ctrl.newName == $ctrl.oldName"
+                ng-click="$ctrl.renameDevice()">
+            {{:: 'Rename' | translate }}
+        </button>
+
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$dismiss()">
+            {{:: 'Cancel' | translate }}
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/setDeviceStateModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Set Device State' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form" name="modalForm">
+            <div class="control-group">
+                <label class="control-label" for="topic">{{:: 'Topic' | translate }}:</label>
+                <div class="controls">
+                    <input type="text"
+                           id="topic"
+                           class="form-control"
+                           required
+                           minlength="1"
+                           maxlength="100"
+                           style="width: 100%; box-sizing: border-box;"
+                           ng-model="$ctrl.topic"
+                    />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="device-state">{{:: 'JSON Message' | translate }} (see zigbee2mqtt <a
+                        href="https://www.zigbee2mqtt.io/information/mqtt_topics_and_message_structure.html#zigbee2mqttfriendly_nameset"
+                        target="_blank">documentation</a>):
+                </label>
+                <div class="controls">
+                    <textarea
+                            autofocus
+                            id="device-state"
+                            class="form-control"
+                            required
+                            rows="6"
+                            style="width: 100%; box-sizing: border-box;"
+                            ng-model="$ctrl.state"
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                ng-disabled="modalForm.$invalid || $ctrl.isSaving"
+                ng-click="$ctrl.setState()">
+            {{:: 'Set' | translate }}
+        </button>
+
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$dismiss()">
+            {{:: 'Cancel' | translate }}
+        </button>
     </div>
 </script>
 

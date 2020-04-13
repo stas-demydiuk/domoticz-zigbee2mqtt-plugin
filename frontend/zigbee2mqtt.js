@@ -9,6 +9,48 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
     var viz = new Viz(vizRenderer);
     var DateTime = luxon.DateTime;
 
+    var renameDeviceModal = {
+        templateUrl: 'app/zigbee2mqtt/deviceRenameModal.html',
+        controllerAs: '$ctrl',
+        controller: function($scope, zigbee2mqtt) {
+            var $ctrl = this;
+            $ctrl.oldName = $scope.device;
+            $ctrl.newName = $scope.device;
+
+            $ctrl.renameDevice = function() {
+                $ctrl.isSaving = true;
+
+                zigbee2mqtt.sendRequest('device_rename', {
+                    old: $ctrl.oldName,
+                    new: $ctrl.newName
+                }).then(function() {
+                    $scope.$close();
+                });
+            }
+        }
+    };
+
+    var setDeviceStateModal = {
+        templateUrl: 'app/zigbee2mqtt/setDeviceStateModal.html',
+        controllerAs: '$ctrl',
+        controller: function($scope, zigbee2mqtt) {
+            var $ctrl = this;
+            $ctrl.state = '{}';
+            $ctrl.topic = $scope.device + '/set';
+
+            $ctrl.setState = function() {
+                $ctrl.isSaving = true;
+
+                zigbee2mqtt.sendRequest('device_set', {
+                    topic: $ctrl.topic,
+                    state: JSON.parse($ctrl.state)
+                }).then(function() {
+                    $scope.$close();
+                });
+            }
+        }
+    };
+
     app.component('zigbee2mqttPlugin', {
         templateUrl: 'app/zigbee2mqtt/index.html',
         controller: Zigbee2MqttPluginController
@@ -165,7 +207,7 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
         }
     }
 
-    function Zigbee2MqttDevicesTableController($element, dzSettings, dataTableDefaultSettings) {
+    function Zigbee2MqttDevicesTableController($element, $scope, $uibModal, dzSettings, dataTableDefaultSettings) {
         var $ctrl = this;
         var table;
 
@@ -178,8 +220,38 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
                     { title: 'Type', width: '150px', data: 'type' },
                     { title: 'IEEE Address', width: '170px', data: 'ieeeAddr' },
                     { title: 'Last Seen', data: 'lastSeen', width: '150px', render: dateRenderer },
+                    {
+                        title: '',
+                        className: 'actions-column',
+                        width: '80px',
+                        data: 'ieeeAddr',
+                        orderable: false,
+                        render: actionsRenderer
+                    },
                 ],
             }));
+
+            table.on('click', '.js-rename-device', function() {
+                var row = table.api().row($(this).closest('tr')).data();
+                var scope = $scope.$new(true);
+                scope.device = row.friendly_name;
+
+                $uibModal
+                    .open(Object.assign({ scope: scope }, renameDeviceModal)).result
+                    .then($ctrl.onUpdate);
+
+                $scope.$apply();
+            });
+
+            table.on('click', '.js-set-state', function() {
+                var row = table.api().row($(this).closest('tr')).data();
+                var scope = $scope.$new(true);
+                scope.device = row.friendly_name;
+
+                $uibModal.open(Object.assign({ scope: scope }, setDeviceStateModal));
+                $scope.$apply();
+            });
+
 
             table.api().rows
                 .add($ctrl.devices)
@@ -205,6 +277,13 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             }
 
             return DateTime.fromMillis(data).toFormat(dzSettings.serverDateFormat);
+        }
+
+        function actionsRenderer(data, type, row) {
+            var actions = [];
+            actions.push('<button class="btn btn-icon js-set-state" title="' + $.t('Set State') + '"><img src="images/events.png" /></button>');
+            actions.push('<button class="btn btn-icon js-rename-device" title="' + $.t('Rename Device') + '"><img src="images/rename.png" /></button>');
+            return actions.join('&nbsp;');
         }
     }
 });
