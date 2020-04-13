@@ -1,9 +1,26 @@
-define(['app', '../templates/zigbee2mqtt/viz', '../templates/zigbee2mqtt/viz.full.render', '../templates/zigbee2mqtt/leaflet'], function(app, Viz, vizRenderer, leaflet) {
+define([
+    'app',
+    'luxon',
+    '../templates/zigbee2mqtt/viz',
+    '../templates/zigbee2mqtt/viz.full.render',
+    '../templates/zigbee2mqtt/leaflet'
+],
+function(app, luxon, Viz, vizRenderer, leaflet) {
     var viz = new Viz(vizRenderer);
+    var DateTime = luxon.DateTime;
 
     app.component('zigbee2mqttPlugin', {
         templateUrl: 'app/zigbee2mqtt/index.html',
         controller: Zigbee2MqttPluginController
+    });
+
+    app.component('zigbee2mqttDevicesTable', {
+        bindings: {
+            devices: '<',
+            onUpdate: '&'
+        },
+        template: '<table id="zigbee2mqtt-devices" class="display" width="100%"></table>',
+        controller: Zigbee2MqttDevicesTableController,
     });
 
     app.factory('zigbee2mqtt', function($q, $rootScope, domoticzApi) {
@@ -68,17 +85,38 @@ define(['app', '../templates/zigbee2mqtt/viz', '../templates/zigbee2mqtt/viz.ful
         }
     });
 
-    function Zigbee2MqttPluginController($element, domoticzApi, zigbee2mqtt) {
+    function Zigbee2MqttPluginController($scope, $element, domoticzApi, zigbee2mqtt) {
         var $ctrl = this;
+
+        $ctrl.renderNetworkMap = renderNetworkMap;
+        $ctrl.fetchZigbeeDevices = fetchZigbeeDevices;
 
         $ctrl.$onInit = function() {
             $ctrl.devices = [];
             refreshDevices();
         };
 
-        $ctrl.renderNetworkMap = function() {
-            return zigbee2mqtt.sendRequest('network_map').then(renderSvg);
-        };
+        function fetchZigbeeDevices() {
+            zigbee2mqtt.sendRequest('devices_get').then(function(devices) {
+                $ctrl.zigbeeDevices = devices.map(function(device) {
+                    return Object.assign({
+                        model: null,
+                    }, device, {
+                        lastSeen: device.lastSeen || 'N/A'
+                    });
+                });
+            });
+        }
+
+        function renderNetworkMap() {
+            if ($ctrl.isMapLoaded) {
+                return;
+            }
+
+            zigbee2mqtt.sendRequest('network_map').then(renderSvg).then(function() {
+                $ctrl.isMapLoaded = true;
+            });
+        }
 
         function renderSvg(svgData) {
             var vizOptions = {
@@ -93,7 +131,8 @@ define(['app', '../templates/zigbee2mqtt/viz', '../templates/zigbee2mqtt/viz.ful
                         crs: L.CRS.Simple
                     });
 
-                    var bounds = [[ 0, 0 ], [ -500, 500 ]];
+                    var bounds = [[0, 0], [-500, 500]];
+
                     leaflet.svgOverlay(element, bounds).addTo(map)
                 })
         }
@@ -118,14 +157,54 @@ define(['app', '../templates/zigbee2mqtt/viz', '../templates/zigbee2mqtt/viz.ful
                         });
 
                         zigbee2mqtt.setControlDeviceIdx($ctrl.apiDevice.idx);
-
-                        $ctrl.renderNetworkMap().then(function() {
-                            $ctrl.isMapLoaded = true;
-                        })
+                        fetchZigbeeDevices()
                     } else {
                         $ctrl.devices = [];
                     }
                 });
         }
     }
-})
+
+    function Zigbee2MqttDevicesTableController($element, dzSettings, dataTableDefaultSettings) {
+        var $ctrl = this;
+        var table;
+
+        $ctrl.$onInit = function() {
+            table = $element.find('table').dataTable(Object.assign({}, dataTableDefaultSettings, {
+                order: [[0, 'asc']],
+                columns: [
+                    { title: 'Friendly Name', data: 'friendly_name' },
+                    { title: 'Model', data: 'model' },
+                    { title: 'Type', width: '150px', data: 'type' },
+                    { title: 'IEEE Address', width: '170px', data: 'ieeeAddr' },
+                    { title: 'Last Seen', data: 'lastSeen', width: '150px', render: dateRenderer },
+                ],
+            }));
+
+            table.api().rows
+                .add($ctrl.devices)
+                .draw();
+        };
+
+        $ctrl.$onChanges = function(changes) {
+            if (!table) {
+                return;
+            }
+
+            if (changes.devices) {
+                table.api().clear();
+                table.api().rows
+                    .add($ctrl.devices)
+                    .draw();
+            }
+        };
+
+        function dateRenderer(data, type, row) {
+            if (type === 'sort' || type === 'type' || !Number.isInteger(data)) {
+                return data;
+            }
+
+            return DateTime.fromMillis(data).toFormat(dzSettings.serverDateFormat);
+        }
+    }
+});

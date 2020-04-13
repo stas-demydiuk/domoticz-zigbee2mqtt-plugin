@@ -11,10 +11,29 @@
 <script type="text/ng-template" id="app/zigbee2mqtt/index.html">
     <div class="container">
         <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
-        <h2 class="page-header">Zigbee2Mqtt Map</h2>
-        <page-loading-indicator ng-hide="::$ctrl.isMapLoaded"/>
+        <h2 class="page-header">Zigbee2Mqtt</h2>
 
-        <div id="image-map" style="height: calc(100vh - 215px);" ng-show="::$ctrl.isMapLoaded"></div>
+        <ul id="tabs" class="nav nav-tabs sub-tabs" data-tabs="tabs">
+            <li class="active"><a data-target="#zigbee-devices" data-toggle="tab">Devices</a></li>
+            <li class="">
+                <a data-target="#zigbee-map"
+                   data-toggle="tab"
+                   ng-click="$ctrl.renderNetworkMap()"
+                >Network Map</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="zigbee-devices">
+                <page-loading-indicator ng-hide="::$ctrl.zigbeeDevices"/>
+                <zigbee2mqtt-devices-table ng-if="::$ctrl.zigbeeDevices" devices="$ctrl.zigbeeDevices"/>
+            </div>
+
+            <div class="tab-pane" id="zigbee-map">
+                <page-loading-indicator ng-hide="::$ctrl.isMapLoaded"/>
+                <div id="image-map" style="height: calc(100vh - 235px);" ng-show="::$ctrl.isMapLoaded"></div>
+            </div>
+        </div>
     </div>
 </script>
 
