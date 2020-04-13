@@ -5,6 +5,8 @@ from zigbee_message import ZigbeeMessage
 class DevicesManager:
     def __init__(self):
         self.devices = {}
+        self._update_available = False
+
 
     def _register_device(self, domoticz_devices, device_data):
         model = device_data['model']
@@ -47,6 +49,10 @@ class DevicesManager:
             if (device['friendly_name'] == friendly_name):
                 return device
 
+    @property
+    def update_available(self):
+        return self._update_available
+
     def handle_mqtt_message(self, domoticz_devices, device_name, message):
         device_data = self.get_device_by_name(device_name)
 
@@ -59,6 +65,7 @@ class DevicesManager:
             zigbee_message = ZigbeeMessage(message)
             adapter = adapter_by_model[model](domoticz_devices)
             adapter.handleMqttMessage(device_data, zigbee_message)
+            self._update_available = (self._update_available or zigbee_message.get_update_available()) # set global state for update available
         else:
             Domoticz.Log('This plugin does not support zigbee device with model "' + model + '" yet')
             Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')

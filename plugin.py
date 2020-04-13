@@ -167,6 +167,7 @@ class BasePlugin:
         
         if (self.devices_manager.get_device_by_name(entity_name) != None):
             self.devices_manager.handle_mqtt_message(Devices, entity_name, message)
+            Domoticz.Debug("Any updates available? " + str(self.devices_manager.update_available))
         elif (self.groups_manager.get_group_by_name(entity_name) != None):
             self.groups_manager.handle_mqtt_message(entity_name, message)
         else:

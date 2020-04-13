@@ -18,4 +18,4 @@ class ZigbeeMessage:
         if ('update_available' in self.raw):
             return bool(self.raw['update_available'])
         else:
-            return None
+            return False
