@@ -59,6 +59,8 @@ class BasePlugin:
         self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.OTA_enabled = True if Parameters["Mode4"] == 'true' else False
         self.subscribed_for_devices = False
+        self.update_available = False
+        self.devices_to_update = []
 
         mqtt_server_address = Parameters["Address"].strip()
         mqtt_server_port = Parameters["Port"].strip()
@@ -107,6 +109,8 @@ class BasePlugin:
         self.mqttClient.onMessage(Connection, Data)
 
     def onHeartbeat(self):
+        if self.OTA_enabled and self.update_available:
+            Domoticz.Debug("OTA is enabled and there is one or more devices with update available")
         self.mqttClient.onHeartbeat()
 
     def onMQTTConnected(self):
@@ -119,14 +123,14 @@ class BasePlugin:
         Domoticz.Debug("onMQTTSubscribed")
 
     def onMQTTPublish(self, topic, message):
-        Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        Domoticz.Debug("MQTT message: topic: '" + topic + "' message '" + str(message) + "'" )
 
         if (topic == self.base_topic + '/bridge/config/permit_join' or topic == self.base_topic + '/bridge/config/devices'):
             return
 
         if (topic == self.base_topic + '/bridge/config'):
-            permit_join = 'enabled' if message['permit_join'] else 'disabled'
             Domoticz.Debug('Zigbee2mqtt log level is ' + message['log_level'])
+            permit_join = 'enabled' if message['permit_join'] else 'disabled'
             Domoticz.Log('Joining new devices is ' + permit_join + ' on the zigbee bridge')
             return
 
@@ -168,6 +172,8 @@ class BasePlugin:
         if (self.devices_manager.get_device_by_name(entity_name) != None):
             self.devices_manager.handle_mqtt_message(Devices, entity_name, message)
             Domoticz.Debug("Any updates available? " + str(self.devices_manager.update_available))
+            self.update_available = self.update_available or self.devices_manager.update_available
+            self.devices_to_update.append(entity_name)
         elif (self.groups_manager.get_group_by_name(entity_name) != None):
             self.groups_manager.handle_mqtt_message(entity_name, message)
         else:

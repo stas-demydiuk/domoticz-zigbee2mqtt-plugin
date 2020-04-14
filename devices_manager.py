@@ -53,6 +53,10 @@ class DevicesManager:
     def update_available(self):
         return self._update_available
 
+    @update_available.setter
+    def update_available(self, value):
+        self._update_available = value
+    
     def handle_mqtt_message(self, domoticz_devices, device_name, message):
         device_data = self.get_device_by_name(device_name)
 
