@@ -13,12 +13,6 @@
         <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
         <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
-        <param field="Mode2" label="Zigbee pairing" width="75px" required="true">
-            <options>
-                <option label="Enabled" value="true"/>
-                <option label="Disabled" value="false" default="true" />
-            </options>
-        </param>
         <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="Verbose" value="Verbose"/>
@@ -54,7 +48,6 @@ class BasePlugin:
         Domoticz.Debug("onStart called")
         self.install()
         self.base_topic = Parameters["Mode1"].strip()
-        self.pairing_enabled = True if Parameters["Mode2"] == 'true' else False
         self.subscribed_for_devices = False
 
         mqtt_server_address = Parameters["Address"].strip()
@@ -73,9 +66,6 @@ class BasePlugin:
         Domoticz.Debug("onStop called")
         self.uninstall()
 
-    def handlePairingMode(self):
-        permit_join = 'true' if self.pairing_enabled else 'false'
-        self.publishToMqtt('bridge/config/permit_join', permit_join)
 
     def onCommand(self, Unit, Command, Level, Color):
         Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
@@ -146,7 +136,6 @@ class BasePlugin:
             if message == 'online':
                 self.publishToMqtt('bridge/config/devices', '')
                 self.publishToMqtt('bridge/config/groups', '')
-                self.handlePairingMode()
 
             return
 

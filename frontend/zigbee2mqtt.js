@@ -127,11 +127,13 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
         }
     });
 
-    function Zigbee2MqttPluginController($scope, $element, domoticzApi, zigbee2mqtt) {
+    function Zigbee2MqttPluginController($scope, $element, domoticzApi, dzNotification, zigbee2mqtt) {
         var $ctrl = this;
 
+        $ctrl.getVersionString = getVersionString;
         $ctrl.renderNetworkMap = renderNetworkMap;
         $ctrl.fetchZigbeeDevices = fetchZigbeeDevices;
+        $ctrl.togglePermitJoin = togglePermitJoin;
 
         $ctrl.$onInit = function() {
             $ctrl.devices = [];
@@ -150,6 +152,12 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             });
         }
 
+        function fetchControllerInfo() {
+            return zigbee2mqtt.sendRequest('bridge_getstatus').then(function(data) {
+                $ctrl.controllerInfo = data;
+            });
+        }
+
         function renderNetworkMap() {
             if ($ctrl.isMapLoaded) {
                 return;
@@ -158,6 +166,24 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             zigbee2mqtt.sendRequest('network_map').then(renderSvg).then(function() {
                 $ctrl.isMapLoaded = true;
             });
+        }
+
+        function togglePermitJoin() {
+            var value = $ctrl.controllerInfo.permit_join.toString();
+
+            return zigbee2mqtt.sendRequest('bridge_set_permitjoin', value).then(function(data) {
+                $ctrl.permitJoin = data.permit_join;
+
+                var message = $ctrl.permitJoin
+                    ? 'New devices are now allowed to join the network'
+                    : 'New devices are not allowed to join the network';
+
+                dzNotification.show(message, 2500)
+            })
+        }
+
+        function getVersionString() {
+            return `v.${$ctrl.controllerInfo.version} (${$ctrl.controllerInfo.coordinator.type} ${$ctrl.controllerInfo.coordinator.meta.revision})`;
         }
 
         function renderSvg(svgData) {
@@ -199,7 +225,8 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
                         });
 
                         zigbee2mqtt.setControlDeviceIdx($ctrl.apiDevice.idx);
-                        fetchZigbeeDevices()
+
+                        fetchControllerInfo().then(fetchZigbeeDevices);
                     } else {
                         $ctrl.devices = [];
                     }
@@ -207,7 +234,7 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
         }
     }
 
-    function Zigbee2MqttDevicesTableController($element, $scope, $uibModal, dzSettings, dataTableDefaultSettings) {
+    function Zigbee2MqttDevicesTableController($element, $scope, $uibModal, zigbee2mqtt, dzSettings, dataTableDefaultSettings) {
         var $ctrl = this;
         var table;
 
