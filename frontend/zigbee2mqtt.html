@@ -11,6 +11,14 @@
 <script type="text/ng-template" id="app/zigbee2mqtt/index.html">
     <div class="container">
         <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
+        <div class="pull-right align-right" ng-if="::$ctrl.controllerInfo">
+            <div>{{ $ctrl.getVersionString() }}</div>
+            <label>
+                <input type="checkbox" ng-model="$ctrl.controllerInfo.permit_join" ng-change="$ctrl.togglePermitJoin()" />
+                Allow new zigbee devices to join
+            </label>
+        </div>
+
         <h2 class="page-header">Zigbee2Mqtt</h2>
 
         <ul id="tabs" class="nav nav-tabs sub-tabs" data-tabs="tabs">
