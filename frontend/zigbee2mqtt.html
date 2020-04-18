@@ -49,7 +49,8 @@
 
         <ul id="tabs" class="nav nav-tabs sub-tabs" data-tabs="tabs">
             <li class="active"><a data-target="#zigbee-devices" data-toggle="tab">Devices</a></li>
-            <li class="">
+            <li><a data-target="#zigbee-groups" data-toggle="tab">Groups</a></li>
+            <li>
                 <a data-target="#zigbee-map"
                    data-toggle="tab"
                    ng-click="$ctrl.renderNetworkMap()"
@@ -66,6 +67,20 @@
                         zigbee-devices="$ctrl.zigbeeDevices"
                         domoticz-devices="$ctrl.devices"
                         on-update="$ctrl.fetchZigbeeDevices()"
+                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"
+                />
+            </div>
+
+            <div class="tab-pane" id="zigbee-groups">
+                <page-loading-indicator ng-show="!$ctrl.zigbeeGroups"/>
+
+                <zigbee2mqtt-groups
+                        ng-if="$ctrl.zigbeeGroups"
+                        groups="$ctrl.zigbeeGroups"
+                        zigbee-devices="$ctrl.zigbeeDevices"
+                        domoticz-devices="$ctrl.devices"
+                        on-update="$ctrl.fetchZigbeeGroups()"
+                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"
                 />
             </div>
 
@@ -81,7 +96,6 @@
 
 <script type="text/ng-template" id="app/zigbee2mqtt/devices.html">
     <zigbee2mqtt-devices-table
-            ng-if="$ctrl.zigbeeDevices"
             devices="$ctrl.zigbeeDevices"
             on-update="$ctrl.onUpdate()"
             on-select="$ctrl.selectZigbeeDevice(device)"
@@ -89,7 +103,46 @@
 
     <section ng-if="$ctrl.associatedDevices.length > 0">
         <h2 class="page-header">{{:: 'Devices' | translate }}</h2>
-        <devices-table devices="$ctrl.associatedDevices" />
+        <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()" />
+    </section>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/groups.html">
+    <div class="btn-panel align-right">
+        <button class="btn btn-default" ng-click="$ctrl.addGroup()">{{:: 'Add' | translate }}</button>
+    </div>
+
+    <zigbee2mqtt-groups-table
+            groups="$ctrl.groups"
+            on-update="$ctrl.onUpdate()"
+            on-select="$ctrl.selectZigbeeGroup(group)"
+    />
+
+    <section ng-if="$ctrl.selectedGroup">
+        <h2 class="page-header">{{:: 'Group' | translate }}: {{ $ctrl.selectedGroup.friendly_name }}</h2>
+
+        <ul class="nav nav-tabs sub-tabs" data-tabs="tabs">
+            <li class="active"><a data-target="#zigbee-group-members" data-toggle="tab">{{:: 'Members' | translate }}</a></li>
+            <li><a data-target="#zigbee-group-devices" data-toggle="tab">{{:: 'Devices' | translate }}</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="zigbee-group-members">
+                <div class="btn-panel align-right">
+                    <button class="btn btn-default" ng-click="$ctrl.addDeviceToGroup()">{{:: 'Add' | translate }}</button>
+                </div>
+
+                <zigbee2mqtt-group-devices-table
+                        group="$ctrl.selectedGroup"
+                        devices="$ctrl.selectedGroupDevices"
+                        on-update="$ctrl.onUpdate()"
+                />
+            </div>
+
+            <div class="tab-pane" id="zigbee-group-devices">
+                <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()" />
+            </div>
+        </div>
     </section>
 </script>
 
@@ -185,8 +238,106 @@
     </div>
 </script>
 
+<script type="text/ng-template" id="app/zigbee2mqtt/groupCreateModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Add new zigbee group' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="modalForm">
+            <div class="control-group">
+                <label class="control-label" for="name">{{:: 'Name' | translate }}:</label>
+                <div class="controls">
+                    <input type="text"
+                           id="name"
+                           class="form-control"
+                           required
+                           minlength="1"
+                           maxlength="100"
+                           ng-model="$ctrl.groupName"
+                    />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="id">{{:: 'ID' | translate }}:</label>
+                <div class="controls">
+                    <input type="number"
+                           id="id"
+                           class="form-control"
+                           ng-model="$ctrl.groupId"
+                    />
+                    <span class="help-inline">(optional)</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                ng-disabled="modalForm.$invalid || $ctrl.isSaving"
+                ng-click="$ctrl.createGroup()">
+            {{:: 'Add' | translate }}
+        </button>
+
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$dismiss()">
+            {{:: 'Cancel' | translate }}
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/groupAddDeviceModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Add Device To Group' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="modalForm">
+            <div class="control-group">
+                <label class="control-label" for="device">{{:: 'Device' | translate }}:</label>
+                <div class="controls">
+                    <select
+                            id="device"
+                            name="device"
+                            class="form-control"
+                            required
+                            ng-model="$ctrl.device"
+                            ng-options="device.friendly_name as device.friendly_name for device in ::$ctrl.devices"
+                    />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="sub-device">{{:: 'Sub-device' | translate }}:</label>
+                <div class="controls">
+                    <input type="text"
+                           id="sub-device"
+                           class="form-control"
+                           ng-model="$ctrl.subDevice"
+                    />
+                    <span class="help-inline">(optional)</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                ng-disabled="modalForm.$invalid || $ctrl.isSaving"
+                ng-click="$ctrl.addDevice()">
+            {{:: 'Add' | translate }}
+        </button>
+
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$dismiss()">
+            {{:: 'Cancel' | translate }}
+        </button>
+    </div>
+</script>
+
 <script>
-    require(['../templates/zigbee2mqtt'], function(data) {
+    require(['../templates/zigbee2mqtt'], function() {
         angular.element(document).injector().invoke(function($compile) {
             var $div = angular.element('<zigbee2mqtt-plugin />');
             angular.element('#plugin-view').append($div);

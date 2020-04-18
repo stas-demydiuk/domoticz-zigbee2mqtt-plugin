@@ -48,7 +48,8 @@ class API:
         ).Create()
 
     def _send_response(self, request_id, payload):
-        del self.requests[request_id]
+        if request_id in self.requests:
+            del self.requests[request_id]
 
         response = json.dumps({
             'type': 'response',
