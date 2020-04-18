@@ -250,26 +250,35 @@ if no suffix will be found then On/Off switch will be created by default
 - Nue ZigBee smart light controller
 
 ### OSRAM
+- OSRAM Classic A60 RGBW
+- OSRAM Flex RGBW
 - OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW 
-- OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
-- OSRAM LIGHTIFY LED Classic B40 tunable white
-- OSRAM LIGHTIFY LED Classic A60 clear
 - OSRAM LIGHTIFY LED CLA60 E27 RGBW
+- OSRAM LIGHTIFY LED Classic A60 clear
+- OSRAM LIGHTIFY LED Classic B40 tunable white
+- OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
 - OSRAM LIGHTIFY Surface Light LED Tunable White
 - OSRAM LIGHTIFY Surface Light TW
+- OSRAM OSRAM LED panel TW 595 UGR22
+- OSRAM OSRAM SubstiTUBE T8 Advanced UO Connected
+- OSRAM Outdoor Flex RGBW
 - OSRAM Smart+ Candle E14 Dimmable White
 - OSRAM Smart+ Ceiling TW
 - OSRAM Smart+ Classic A 60 TW
 - OSRAM Smart+ Gardenpole RGBW
+- OSRAM Smart+ LED CLASSIC E27 RGBW
+- OSRAM Smart+ LED PAR16 GU10
 - OSRAM Smart+ Motion Sensor
 - OSRAM Smart+ Outdoor Wall Lantern RGBW
 - OSRAM Smart+ Plug
-- OSRAM SMART+ spot GU5.3 tunable white
 - OSRAM Smart+ Spot GU10 Multicolor
 - OSRAM Smart+ Switch Mini
-- OSRAM Flex RGBW
-- OSRAM Outdoor Flex RGBW
-- OSRAM Classic A60 RGBW
+- OSRAM Smart+ classic E27 TW
+- OSRAM Smart+ classic E27 dimmable
+- OSRAM Smart+ gardenpole 4W RGBW
+- OSRAM Smart+ mini gardenpole RGBW
+- OSRAM Smart+ outdoor lantern RGBW
+- OSRAM Smart+ spot GU5.3 tunable white
 
 ### Oujiabao
 - Oujiabao Gas and carbon monoxide alarm
@@ -350,6 +359,11 @@ if no suffix will be found then On/Off switch will be created by default
 - Sengled Element Plus (A19)
 - Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
+
+# Shenzhen Homa
+- Shenzhen Homa Smart LED driver
+- Shenzhen Homa Wireless dimmable controller
+- Shenzhen Homa ZigBee AC phase-cut dimmer
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight
