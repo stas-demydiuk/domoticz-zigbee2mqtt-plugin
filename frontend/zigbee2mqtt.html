@@ -60,9 +60,11 @@
         <div class="tab-content">
             <div class="tab-pane active" id="zigbee-devices">
                 <page-loading-indicator ng-hide="$ctrl.zigbeeDevices"/>
-                <zigbee2mqtt-devices-table
+
+                <zigbee2mqtt-devices
                         ng-if="$ctrl.zigbeeDevices"
-                        devices="$ctrl.zigbeeDevices"
+                        zigbee-devices="$ctrl.zigbeeDevices"
+                        domoticz-devices="$ctrl.devices"
                         on-update="$ctrl.fetchZigbeeDevices()"
                 />
             </div>
@@ -73,6 +75,22 @@
             </div>
         </div>
     </div>
+
+    <zigbee2mqtt-fake-devices ng-show="false" />
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/devices.html">
+    <zigbee2mqtt-devices-table
+            ng-if="$ctrl.zigbeeDevices"
+            devices="$ctrl.zigbeeDevices"
+            on-update="$ctrl.onUpdate()"
+            on-select="$ctrl.selectZigbeeDevice(device)"
+    />
+
+    <section ng-if="$ctrl.associatedDevices.length > 0">
+        <h2 class="page-header">{{:: 'Devices' | translate }}</h2>
+        <devices-table devices="$ctrl.associatedDevices" />
+    </section>
 </script>
 
 <script type="text/ng-template" id="app/zigbee2mqtt/deviceRenameModal.html">
