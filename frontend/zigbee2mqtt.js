@@ -3,7 +3,8 @@ define([
     'luxon',
     '../templates/zigbee2mqtt/viz',
     '../templates/zigbee2mqtt/viz.full.render',
-    '../templates/zigbee2mqtt/leaflet'
+    '../templates/zigbee2mqtt/leaflet',
+    'devices/Devices'
 ],
 function(app, luxon, Viz, vizRenderer, leaflet) {
     var viz = new Viz(vizRenderer);
@@ -56,9 +57,25 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
         controller: Zigbee2MqttPluginController
     });
 
+    app.component('zigbee2mqttDevices', {
+        bindings: {
+            zigbeeDevices: '<',
+            domoticzDevices: '<',
+            onUpdate: '&',
+        },
+        templateUrl: 'app/zigbee2mqtt/devices.html',
+        controller: Zigbee2MqttDevicesController
+    });
+
+    // Allows to load Devices.html which contains templates for <devices-table /> component
+    app.component('zigbee2mqttFakeDevices', {
+        templateUrl: 'app/devices/Devices.html',
+    });
+
     app.component('zigbee2mqttDevicesTable', {
         bindings: {
             devices: '<',
+            onSelect: '&',
             onUpdate: '&'
         },
         template: '<table id="zigbee2mqtt-devices" class="display" width="100%"></table>',
@@ -83,6 +100,12 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
 
         function setControlDeviceIdx(idx) {
             deviceIdx = idx;
+
+            domoticzApi.sendCommand('clearlightlog', {
+                idx: idx
+            }).catch(function() {
+                console.log('Unable to clear log for device idx:' + idx)
+            });
         }
 
         function sendRequest(command, params) {
@@ -122,13 +145,12 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             }
 
             var requestInfo = requestsQueue[requestIndex];
-            console.log('Response', data.requestId, data.payload);
             requestInfo.callback(data.payload);
             requestsQueue.splice(requestIndex, 1);
         }
     });
 
-    function Zigbee2MqttPluginController($scope, $element, domoticzApi, dzNotification, zigbee2mqtt) {
+    function Zigbee2MqttPluginController($element, Device, domoticzApi, dzNotification, zigbee2mqtt) {
         var $ctrl = this;
 
         $ctrl.selectPlugin = selectPlugin;
@@ -233,6 +255,9 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
                         $ctrl.devices = response.result
                             .filter(function(device) {
                                 return device.HardwareType === 'Zigbee2MQTT'
+                            })
+                            .map(function(device) {
+                                return new Device(device)
                             });
 
                         $ctrl.pluginApiDevices = $ctrl.devices.filter(function(device) {
@@ -249,7 +274,27 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
         }
     }
 
-    function Zigbee2MqttDevicesTableController($element, $scope, $uibModal, zigbee2mqtt, dzSettings, dataTableDefaultSettings) {
+    function Zigbee2MqttDevicesController() {
+        var $ctrl = this;
+
+        $ctrl.selectZigbeeDevice = selectZigbeeDevice;
+
+        $ctrl.$onInit = function() {
+            $ctrl.associatedDevices = []
+        };
+
+        function selectZigbeeDevice(zigbeeDevice) {
+            if (!zigbeeDevice) {
+                $ctrl.associatedDevices = []
+            } else {
+                $ctrl.associatedDevices = $ctrl.domoticzDevices.filter(function(device) {
+                    return device.ID.indexOf(zigbeeDevice.ieeeAddr) === 0;
+                });
+            }
+        }
+    }
+
+    function Zigbee2MqttDevicesTableController($element, $scope, $timeout, $uibModal, zigbee2mqtt, dzSettings, dataTableDefaultSettings) {
         var $ctrl = this;
         var table;
 
@@ -294,6 +339,23 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
                 $scope.$apply();
             });
 
+            table.on('select.dt', function(event, row) {
+                $ctrl.onSelect({ device: row.data() });
+                $scope.$apply();
+            });
+
+            table.on('deselect.dt', function() {
+                //Timeout to prevent flickering when we select another item in the table
+                $timeout(function() {
+                    if (table.api().rows({ selected: true }).count() > 0) {
+                        return;
+                    }
+
+                    $ctrl.onSelect({ device: null });
+                });
+
+                $scope.$apply();
+            });
 
             table.api().rows
                 .add($ctrl.devices)
