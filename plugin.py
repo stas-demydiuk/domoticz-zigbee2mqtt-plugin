@@ -163,8 +163,6 @@ class BasePlugin:
             self.devices_manager.handle_mqtt_message(Devices, topic, message)
         elif (self.groups_manager.get_group_by_name(topic) != None):
             self.groups_manager.handle_mqtt_message(topic, message)
-        else:
-            Domoticz.Debug('Unhandled message from zigbee2mqtt: ' + topic + ' ' + str(message))
 
     def install(self):
         Domoticz.Debug('Installing custom pages...')
@@ -174,6 +172,8 @@ class BasePlugin:
 
         copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.html', './www/templates/')
         copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.js', './www/templates/')
+        copy2('./plugins/zigbee2mqtt/frontend/zigbee_devices.js', './www/templates/zigbee2mqtt/')
+        copy2('./plugins/zigbee2mqtt/frontend/zigbee_groups.js', './www/templates/zigbee2mqtt/')
         copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.js', './www/templates/zigbee2mqtt/')
         copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.css', './www/templates/zigbee2mqtt/')
         copy2('./plugins/zigbee2mqtt/frontend/libs/viz.js', './www/templates/zigbee2mqtt/')
