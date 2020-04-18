@@ -6,17 +6,43 @@
     .leaflet-container {
         background-color: white;
     }
+
+    .zigbee2mqtt-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .zigbee2mqtt-header > .btn-group {
+        text-align: center;
+    }
 </style>
 
 <script type="text/ng-template" id="app/zigbee2mqtt/index.html">
     <div class="container">
-        <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
-        <div class="pull-right align-right" ng-if="::$ctrl.controllerInfo">
-            <div>{{ $ctrl.getVersionString() }}</div>
-            <label>
-                <input type="checkbox" ng-model="$ctrl.controllerInfo.permit_join" ng-change="$ctrl.togglePermitJoin()" />
-                Allow new zigbee devices to join
-            </label>
+        <div class="zigbee2mqtt-header">
+            <div>
+                <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-default"
+                        ng-show="$ctrl.pluginApiDevices.length > 1"
+                        ng-repeat="device in $ctrl.pluginApiDevices"
+                        ng-class="{'active': device.idx === $ctrl.selectedApiDeviceIdx}"
+                        ng-click="$ctrl.selectPlugin(device.idx)">
+                    {{::device.HardwareName}}
+                </button>
+            </div>
+
+            <div class="align-right" ng-if="$ctrl.controllerInfo">
+                <div>{{ $ctrl.getVersionString() }}</div>
+                <label>
+                    <input type="checkbox"
+                           ng-model="$ctrl.controllerInfo.permit_join"
+                           ng-change="$ctrl.togglePermitJoin()"/>
+                    Allow new zigbee devices to join
+                </label>
+            </div>
         </div>
 
         <h2 class="page-header">Zigbee2Mqtt</h2>
@@ -33,17 +59,17 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="zigbee-devices">
-                <page-loading-indicator ng-hide="::$ctrl.zigbeeDevices"/>
+                <page-loading-indicator ng-hide="$ctrl.zigbeeDevices"/>
                 <zigbee2mqtt-devices-table
-                        ng-if="::$ctrl.zigbeeDevices"
+                        ng-if="$ctrl.zigbeeDevices"
                         devices="$ctrl.zigbeeDevices"
                         on-update="$ctrl.fetchZigbeeDevices()"
                 />
             </div>
 
             <div class="tab-pane" id="zigbee-map">
-                <page-loading-indicator ng-hide="::$ctrl.isMapLoaded"/>
-                <div id="image-map" style="height: calc(100vh - 235px);" ng-show="::$ctrl.isMapLoaded"></div>
+                <page-loading-indicator ng-hide="$ctrl.isMapLoaded"/>
+                <div id="image-map" style="height: calc(100vh - 235px);" ng-show="$ctrl.isMapLoaded"></div>
             </div>
         </div>
     </div>
