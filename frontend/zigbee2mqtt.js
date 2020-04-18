@@ -162,7 +162,7 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             zigbee2mqtt.sendRequest('devices_get').then(function(devices) {
                 $ctrl.zigbeeDevices = devices.map(function(device) {
                     return Object.assign({
-                        model: null,
+                        model: null, vendor : null,
                     }, device, {
                         lastSeen: device.lastSeen || 'N/A'
                     });
