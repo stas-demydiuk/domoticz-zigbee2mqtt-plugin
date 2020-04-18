@@ -122,6 +122,7 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
             }
 
             var requestInfo = requestsQueue[requestIndex];
+            console.log('Response', data.requestId, data.payload);
             requestInfo.callback(data.payload);
             requestsQueue.splice(requestIndex, 1);
         }
@@ -130,15 +131,29 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
     function Zigbee2MqttPluginController($scope, $element, domoticzApi, dzNotification, zigbee2mqtt) {
         var $ctrl = this;
 
+        $ctrl.selectPlugin = selectPlugin;
         $ctrl.getVersionString = getVersionString;
         $ctrl.renderNetworkMap = renderNetworkMap;
         $ctrl.fetchZigbeeDevices = fetchZigbeeDevices;
         $ctrl.togglePermitJoin = togglePermitJoin;
 
         $ctrl.$onInit = function() {
+            $ctrl.selectedApiDeviceIdx = null;
             $ctrl.devices = [];
+
             refreshDevices();
         };
+
+        function selectPlugin(apiDeviceIdx) {
+            $ctrl.selectedApiDeviceIdx = apiDeviceIdx;
+            zigbee2mqtt.setControlDeviceIdx(apiDeviceIdx);
+
+            $ctrl.controllerInfo = null;
+            $ctrl.zigbeeDevices = null;
+            $ctrl.isMapLoaded = false;
+
+            fetchControllerInfo().then(fetchZigbeeDevices);
+        }
 
         function fetchZigbeeDevices() {
             zigbee2mqtt.sendRequest('devices_get').then(function(devices) {
@@ -220,13 +235,13 @@ function(app, luxon, Viz, vizRenderer, leaflet) {
                                 return device.HardwareType === 'Zigbee2MQTT'
                             });
 
-                        $ctrl.apiDevice = $ctrl.devices.find(function(device) {
+                        $ctrl.pluginApiDevices = $ctrl.devices.filter(function(device) {
                             return device.Unit === 255
                         });
 
-                        zigbee2mqtt.setControlDeviceIdx($ctrl.apiDevice.idx);
-
-                        fetchControllerInfo().then(fetchZigbeeDevices);
+                        if ($ctrl.pluginApiDevices.length > 0) {
+                            $ctrl.selectPlugin($ctrl.pluginApiDevices[0].idx);
+                        }
                     } else {
                         $ctrl.devices = [];
                     }
