@@ -47,31 +47,33 @@ function(app, Viz, vizRenderer, leaflet) {
         }
 
         function sendRequest(command, params) {
-            return $q(function(resolve, reject) {
-                var requestId = ++requestsCount;
+            var deferred = $q.defer();
+            var requestId = ++requestsCount;
 
-                var requestInfo = {
+            var requestInfo = {
+                requestId: requestId,
+                deferred: deferred,
+            };
+
+            requestsQueue.push(requestInfo);
+
+            domoticzApi.sendCommand('udevice', {
+                idx: deviceIdx,
+                svalue: JSON.stringify({
+                    type: 'request',
                     requestId: requestId,
-                    resolve: resolve,
-                    reject: reject,
-                };
+                    command: command,
+                    params: params || {}
+                })
+            }).catch(function(error) {
+                deferred.reject(error);
+            });
 
-                requestsQueue.push(requestInfo);
-
-                domoticzApi.sendCommand('udevice', {
-                    idx: deviceIdx,
-                    svalue: JSON.stringify({
-                        type: 'request',
-                        requestId: requestId,
-                        command: command,
-                        params: params || {}
-                    })
-                }).catch(reject);
-            })
+            return deferred.promise;
         }
 
         function handleResponse(data) {
-            if (data.type !== 'response') {
+            if (data.type !== 'response' && data.type !== 'status') {
                 return;
             }
 
@@ -85,10 +87,15 @@ function(app, Viz, vizRenderer, leaflet) {
 
             var requestInfo = requestsQueue[requestIndex];
 
-            if (data.payload === 'unknown command') {
-                requestInfo.reject(data.payload);
+            if (data.type === 'status') {
+                requestInfo.deferred.notify(data.payload);
+                return;
+            }
+
+            if (data.isError) {
+                requestInfo.deferred.reject(data.payload);
             } else {
-                requestInfo.resolve(data.payload);
+                requestInfo.deferred.resolve(data.payload);
             }
 
             requestsQueue.splice(requestIndex, 1);

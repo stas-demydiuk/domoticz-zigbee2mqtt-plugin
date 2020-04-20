@@ -22,13 +22,14 @@ class API:
                 command = commands[data['command']](
                     request_id,
                     self._publish_mqtt,
-                    self._send_response
+                    self._send_response,
+                    self._send_update,
                 )
 
                 self.requests.update({request_id: command})
                 command.execute(data['params'])
             else:
-                self._send_response(data['requestId'], 'unknown command')
+                self._send_response(data['requestId'], True, 'unknown command')
 
     def handle_mqtt_message(self, topic, message):
         commands = list(self.requests.values())
@@ -47,12 +48,25 @@ class API:
             TypeName="Text"
         ).Create()
 
-    def _send_response(self, request_id, payload):
+    def _send_response(self, request_id, is_error, payload):
         if request_id in self.requests:
             del self.requests[request_id]
 
         response = json.dumps({
             'type': 'response',
+            'requestId': request_id,
+            'isError': is_error,
+            'payload': payload
+        })
+
+        self.devices[self.unit].Update(
+            nValue=0,
+            sValue=response
+        )
+
+    def _send_update(self, request_id, payload):
+        response = json.dumps({
+            'type': 'status',
             'requestId': request_id,
             'payload': payload
         })
