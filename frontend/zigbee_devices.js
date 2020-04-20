@@ -1,4 +1,4 @@
-define(['app', 'luxon', 'devices/Devices'], function(app, luxon) {
+define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
     var DateTime = luxon.DateTime;
 
     var renameDeviceModal = {

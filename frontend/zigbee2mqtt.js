@@ -5,7 +5,7 @@ define([
     '../templates/zigbee2mqtt/leaflet',
     '../templates/zigbee2mqtt/zigbee_devices',
     '../templates/zigbee2mqtt/zigbee_groups',
-    'devices/Devices'
+    'app/devices/Devices.js'
 ],
 function(app, Viz, vizRenderer, leaflet) {
     var viz = new Viz(vizRenderer);

@@ -1,4 +1,4 @@
-define(['app', 'devices/Devices'], function(app) {
+define(['app', 'app/devices/Devices.js'], function(app) {
     var addGroupModal = {
         templateUrl: 'app/zigbee2mqtt/groupCreateModal.html',
         controllerAs: '$ctrl',
