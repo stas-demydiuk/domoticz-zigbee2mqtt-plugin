@@ -1,14 +1,15 @@
-from api.network_map import NetworkMap
-from api.get_devices import GetDevices
-from api.device_rename import RenameDevice
-from api.device_set import SetDeviceState
-from api.bridge_status import GetBridgeStatus, SetBridgePermitJoinStatus
+from api.bridge import GetBridgeStatus, SetBridgePermitJoinStatus
+from api.devices import GetDevices, GetDeviceState, SetDeviceState, RenameDevice, GetDeviceOTAUpdateStatus, UpdateDeviceFirmware
 from api.groups import GetGroups, AddGroup, RemoveGroup, IncludeDevice, ExcludeDevice
+from api.network_map import NetworkMap
 
 
 commands = dict({
     'network_map': NetworkMap,
     'devices_get': GetDevices,
+    'device_get_state': GetDeviceState,
+    'device_get_ota_update_status': GetDeviceOTAUpdateStatus,
+    'device_ota_update': UpdateDeviceFirmware,
     'device_rename': RenameDevice,
     'device_set': SetDeviceState,
     'bridge_getstatus': GetBridgeStatus,

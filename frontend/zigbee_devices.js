@@ -43,6 +43,10 @@ define(['app', 'luxon', 'devices/Devices'], function(app, luxon) {
         }
     };
 
+    var deviceFirmwareUpdateModal = {
+        templateUrl: 'app/zigbee2mqtt/deviceFirmwareUpdateModal.html',
+    };
+
     app.component('zigbee2mqttDevices', {
         bindings: {
             zigbeeDevices: '<',
@@ -92,7 +96,7 @@ define(['app', 'luxon', 'devices/Devices'], function(app, luxon) {
         }
     }
 
-    function Zigbee2MqttDevicesTableController($element, $scope, $timeout, $uibModal, zigbee2mqtt, dzSettings, dataTableDefaultSettings) {
+    function Zigbee2MqttDevicesTableController($element, $scope, $timeout, $uibModal, zigbee2mqtt, bootbox, dzSettings, dataTableDefaultSettings) {
         var $ctrl = this;
         var table;
 
@@ -125,6 +129,42 @@ define(['app', 'luxon', 'devices/Devices'], function(app, luxon) {
                 $uibModal
                     .open(Object.assign({ scope: scope }, renameDeviceModal)).result
                     .then($ctrl.onUpdate);
+
+                $scope.$apply();
+                return false;
+            });
+
+            table.on('click', '.js-check-updates', function() {
+                var device = table.api().row($(this).closest('tr')).data();
+
+                zigbee2mqtt.sendRequest('device_get_ota_update_status', device.friendly_name)
+                    .then(function(message) {
+                        return bootbox.confirm([
+                            message + '. An update typically takes +- 10 minutes.',
+                            'While a device is updating a lot of traffic is generated on the network, therefore it is not recommend to execute multiple updates at the same time.',
+                            'Do you want to update the device now?'
+                        ].join('<br/><br />'))
+                    })
+                    .then(function() {
+                        var scope = $scope.$new(true);
+                        scope.progress = 0;
+                        scope.message = 'Waiting for status update...'
+
+                        var onUpdate = function(data) {
+                            Object.assign(scope, data)
+                        }
+
+                        $uibModal.open(Object.assign({ scope: scope }, deviceFirmwareUpdateModal));
+
+                        return zigbee2mqtt.sendRequest('device_ota_update', device.friendly_name)
+                            .then(null, null, onUpdate) // Show progress to browser console
+                    })
+                    .then(function(message) {
+                        bootbox.alert(message)
+                    })
+                    .catch(function(error) {
+                        bootbox.alert(error);
+                    });
 
                 $scope.$apply();
                 return false;
@@ -188,6 +228,10 @@ define(['app', 'luxon', 'devices/Devices'], function(app, luxon) {
 
         function actionsRenderer(data, type, row) {
             var actions = [];
+            var delimiter = '<img src="../../images/empty16.png" width="16" height="16" />';
+
+            actions.push('<button class="btn btn-icon js-check-updates" title="' + $.t('Check for OTA firmware updates') + '"><img src="images/hardware.png" /></button>');
+            actions.push(delimiter)
             actions.push('<button class="btn btn-icon js-set-state" title="' + $.t('Set State') + '"><img src="images/events.png" /></button>');
             actions.push('<button class="btn btn-icon js-rename-device" title="' + $.t('Rename Device') + '"><img src="images/rename.png" /></button>');
             return actions.join('&nbsp;');

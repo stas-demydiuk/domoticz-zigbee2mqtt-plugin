@@ -157,6 +157,9 @@ class BasePlugin:
             if message['type'] == 'device_connected' or message['type'] == 'device_removed':
                 self.publishToMqtt('bridge/config/devices', '')
 
+            if message['type'] == 'ota_update':
+                Domoticz.Log(message['message'])
+
             return
 
         if (self.devices_manager.get_device_by_name(topic) != None):

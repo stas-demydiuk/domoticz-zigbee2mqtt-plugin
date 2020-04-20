@@ -238,6 +238,25 @@
     </div>
 </script>
 
+<script type="text/ng-template" id="app/zigbee2mqtt/deviceFirmwareUpdateModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Firmware update' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ message }}</p>
+        <p class="help-block">
+            <em>You can close this window and update will continue in the background. You can check the progress in Domoticz Log</em>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$close()">
+            {{:: 'Close' | translate }}
+        </button>
+    </div>
+</script>
+
 <script type="text/ng-template" id="app/zigbee2mqtt/groupCreateModal.html">
     <div class="modal-header">
         <h3 class="modal-title">{{:: 'Add new zigbee group' | translate }}</h3>
