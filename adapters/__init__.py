@@ -142,6 +142,10 @@ adapter_by_model = dict({
     'E12-N14': DimmableBulbAdapter,         # Sengled Element Classic (BR30)
     'Z01-A19NAE26': DimmableCtBulbAdapter,  # Sengled Element Plus (A19)
     'Z01-CIA19NAE26': DimmableBulbAdapter,  # Sengled Element Touch (A19)
+    # Shenzhen Homa
+    'HLD812-Z-SC': DimmableBulbAdapter, # Shenzhen Homa Smart LED driver
+    'HLC610-Z': DimmableBulbAdapter,    # Shenzhen Homa Wireless dimmable controller
+    'HLC821-Z-SC': DimmableBulbAdapter, # Shenzhen Homa ZigBee AC phase-cut dimmer
     # Smart Home Pty
     'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
     'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug

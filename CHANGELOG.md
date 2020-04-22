@@ -5,6 +5,7 @@
 - Support for "skip" action on Ikea Symfonisk
 - Support for `rgb` and `rgbw` zigbee groups
 - Decoupled mode support for Xiaomi single key wired switches (QBKG04LM, QBKG11LM)
+- Zigbee Network Map as custom Domoticz page
 
 New devices:
 - Xiaomi MiJia light intensity sensor
@@ -45,6 +46,9 @@ New devices:
 - OSRAM SMART+ Spot GU10 Multicolor
 - OSRAM OSRAM SubstiTUBE T8 Advanced UO Connected
 - OSRAM OSRAM LED panel TW 595 UGR22
+- Shenzhen Homa Smart LED driver
+- Shenzhen Homa Wireless dimmable controller
+- Shenzhen Homa ZigBee AC phase-cut dimmer
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

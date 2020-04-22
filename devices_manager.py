@@ -8,7 +8,7 @@ class DevicesManager:
 
     def _register_device(self, domoticz_devices, device_data):
         model = device_data['model']
-        Domoticz.Log('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
+        Domoticz.Debug('Device ' + model + ' ' + device_data['ieee_addr'] + ' (' + device_data['friendly_name'] + ')')
 
         self.devices[device_data['ieee_addr']] = device_data
         

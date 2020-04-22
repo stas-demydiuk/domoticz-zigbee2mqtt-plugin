@@ -9,8 +9,8 @@ class QBKG04LM(OnOffSwitchAdapter):
         selector = SelectorSwitch(devices, 'action', 'action')
         selector.add_level('Off', None)
         selector.add_level('Click', 'single')
-        selector.add_level('Hold', 'left')
-        selector.add_level('Release', 'right')
+        selector.add_level('Hold', 'hold')
+        selector.add_level('Release', 'release')
         selector.disable_value_check_on_update()
 
         self.devices.append(selector)
@@ -18,14 +18,14 @@ class QBKG04LM(OnOffSwitchAdapter):
     def convert_message(self, message):
         message = super().convert_message(message)
 
-        if 'click' in message.raw:
+        if 'click' in message.raw and 'action' not in message.raw:
             message.raw['action'] = message.raw['click']
 
         return message
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         if alias == 'switch':
-            super().handleCommand(alias, device, device_data, command, level, color)
+            return super().handleCommand(alias, device, device_data, command, level, color)
         else:
             device = self.get_device_by_alias(alias)
 
