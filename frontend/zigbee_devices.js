@@ -47,6 +47,10 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
         templateUrl: 'app/zigbee2mqtt/deviceFirmwareUpdateModal.html',
     };
 
+    var devicePairModal = {
+        templateUrl: 'app/zigbee2mqtt/devicePairModal.html',
+    };
+
     app.component('zigbee2mqttDevices', {
         bindings: {
             zigbeeDevices: '<',
@@ -68,10 +72,11 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
         controller: Zigbee2MqttDevicesTableController,
     });
 
-    function Zigbee2MqttDevicesController() {
+    function Zigbee2MqttDevicesController($scope, $uibModal, zigbee2mqtt) {
         var $ctrl = this;
 
         $ctrl.selectZigbeeDevice = selectZigbeeDevice;
+        $ctrl.pair = pair;
 
         $ctrl.$onInit = function() {
             $ctrl.associatedDevices = []
@@ -93,6 +98,33 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                     return device.ID.indexOf(zigbeeDevice.ieeeAddr) === 0;
                 });
             }
+        }
+
+        function pair() {
+            return zigbee2mqtt.sendRequest('bridge_set_permitjoin', 'true')
+                .then(function() {
+                    var scope = $scope.$new(true);
+                    scope.message = 'Waiting for new device...'
+
+                    var onUpdate = function(data) {
+                        var message = JSON.stringify(data)
+
+                        if (data.message === 'interview_successful') {
+                            message = 'Device successfully paired: ' + JSON.stringify(data.meta);
+                        }
+
+                        Object.assign(scope, {message: message})
+                    }
+
+                    zigbee2mqtt.sendRequest('bridge_pair').then(onUpdate, null, onUpdate)
+                    return $uibModal.open(Object.assign({scope: scope}, devicePairModal)).result
+                })
+                .then(function() {
+                    return zigbee2mqtt.sendRequest('bridge_set_permitjoin', 'false')
+                })
+                .then(function() {
+                    $ctrl.onUpdate();
+                })
         }
     }
 
