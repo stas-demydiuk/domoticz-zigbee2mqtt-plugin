@@ -51,7 +51,7 @@ class GetDeviceOTAUpdateStatus(APICommand):
             if meta['status'] == 'available':
                 self.send_response(message['message'])
 
-            if meta['status'] == 'not_available' or meta['status'] == 'check_failed' or meta['status'] == 'not_supported':
+            if meta['status'] == 'not_available' or meta['status'] == 'check_failed' or meta['status'] == 'not_supported' or meta['status'] == 'update_failed':
                 self.send_error(message['message'])
 
 
