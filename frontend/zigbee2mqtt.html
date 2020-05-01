@@ -95,6 +95,11 @@
 </script>
 
 <script type="text/ng-template" id="app/zigbee2mqtt/devices.html">
+    <div class="btn-panel align-right">
+        <button class="btn btn-default" ng-click="$ctrl.pair()">{{:: 'Pair Device' | translate }}</button>
+        <button class="btn btn-default" ng-click="$ctrl.onUpdate()">{{:: 'Refresh' | translate }}</button>
+    </div>
+
     <zigbee2mqtt-devices-table
             devices="$ctrl.zigbeeDevices"
             on-update="$ctrl.onUpdate()"
@@ -253,6 +258,25 @@
                 class="btn btn-default"
                 ng-click="$close()">
             {{:: 'Close' | translate }}
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/devicePairModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Pairing' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ message }}</p>
+        <p class="help-block">
+            <em>Once you close the window, "pair mode" will be disabled on the bridge</em>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$close()">
+            {{:: 'Done' | translate }}
         </button>
     </div>
 </script>

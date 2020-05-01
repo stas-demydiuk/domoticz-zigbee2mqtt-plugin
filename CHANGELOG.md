@@ -5,7 +5,8 @@
 - Support for "skip" action on Ikea Symfonisk
 - Support for `rgb` and `rgbw` zigbee groups
 - Decoupled mode support for Xiaomi single key wired switches (QBKG04LM, QBKG11LM)
-- Zigbee Network Map as custom Domoticz page
+- Custom Domoticz page to manage zigbee network
+- Additional Domoticz device with battery percentage value for battery powered devices
 
 New devices:
 - Xiaomi MiJia light intensity sensor
