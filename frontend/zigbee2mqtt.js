@@ -159,7 +159,8 @@ function(app, Viz, vizRenderer, leaflet) {
                         model: null,
                     }, device, {
                         lastSeen: device.lastSeen || 'N/A',
-                        description: device.description || ''
+                        description: device.description || '',
+                        model: device.model || 'N/A'
                     });
                 }).sort(function(a, b) {
                     return a.friendly_name < b.friendly_name ? -1 : 1
