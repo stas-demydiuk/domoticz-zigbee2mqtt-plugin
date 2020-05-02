@@ -38,6 +38,7 @@
                 <div>{{ $ctrl.getVersionString() }}</div>
                 <label>
                     <input type="checkbox"
+                           class="noscheck"
                            ng-model="$ctrl.controllerInfo.permit_join"
                            ng-change="$ctrl.togglePermitJoin()"/>
                     Allow new zigbee devices to join
