@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.2.0
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk
 - Support for `rgb` and `rgbw` zigbee groups
@@ -50,6 +50,7 @@ New devices:
 - Shenzhen Homa Smart LED driver
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
+- Sinope Zigbee line volt thermostat
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)
