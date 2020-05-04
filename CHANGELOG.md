@@ -1,5 +1,8 @@
 # Changelog
 
+## master
+- Add strength sensor for Xiaomi DJT11LM
+
 ## 0.2.0
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk
