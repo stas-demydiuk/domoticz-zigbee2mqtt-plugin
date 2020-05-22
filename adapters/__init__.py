@@ -131,6 +131,7 @@ adapter_by_model = dict({
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # ROBB
+    'ROB_200-003-0': OnOffSwitchAdapter,    # ROBB Zigbee AC in wall switch
     'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
     'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
     # Salus
