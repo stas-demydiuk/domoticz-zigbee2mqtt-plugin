@@ -168,35 +168,43 @@ class BasePlugin:
             self.groups_manager.handle_mqtt_message(topic, message)
 
     def install(self):
-        Domoticz.Debug('Installing custom pages...')
+        Domoticz.Debug('Installing plugin custom page...')
         
-        if not (os.path.isdir('./www/templates/zigbee2mqtt')):
-            os.mkdir('./www/templates/zigbee2mqtt')
+        try:
+            if not (os.path.isdir('./www/templates/zigbee2mqtt')):
+                os.mkdir('./www/templates/zigbee2mqtt')
 
-        copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.html', './www/templates/')
-        copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.js', './www/templates/')
-        copy2('./plugins/zigbee2mqtt/frontend/zigbee_devices.js', './www/templates/zigbee2mqtt/')
-        copy2('./plugins/zigbee2mqtt/frontend/zigbee_groups.js', './www/templates/zigbee2mqtt/')
-        copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.js', './www/templates/zigbee2mqtt/')
-        copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.css', './www/templates/zigbee2mqtt/')
-        copy2('./plugins/zigbee2mqtt/frontend/libs/viz.js', './www/templates/zigbee2mqtt/')
-        copy2('./plugins/zigbee2mqtt/frontend/libs/viz.full.render.js', './www/templates/zigbee2mqtt/')
-        
-        Domoticz.Debug('Installing custom pages completed.')
+            copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.html', './www/templates/')
+            copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.js', './www/templates/')
+            copy2('./plugins/zigbee2mqtt/frontend/zigbee_devices.js', './www/templates/zigbee2mqtt/')
+            copy2('./plugins/zigbee2mqtt/frontend/zigbee_groups.js', './www/templates/zigbee2mqtt/')
+            copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.js', './www/templates/zigbee2mqtt/')
+            copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.css', './www/templates/zigbee2mqtt/')
+            copy2('./plugins/zigbee2mqtt/frontend/libs/viz.js', './www/templates/zigbee2mqtt/')
+            copy2('./plugins/zigbee2mqtt/frontend/libs/viz.full.render.js', './www/templates/zigbee2mqtt/')
+            
+            Domoticz.Debug('Installing plugin custom page completed.')
+        except Exception as e:
+            Domoticz.Error('Error during installing plugin custom page')
+            Domoticz.Error(e)
 
     def uninstall(self):
-        Domoticz.Debug('Uninstalling custom pages...')
+        Domoticz.Debug('Uninstalling plugin custom page...')
 
-        if (os.path.isdir('./www/templates/zigbee2mqtt')):
-            rmtree('./www/templates/zigbee2mqtt')
+        try:
+            if (os.path.isdir('./www/templates/zigbee2mqtt')):
+                rmtree('./www/templates/zigbee2mqtt')
 
-        if os.path.exists("./www/templates/zigbee2mqtt.html"):
-            os.remove("./www/templates/zigbee2mqtt.html")
+            if os.path.exists("./www/templates/zigbee2mqtt.html"):
+                os.remove("./www/templates/zigbee2mqtt.html")
 
-        if os.path.exists("./www/templates/zigbee2mqtt.js"):
-            os.remove("./www/templates/zigbee2mqtt.js")
+            if os.path.exists("./www/templates/zigbee2mqtt.js"):
+                os.remove("./www/templates/zigbee2mqtt.js")
 
-        Domoticz.Debug('Uninstalling custom pages completed.')
+            Domoticz.Debug('Uninstalling plugin custom page completed.')
+        except Exception as e:
+            Domoticz.Error('Error during uninstalling plugin custom page')
+            Domoticz.Error(e)
 
 
 global _plugin
