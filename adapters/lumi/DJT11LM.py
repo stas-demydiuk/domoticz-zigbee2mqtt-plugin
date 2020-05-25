@@ -1,6 +1,7 @@
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
+from devices.json_sensor import JSONSensor
 
 
 class DJT11LM(AdapterWithBattery):
@@ -16,6 +17,21 @@ class DJT11LM(AdapterWithBattery):
 
         self.devices.append(self.switch)
         self.devices.append(CustomSensor(devices, 'stgth', 'strength', ' (Strength)'))
+        self.devices.append(JSONSensor(devices, 'angle', 'angle_raw', ' (Angle)'))
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         self.switch.handle_command(device_data, command, level, color)
+
+    def convert_message(self, message):
+        message = super().convert_message(message)
+
+        message.raw['angle_raw'] = {
+            'angle': message.raw['angle'],
+            'angle_x': message.raw['angle_x'],
+            'angle_y': message.raw['angle_y'],
+            'angle_z': message.raw['angle_z'],
+            'angle_x_absolute': message.raw['angle_x_absolute'],
+            'angle_y_absolute': message.raw['angle_y_absolute'],
+        }
+
+        return message

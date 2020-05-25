@@ -1,7 +1,7 @@
 # Changelog
 
 ## master
-- Add strength sensor for Xiaomi DJT11LM
+- Add strength and angle sensor for Xiaomi DJT11LM
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
