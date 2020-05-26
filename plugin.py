@@ -186,7 +186,7 @@ class BasePlugin:
             Domoticz.Debug('Installing plugin custom page completed.')
         except Exception as e:
             Domoticz.Error('Error during installing plugin custom page')
-            Domoticz.Error(e)
+            Domoticz.Error(repr(e))
 
     def uninstall(self):
         Domoticz.Debug('Uninstalling plugin custom page...')
@@ -204,7 +204,7 @@ class BasePlugin:
             Domoticz.Debug('Uninstalling plugin custom page completed.')
         except Exception as e:
             Domoticz.Error('Error during uninstalling plugin custom page')
-            Domoticz.Error(e)
+            Domoticz.Error(repr(e))
 
 
 global _plugin
