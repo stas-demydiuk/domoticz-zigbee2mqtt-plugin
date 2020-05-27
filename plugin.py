@@ -198,7 +198,7 @@ class BasePlugin:
         Domoticz.Log('Uninstalling plugin custom page...')
 
         try:
-            templates_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../www/tempaltes')
+            templates_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../www/templates')
             dst_plugin_path = templates_path + '/zigbee2mqtt'
 
             Domoticz.Debug('Removing files from ' + templates_path)
