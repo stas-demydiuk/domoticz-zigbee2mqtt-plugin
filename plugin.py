@@ -168,40 +168,51 @@ class BasePlugin:
             self.groups_manager.handle_mqtt_message(topic, message)
 
     def install(self):
-        Domoticz.Debug('Installing plugin custom page...')
-        
-        try:
-            if not (os.path.isdir('./www/templates/zigbee2mqtt')):
-                os.mkdir('./www/templates/zigbee2mqtt')
+        Domoticz.Log('Installing plugin custom page...')
 
-            copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.html', './www/templates/')
-            copy2('./plugins/zigbee2mqtt/frontend/zigbee2mqtt.js', './www/templates/')
-            copy2('./plugins/zigbee2mqtt/frontend/zigbee_devices.js', './www/templates/zigbee2mqtt/')
-            copy2('./plugins/zigbee2mqtt/frontend/zigbee_groups.js', './www/templates/zigbee2mqtt/')
-            copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.js', './www/templates/zigbee2mqtt/')
-            copy2('./plugins/zigbee2mqtt/frontend/libs/leaflet.css', './www/templates/zigbee2mqtt/')
-            copy2('./plugins/zigbee2mqtt/frontend/libs/viz.js', './www/templates/zigbee2mqtt/')
-            copy2('./plugins/zigbee2mqtt/frontend/libs/viz.full.render.js', './www/templates/zigbee2mqtt/')
+        try:
+            source_path = os.path.dirname(os.path.abspath(__file__)) + '/frontend'
+            templates_path = os.path.abspath(source_path + '/../../../www/templates')
+            dst_plugin_path = templates_path + '/zigbee2mqtt'
+
+            Domoticz.Debug('Copying files from ' + source_path + ' to ' + templates_path)
+
+            if not (os.path.isdir(dst_plugin_path)):
+                os.mkdir(dst_plugin_path)
+
+            copy2(source_path + '/zigbee2mqtt.html', templates_path)
+            copy2(source_path + '/zigbee2mqtt.js', templates_path)
+            copy2(source_path + '/zigbee_devices.js', dst_plugin_path)
+            copy2(source_path + '/zigbee_groups.js', dst_plugin_path)
+            copy2(source_path + '/libs/leaflet.js', dst_plugin_path)
+            copy2(source_path + '/libs/leaflet.css', dst_plugin_path)
+            copy2(source_path + '/libs/viz.js', dst_plugin_path)
+            copy2(source_path + '/libs/viz.full.render.js', dst_plugin_path)
             
-            Domoticz.Debug('Installing plugin custom page completed.')
+            Domoticz.Log('Installing plugin custom page completed.')
         except Exception as e:
             Domoticz.Error('Error during installing plugin custom page')
             Domoticz.Error(repr(e))
 
     def uninstall(self):
-        Domoticz.Debug('Uninstalling plugin custom page...')
+        Domoticz.Log('Uninstalling plugin custom page...')
 
         try:
-            if (os.path.isdir('./www/templates/zigbee2mqtt')):
-                rmtree('./www/templates/zigbee2mqtt')
+            templates_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../www/tempaltes')
+            dst_plugin_path = templates_path + '/zigbee2mqtt'
 
-            if os.path.exists("./www/templates/zigbee2mqtt.html"):
-                os.remove("./www/templates/zigbee2mqtt.html")
+            Domoticz.Debug('Removing files from ' + templates_path)
 
-            if os.path.exists("./www/templates/zigbee2mqtt.js"):
-                os.remove("./www/templates/zigbee2mqtt.js")
+            if (os.path.isdir(dst_plugin_path)):
+                rmtree(dst_plugin_path)
 
-            Domoticz.Debug('Uninstalling plugin custom page completed.')
+            if os.path.exists(templates_path + "/zigbee2mqtt.html"):
+                os.remove(templates_path + "/zigbee2mqtt.html")
+
+            if os.path.exists(templates_path + "/zigbee2mqtt.js"):
+                os.remove(templates_path + "/zigbee2mqtt.js")
+
+            Domoticz.Log('Uninstalling plugin custom page completed.')
         except Exception as e:
             Domoticz.Error('Error during uninstalling plugin custom page')
             Domoticz.Error(repr(e))
