@@ -17,3 +17,19 @@ class SetBridgePermitJoinStatus(APICommand):
     def handle_mqtt_message(self, topic, message):
         if topic == 'bridge/config':
             self.send_response(message)
+
+
+class PairDevice(APICommand):
+    def execute(self, params):
+        return None
+
+    def handle_mqtt_message(self, topic, message):
+        if topic != 'bridge/log':
+            return None
+
+        if message['type'] == 'pairing' and message['message'] == 'interview_successful':
+            self.send_response(message)
+            return None
+
+        if message['type'] == 'pairing' or message['type'] == 'device_connected' or message['type'] == 'device_announced':
+            self.send_update(message)

@@ -1,11 +1,16 @@
 # Changelog
 
 ## master
+- Add strength and angle sensor for Xiaomi DJT11LM
+- Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW
+
+## 0.2.0
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk
 - Support for `rgb` and `rgbw` zigbee groups
 - Decoupled mode support for Xiaomi single key wired switches (QBKG04LM, QBKG11LM)
-- Zigbee Network Map as custom Domoticz page
+- Custom Domoticz page to manage zigbee network
+- Additional Domoticz device with battery percentage value for battery powered devices
 
 New devices:
 - Xiaomi MiJia light intensity sensor
@@ -49,6 +54,7 @@ New devices:
 - Shenzhen Homa Smart LED driver
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
+- Sinope Zigbee line volt thermostat
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

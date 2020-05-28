@@ -302,6 +302,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Philips Phoenix light
 
 ### ROBB
+- ROBB Zigbee AC in wall switch
 - ROBB ZigBee AC phase-cut dimmer
 - ROBB ZigBee AC phase-cut rotary dimmer
 
@@ -321,6 +322,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Shenzhen Homa Smart LED driver
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
+
+# Sinope
+- Sinope Zigbee line volt thermostat
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight

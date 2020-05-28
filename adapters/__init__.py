@@ -27,6 +27,7 @@ from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.samsung import samsung_adapters
+from adapters.sinope import sinope_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
@@ -130,6 +131,7 @@ adapter_by_model = dict({
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # ROBB
+    'ROB_200-003-0': OnOffSwitchAdapter,    # ROBB Zigbee AC in wall switch
     'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
     'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
     # Salus
@@ -189,6 +191,7 @@ adapter_by_model = dict({
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
+    **sinope_adapters,
     **trust_adapters,
     **tuya_adapters,
     **tuyatec_adapters,
