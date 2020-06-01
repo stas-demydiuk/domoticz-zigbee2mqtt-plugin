@@ -4,6 +4,10 @@
 - Add strength and angle sensor for Xiaomi DJT11LM
 - Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW
 
+New devices:
+- iCasa Zigbee AC dimmer
+- iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+
 ## 0.2.0
 - Support for "stop" command for blinds adapter
 - Support for "skip" action on Ikea Symfonisk

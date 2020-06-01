@@ -18,6 +18,7 @@ from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
 from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
+from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
 from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
@@ -172,9 +173,6 @@ adapter_by_model = dict({
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
     # eWeLink
     'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
-    # iCasa
-    'ICZB-IW11D': DimmableBulbAdapter,  # iCasa Zigbee 3.0 Dimmer
-    'ICZB-IW11SW': OnOffSwitchAdapter,  # iCasa Zigbee 3.0 Switch
     # ilux
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
@@ -184,6 +182,7 @@ adapter_by_model = dict({
     **cr_adapters,
     **gledopto_adapters,
     **heiman_adapters,
+    **icasa_adapters,
     **ikea_adapters,
     **innr_adapters,
     **konke_adapters,
