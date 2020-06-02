@@ -423,6 +423,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - iCasa Zigbee 3.0 Switch
 - iCasa Zigbee AC dimmer
 - iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+- iCasa Zigbee 3.0 Keypad Pulse 8S
 
 ### ilux
 - ilux Dimmable A60 E27 LED Bulb

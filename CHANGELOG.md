@@ -7,6 +7,7 @@
 New devices:
 - iCasa Zigbee AC dimmer
 - iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+- iCasa Zigbee 3.0 Keypad Pulse 8S
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
