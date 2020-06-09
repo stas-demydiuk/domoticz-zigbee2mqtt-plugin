@@ -323,6 +323,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
 
+# Schneider Electric
+- Schneider Electric Wiser radiator thermostat
+
 # Sinope
 - Sinope Zigbee line volt thermostat
 
