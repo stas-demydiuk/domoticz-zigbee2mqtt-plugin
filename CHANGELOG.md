@@ -9,6 +9,7 @@ New devices:
 - iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
 - iCasa Zigbee 3.0 Keypad Pulse 8S
 - Schneider Electric Wiser radiator thermostat
+- SmartThings Smart siren
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

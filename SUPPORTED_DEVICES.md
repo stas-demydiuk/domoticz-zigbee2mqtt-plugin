@@ -341,6 +341,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - SmartThings Multipurpose sensor (2015, 2016, 2018 models)
 - SmartThings Outlet
 - SmartThings Outlet with power meter
+- SmartThings Smart siren
 - SmartThings Zigbee Outlet UK with power meter
 - SmartThings Zigbee smart plug with power meter
 
