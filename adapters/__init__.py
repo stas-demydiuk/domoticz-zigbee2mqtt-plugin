@@ -24,6 +24,7 @@ from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
+from adapters.meazon.dinrail import DinrailAdapter
 from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
@@ -110,6 +111,8 @@ adapter_by_model = dict({
     'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
+    # Meazon
+    'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white

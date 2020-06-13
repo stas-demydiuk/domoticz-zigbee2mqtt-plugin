@@ -10,6 +10,7 @@ New devices:
 - iCasa Zigbee 3.0 Keypad Pulse 8S
 - Schneider Electric Wiser radiator thermostat
 - SmartThings Smart siren
+- Meazon DinRail 1-phase meter
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

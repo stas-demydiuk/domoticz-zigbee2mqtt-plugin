@@ -191,6 +191,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Lonhonso
 - Lonhonso 2 gang switch
 
+### Meazon
+- Meazon DinRail 1-phase meter
+
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
