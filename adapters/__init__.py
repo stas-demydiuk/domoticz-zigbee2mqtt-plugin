@@ -157,7 +157,7 @@ adapter_by_model = dict({
     'HLC610-Z': DimmableBulbAdapter,    # Shenzhen Homa Wireless dimmable controller
     'HLC821-Z-SC': DimmableBulbAdapter, # Shenzhen Homa ZigBee AC phase-cut dimmer
     # Siterwell
-    'GS361AH04': GS361AH04,             # Siterwell Radiator valve with thermostat
+    'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Smart Home Pty
     'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
     'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug
