@@ -14,6 +14,7 @@ from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
+from adapters.generic.thermostat import ThermostatAdapter
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
 from adapters.gledopto import gledopto_adapters
@@ -28,13 +29,13 @@ from adapters.meazon.dinrail import DinrailAdapter
 from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
+from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
 from adapters.sinope import sinope_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
-from adapters.eurotronic_thermostat import EurotronicThermostatAdapter
 from adapters.tuya import tuya_adapters
 from adapters.tuya.TS0002 import TS0002
 from adapters.tuyatec import tuyatec_adapters
@@ -77,8 +78,10 @@ adapter_by_model = dict({
     'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
     'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
+    # Essentials
+    '120112': GS361AH04,                # Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
     # Eurotronic
-    'SPZB0001': EurotronicThermostatAdapter,      # SPZB0001 thermostat
+    'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
     # ELKO
     '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
     # GE
@@ -153,6 +156,8 @@ adapter_by_model = dict({
     'HLD812-Z-SC': DimmableBulbAdapter, # Shenzhen Homa Smart LED driver
     'HLC610-Z': DimmableBulbAdapter,    # Shenzhen Homa Wireless dimmable controller
     'HLC821-Z-SC': DimmableBulbAdapter, # Shenzhen Homa ZigBee AC phase-cut dimmer
+    # Siterwell
+    'GS361AH04': GS361AH04,             # Siterwell Radiator valve with thermostat
     # Smart Home Pty
     'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
     'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug

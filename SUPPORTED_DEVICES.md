@@ -56,6 +56,12 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### ELKO
 - Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer
 
+### Essentials
+- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
+
+### Eurotronic
+- Eurotronic Spirit Zigbee wireless heater thermostat
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
@@ -331,6 +337,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 
 # Sinope
 - Sinope Zigbee line volt thermostat
+
+### Siterwell
+- Siterwell Radiator valve with thermostat
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight

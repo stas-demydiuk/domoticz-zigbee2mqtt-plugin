@@ -11,6 +11,8 @@ New devices:
 - Schneider Electric Wiser radiator thermostat
 - SmartThings Smart siren
 - Meazon DinRail 1-phase meter
+- Siterwell Radiator valve with thermostat
+- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
