@@ -55,7 +55,7 @@ class BasePlugin:
         mqtt_client_id = Parameters["Mode3"].strip()
         self.mqttClient = MqttClient(mqtt_server_address, mqtt_server_port, mqtt_client_id, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
-        self.api = API(Devices, self.publishToMqtt)
+        self.api = API(Devices, self.onApiCommand)
         self.devices_manager = DevicesManager()
         self.groups_manager = GroupsManager()
 
@@ -84,6 +84,14 @@ class BasePlugin:
 
         if (message != None):
             self.publishToMqtt(message['topic'], message['payload'])
+
+    def onApiCommand(self, command, data):
+        if command == 'publish_mqtt':
+            return self.publishToMqtt(data['topic'], data['payload'])
+        elif command == 'remove_device':
+            return self.devices_manager.remove(Devices, data)
+        else:
+            Domoticz.Error('Internal API command "' + command +'" is not supported by plugin')
 
     def publishToMqtt(self, topic, payload):
         self.mqttClient.publish(self.base_topic + '/' + topic, payload)

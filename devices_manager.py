@@ -78,3 +78,15 @@ class DevicesManager:
         if (model in adapter_by_model):
             adapter = adapter_by_model[model](domoticz_devices)
             return adapter.handleCommand(alias, device, device_data, command, level, color)
+
+    def remove(self, domoticz_devices, friendly_name):
+        device_data = self.get_device_by_name(friendly_name)
+
+        if (device_data == None):
+            return
+
+        model = device_data['model']
+
+        if (model in adapter_by_model):
+            adapter = adapter_by_model[model](domoticz_devices)
+            adapter.remove(device_data['ieee_addr'])

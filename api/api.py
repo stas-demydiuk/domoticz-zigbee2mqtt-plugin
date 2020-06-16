@@ -4,10 +4,11 @@ from api.commands import commands
 
 
 class API:
-    def __init__(self, devices, publish_mqtt):
+    def __init__(self, devices, on_command):
         self.unit = 255
         self.devices = devices
-        self._publish_mqtt = publish_mqtt
+        self.execute_command = on_command
+
         self._create_transport()
         self.requests = {}
 
@@ -21,21 +22,29 @@ class API:
             if data['command'] in commands:
                 command = commands[data['command']](
                     request_id,
-                    self._publish_mqtt,
-                    self._send_response,
-                    self._send_update,
+                    self._handle_api_command,
                 )
 
                 self.requests.update({request_id: command})
                 command.execute(data['params'])
             else:
                 self._send_response(data['requestId'], True, 'unknown command')
-
+    
     def handle_mqtt_message(self, topic, message):
         commands = list(self.requests.values())
 
         for command in commands:
             command.handle_mqtt_message(topic, message)
+
+    def _handle_api_command(self, command, data):
+        if command == 'send_response':
+            return self._send_response(data['request_id'], False, data['payload'])
+        elif command == 'send_error':
+            return self._send_response(data['request_id'], True, data['payload'])
+        elif command == 'send_update':
+            return self._send_update(data['request_id'], data['payload'])
+        else:
+            return self.execute_command(command, data)
 
     def _create_transport(self):
         if self.unit in self.devices:
