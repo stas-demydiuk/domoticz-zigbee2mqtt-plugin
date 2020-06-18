@@ -56,6 +56,12 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### ELKO
 - Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer
 
+### Essentials
+- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
+
+### Eurotronic
+- Eurotronic Spirit Zigbee wireless heater thermostat
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
@@ -191,6 +197,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Lonhonso
 - Lonhonso 2 gang switch
 
+### Meazon
+- Meazon DinRail 1-phase meter
+
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
@@ -323,8 +332,14 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
 
+# Schneider Electric
+- Schneider Electric Wiser radiator thermostat
+
 # Sinope
 - Sinope Zigbee line volt thermostat
+
+### Siterwell
+- Siterwell Radiator valve with thermostat
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight
@@ -338,6 +353,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - SmartThings Multipurpose sensor (2015, 2016, 2018 models)
 - SmartThings Outlet
 - SmartThings Outlet with power meter
+- SmartThings Smart siren
 - SmartThings Zigbee Outlet UK with power meter
 - SmartThings Zigbee smart plug with power meter
 
@@ -421,6 +437,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### iCasa
 - iCasa Zigbee 3.0 Dimmer
 - iCasa Zigbee 3.0 Switch
+- iCasa Zigbee AC dimmer
+- iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+- iCasa Zigbee 3.0 Keypad Pulse 8S
 
 ### ilux
 - ilux Dimmable A60 E27 LED Bulb
