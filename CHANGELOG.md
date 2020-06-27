@@ -8,6 +8,7 @@
 New devices:
 - iCasa Zigbee AC dimmer
 - iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+- iCasa Zigbee 3.0 Keypad Pulse 4S
 - iCasa Zigbee 3.0 Keypad Pulse 8S
 - Schneider Electric Wiser radiator thermostat
 - SmartThings Smart siren
