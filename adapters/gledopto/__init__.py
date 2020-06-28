@@ -2,6 +2,7 @@ from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
+from adapters.gledopto.GLC0082ID import GLC0082ID
 
 
 gledopto_adapters = {
@@ -15,7 +16,7 @@ gledopto_adapters = {
     'GL-C-007-2ID': RGBWAdapter,        # Gledopto Zigbee LED controller RGBW plus model (2 ID)
     'GL-C-007/GL-C-008': RGBWAdapter,   # Gledopto Zigbee LED controller RGB + CCT or RGBW
     'GL-C-008': RGBWAdapter,            # Gledopto Zigbee LED controller RGB + CCT / RGBW / WWCW / Dimmer
-    'GL-C-008-2ID': RGBWAdapter,        # Zigbee LED controller RGB + CCT (2 ID)
+    'GL-C-008-2ID': GLC0082ID,          # Zigbee LED controller RGB + CCT (2 ID)
     'GL-C-008S': RGBWAdapter,           # Gledopto Zigbee LED controller RGB + CCT plus model
     'GL-C-009': DimmableBulbAdapter,    # Gledopto Zigbee LED controller dimmer
     'GL-D-003Z': RGBWAdapter,           # Gledopto LED RGB + CCT downlight
