@@ -41,6 +41,7 @@ ikea_adapters = {
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'L1531': DimmableCtBulbAdapter,     # IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
     'T1820': DimmableCtBulbAdapter,     # IKEA LEPTITER Recessed spot light
+    'T1828': DimmableCtBulbAdapter,     # IKEA GUNNARP panel round
     'T1829': DimmableCtBulbAdapter,     # IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1524/E1810': TradfriRemoteControl,# IKEA TRADFRI remote control

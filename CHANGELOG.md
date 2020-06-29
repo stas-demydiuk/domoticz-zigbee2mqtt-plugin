@@ -10,11 +10,12 @@ New devices:
 - iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
 - iCasa Zigbee 3.0 Keypad Pulse 4S
 - iCasa Zigbee 3.0 Keypad Pulse 8S
+- IKEA GUNNARP panel round
 - Schneider Electric Wiser radiator thermostat
 - SmartThings Smart siren
 - Meazon DinRail 1-phase meter
 - Siterwell Radiator valve with thermostat
-- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
+- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04)
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
