@@ -35,6 +35,7 @@ heiman_adapters = {
     'STHM-I1H': TempHumAdapter,         # HEIMAN temperature & humidity sensor
     'SWHM-I1': WaterLeakSensorAdapter,  # HEIMAN Water leakage sensor
     'HS3CG': GasAdapter,                # HEIMAN Combustible gas sensor
+    'HS1CG-E': GasAdapter,              # HEIMAN Combustible gas sensor
     'HS1CG-M': GasAdapter,              # HEIMAN Combustible gas sensor
     'HS1CG_M': GasAdapter,              # HEIMAN Combustible gas sensor
     'SGMHM-I1': GasAdapter,             # HEIMAN Combustible gas sensor
