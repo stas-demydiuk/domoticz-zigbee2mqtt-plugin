@@ -1,70 +1,24 @@
 import Domoticz
-import json
 from adapters.base_adapter import Adapter
+from adapters.generic.mixins.rgb import RGBMixin
 from devices.color_colortemp_light import RGBWLight
 
 
-class RGBWAdapter(Adapter):
+class RGBWAdapter(Adapter, RGBMixin):
     def __init__(self, devices):
         super().__init__(devices)
 
         self.dimmer = RGBWLight(devices, 'light', 'state_brightness_color')
         self.devices.append(self.dimmer)
 
+    def convert_message(self, message):
+        message = super().convert_message(message)
+
+        if 'color_temp' in message.raw:
+            message.raw['color_temp'] = int(message.raw['color_temp'] * 255 / 500)
+
+        return message
+
     def handleCommand(self, alias, device, device_data, command, level, color):
-        cmd = command.upper()
-
-        if cmd == 'ON' or cmd == 'OFF':
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': json.dumps({
-                    "state": command
-                })
-            }
-
-        if cmd == 'SET LEVEL':
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': json.dumps({
-                    "state": "ON",
-                    "brightness": int(level*255/100)
-                })
-            }
-
-        if cmd == 'SET COLOR':
-            colorObject = json.loads(color)
-            green = colorObject['g']
-            red = colorObject['r']
-            blue = colorObject['b']
-            color_temp = colorObject['t']
-            cwww = colorObject['cw'] + colorObject['ww']
-            ttime = 1
-
-            # only use cwww to determine mode
-            if cwww == 0:
-                payload = json.dumps({
-                    "state": "ON",
-                    # Disabled the transition time for now because hue bulb/zigbee2mqtt will
-                    # publish (acknowledge) the new color value during the transition with
-                    # a value between start and end of the transition, not the actual target color
-                    #      "transition" : ttime,
-                    "brightness": int(level * 255 / 100),
-                    "color": {
-                        "r": red,
-                        "g": green,
-                        "b": blue
-                    }
-                })
-            else:
-                payload = json.dumps({
-                    "state": "ON",
-                    #     "transition" : ttime,
-                    "color_temp": int((color_temp / 255 * 346) + 154),
-                    "brightness": int(level * 255 / 100)
-                })
-
-            Domoticz.Debug('Sending to ZigBee:' + str(payload))
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': payload
-            }
+        topic = device_data['friendly_name'] + '/set'
+        return self.set_color(topic, command, level, color)

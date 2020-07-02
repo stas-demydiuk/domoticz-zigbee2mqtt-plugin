@@ -15,6 +15,7 @@ from adapters.ikea.tradfri_remote_close_open import TradfriRemoteCloseOpen
 ikea_adapters = {
     'LED1536G5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E12/E14 400 lumen, dimmable, white spectrum, opal white
     'LED1537R6': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
+    'LED1537R6/LED1739R5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
     'LED1545G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
     'LED1546G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
     'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
@@ -31,6 +32,7 @@ ikea_adapters = {
     'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 806 lumen, dimmable, warm white
     'LED1842G3': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E27 250 lumen, dimmable, clear
     'LED1903C5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
+    'LED1903C5/LED1835C6': DimmableCtBulbAdapter,   # IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
     'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
     'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
@@ -39,6 +41,7 @@ ikea_adapters = {
     'L1529': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (60x60 cm)
     'L1531': DimmableCtBulbAdapter,     # IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
     'T1820': DimmableCtBulbAdapter,     # IKEA LEPTITER Recessed spot light
+    'T1828': DimmableCtBulbAdapter,     # IKEA GUNNARP panel round
     'T1829': DimmableCtBulbAdapter,     # IKEA GUNNARP LED light panel, dimmable, white spectrum (40x40 cm)
     'E1524': TradfriRemoteControl,      # IKEA TRADFRI remote control
     'E1524/E1810': TradfriRemoteControl,# IKEA TRADFRI remote control

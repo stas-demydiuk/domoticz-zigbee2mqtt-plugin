@@ -6,7 +6,7 @@ from devices.switch.selector_switch import SelectorSwitch
 from devices.setpoint import SetPoint
 
 
-class EurotronicThermostatAdapter(AdapterWithBattery):
+class ThermostatAdapter(AdapterWithBattery):
 
     def __init__(self, devices):
         super().__init__(devices)

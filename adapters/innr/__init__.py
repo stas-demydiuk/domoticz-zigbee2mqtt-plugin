@@ -35,6 +35,7 @@ innr_adapters = {
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
     'SP 120': InnrSP120Plug,            # Innr Smart plug
+    'SP 220': OnOffSwitchAdapter,       # Innr Smart plug
     'SP 222': OnOffSwitchAdapter,       # Innr Smart plug
     'ST 110': DimmableBulbAdapter,      # Innr Strip Light
     'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light

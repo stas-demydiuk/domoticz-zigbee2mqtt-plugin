@@ -14,6 +14,10 @@ class Adapter():
         for device in self.devices:
             device.register(device_data)
 
+    def remove(self, ieee_addr):
+        for device in self.devices:
+            device.remove(ieee_addr)
+
     def get_device_by_alias(self, alias):
         for device in self.devices:
             if device.alias == alias:

@@ -74,6 +74,13 @@ class Device():
         if (device == None):
             self._create_device(device_data)
 
+    # Removes device from Domoticz
+    def remove(self, ieee_addr):
+        device = self.get_device(ieee_addr, self.alias)
+
+        if (device != None):
+            device.Delete()
+
     def get_message_value(self, message):
         if (self.value_key in message.raw):
             return message.raw[self.value_key]

@@ -2,6 +2,7 @@ from adapters.contact_adapter import ContactAdapter
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
+from adapters.generic.siren import SirenAdapter
 from adapters.samsung.sensor_arrival import SensorArrival
 from adapters.samsung.sensor_door import SmartThingsDoorSensor
 
@@ -22,4 +23,5 @@ samsung_adapters = {
     'F-APP-UK-V2': OnOffSwitchAdapter,  # SmartThings Outlet
     'GP-WOU019BBDWG': OnOffKwhAdapter,  # SmartThings Outlet with power meter
     'F-APP-UK-V2': OnOffKwhAdapter,     # SmartThings Zigbee Outlet UK with power meter
+    'SZ-SRN12N': SirenAdapter,          # SmartThings Smart siren
 }

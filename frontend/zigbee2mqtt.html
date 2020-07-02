@@ -282,6 +282,47 @@
     </div>
 </script>
 
+<script type="text/ng-template" id="app/zigbee2mqtt/deviceRemoveModal.html">
+    <form name="modalForm" ng-submit="$ctrl.removeDevice()">
+    <div class="modal-header">
+        <h3 class="modal-title">{{:: 'Device Removal' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to remove "{{:: $ctrl.device}}" device from zigbee network?</p>
+        <label class="checkbox">
+            <input type="checkbox"
+                   class="noscheck"
+                   name="removeDomoticzDevices"
+                   ng-model="$ctrl.removeDomoticzDevices"
+            > Remove corresponding Domoticz devices
+        </label>
+        <br />
+        <label class="checkbox">
+            <input type="checkbox"
+                   class="noscheck"
+                   name="forceRemove"
+                   ng-model="$ctrl.forceRemove"
+            > Force remove
+        </label>
+        <p class="help-block">
+            <em>Force remove will only remove the device from the <a href="https://www.zigbee2mqtt.io/information/mqtt_topics_and_message_structure.html#zigbee2mqttbridgeconfigremove" target="_blank">zigbee2mqtt database</a>.</em>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="submit"
+                class="btn btn-danger"
+                ng-disabled="modalForm.$invalid || $ctrl.isSaving">
+            {{:: 'Remove' | translate }}
+        </button>
+        <button type="button"
+                class="btn btn-default"
+                ng-click="$dismiss()">
+            {{:: 'Cancel' | translate }}
+        </button>
+    </div>
+    </form>
+</script>
+
 <script type="text/ng-template" id="app/zigbee2mqtt/groupCreateModal.html">
     <div class="modal-header">
         <h3 class="modal-title">{{:: 'Add new zigbee group' | translate }}</h3>

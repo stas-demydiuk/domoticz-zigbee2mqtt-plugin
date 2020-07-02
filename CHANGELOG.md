@@ -3,6 +3,20 @@
 ## master
 - Add strength and angle sensor for Xiaomi DJT11LM
 - Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW
+- Ability to remove device from zigbee network using plugin UI
+- Double click support for QBKG03LM and QBKG12LM
+
+New devices:
+- iCasa Zigbee AC dimmer
+- iCasa Zigbee 3.0 Filament Lamp 60/64/95/125 mm
+- iCasa Zigbee 3.0 Keypad Pulse 4S
+- iCasa Zigbee 3.0 Keypad Pulse 8S
+- IKEA GUNNARP panel round
+- Schneider Electric Wiser radiator thermostat
+- SmartThings Smart siren
+- Meazon DinRail 1-phase meter
+- Siterwell Radiator valve with thermostat
+- Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04)
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

@@ -51,6 +51,32 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
         templateUrl: 'app/zigbee2mqtt/devicePairModal.html',
     };
 
+    var deviceRemoveModal = {
+        templateUrl: 'app/zigbee2mqtt/deviceRemoveModal.html',
+        controllerAs: '$ctrl',
+        controller: function($scope, zigbee2mqtt, bootbox) {
+            var $ctrl = this;
+            $ctrl.device = $scope.device;
+            $ctrl.removeDomoticzDevices = true;
+            $ctrl.forceRemove = false;
+
+            $ctrl.removeDevice = function() {
+                $ctrl.isSaving = true;
+
+                zigbee2mqtt.sendRequest('device_remove', {
+                    device: $ctrl.device,
+                    force: $ctrl.forceRemove,
+                    removeDomoticzDevices: $ctrl.removeDomoticzDevices
+                }).then(function() {
+                    $scope.$close();
+                }).catch(function(error) {
+                    $ctrl.isSaving = false;
+                    bootbox.alert(error);
+                });
+            }
+        }
+    };
+
     app.component('zigbee2mqttDevices', {
         bindings: {
             zigbeeDevices: '<',
@@ -212,6 +238,20 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                 return false;
             });
 
+            table.on('click', '.js-remove-device', function() {
+                var row = table.api().row($(this).closest('tr')).data();
+                var scope = $scope.$new(true);
+                scope.device = row.friendly_name;
+                scope.removeDomoticzDevices = true;
+
+                $uibModal
+                    .open(Object.assign({ scope: scope }, deviceRemoveModal)).result
+                    .then($ctrl.onUpdate);
+
+                $scope.$apply();
+                return false;
+            })
+
             table.on('select.dt', function(event, row) {
                 $ctrl.onSelect({ device: row.data() });
                 $scope.$apply();
@@ -260,12 +300,19 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
 
         function actionsRenderer(data, type, row) {
             var actions = [];
-            var delimiter = '<img src="../../images/empty16.png" width="16" height="16" />';
+            var placeholder = '<img src="../../images/empty16.png" width="16" height="16" />';
 
             actions.push('<button class="btn btn-icon js-check-updates" title="' + $.t('Check for OTA firmware updates') + '"><img src="images/hardware.png" /></button>');
-            actions.push(delimiter)
+            actions.push(placeholder)
             actions.push('<button class="btn btn-icon js-set-state" title="' + $.t('Set State') + '"><img src="images/events.png" /></button>');
             actions.push('<button class="btn btn-icon js-rename-device" title="' + $.t('Rename Device') + '"><img src="images/rename.png" /></button>');
+
+            if (row['type'] !== 'Coordinator') {
+                actions.push('<button class="btn btn-icon js-remove-device" title="' + $.t('Remove') + '"><img src="images/delete.png" /></button>');
+            } else {
+                actions.push(placeholder)
+            }
+
             return actions.join('&nbsp;');
         }
     }

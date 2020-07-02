@@ -35,6 +35,27 @@ class RenameDevice(APICommand):
         if topic == 'bridge/log' and message['type'] == 'device_renamed':
             self.send_response(message)
 
+class RemoveDevice(APICommand):
+    def execute(self, params):
+        self.device = params['device']
+        self.remove_domoticz_devices = params['removeDomoticzDevices']
+
+        topic = 'bridge/config/' + ('remove' if params['force'] == False else 'force_remove')
+
+        self.publish_mqtt(topic, self.device)
+
+    def handle_mqtt_message(self, topic, message):
+        if topic != 'bridge/log' or message['message'] != self.device:
+            return
+
+        if message['type'] == 'device_removed' or message['type'] == 'device_force_removed':
+            if self.remove_domoticz_devices:
+                self.execute_command('remove_device', self.device)
+
+            self.send_response('Device has been succesfully deleted')
+
+        if message['type'] == 'device_removed_failed' or message['type'] == 'device_force_removed_failed':
+            self.send_error('Error during device deletion. Check your zibee network and try again.')
 
 class GetDeviceOTAUpdateStatus(APICommand):
     def execute(self, params):

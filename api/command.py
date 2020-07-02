@@ -2,20 +2,33 @@ import Domoticz
 
 
 class APICommand():
-    def __init__(self, request_id, publish_mqtt, send_response, send_update):
+    def __init__(self, request_id, on_command):
         self.request_id = request_id
-        self.publish_mqtt = publish_mqtt
-        self.execute_send_response = send_response
-        self.execute_send_update = send_update
+        self.execute_command = on_command
+
+    def publish_mqtt(self, topic, payload):
+        self.execute_command('publish_mqtt', {
+            'topic': topic,
+            'payload': payload
+        })
 
     def send_update(self, payload):
-        self.execute_send_update(self.request_id, payload)
+        self.execute_command('send_update', {
+            'request_id': self.request_id,
+            'payload': payload
+        })
 
     def send_response(self, payload):
-        self.execute_send_response(self.request_id, False, payload)
+        self.execute_command('send_response', {
+            'request_id': self.request_id,
+            'payload': payload
+        })
 
     def send_error(self, payload):
-        self.execute_send_response(self.request_id, True, payload)
+        self.execute_command('send_error', {
+            'request_id': self.request_id,
+            'payload': payload
+        })
 
     def execute(self, params):
         Domoticz.Error('Command is not implemented')

@@ -64,5 +64,6 @@ philips_adapters = {
     '929002240401': OnOffSwitchAdapter,     # Philips Hue smart plug - EU
     '929002241201': DimmableBulbAdapter,    # Philips Hue white filament Edison E27 LED
     '1741830P7': RGBWAdapter,           # Philips Hue lily outdoor spotlight
+    '9290022891': RGBWAdapter,           # Philips Hue outdoor led strip
     'LWG004': DimmableBulbAdapter,      # Philips Hue white GU10 bluetooth
 }
