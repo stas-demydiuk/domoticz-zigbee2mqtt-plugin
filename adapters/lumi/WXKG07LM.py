@@ -6,7 +6,7 @@ class WXKG07LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switchLeft = SelectorSwitch(devices, 'btn' + str, 'action', ' (Left Click)')
+        self.switchLeft = SelectorSwitch(devices, 'btn', 'action', ' (Left Click)')
         self.switchLeft.add_level("Off", None)
         self.switchLeft.add_level('Click L', 'left')
         self.switchLeft.add_level('Long click L', 'left_long')
