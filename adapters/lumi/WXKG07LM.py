@@ -25,3 +25,5 @@ class WXKG07LM(AdapterWithBattery):
 
     def handleCommand(self, alias, device, device_data, command, level, color):
         self.switchLeft.handle_command(device_data, command, level, color)
+        self.switchRight.handle_command(device_data, command, level, color)
+        self.switchBoth.handle_command(device_data, command, level, color)
