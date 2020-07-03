@@ -6,12 +6,11 @@ class WXKG07LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switchLeft = SelectorSwitch(devices, 'btn' + str(0), 'action', ' (Left Click)')
+        self.switchLeft = SelectorSwitch(devices, 'btn' + str, 'action', ' (Left Click)')
         self.switchLeft.add_level("Off", None)
         self.switchLeft.add_level('Click L', 'left')
         self.switchLeft.add_level('Long click L', 'left_long')
         self.switchLeft.add_level('Double click L', 'left_double')
-        self.switchLeft.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         # self.switchLeft.disable_value_check_on_update()
         # self.switchRight = SelectorSwitch(devices, 'btn' + str(1), 'action', ' (Right Button)')
         # self.switchRight.add_level("Off", None)
@@ -25,6 +24,7 @@ class WXKG07LM(AdapterWithBattery):
         self.switchLeft.add_level('Click B', 'both')
         self.switchLeft.add_level('Long Click B', 'both_long')
         self.switchLeft.add_level('Double Click B', 'both_double')
+        self.switchLeft.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         # self.switchBoth.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         # self.switchBoth.disable_value_check_on_update()
 
