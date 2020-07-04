@@ -259,25 +259,49 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Paulmann SmartHome Yourled RGB Controller
 
 ### Philips
+- Philips Hue Aphelion downlight
+- Philips Hue Attract
 - Philips Hue Being
+- Philips Hue Being Pendant
+- Philips Hue Beyond white and color ambiance suspension light
+- Philips Hue Calla outdoor
+- Philips Hue Calla outdoor
+- Philips Hue Centura
 - Philips Hue Cher ceiling light
+- Philips Hue Discover white and color ambiance flood light
+- Philips Hue Econic outdoor Pedestal
+- Philips Hue Ensis
+- Philips Hue Fair
 - Philips Hue Filament Standard A60/E27 bluetooth
 - Philips Hue Fillament Bulb G93
+- Philips Hue Flourish white and color ambiance pendant light
 - Philips Hue Fuzo outdoor wall light
 - Philips Hue Go
 - Philips Hue Go with Bluetooth
+- Philips Hue Impress outdoor Pedestal
+- Philips Hue Iris (Generation 2)
 - Philips Hue Lily outdoor spot light
 - Philips Hue Lux A19 bulb E27
 - Philips Hue Sana
+- Philips Hue Signe floor light
+- Philips Hue Signe table light
 - Philips Hue Struana
 - Philips Hue Welcome white flood light
 - Philips Hue dimmer switch
 - Philips Hue motion outdoor sensor
 - Philips Hue motion sensor
+- Philips Hue outdoor Impress lantern
+- Philips Hue outdoor Impress wall lamp
+- Philips Hue outdoor Impress wall lamp
+- Philips Hue smart plug - AU
 - Philips Hue smart plug - EU
 - Philips Hue smart plug bluetooth
+- Philips Hue white A19 bulb E26 bluetooth
+- Philips Hue white A19 bulb E26 with Bluetooth
+- Philips Hue white A19 bulb with Bluetooth
 - Philips Hue white A60 bulb E27
 - Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white E12 with Bluetooth
 - Philips Hue white E14
 - Philips Hue white GU10
 - Philips Hue white GU10 bluetooth
@@ -296,7 +320,11 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Philips Hue white ambiance E27 with Bluetooth
 - Philips Hue white ambiance GU10
 - Philips Hue white ambiance GU10 with Bluetooth
+- Philips Hue white ambiance Muscari pendant light
 - Philips Hue white ambiance Still
+- Philips Hue white ambiance bathroom ceiling light Adore
+- Philips Hue white ambiance bathroom mirror light Adore
+- Philips Hue white ambiance suspension Amaze
 - Philips Hue white ambiance suspension Fair
 - Philips Hue white and color ambiance BR30
 - Philips Hue white and color ambiance BR30 with bluetooth
@@ -307,7 +335,13 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Philips Hue white and color ambiance LightStrip outdoor
 - Philips Hue white and color ambiance LightStrip plus
 - Philips Hue white and color ambiance Play Lightbar
+- Philips Hue white and color ambience Argenta spot (1 spot)
+- Philips Hue white and color ambience Argenta spot (2 spots)
+- Philips Hue white and color ambience Argenta spot (3 spots)
+- Philips Hue white and color ambience Argenta spot (4 spots)
 - Philips Hue white filament Edison E27 LED
+- Philips Hue white filament Edison ST19 LED
+- Philips Hue white single filament bulb A19 E26 with Bluetooth
 - Philips LivingColors Aura
 - Philips Phoenix light
 

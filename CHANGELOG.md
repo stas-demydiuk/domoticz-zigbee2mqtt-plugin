@@ -17,6 +17,40 @@ New devices:
 - Meazon DinRail 1-phase meter
 - Siterwell Radiator valve with thermostat
 - Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04)
+- Philips Hue white ambiance suspension Amaze
+- Philips Hue Fair
+- Philips Hue Attract
+- Philips Hue Aphelion downlight
+- Philips Hue Ensis
+- Philips Hue white single filament bulb A19 E26 with Bluetooth
+- Philips Hue white E12 with Bluetooth
+- Philips Hue white A19 bulb E26 with Bluetooth
+- Philips Hue Calla outdoor
+- Philips Hue Calla outdoor
+- Philips Hue Econic outdoor Pedestal
+- Philips Hue Impress outdoor Pedestal
+- Philips Hue white A19 bulb with Bluetooth
+- Philips Hue white A19 bulb E26 bluetooth
+- Philips Hue Flourish white and color ambiance pendant light
+- Philips Hue white ambiance bathroom mirror light Adore
+- Philips Hue white ambiance bathroom ceiling light Adore
+- Philips Hue white ambiance Muscari pendant light
+- Philips Hue Being Pendant
+- Philips Hue outdoor Impress wall lamp
+- Philips Hue outdoor Impress wall lamp
+- Philips Hue outdoor Impress lantern
+- Philips Hue Iris (Generation 2)
+- Philips Hue Signe floor light
+- Philips Hue Signe table light
+- Philips Hue white and color ambience Argenta spot (1 spot)
+- Philips Hue white and color ambience Argenta spot (2 spots)
+- Philips Hue white and color ambience Argenta spot (3 spots)
+- Philips Hue white and color ambience Argenta spot (4 spots)
+- Philips Hue Centura
+- Philips Hue smart plug - AU
+- Philips Hue Discover white and color ambiance flood light
+- Philips Hue white filament Edison ST19 LED
+- Philips Hue Beyond white and color ambiance suspension light
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
