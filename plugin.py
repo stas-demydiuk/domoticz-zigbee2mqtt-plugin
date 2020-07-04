@@ -168,6 +168,11 @@ class BasePlugin:
             if message['type'] == 'ota_update':
                 Domoticz.Log(message['message'])
 
+            if message['type'] == 'zigbee_publish_error':
+                #an error occured on publish to the zigbee network
+                deviceMeta = message['meta']
+                Domoticz.Error("A Zigbee publish error occured for device '" + deviceMeta['friendly_name'] + "' with error message: " + message['message'])
+
             return
 
         if (self.devices_manager.get_device_by_name(topic) != None):
