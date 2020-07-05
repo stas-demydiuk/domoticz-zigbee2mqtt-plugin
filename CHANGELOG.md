@@ -5,6 +5,7 @@
 - Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW
 - Ability to remove device from zigbee network using plugin UI
 - Double click support for QBKG03LM and QBKG12LM
+- Update available devices after succesfull zigbee device interview
 
 New devices:
 - iCasa Zigbee AC dimmer

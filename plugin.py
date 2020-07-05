@@ -148,6 +148,10 @@ class BasePlugin:
             return
 
         if (topic == 'bridge/log'):
+            is_connected = message['type'] == 'device_connected'
+            is_removed = message['type'] == 'device_removed'
+            is_paired = message['type'] == 'pairing' and message['message'] == 'interview_successful'
+
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 
@@ -162,7 +166,7 @@ class BasePlugin:
                 Domoticz.Log('Received groups list from bridge')
                 self.groups_manager.register_groups(Devices, message['message'])
 
-            if message['type'] == 'device_connected' or message['type'] == 'device_removed':
+            if is_connected or is_removed or is_paired:
                 self.publishToMqtt('bridge/config/devices', '')
 
             if message['type'] == 'ota_update':
