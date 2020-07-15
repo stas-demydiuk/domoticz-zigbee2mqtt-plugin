@@ -52,6 +52,7 @@ New devices:
 - Philips Hue Discover white and color ambiance flood light
 - Philips Hue white filament Edison ST19 LED
 - Philips Hue Beyond white and color ambiance suspension light
+- Gledopto Smart 6W E27 RGB / CW LED bulb
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

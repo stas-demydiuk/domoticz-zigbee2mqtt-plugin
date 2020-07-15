@@ -74,8 +74,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 
 ### Gledopto
 - Gledopto LED RGB + CCT downlight
-- Gledopto Smart 12W E27 RGB / CW LED bulb
+- Gledopto Smart 4W E14 RGB / CCT LED bulb
 - Gledopto Smart 6W E27 RGB / CW LED bulb
+- Gledopto Smart 12W E27 RGB / CW LED bulb
 - Gledopto Smart RGB+CCT GU10
 - Gledopto Smart RGBW GU10
 - Gledopto Smart Wnite GU10

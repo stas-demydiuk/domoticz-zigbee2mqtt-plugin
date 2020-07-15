@@ -7,6 +7,7 @@ from adapters.gledopto.GLC0082ID import GLC0082ID
 
 gledopto_adapters = {
     'GD-CZ-006': DimmableBulbAdapter,   # Gledopto Zigbee LED Driver
+    'GL-B-001Z': RGBWAdapter,           # Gledopto Smart 4W E14 RGB / CCT LED bulb
     'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
     'GL-B-008Z': RGBWAdapter,           # Gledopto Smart 12W E27 RGB / CW LED bulb
     'GL-B-008ZS': RGBWAdapter,          # Gledopto Smart 12W E27 RGB / CW LED bulb
