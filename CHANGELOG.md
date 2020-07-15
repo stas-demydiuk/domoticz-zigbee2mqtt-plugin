@@ -53,6 +53,7 @@ New devices:
 - Philips Hue white filament Edison ST19 LED
 - Philips Hue Beyond white and color ambiance suspension light
 - Gledopto Smart 6W E27 RGB / CW LED bulb
+- TuYa 10A UK or 16A EU smart plug
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

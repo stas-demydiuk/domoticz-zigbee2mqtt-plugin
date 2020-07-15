@@ -423,6 +423,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### TuYa
 - TuYa Temperature & humidity sensor with display
 - TuYa 2 gang switch
+- TuYa 10A UK or 16A EU smart plug
 
 ### TUYATEC
 - TUYATEC PIR sensor
