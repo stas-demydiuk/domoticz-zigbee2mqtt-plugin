@@ -399,6 +399,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Swann
 - Swann Key fob remote
 - Swann Window/door sensor
+- Swann Motion and temperature sensor
 
 ### Sylvania
 - Sylvania LIGHTIFY LED RGBW A19
