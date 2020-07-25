@@ -177,6 +177,7 @@ adapter_by_model = dict({
     # Swann One
     'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
+    'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
