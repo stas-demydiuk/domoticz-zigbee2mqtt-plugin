@@ -4,7 +4,7 @@ from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch
 
 
-class gdkes02tzxd(Adapter):
+class GDKES02TZXD(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
