@@ -45,6 +45,7 @@ lumi_adapters = {
     'QBKG04LM': QBKG04LM,               # Xiaomi Aqara single key wired wall switch
     'QBKG11LM': QBKG11LM,               # Xiaomi Aqara single key wired wall switch
     'QBKG12LM': QBKG12LM,               # Xiaomi Aqara double key wired wall switch
+    'QBKG21LM': QBKG04LM,               # Xiaomi Aqara D1 single gang smart wall switch (no neutral wire)
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
