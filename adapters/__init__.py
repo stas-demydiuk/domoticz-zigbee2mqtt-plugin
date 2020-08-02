@@ -33,6 +33,7 @@ from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
 from adapters.sinope import sinope_adapters
+from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
@@ -202,6 +203,7 @@ adapter_by_model = dict({
     **samsung_adapters,
     **schneider_adapters,
     **sinope_adapters,
+    **sonoff_adapters,
     **trust_adapters,
     **tuya_adapters,
     **tuyatec_adapters,

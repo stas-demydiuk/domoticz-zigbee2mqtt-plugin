@@ -363,19 +363,26 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Sengled Element Plus Color (A19)
 - Sengled Element Touch (A19)
 
-# Shenzhen Homa
+### Shenzhen Homa
 - Shenzhen Homa Smart LED driver
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
 
-# Schneider Electric
+### Schneider Electric
 - Schneider Electric Wiser radiator thermostat
 
-# Sinope
+### Sinope
 - Sinope Zigbee line volt thermostat
 
 ### Siterwell
 - Siterwell Radiator valve with thermostat
+
+### Sonoff
+- SONOFF Zigbee smart switch
+- SONOFF Zigbee smart plug (US version)
+- SONOFF Temperature and humidity sensor
+- SONOFF Motion sensor
+- SONOFF Contact sensor
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight

@@ -56,6 +56,11 @@ New devices:
 - TuYa 10A UK or 16A EU smart plug
 - Swann Motion and temperature sensor
 - Vrey VR-X711U
+- SONOFF Zigbee smart switch
+- SONOFF Zigbee smart plug (US version)
+- SONOFF Temperature and humidity sensor
+- SONOFF Motion sensor
+- SONOFF Contact sensor
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
