@@ -62,6 +62,8 @@ New devices:
 - SONOFF Motion sensor
 - SONOFF Contact sensor
 - Xiaomi Aqara D1 single gang smart wall switch (no neutral wire)
+- Xiaomi Aqara D1 1 gang smart wall switch (with neutral wire)
+- Xiaomi Aqara D1 2 gang smart wall switch (with neutral wire)
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
