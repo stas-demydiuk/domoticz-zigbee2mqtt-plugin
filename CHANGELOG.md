@@ -64,6 +64,9 @@ New devices:
 - Xiaomi Aqara D1 single gang smart wall switch (no neutral wire)
 - Xiaomi Aqara D1 1 gang smart wall switch (with neutral wire)
 - Xiaomi Aqara D1 2 gang smart wall switch (with neutral wire)
+- eWeLink Contact sensor
+- eWeLink Temperature and humidity sensor
+- eWeLink Motion sensor
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

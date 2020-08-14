@@ -8,6 +8,7 @@ from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
+from adapters.ewelink import ewelink_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
@@ -182,8 +183,6 @@ adapter_by_model = dict({
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
-    # eWeLink
-    'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # ilux
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
@@ -191,6 +190,7 @@ adapter_by_model = dict({
 },
     **bitron_adapters,
     **cr_adapters,
+    **ewelink_adapters,
     **gledopto_adapters,
     **heiman_adapters,
     **icasa_adapters,

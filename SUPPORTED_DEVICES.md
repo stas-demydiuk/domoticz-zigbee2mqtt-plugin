@@ -62,6 +62,12 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Eurotronic
 - Eurotronic Spirit Zigbee wireless heater thermostat
 
+### eWeLink
+- eWeLink Zigbee smart plug
+- eWeLink Contact sensor
+- eWeLink Temperature and humidity sensor
+- eWeLink Motion sensor
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer
