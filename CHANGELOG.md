@@ -67,6 +67,7 @@ New devices:
 - eWeLink Contact sensor
 - eWeLink Temperature and humidity sensor
 - eWeLink Motion sensor
+- Xiaomi Aqara D1 double key wireless wall switch
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

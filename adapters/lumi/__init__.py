@@ -25,6 +25,7 @@ from adapters.lumi.WXCJKG13LM import WXCJKG13LM
 from adapters.lumi.WXKG01LM import WXKG01LM
 from adapters.lumi.WXKG02LM import WXKG02LM
 from adapters.lumi.WXKG03LM import WXKG03LM
+from adapters.lumi.WXKG07LM import WXKG07LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
@@ -59,6 +60,7 @@ lumi_adapters = {
     'WXKG01LM': WXKG01LM,               # Xiaomi MiJia wireless switch
     'WXKG02LM': WXKG02LM,               # Xiaomi Aqara double key wireless wall switch
     'WXKG03LM': WXKG03LM,               # Xiaomi Aqara single key wireless wall switch
+    'WXKG07LM': WXKG07LM,               # Xiaomi Aqara D1 double key wireless wall switch
     'WXKG11LM': WXKG11LM,               # Xiaomi Aqara wireless switch
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
