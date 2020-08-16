@@ -451,6 +451,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Xiaomi Aqara D1 single gang smart wall switch (no neutral wire)
 - Xiaomi Aqara D1 1 gang smart wall switch (with neutral wire)
 - Xiaomi Aqara D1 2 gang smart wall switch (with neutral wire)
+- Xiaomi Aqara D1 3 gang smart wall switch (no neutral wire)
 - Xiaomi Aqara D1 double key wireless wall switch
 - Xiaomi Aqara Opple 2-button switch
 - Xiaomi Aqara Opple 4-button switch
