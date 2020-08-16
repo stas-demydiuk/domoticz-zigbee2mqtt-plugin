@@ -5,11 +5,14 @@ from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from devices.text_sensor import TextSensor
 from devices.switch.on_off_switch import OnOffSwitch
 
-PTVOID = {'input1' : 'bottom_left',
-		  'input2' : 'bottom_right',
-		  'input3' : 'top_left',
-		  'input4' : 'top_right',
-          'input5' : 'center'}
+#PTVOID = {'input1' : 'bottom_left',
+#		  'input2' : 'bottom_right',
+#		  'input3' : 'top_left',
+#		  'input4' : 'top_right',
+#         'input5' : 'center'}
+
+#update to latest zigbee2MQTT 1.14.3 compatible
+PTVOID = {'input1' : 'I1', 'input2' : 'I2', 'input3' : 'I3', 'input4' : 'I4', 'input5' : 'I5'}
 
 class PtvoSwitch(Adapter):
     def __init__(self, devices):
