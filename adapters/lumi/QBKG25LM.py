@@ -15,7 +15,7 @@ class QBKG25LM(Adapter):
 
     def create_button(self, devices, name):
         action_prefix = name + '_'
-        device = SelectorSwitch(devices, 'btn_' + name[0], 'action_' + name, ' (' + name.capitalize + ' Button)')
+        device = SelectorSwitch(devices, 'btn_' + name[0], 'action_' + name, ' (' + name.capitalize() + ' Button)')
         device.add_level('Off', None)
         device.add_level('Click', action_prefix + 'single')
         device.add_level('Double', action_prefix + 'double')
@@ -28,7 +28,7 @@ class QBKG25LM(Adapter):
         return device
 
     def create_switch(self, devices, name):
-        device = OnOffSwitch(devices, 'sw_' + name[0], 'state_' + name, ' (' + name.capitalize + ' Switch)')
+        device = OnOffSwitch(devices, 'sw_' + name[0], 'state_' + name, ' (' + name.capitalize() + ' Switch)')
         return device
 
     def convert_message(self, message):
