@@ -50,13 +50,20 @@ class QBKG25LM(Adapter):
                 device.handle_command(device_data, command, level, color)
         elif alias.startswith('sw'):
             device = self.get_device_by_alias(alias)
-            device.handle_command(device_data, command, level, color)
 
-            return {
-                'topic': device_data['friendly_name'] + '/' + alias.replace('sw_', '') + '/set',
-                'payload': json.dumps({
-                    "state": command.upper()
-                })
-            }
+            if device != None:
+                device.handle_command(device_data, command, level, color)
+
+            for button in self.endpoints:
+                if alias == 'sw_' + button[0]:
+                    endpoint = button
+
+            if endpoint != None:
+                return {
+                    'topic': device_data['friendly_name'] + '/' + endpoint + '/set',
+                    'payload': json.dumps({
+                        "state": command.upper()
+                    })
+                }
         else:
             return super().handleCommand(alias, device, device_data, command, level, color)
