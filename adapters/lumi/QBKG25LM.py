@@ -1,3 +1,4 @@
+import Domoticz
 import json
 from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch
@@ -53,6 +54,10 @@ class QBKG25LM(Adapter):
 
             if device != None:
                 device.handle_command(device_data, command, level, color)
+            else:
+                Domoticz.Log('Can not find device for alias "' + alias + '"')
+
+            endpoint = None
 
             for button in self.endpoints:
                 if alias == 'sw_' + button[0]:
