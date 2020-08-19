@@ -93,6 +93,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Gledopto Zigbee LED controller RGB + CCT or RGBW
 - Gledopto Zigbee LED controller RGB + CCT plus model
 - Gledopto Zigbee LED controller RGBW plus model    
+- Gledopto Zigbee LED controller RGBW (1 ID)
 - Gledopto Zigbee LED controller WW/CW Dimmer
 - Gledopto Zigbee LED controller dimmer
 - Gledopto Zigbee ON/OFF Wall Switch
