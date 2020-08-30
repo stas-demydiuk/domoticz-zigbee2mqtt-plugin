@@ -198,6 +198,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Ksentry
 - Ksentry Electronics Zigbee OnOff Controller
 
+### Life Control
+- LifeControl Air sensor
+
 ### Ligan
 - Lingan Zigbee OnOff Controller
 

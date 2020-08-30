@@ -71,6 +71,7 @@ New devices:
 - Xiaomi Aqara D1 3 gang smart wall switch (no neutral wire)
 - Gledopto Zigbee LED controller RGBW (1 ID)
 - Immax 4-Touch single click buttons
+- LifeControl Air sensor
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

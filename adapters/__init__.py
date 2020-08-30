@@ -25,6 +25,7 @@ from adapters.ikea import ikea_adapters
 from adapters.immax import immax_adapters
 from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
+from adapters.life_control import life_control_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
@@ -197,6 +198,7 @@ adapter_by_model = dict({
     **immax_adapters,
     **innr_adapters,
     **konke_adapters,
+    **life_control_adapters,
     **lumi_adapters,
     **osram_adapters,
     **philips_adapters,
