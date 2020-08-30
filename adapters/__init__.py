@@ -22,6 +22,7 @@ from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
+from adapters.immax import immax_adapters
 from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
 from adapters.livolo.TI0001 import TI0001
@@ -100,8 +101,6 @@ adapter_by_model = dict({
     '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # ITEAD
     'BASICZBR3': OnOffSwitchAdapter,    # ITEAD SONOFF ZigBee DIY Smart Switch
-    # Immax
-    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Iris
     '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
     '3320-L': ContactAdapter,           # Iris Contact sensor
@@ -195,6 +194,7 @@ adapter_by_model = dict({
     **heiman_adapters,
     **icasa_adapters,
     **ikea_adapters,
+    **immax_adapters,
     **innr_adapters,
     **konke_adapters,
     **lumi_adapters,

@@ -153,7 +153,8 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - ITEAD SONOFF ZigBee DIY Smart Switch
 
 ### Immax
-- Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM 
+- Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
+- Immax 4-Touch single click buttons
 
 ### Innr
 - Innr Color Flex LED strip

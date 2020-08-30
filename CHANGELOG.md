@@ -70,6 +70,7 @@ New devices:
 - Xiaomi Aqara D1 double key wireless wall switch
 - Xiaomi Aqara D1 3 gang smart wall switch (no neutral wire)
 - Gledopto Zigbee LED controller RGBW (1 ID)
+- Immax 4-Touch single click buttons
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
