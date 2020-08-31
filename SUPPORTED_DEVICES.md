@@ -403,6 +403,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - SONOFF Temperature and humidity sensor
 - SONOFF Motion sensor
 - SONOFF Contact sensor
+- SONOFF Push switch
 
 ### Smart Home Pty
 - Smart Home Pty RGBW Downlight

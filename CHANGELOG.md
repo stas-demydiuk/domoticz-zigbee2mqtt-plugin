@@ -84,6 +84,7 @@ New devices:
 - Innr Outdoor flex light colour LED strip 4m, 1000lm, RGBW
 - Innr Outdoor smart spot colour, 230lm/spot, RGBW
 - Innr E14 candle with white spectrum
+- SONOFF Push switch
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
