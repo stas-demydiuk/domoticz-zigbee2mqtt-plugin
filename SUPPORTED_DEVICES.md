@@ -230,6 +230,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Nanoleaf
 - Nanoleaf Ivy smart bulb
 
+### Neo
+- Neo Temperature & humidity sensor and alarm
+
 ### Netvox
 - Netvox Power socket with power consumption monitoring
 

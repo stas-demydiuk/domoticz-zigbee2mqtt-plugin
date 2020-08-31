@@ -137,6 +137,7 @@ New devices:
 - Shenzhen Homa Wireless dimmable controller
 - Shenzhen Homa ZigBee AC phase-cut dimmer
 - Sinope Zigbee line volt thermostat
+- Neo Temperature & humidity sensor and alarm
 
 ## 0.1.0
 - Update adapter for Nue / 3A Smart in-wall switch (HGZB-01A)

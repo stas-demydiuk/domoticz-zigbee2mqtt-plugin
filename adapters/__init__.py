@@ -30,6 +30,7 @@ from adapters.life_control import life_control_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
+from adapters.neo import neo_adapters
 from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
@@ -202,6 +203,7 @@ adapter_by_model = dict({
     **konke_adapters,
     **life_control_adapters,
     **lumi_adapters,
+    **neo_adapters,
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
