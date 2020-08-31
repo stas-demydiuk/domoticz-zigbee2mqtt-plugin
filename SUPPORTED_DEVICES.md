@@ -68,6 +68,15 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - eWeLink Temperature and humidity sensor
 - eWeLink Motion sensor
 
+### Feibit
+- Feibit Combustible gas sensor
+- Feibit Door or window contact switch
+- Feibit Power plug
+- Feibit Smart carbon monoxide sensor
+- Feibit Smart temperature & humidity Sensor
+- Feibit Smoke detector
+- Feibit Water leakage sensor
+
 ### GE
 - GE Link smart LED light bulb, BR30 soft white (2700K)
 - GE ZigBee plug-in smart dimmer

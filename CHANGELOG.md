@@ -72,6 +72,13 @@ New devices:
 - Gledopto Zigbee LED controller RGBW (1 ID)
 - Immax 4-Touch single click buttons
 - LifeControl Air sensor
+- Feibit Smart carbon monoxide sensor
+- Feibit Door or window contact switch
+- Feibit Power plug
+- Feibit Combustible gas sensor
+- Feibit Smoke detector
+- Feibit Smart temperature & humidity Sensor
+- Feibit Water leakage sensor
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

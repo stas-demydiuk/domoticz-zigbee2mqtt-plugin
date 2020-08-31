@@ -9,6 +9,7 @@ from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
 from adapters.ewelink import ewelink_adapters
+from adapters.feibit import feibit_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
@@ -191,6 +192,7 @@ adapter_by_model = dict({
     **bitron_adapters,
     **cr_adapters,
     **ewelink_adapters,
+    **feibit_adapters,
     **gledopto_adapters,
     **heiman_adapters,
     **icasa_adapters,
