@@ -38,6 +38,8 @@ class DevicesManager:
                 self._register_device(domoticz_devices, device_data)
             else:
                 Domoticz.Log('Device ' + item['ieeeAddr'] + ' (' + friendly_name + ') doesn\'t have "model" attribute, skipped')
+                Domoticz.Log('This is not the plugin issue, this is issue with your zigbee network')
+                Domoticz.Log('Try to try again later or repair the device')
 
     def get_device_by_id(self, ieee_addr):
         return self.devices[ieee_addr] if ieee_addr in self.devices else None
