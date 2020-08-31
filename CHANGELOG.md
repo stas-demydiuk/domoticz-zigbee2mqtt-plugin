@@ -79,6 +79,11 @@ New devices:
 - Feibit Smoke detector
 - Feibit Smart temperature & humidity Sensor
 - Feibit Water leakage sensor
+- Innr E27 filament bulb dimmable
+- Innr Outdoor flex light colour LED strip 2m, 550lm, RGBW
+- Innr Outdoor flex light colour LED strip 4m, 1000lm, RGBW
+- Innr Outdoor smart spot colour, 230lm/spot, RGBW
+- Innr E14 candle with white spectrum
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
