@@ -118,6 +118,7 @@ adapter_by_model = dict({
     'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
+    'X711A': OnOffSwitchAdapter,        # Lonsonho 1 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
     # Müller Licht

@@ -217,6 +217,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Livolo Switch TI0001
 
 ### Lonhonso
+- Lonsonho 1 gang switch
 - Lonhonso 2 gang switch
 
 ### Meazon
