@@ -89,6 +89,7 @@ New devices:
 - Philips Hue white A67 bulb E26 with Bluetooth (1600 Lumen)
 - Philips Hue white A21 bulb B22 with Bluetooth (1600 Lumen)
 - TuYa Wireless switch with 1 button
+- TuYa Radiator valve with thermostat
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter

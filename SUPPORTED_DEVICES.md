@@ -459,6 +459,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - TuYa 2 gang switch
 - TuYa 10A UK or 16A EU smart plug
 - TuYa Wireless switch with 1 button
+- TuYa Radiator valve with thermostat
 
 ### TUYATEC
 - TUYATEC PIR sensor

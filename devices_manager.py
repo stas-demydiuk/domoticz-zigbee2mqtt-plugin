@@ -66,7 +66,7 @@ class DevicesManager:
             Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
 
     def handle_command(self, domoticz_devices, device, command, level, color):
-        device_params = device.DeviceID.split('_')
+        device_params = device.DeviceID.split('_', 1)
         device_id = device_params[0]
         alias = device_params[1]
 
