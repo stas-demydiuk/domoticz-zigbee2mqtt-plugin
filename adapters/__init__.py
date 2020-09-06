@@ -32,7 +32,6 @@ from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
 from adapters.neo import neo_adapters
-from adapters.netvox.Z809A import NetvoxZ809A
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.siterwell.GS361AH04 import GS361AH04
