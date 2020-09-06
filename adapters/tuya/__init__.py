@@ -3,6 +3,8 @@ from adapters.generic.plug import PlugAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.tuya.TS0002 import TS0002
 from adapters.tuya.TS0012 import TS0012
+from adapters.tuya.TS0041 import TS0041
+
 
 tuya_adapters = {
     'TS0121': OnOffSwitchAdapter,               # TuYa 10A UK or 16A EU smart plug
@@ -11,4 +13,5 @@ tuya_adapters = {
     'TS0201': TemperatureHumiditySensorAdapter, # TuYa Temperature & humidity sensor with display
     'TS0002': TS0002,                           # TuYa 2 gang switch
     'TS0012': TS0012,                           # Vrey VR-X711U
+    'TS0041': TS0041,                           # TuYa Wireless switch with 1 button
 }
