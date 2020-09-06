@@ -11,9 +11,9 @@ from adapters.lumi.sensor_magnet import SensorMagnet
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.DJT11LM import DJT11LM
 from adapters.lumi.smart_lock import SmartLock
-from adapters.lumi.plug import Plug
 from adapters.lumi.GZCGQ01LM import GZCGQ01LM
 from adapters.lumi.JTYJ_GD_01LM import JTYJ_GD_01LM
+from adapters.lumi.plug import XiaomiPlug
 from adapters.lumi.QBKG03LM import QBKG03LM
 from adapters.lumi.QBKG04LM import QBKG04LM
 from adapters.lumi.QBKG11LM import QBKG11LM
@@ -30,6 +30,7 @@ from adapters.lumi.WXKG07LM import WXKG07LM
 from adapters.lumi.WXKG11LM import WXKG11LM
 from adapters.lumi.WXKG12LM import WXKG12LM
 from adapters.lumi.ZNCZ02LM import ZNCZ02KM
+from adapters.lumi.ZNCZ04LM import ZNCZ04LM
 from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 
 
@@ -42,7 +43,8 @@ lumi_adapters = {
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
-    'QBCZ11LM': Plug,                   # Xiaomi Aqara socket Zigbee (on/off, power measurement)
+    'SP-EUC01': XiaomiPlug,             # Xiaomi Aqara EU smart plug
+    'QBCZ11LM': XiaomiPlug,             # Xiaomi Aqara socket Zigbee (on/off, power measurement)
     'QBKG03LM': QBKG03LM,               # Xiaomi Aqara double key wired wall switch
     'QBKG04LM': QBKG04LM,               # Xiaomi Aqara single key wired wall switch
     'QBKG11LM': QBKG11LM,               # Xiaomi Aqara single key wired wall switch
@@ -66,7 +68,9 @@ lumi_adapters = {
     'WXKG11LM': WXKG11LM,               # Xiaomi Aqara wireless switch
     'WXKG12LM': WXKG12LM,               # Xiaomi Aqara wireless switch (with gyroscope)
     'ZNCZ02LM': ZNCZ02KM,               # Xiaomi Mi power plug ZigBee
-    'ZNCZ04LM': Plug,                   # Xiaomi Mi power plug ZigBee EU
+    'ZNCZ03LM': XiaomiPlug,             # Xiaomi Mi power plug ZigBee TW
+    'ZNCZ04LM': ZNCZ04LM,               # Xiaomi Mi power plug ZigBee EU
+    'ZNCZ12LM': XiaomiPlug,             # Xiaomi Mi power plug ZigBee US
     'ZNCLDJ11LM': BlindAdapter,         # Xiaomi Aqara curtain motor
     'ZNCLDJ12LM': BlindAdapter,         # Xiaomi Aqara B1 curtain motor
     'ZNLDP12LM': DimmableCtBulbAdapter, # Xiaomi Aqara smart LED bulb

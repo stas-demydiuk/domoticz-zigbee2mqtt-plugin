@@ -13,6 +13,7 @@ from adapters.feibit import feibit_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
+from adapters.generic.plug import PlugAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
@@ -127,7 +128,7 @@ adapter_by_model = dict({
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
-    'Z809A': NetvoxZ809A,               # Netvox Power socket with power consumption monitoring
+    'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
