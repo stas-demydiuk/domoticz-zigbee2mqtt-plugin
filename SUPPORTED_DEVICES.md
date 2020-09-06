@@ -323,8 +323,10 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Philips Hue white A19 bulb E26 bluetooth
 - Philips Hue white A19 bulb E26 with Bluetooth
 - Philips Hue white A19 bulb with Bluetooth
+- Philips Hue white A21 bulb B22 with Bluetooth (1600 Lumen)
 - Philips Hue white A60 bulb E27
 - Philips Hue white A60 bulb E27 bluetooth
+- Philips Hue white A67 bulb E26 with Bluetooth (1600 Lumen)
 - Philips Hue white E12 with Bluetooth
 - Philips Hue white E14
 - Philips Hue white GU10

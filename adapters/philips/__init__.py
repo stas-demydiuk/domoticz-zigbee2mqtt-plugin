@@ -99,5 +99,7 @@ philips_adapters = {
     '929002241201': DimmableBulbAdapter,    # Philips Hue white filament Edison E27 LED
     '929002277501': DimmableBulbAdapter,    # Philips Hue white A19 bulb E26 with Bluetooth
     '9290022891': RGBWAdapter,              # Philips Hue outdoor led strip
+    '9290023349': DimmableBulbAdapter,      # Philips Hue white A67 bulb E26 with Bluetooth (1600 Lumen)
+    '929002335001': DimmableBulbAdapter,    # Philips Hue white A21 bulb B22 with Bluetooth (1600 Lumen)
     'LWG004': DimmableBulbAdapter,          # Philips Hue white GU10 bluetooth
 }
