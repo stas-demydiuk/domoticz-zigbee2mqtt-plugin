@@ -6,6 +6,7 @@
 - Ability to remove device from zigbee network using plugin UI
 - Double click support for QBKG03LM and QBKG12LM
 - Update available devices after succesfull zigbee device interview
+- Update behavior of Xiaomi WXKG01LM to support zigbee2mqtt 1.14.3 and futher versions
 
 New devices:
 - iCasa Zigbee AC dimmer
