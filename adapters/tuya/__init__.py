@@ -13,6 +13,7 @@ tuya_adapters = {
     'TS0121_switch': OnOffSwitchAdapter,        # TuYa Smart light switch module (1 gang)
     'TS0201': TemperatureHumiditySensorAdapter, # TuYa Temperature & humidity sensor with display
     'TS0002': TS0002,                           # TuYa 2 gang switch
+    'TS0011': OnOffSwitchAdapter,               # TuYa Smart light switch - 1 gang without neutral wire
     'TS0012': TS0012,                           # Vrey VR-X711U
     'TS0041': TS0041,                           # TuYa Wireless switch with 1 button
     'TS0601_thermostat': TS0601,                # TuYa Radiator valve with thermostat
