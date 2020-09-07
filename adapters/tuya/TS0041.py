@@ -10,7 +10,8 @@ class TS0041(AdapterWithBattery):
         self.switch.add_level('Off', None)
         self.switch.add_level('Click', 'single')
         self.switch.add_level('Double Click', 'double')
-        self.switch.add_level('Hold', 'double')
+        self.switch.add_level('Hold', 'hold')
+        self.switch.disable_value_check_on_update()
 
         self.devices.append(self.switch)
 
