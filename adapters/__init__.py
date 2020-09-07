@@ -48,6 +48,7 @@ from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
 from adapters.diy.zigup import ZigupAdapter
 from adapters.zemismart import zemismart_adapters
+from adapters.diy.diyruzrt import DIYRuZ_RT
 
 adapter_by_model = dict({
     # Alecto Smart Home
@@ -77,6 +78,7 @@ adapter_by_model = dict({
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
     'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
+    'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
