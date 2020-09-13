@@ -1,4 +1,5 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
+from adapters.generic.blind_adapter import BlindAdapter
 from adapters.generic.plug import PlugAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.tuya.TS0002 import TS0002
@@ -16,5 +17,6 @@ tuya_adapters = {
     'TS0011': OnOffSwitchAdapter,               # TuYa Smart light switch - 1 gang without neutral wire
     'TS0012': TS0012,                           # Vrey VR-X711U
     'TS0041': TS0041,                           # TuYa Wireless switch with 1 button
+    'TS0601_curtain': BlindAdapter,             # TuYa Curtain motor
     'TS0601_thermostat': TS0601,                # TuYa Radiator valve with thermostat
 }

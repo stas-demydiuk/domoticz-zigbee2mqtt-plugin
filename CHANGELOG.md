@@ -92,6 +92,7 @@ New devices:
 - TuYa Radiator valve with thermostat
 - Lonsonho 1 gang switch
 - TuYa Smart light switch - 1 gang without neutral wire
+- TuYa Curtain motor
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
