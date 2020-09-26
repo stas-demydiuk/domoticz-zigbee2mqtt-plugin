@@ -465,11 +465,13 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - TuYa Wireless switch with 1 button
 - TuYa Radiator valve with thermostat
 - TuYa Curtain motor
+- TuYa Smart light switch - 1 gang without neutral wire
+- TuYa Smart light switch - 2 gang without neutral wire
+- TuYa Smart light switch - 3 gang without neutral wire
 
 ### TUYATEC
 - TUYATEC PIR sensor
 - TUYATEC Temperature & humidity sensor
-- TUYATEC Smart light switch - 1 gang without neutral wire
 - TUYATEC Zigbee smart dimmer
 - TUYATEC Temperature & humidity sensor with display
 

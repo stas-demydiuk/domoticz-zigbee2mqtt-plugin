@@ -94,6 +94,7 @@ New devices:
 - TuYa Smart light switch - 1 gang without neutral wire
 - TuYa Curtain motor
 - Moes ZigBee3.0 dual USB wireless socket plug
+- TuYa Smart light switch - 3 gang without neutral wire
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
