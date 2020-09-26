@@ -17,8 +17,13 @@ class NASAB02B0(Adapter):
         volume_switch.add_level('Low', 'low')
         volume_switch.add_level('Medium', 'medium')
         volume_switch.add_level('High', 'high')
-
         self.devices.append(volume_switch)
+
+        melody_switch = SelectorSwitch(devices, 'mel', 'melody', ' (Melody)')
+        for melody in range(1, 19):
+            melody_switch.add_level(str(melody), melody)
+       
+        self.devices.append(melody_switch)       
 
     def convert_message(self, message):
         message = super().convert_message(message)
@@ -49,5 +54,17 @@ class NASAB02B0(Adapter):
                 'topic': device_data['friendly_name'] + '/set',
                 'payload': json.dumps({
                     "volume": level_value
+                })
+            }
+
+        if alias == 'mel':
+            switch = self.get_device_by_alias(alias)
+            level_index = int(level / 10)
+            level_value = switch.level_values[level_index]
+
+            return {
+                'topic': device_data['friendly_name'] + '/set',
+                'payload': json.dumps({
+                    "melody": level_value
                 })
             }
