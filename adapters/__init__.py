@@ -123,6 +123,8 @@ adapter_by_model = dict({
     'X711A': OnOffSwitchAdapter,        # Lonsonho 1 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
+    # Moes
+    'ZK-EU-2U': OnOffSwitchAdapter,     # Moes ZigBee3.0 dual USB wireless socket plug
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white

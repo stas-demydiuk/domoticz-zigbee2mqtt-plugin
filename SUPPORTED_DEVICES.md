@@ -223,6 +223,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 ### Meazon
 - Meazon DinRail 1-phase meter
 
+### Moes
+- Moes ZigBee3.0 dual USB wireless socket plug
+
 ### Müller Licht
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
 - Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
