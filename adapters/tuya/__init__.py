@@ -21,4 +21,5 @@ tuya_adapters = {
     'TS0041': TS0041,                           # TuYa Wireless switch with 1 button
     'TS0601_curtain': BlindAdapter,             # TuYa Curtain motor
     'TS0601_thermostat': TS0601,                # TuYa Radiator valve with thermostat
+    'mcdj3aq': BlindAdapter,                    # TuYa Tubular motor
 }
