@@ -5,7 +5,7 @@ class WXKG07LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'switch', 'state')
+        self.switch = SelectorSwitch(devices, 'switch', 'action')
         self.switch.add_level('Off', None)
         self.switch.add_level('Left Click', 'left')
         self.switch.add_level('Left Double Click', 'left_double')
