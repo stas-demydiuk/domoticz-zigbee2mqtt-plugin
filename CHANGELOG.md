@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 0.2.1
 - Add strength and angle sensor for Xiaomi DJT11LM
 - Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW
 - Ability to remove device from zigbee network using plugin UI
