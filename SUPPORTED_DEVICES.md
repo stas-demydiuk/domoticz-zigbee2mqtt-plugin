@@ -462,6 +462,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - TuYa Temperature & humidity sensor with display
 - TuYa 2 gang switch
 - TuYa 10A UK or 16A EU smart plug
+- TuYa Multiprise with 4 AC outlets and 2 USB super charging ports (10A or 16A)
 - TuYa Wireless switch with 1 button
 - TuYa Radiator valve with thermostat
 - TuYa Curtain motor

@@ -95,6 +95,7 @@ New devices:
 - TuYa Curtain motor
 - Moes ZigBee3.0 dual USB wireless socket plug
 - TuYa Smart light switch - 3 gang without neutral wire
+- TuYa Multiprise with 4 AC outlets and 2 USB super charging ports (10A or 16A)
 
 ## 0.2.0
 - Support for "stop" command for blinds adapter
