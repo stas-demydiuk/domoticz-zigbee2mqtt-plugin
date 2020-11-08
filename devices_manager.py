@@ -29,7 +29,7 @@ class DevicesManager:
                 adapter.zigbee_device = item
                 adapter.register()
 
-                self.devices[device_id]
+                self.devices[device_id] = adapter
             else:
                 self.devices[device_id] = UniversalAdapter(item)
 
