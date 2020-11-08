@@ -5,7 +5,9 @@ from devices.custom_sensor import CustomSensor
 class Adapter():
     def __init__(self, domoticz_devices):
         self.devices = []
-        self.devices.append(CustomSensor(domoticz_devices, 'signal', 'linkquality', ' (Link Quality)'))
+
+        if domoticz.get_plugin_config('trackLinkQuality'):
+            self.devices.append(CustomSensor(domoticz_devices, 'signal', 'linkquality', ' (Link Quality)'))
 
     def convert_message(self, message):
         return message
@@ -42,6 +44,10 @@ class Adapter():
         return None
 
     def update_link_quality(self, device_data, message):
+        config = domoticz.get_plugin_config()
+        if config["trackLinkQuality"] == False:
+            return None
+
         if 'linkquality' in message.raw:
             device = self.get_device_by_alias('signal')
             device.handle_message(device_data, message)

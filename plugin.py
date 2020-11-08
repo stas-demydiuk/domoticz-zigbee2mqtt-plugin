@@ -13,6 +13,18 @@
         <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
         <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
+        <param field="Mode4" label="Track Link Quality" width="300px">
+            <options>
+                <option label="Yes" value="Yes" default="true"/>
+                <option label="No" value="No" />
+            </options>
+        </param>
+        <param field="Mode5" label="Use Battery Devices" width="300px">
+            <options>
+                <option label="Yes" value="Yes" default="true"/>
+                <option label="No" value="No" />
+            </options>
+        </param>
         <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="Verbose" value="Verbose"/>

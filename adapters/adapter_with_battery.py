@@ -1,3 +1,4 @@
+import domoticz
 from adapters.base_adapter import Adapter
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.percentage import PercentageSensor
@@ -6,10 +7,15 @@ from devices.sensor.percentage import PercentageSensor
 class AdapterWithBattery(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(VoltageSensor(devices, 'cell', 'battery_voltage', ' (Battery Voltage)'))
-        self.devices.append(PercentageSensor(devices, 'btperc', 'battery', ' (Battery)'))
+
+        if domoticz.get_plugin_config('useBatteryDevices'):
+            self.devices.append(VoltageSensor(devices, 'cell', 'battery_voltage', ' (Battery Voltage)'))
+            self.devices.append(PercentageSensor(devices, 'btperc', 'battery', ' (Battery)'))
 
     def update_battery_status(self, device_data, message):
+        if domoticz.get_plugin_config('useBatteryDevices') == False:
+            return
+
         if 'battery_voltage' in message.raw:
             device = self.get_device_by_alias('cell')
             device.handle_message(device_data, message)

@@ -101,7 +101,8 @@ class UniversalAdapter(Adapter):
             return
 
         if (feature['name'] == 'battery' and feature['access'] == 'r'):
-            self._add_device('btperc', feature, PercentageSensor, ' (Battery)')
+            if domoticz.get_plugin_config('useBatteryDevices'):
+                self._add_device('btperc', feature, PercentageSensor, ' (Battery)')
             return
 
         if (feature['name'] == 'humidity' and feature['access'] == 'r'):
