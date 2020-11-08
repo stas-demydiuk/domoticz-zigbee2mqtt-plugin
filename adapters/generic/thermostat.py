@@ -22,8 +22,8 @@ class ThermostatAdapter(AdapterWithBattery):
         self.devices.append(SetPoint(devices, 'spoint', 'current_heating_setpoint',' (Setpoint)'))
         self.devices.append(mode_switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        topic = device_data['friendly_name'] + '/set'
+    def handle_command(self, alias, device, command, level, color):
+        topic = self.name + '/set'
 
         if alias == 'spoint' and command == 'Set Level':
             msg = json.dumps({ 'current_heating_setpoint': level })

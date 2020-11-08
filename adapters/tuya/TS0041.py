@@ -15,5 +15,6 @@ class TS0041(AdapterWithBattery):
 
         self.devices.append(self.switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        self.get_device_by_alias(alias).handle_command(device_data, command, level, color)
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+        return self.get_device_by_alias(alias).handle_command(device_data, command, level, color)

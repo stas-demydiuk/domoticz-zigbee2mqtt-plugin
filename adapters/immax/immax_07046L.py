@@ -14,7 +14,8 @@ class Immax07046L(Adapter):
         switch.add_level('Panic', 'panic')
         self.devices.append(switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         device = self.get_device_by_alias(alias)
 
         if device != None:

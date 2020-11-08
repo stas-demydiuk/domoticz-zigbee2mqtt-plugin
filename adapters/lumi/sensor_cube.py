@@ -31,5 +31,6 @@ class SensorCube(AdapterWithBattery):
         return message
 
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         self.switch.handle_command(device_data, command, level, color)

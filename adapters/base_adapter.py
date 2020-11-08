@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.custom_sensor import CustomSensor
 
 
@@ -10,9 +10,25 @@ class Adapter():
     def convert_message(self, message):
         return message
 
-    def register(self, device_data):
+    def _get_legacy_device_data(self):
+        if 'type' not in self.zigbee_device:
+            domoticz.error(self.name + ': device does not contain type')
+            return
+
+        if 'model' not in self.zigbee_device['definition']:
+            domoticz.error(self.name + ': device definiton does not contain model')
+            return
+
+        return {
+            'type': self.zigbee_device['type'],
+            'model': self.zigbee_device['definition']['model'],
+            'ieee_addr': self.zigbee_device['ieee_address'],
+            'friendly_name': self.name
+        }
+
+    def register(self):
         for device in self.devices:
-            device.register(device_data)
+            device.register(self._get_legacy_device_data())
 
     def remove(self, ieee_addr):
         for device in self.devices:
@@ -30,11 +46,16 @@ class Adapter():
             device = self.get_device_by_alias('signal')
             device.handle_message(device_data, message)
 
-    def handleMqttMessage(self, device_data, message):
+    def handle_mqtt_message(self, message):
         converted_message = self.convert_message(message)
+        device_data = self._get_legacy_device_data()
+
+        if (device_data == None):
+            domoticz.debug(self.name + ': not enough details to handle MQTT message from device')
+            return
 
         for device in self.devices:
             device.handle_message(device_data, converted_message)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        Domoticz.Debug('Update command has not been implemented for device "' + device.Name + '"')
+    def handle_command(self, alias, device, command, level, color):
+        domoticz.debug('Update command has not been implemented for device "' + device.Name + '"')

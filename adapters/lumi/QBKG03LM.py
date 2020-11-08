@@ -29,7 +29,9 @@ class QBKG03LM(Adapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+        
         if alias == 'left' or alias == 'right':
             return {
                 'topic': '/'.join([device_data['friendly_name'], alias, 'set']),

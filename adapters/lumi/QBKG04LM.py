@@ -23,9 +23,11 @@ class QBKG04LM(OnOffSwitchAdapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_commands(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+
         if alias == 'switch':
-            return super().handleCommand(alias, device, device_data, command, level, color)
+            return super().handle_command(alias, device, command, level, color)
         else:
             device = self.get_device_by_alias(alias)
 

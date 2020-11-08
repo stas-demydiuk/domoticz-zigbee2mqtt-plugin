@@ -43,7 +43,9 @@ class QBKG25LM(Adapter):
         return message
 
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+
         if alias.startswith('btn'):
             device = self.get_device_by_alias(alias)
 
@@ -71,4 +73,4 @@ class QBKG25LM(Adapter):
                     })
                 }
         else:
-            return super().handleCommand(alias, device, device_data, command, level, color)
+            return super().handle_command(alias, device, command, level, color)

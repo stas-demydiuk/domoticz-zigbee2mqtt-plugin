@@ -8,7 +8,8 @@ class BlindAdapter(Adapter):
         super().__init__(devices)
         self.devices.append(BlindSwitch(devices, 'dimmer', 'position'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         cmd = command.upper()
 
         if cmd == 'OFF':

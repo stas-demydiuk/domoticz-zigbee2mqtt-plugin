@@ -20,11 +20,11 @@ class GLC0082ID(Adapter, RGBMixin, CCTMixin):
 
         return message
         
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
         if alias == 'rgb':
-            topic = device_data['friendly_name'] + '/rgb/set'
+            topic = self.name + '/rgb/set'
             return self.set_color(topic, command, level, color)
 
         if alias == 'cct':
-            topic = device_data['friendly_name'] + '/cct/set'
+            topic = self.name + '/cct/set'
             return self.set_cct(topic, command, level, color)
