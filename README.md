@@ -3,6 +3,10 @@ Python plugin for Domoticz to add integration with [zigbee2mqtt](https://github.
 
 ![image](https://user-images.githubusercontent.com/2734836/79760084-363b2e00-8328-11ea-994f-32b7b58ea6be.png)
 
+## IMPORTANT!!
+
+If you device is not supported by this version of plugin consider switching to the [next version (v3.0)](https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/tree/v3.0)
+
 ## Prerequisites
 
 - Setup and run zigbee2mqtt server (https://www.zigbee2mqtt.io).
