@@ -155,6 +155,10 @@ class UniversalAdapter(Adapter):
         feature = device.feature
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
+        # Optimistic update
+        device_data = self._get_legacy_device_data()
+        device.handle_command(device_data, command, level, color)
+
         if (feature['type'] == 'binary' and write_access):
             topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
             value = feature['value_on'] if command.upper() == 'ON' else feature['value_off']
@@ -165,6 +169,5 @@ class UniversalAdapter(Adapter):
                     "state": value
                 })
             }
-
 
         return None
