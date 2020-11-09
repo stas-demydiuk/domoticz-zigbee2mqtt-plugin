@@ -15,6 +15,10 @@ from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
 
+ACCESS_STATE = 0
+ACCESS_WRITE = 1
+ACCESS_READ = 2
+
 class UniversalAdapter(Adapter):
     def __init__(self, zigbee_device):
         self.devices = []
@@ -46,9 +50,8 @@ class UniversalAdapter(Adapter):
                 self._add_devices(item['features'])
                 continue
 
-            domoticz.error(self.name + ': can not process feature item "' + item['name'] + '"')
+            domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
-
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         device = device_type(domoticz.get_devices(), alias, feature['property'], device_name_suffix)
@@ -70,24 +73,31 @@ class UniversalAdapter(Adapter):
 
         self.devices.append(device)
 
+    def _has_access(self, access, access_type):
+        mask = 1 << access_type
+        return bool(access & mask)
+
     def add_binary_device(self, feature):
-        if (feature['name'] == 'contact' and feature['access'] == 'r'):
+        state_access = self._has_access(feature['access'], ACCESS_STATE)
+        write_access = self._has_access(feature['access'], ACCESS_WRITE)
+
+        if (feature['name'] == 'contact' and state_access):
             self._add_device('sensor', feature, ContactSensor)
             return
 
-        if (feature['name'] == 'occupancy' and feature['access'] == 'r'):
+        if (feature['name'] == 'occupancy' and state_access):
             self._add_device('motion', feature, MotionSensor)
             return
 
-        if (feature['name'] == 'water_leak' and feature['access'] == 'r'):
+        if (feature['name'] == 'water_leak' and state_access):
             self._add_device('wleak', feature, WaterLeakSensor)
             return
 
-        if (feature['name'] == 'tamper' and feature['access'] == 'r'):
+        if (feature['name'] == 'tamper' and state_access):
             self._add_device('tamper', feature, ContactSensor)
             return
 
-        if (feature['name'] == 'state' and feature['access'] == 'rw'):
+        if (feature['name'] == 'state' and state_access and write_access):
             alias = feature['endpoint'] if 'endpoint' in feature else 'state'
             self._add_device(alias, feature, OnOffSwitch)
             return
@@ -96,36 +106,38 @@ class UniversalAdapter(Adapter):
         domoticz.debug(json.dumps(feature))
 
     def add_numeric_device(self, feature):
-        if (feature['name'] == 'linkquality' and feature['access'] == 'r'):
+        state_access = self._has_access(feature['access'], ACCESS_STATE)
+
+        if (feature['name'] == 'linkquality' and state_access):
             # self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
             return
 
-        if (feature['name'] == 'battery' and feature['access'] == 'r'):
+        if (feature['name'] == 'battery' and state_access):
             if domoticz.get_plugin_config('useBatteryDevices'):
                 self._add_device('btperc', feature, PercentageSensor, ' (Battery)')
             return
 
-        if (feature['name'] == 'humidity' and feature['access'] == 'r'):
+        if (feature['name'] == 'humidity' and state_access):
             self._add_device('hum', feature, HumiditySensor, ' (Humidity)')
             return
 
-        if (feature['name'] == 'temperature' and feature['access'] == 'r'):
+        if (feature['name'] == 'temperature' and state_access):
             self._add_device('temp', feature, TemperatureSensor, ' (Temperature)')
             return
 
-        if (feature['name'] == 'pressure' and feature['access'] == 'r'):
+        if (feature['name'] == 'pressure' and state_access):
             self._add_device('pres', feature, PressureSensor, ' (Pressure)')
             return
 
-        if (feature['name'] == 'voltage' and feature['access'] == 'r'):
+        if (feature['name'] == 'voltage' and state_access):
             self._add_device('volt', feature, VoltageSensor, ' (Voltage)')
             return
 
-        if (feature['name'] == 'current' and feature['access'] == 'r'):
+        if (feature['name'] == 'current' and state_access):
             self._add_device('ampere', feature, CurrentSensor, ' (Current)')
             return
 
-        if (feature['name'] == 'power' and feature['access'] == 'r' and feature['unit'] == 'W'):
+        if (feature['name'] == 'power' and state_access and feature['unit'] == 'W'):
             device = KwhSensor(domoticz.get_devices(), 'power', [feature['property']], ' (Power)')
             device.feature = feature
             self.devices.append(device)
@@ -141,8 +153,9 @@ class UniversalAdapter(Adapter):
             return
 
         feature = device.feature
+        write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
-        if (feature['type'] == 'binary' and feature['access'] == 'rw'):
+        if (feature['type'] == 'binary' and write_access):
             topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
             value = feature['value_on'] if command.upper() == 'ON' else feature['value_off']
                 
