@@ -2,7 +2,6 @@ from adapters.base_adapter import Adapter
 from adapters.contact_adapter import ContactAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
@@ -58,8 +57,6 @@ adapter_by_model = dict({
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Airam
     '4713407': DimmableBulbAdapter,     # Airam LED OP A60 ZB 9W/827 E27
-    # Anchor
-    '67200BL': OnOffSwitchAdapter,      # Anchor Vetaar smart plug
     # Belkin
     'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bosch
@@ -67,15 +64,12 @@ adapter_by_model = dict({
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
     # Calex
     '421786': DimmableBulbAdapter,      # Calex LED A60 Zigbee GLS-lamp
-    # Climax
-    'PSS-23ZBS': OnOffSwitchAdapter,    # Climax Power plug
     # Commercial Electric
     '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
     # Connex
     'ZG9101SAC-HP': DimmableBulbAdapter,# CONNEX Zigbee Phasendimmer 230V bis 400W
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
-    'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
     'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
     'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
@@ -95,8 +89,6 @@ adapter_by_model = dict({
     # GE
     '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
     '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
-    '45853GE': OnOffSwitchAdapter,      # GE ZigBee plug-in smart switch
-    '45856GE': OnOffSwitchAdapter,      # GE ZigBee in-wall smart switch
     '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Gira
     '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
@@ -104,31 +96,20 @@ adapter_by_model = dict({
     'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
     'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
     '1613V': OnOffKwhAdapter,                   # Hive Active plug
-    # ITEAD
-    'BASICZBR3': OnOffSwitchAdapter,    # ITEAD SONOFF ZigBee DIY Smart Switch
     # Iris
-    '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
     '3320-L': ContactAdapter,           # Iris Contact sensor
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # JIAWEN
     'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
-    # Ksentry
-    'KS-SM001': OnOffSwitchAdapter,     # Ksentry Electronics Zigbee OnOff Controller
-    # Lingan
-    'DZ4743-00B': OnOffSwitchAdapter,   # Lingan Zigbee OnOff Controller
     # Livolo
     'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
-    'X711A': OnOffSwitchAdapter,        # Lonsonho 1 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
-    # Moes
-    'ZK-EU-2U': OnOffSwitchAdapter,     # Moes ZigBee3.0 dual USB wireless socket plug
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
-    '404021': OnOffSwitchAdapter,                   # Müller Licht Tint smart switch
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
@@ -136,8 +117,6 @@ adapter_by_model = dict({
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
-    'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
-    'HGZB-01A': OnOffSwitchAdapter,     # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
     # Oujiabao
     'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
@@ -148,7 +127,6 @@ adapter_by_model = dict({
     '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # ROBB
-    'ROB_200-003-0': OnOffSwitchAdapter,    # ROBB Zigbee AC in wall switch
     'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
     'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
     # Salus
@@ -169,12 +147,10 @@ adapter_by_model = dict({
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Smart Home Pty
     'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
-    'HGZB-20-DE': OnOffSwitchAdapter,   # Smart Home Pty Power plug
     # Stelpro
     'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
     # Sylvania
     '71831': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white A19 LED bulb
-    '72922-A': OnOffSwitchAdapter,      # Sylvania SMART+ Smart Plug
     '73693': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW A19
     '73739': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW BR30
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30

@@ -1,4 +1,3 @@
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.generic.blind_adapter import BlindAdapter
 from adapters.generic.plug import PlugAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
@@ -11,12 +10,9 @@ from adapters.tuya.TS0601 import TS0601
 
 
 tuya_adapters = {
-    'TS0121': OnOffSwitchAdapter,               # TuYa 10A UK or 16A EU smart plug
     'TS0121_plug': PlugAdapter,                 # TuYa 10A UK or 16A EU smart plug
-    'TS0121_switch': OnOffSwitchAdapter,        # TuYa Smart light switch module (1 gang)
     'TS0201': TemperatureHumiditySensorAdapter, # TuYa Temperature & humidity sensor with display
     'TS0002': TS0002,                           # TuYa 2 gang switch
-    'TS0011': OnOffSwitchAdapter,               # TuYa Smart light switch - 1 gang without neutral wire
     'TS0012': TS0012,                           # TuYa Smart light switch - 2 gang without neutral wire
     'TS0013': TS0013,                           # TuYa Smart light switch - 3 gang without neutral wire
     'TS0015': TS0015,                           # TuYa Multiprise with 4 AC outlets and 2 USB super charging ports (10A or 16A)
