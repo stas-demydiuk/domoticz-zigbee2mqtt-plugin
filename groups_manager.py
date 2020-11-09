@@ -21,7 +21,9 @@ class GroupsManager:
 
             device_data = {
                 'type': 'Group',
-                'model': 'Group',
+                'definition': {
+                    'model': 'Group',
+                },
                 'ieee_addr': group_id,
                 'friendly_name': group_name
             }
@@ -29,7 +31,9 @@ class GroupsManager:
             Domoticz.Log('Group ' + group_name)
 
             adapter = self._get_adapter(domoticz_devices, group_name)
-            adapter.register(device_data)
+            adapter.name = group_name
+            adapter.zigbee_device = device_data
+            adapter.register()
 
             self.groups[group_id] = {
                 'friendly_name': group_name,
