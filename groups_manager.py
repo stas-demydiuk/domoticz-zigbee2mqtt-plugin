@@ -24,7 +24,7 @@ class GroupsManager:
                 'definition': {
                     'model': 'Group',
                 },
-                'ieee_addr': group_id,
+                'ieee_address': group_id,
                 'friendly_name': group_name
             }
 
