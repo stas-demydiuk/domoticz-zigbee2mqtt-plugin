@@ -83,7 +83,7 @@ class GroupsManager:
             'friendly_name': group_name
         }
 
-        adapter.handleMqttMessage(device_data, zigbee_message)
+        adapter.handle_mqtt_message(device_data, zigbee_message)
 
     def handle_command(self, device, command, level, color):
         group = self.get_group_by_deviceid(device.DeviceID)
@@ -100,7 +100,7 @@ class GroupsManager:
             'friendly_name': group['friendly_name']
         }
 
-        return adapter.handleCommand(alias, device, device_data, command, level, color)
+        return adapter.handle_command(alias, device, device_data, command, level, color)
 
     def _get_group_address_by_name(self, friendly_name):
         # Only first 12 characters of group name (to match ieee address length) due to Domoticz Length limitation
