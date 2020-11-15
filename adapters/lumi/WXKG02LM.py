@@ -11,6 +11,9 @@ class WXKG02LM(AdapterWithBattery):
         self.switch.add_level('Switch 1', 'left')
         self.switch.add_level('Switch 2', 'right')
         self.switch.add_level('Both_Click', 'both')
+        self.switch.add_level('Switch 1 Double', 'left_double')
+        self.switch.add_level('Switch 2 Double', 'right_double')
+        self.switch.add_level('Both_Click Double', 'both_double')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         self.switch.disable_value_check_on_update()
 
