@@ -11,6 +11,7 @@ from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.sensor.kwh import KwhSensor
+from devices.setpoint import SetPoint
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
@@ -39,7 +40,7 @@ class UniversalAdapter(Adapter):
                 continue
 
             if item['type'] == 'enum':
-                self._add_selector_device(item['name'], item)
+                self._add_selector_device(item['name'][0: 5], item)
                 continue
 
             if item['type'] == 'numeric':
@@ -50,17 +51,27 @@ class UniversalAdapter(Adapter):
                 self._add_devices(item['features'])
                 continue
 
+            if item['type'] == 'lock':
+                self._add_devices(item['features'])
+                continue
+
+            if item['type'] == 'climate':
+                self._add_devices(item['features'])
+                continue
+
             domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
-        device = device_type(domoticz.get_devices(), alias, feature['property'], device_name_suffix)
+        suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
+        device = device_type(domoticz.get_devices(), alias, feature['property'], suffix)
         device.feature = feature
 
         self.devices.append(device)
 
     def _add_selector_device(self, alias, feature, device_name_suffix = ''):
-        device = SelectorSwitch(domoticz.get_devices(), alias, feature['property'], device_name_suffix)
+        suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
+        device = SelectorSwitch(domoticz.get_devices(), alias, feature['property'], suffix)
         device.disable_value_check_on_update()
         device.add_level('Off', None)
         for value in feature['values']:
@@ -107,6 +118,7 @@ class UniversalAdapter(Adapter):
 
     def add_numeric_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
+        write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
         if (feature['name'] == 'linkquality' and state_access):
             # self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
@@ -143,6 +155,11 @@ class UniversalAdapter(Adapter):
             self.devices.append(device)
             return
 
+        if feature['name'] == 'current_heating_setpoint' and feature['unit'] == '°C' and write_access:
+            self._add_device('spoint', feature, SetPoint, ' (Setpoint)')
+            return
+
+
         domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
@@ -168,6 +185,25 @@ class UniversalAdapter(Adapter):
                 'payload': json.dumps({
                     "state": value
                 })
+            }
+
+        if feature['type'] == 'numeric' and feature['name'] == 'current_heating_setpoint' and feature['unit'] == '°C' and write_access and command == 'Set Level':
+            topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
+            msg = json.dumps({ feature['property']: level })
+
+            return {
+                'topic': topic,
+                'payload': msg
+            }
+
+        if feature['type'] == 'enum' and write_access:
+            topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
+            level_index = int(level / 10)
+            msg = json.dumps({ feature['property']: device.level_values[level_index] })
+
+            return {
+                'topic': topic,
+                'payload': msg
             }
 
         return None
