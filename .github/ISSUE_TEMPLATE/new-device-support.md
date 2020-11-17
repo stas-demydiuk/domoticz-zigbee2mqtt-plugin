@@ -10,6 +10,9 @@ assignees: ''
 **Device description**
 Put general device information here
 
+**Zigbee2mqtt page**
+Insert the device page link on zigbee2mqtt.io i.e. https://www.zigbee2mqtt.io/devices/MCLH-08.html
+
 **MQTT message with device information**
 PUT here the device data you receive when publish message with topic
 `zigbee2mqtt/bridge/config/devices`, as example

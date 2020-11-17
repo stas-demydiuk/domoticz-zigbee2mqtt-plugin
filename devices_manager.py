@@ -38,6 +38,8 @@ class DevicesManager:
                 self._register_device(domoticz_devices, device_data)
             else:
                 Domoticz.Log('Device ' + item['ieeeAddr'] + ' (' + friendly_name + ') doesn\'t have "model" attribute, skipped')
+                Domoticz.Log('This is not the plugin issue, this is issue with your zigbee network')
+                Domoticz.Log('Try to try again later or repair the device')
 
     def get_device_by_id(self, ieee_addr):
         return self.devices[ieee_addr] if ieee_addr in self.devices else None
@@ -64,7 +66,7 @@ class DevicesManager:
             Domoticz.Log('If you would like plugin to support this device, please create ticket by this link: https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/new?labels=new+device&template=new-device-support.md')
 
     def handle_command(self, domoticz_devices, device, command, level, color):
-        device_params = device.DeviceID.split('_')
+        device_params = device.DeviceID.split('_', 1)
         device_id = device_params[0]
         alias = device_params[1]
 

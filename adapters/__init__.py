@@ -8,9 +8,12 @@ from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
+from adapters.ewelink import ewelink_adapters
+from adapters.feibit import feibit_adapters
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
+from adapters.generic.plug import PlugAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
@@ -21,18 +24,21 @@ from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
+from adapters.immax import immax_adapters
 from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
+from adapters.life_control import life_control_adapters
 from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
-from adapters.netvox.Z809A import NetvoxZ809A
+from adapters.neo import neo_adapters
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
 from adapters.sinope import sinope_adapters
+from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
 from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
@@ -42,6 +48,7 @@ from adapters.tuyatec import tuyatec_adapters
 from adapters.diy.ptvo_switch import PtvoSwitch
 from adapters.diy.zigup import ZigupAdapter
 from adapters.zemismart import zemismart_adapters
+from adapters.diy.diyruzrt import DIYRuZ_RT
 
 adapter_by_model = dict({
     # Alecto Smart Home
@@ -71,6 +78,7 @@ adapter_by_model = dict({
     'DNCKATSW001': OnOffSwitchAdapter,  # Custom devices (DiY) DNCKAT single key wired wall light switch
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
     'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
+    'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
@@ -98,8 +106,6 @@ adapter_by_model = dict({
     '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # ITEAD
     'BASICZBR3': OnOffSwitchAdapter,    # ITEAD SONOFF ZigBee DIY Smart Switch
-    # Immax
-    'IM-Z3.0-DIM': DimmableBulbAdapter, # Immax LED E14/230V C35 5W TB 440LM ZIGBEE DIM
     # Iris
     '3210-L': OnOffSwitchAdapter,       # Iris Smart plug
     '3320-L': ContactAdapter,           # Iris Contact sensor
@@ -114,8 +120,11 @@ adapter_by_model = dict({
     'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
+    'X711A': OnOffSwitchAdapter,        # Lonsonho 1 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
+    # Moes
+    'ZK-EU-2U': OnOffSwitchAdapter,     # Moes ZigBee3.0 dual USB wireless socket plug
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
@@ -123,7 +132,7 @@ adapter_by_model = dict({
     # Nanoleaf
     'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
-    'Z809A': NetvoxZ809A,               # Netvox Power socket with power consumption monitoring
+    'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
@@ -177,11 +186,10 @@ adapter_by_model = dict({
     # Swann One
     'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
+    'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
-    # eWeLink
-    'SA-003-Zigbee': OnOffSwitchAdapter,# eWeLink Zigbee smart plug
     # ilux
     '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
@@ -189,18 +197,24 @@ adapter_by_model = dict({
 },
     **bitron_adapters,
     **cr_adapters,
+    **ewelink_adapters,
+    **feibit_adapters,
     **gledopto_adapters,
     **heiman_adapters,
     **icasa_adapters,
     **ikea_adapters,
+    **immax_adapters,
     **innr_adapters,
     **konke_adapters,
+    **life_control_adapters,
     **lumi_adapters,
+    **neo_adapters,
     **osram_adapters,
     **philips_adapters,
     **samsung_adapters,
     **schneider_adapters,
     **sinope_adapters,
+    **sonoff_adapters,
     **trust_adapters,
     **tuya_adapters,
     **tuyatec_adapters,

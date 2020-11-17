@@ -1,6 +1,6 @@
 <div id="plugin-view"></div>
 
-<link rel="stylesheet" href="/templates/zigbee2mqtt/leaflet.css"/>
+<link rel="stylesheet" href="/templates/zigbee2mqtt/leaflet.css">
 
 <style>
     .leaflet-container {
@@ -40,7 +40,7 @@
                     <input type="checkbox"
                            class="noscheck"
                            ng-model="$ctrl.controllerInfo.permit_join"
-                           ng-change="$ctrl.togglePermitJoin()"/>
+                           ng-change="$ctrl.togglePermitJoin()">
                     Allow new zigbee devices to join
                 </label>
             </div>
@@ -61,19 +61,18 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="zigbee-devices">
-                <page-loading-indicator ng-hide="$ctrl.zigbeeDevices"/>
+                <page-loading-indicator ng-hide="$ctrl.zigbeeDevices"></page-loading-indicator>
 
                 <zigbee2mqtt-devices
                         ng-if="$ctrl.zigbeeDevices"
                         zigbee-devices="$ctrl.zigbeeDevices"
                         domoticz-devices="$ctrl.devices"
                         on-update="$ctrl.fetchZigbeeDevices()"
-                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"
-                />
+                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"></zigbee2mqtt-devices>
             </div>
 
             <div class="tab-pane" id="zigbee-groups">
-                <page-loading-indicator ng-show="!$ctrl.zigbeeGroups"/>
+                <page-loading-indicator ng-show="!$ctrl.zigbeeGroups"></page-loading-indicator>
 
                 <zigbee2mqtt-groups
                         ng-if="$ctrl.zigbeeGroups"
@@ -81,18 +80,17 @@
                         zigbee-devices="$ctrl.zigbeeDevices"
                         domoticz-devices="$ctrl.devices"
                         on-update="$ctrl.fetchZigbeeGroups()"
-                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"
-                />
+                        on-update-domoticz-device="$ctrl.refreshDomoticzDevices()"></zigbee2mqtt-groups>
             </div>
 
             <div class="tab-pane" id="zigbee-map">
-                <page-loading-indicator ng-hide="$ctrl.isMapLoaded"/>
+                <page-loading-indicator ng-hide="$ctrl.isMapLoaded"></page-loading-indicator>
                 <div id="image-map" style="height: calc(100vh - 235px);" ng-show="$ctrl.isMapLoaded"></div>
             </div>
         </div>
     </div>
 
-    <zigbee2mqtt-fake-devices ng-show="false" />
+    <zigbee2mqtt-fake-devices ng-show="false"></zigbee2mqtt-fake-devices>
 </script>
 
 <script type="text/ng-template" id="app/zigbee2mqtt/devices.html">
@@ -104,12 +102,11 @@
     <zigbee2mqtt-devices-table
             devices="$ctrl.zigbeeDevices"
             on-update="$ctrl.onUpdate()"
-            on-select="$ctrl.selectZigbeeDevice(device)"
-    />
+            on-select="$ctrl.selectZigbeeDevice(device)"></zigbee2mqtt-devices-table>
 
     <section ng-if="$ctrl.associatedDevices.length > 0">
         <h2 class="page-header">{{:: 'Devices' | translate }}</h2>
-        <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()" />
+        <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()"></devices-table>
     </section>
 </script>
 
@@ -121,8 +118,7 @@
     <zigbee2mqtt-groups-table
             groups="$ctrl.groups"
             on-update="$ctrl.onUpdate()"
-            on-select="$ctrl.selectZigbeeGroup(group)"
-    />
+            on-select="$ctrl.selectZigbeeGroup(group)"></zigbee2mqtt-groups-table>
 
     <section ng-if="$ctrl.selectedGroup">
         <h2 class="page-header">{{:: 'Group' | translate }}: {{ $ctrl.selectedGroup.friendly_name }}</h2>
@@ -141,12 +137,11 @@
                 <zigbee2mqtt-group-devices-table
                         group="$ctrl.selectedGroup"
                         devices="$ctrl.selectedGroupDevices"
-                        on-update="$ctrl.onUpdate()"
-                />
+                        on-update="$ctrl.onUpdate()"></zigbee2mqtt-group-devices-table>
             </div>
 
             <div class="tab-pane" id="zigbee-group-devices">
-                <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()" />
+                <devices-table devices="$ctrl.associatedDevices" on-update="$ctrl.onUpdateDomoticzDevice()"></devices-table>
             </div>
         </div>
     </section>
@@ -167,8 +162,7 @@
                            required
                            minlength="1"
                            maxlength="100"
-                           ng-model="$ctrl.newName"
-                    />
+                           ng-model="$ctrl.newName">
                 </div>
             </div>
         </form>
@@ -205,8 +199,7 @@
                            minlength="1"
                            maxlength="100"
                            style="width: 100%; box-sizing: border-box;"
-                           ng-model="$ctrl.topic"
-                    />
+                           ng-model="$ctrl.topic">
                 </div>
             </div>
             <div class="control-group">
@@ -222,8 +215,7 @@
                             required
                             rows="6"
                             style="width: 100%; box-sizing: border-box;"
-                            ng-model="$ctrl.state"
-                    />
+                            ng-model="$ctrl.state"></textarea>
                 </div>
             </div>
         </form>
@@ -296,7 +288,7 @@
                    ng-model="$ctrl.removeDomoticzDevices"
             > Remove corresponding Domoticz devices
         </label>
-        <br />
+        <br>
         <label class="checkbox">
             <input type="checkbox"
                    class="noscheck"
@@ -338,8 +330,7 @@
                            required
                            minlength="1"
                            maxlength="100"
-                           ng-model="$ctrl.groupName"
-                    />
+                           ng-model="$ctrl.groupName">
                 </div>
             </div>
 
@@ -349,8 +340,7 @@
                     <input type="number"
                            id="id"
                            class="form-control"
-                           ng-model="$ctrl.groupId"
-                    />
+                           ng-model="$ctrl.groupId">
                     <span class="help-inline">(optional)</span>
                 </div>
             </div>
@@ -387,8 +377,7 @@
                             class="form-control"
                             required
                             ng-model="$ctrl.device"
-                            ng-options="device.friendly_name as device.friendly_name for device in ::$ctrl.devices"
-                    />
+                            ng-options="device.friendly_name as device.friendly_name for device in ::$ctrl.devices"></select>
                 </div>
             </div>
 
@@ -398,8 +387,7 @@
                     <input type="text"
                            id="sub-device"
                            class="form-control"
-                           ng-model="$ctrl.subDevice"
-                    />
+                           ng-model="$ctrl.subDevice">
                     <span class="help-inline">(optional)</span>
                 </div>
             </div>
@@ -424,7 +412,7 @@
 <script>
     require(['../templates/zigbee2mqtt'], function() {
         angular.element(document).injector().invoke(function($compile) {
-            var $div = angular.element('<zigbee2mqtt-plugin />');
+            var $div = angular.element('<zigbee2mqtt-plugin></zigbee2mqtt-plugin>');
             angular.element('#plugin-view').append($div);
 
             var scope = angular.element($div).scope();

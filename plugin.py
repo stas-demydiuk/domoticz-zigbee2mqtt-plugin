@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.2.0">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.2.1">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -148,6 +148,10 @@ class BasePlugin:
             return
 
         if (topic == 'bridge/log'):
+            is_connected = message['type'] == 'device_connected'
+            is_removed = message['type'] == 'device_removed'
+            is_paired = message['type'] == 'pairing' and message['message'] == 'interview_successful'
+
             if message['type'] == 'devices':
                 Domoticz.Log('Received available devices list from bridge')
                 
@@ -162,11 +166,16 @@ class BasePlugin:
                 Domoticz.Log('Received groups list from bridge')
                 self.groups_manager.register_groups(Devices, message['message'])
 
-            if message['type'] == 'device_connected' or message['type'] == 'device_removed':
+            if is_connected or is_removed or is_paired:
                 self.publishToMqtt('bridge/config/devices', '')
 
             if message['type'] == 'ota_update':
                 Domoticz.Log(message['message'])
+
+            if message['type'] == 'zigbee_publish_error':
+                #an error occured on publish to the zigbee network
+                deviceMeta = message['meta']
+                Domoticz.Error("A Zigbee publish error occured for device '" + deviceMeta['friendly_name'] + "' with error message: " + message['message'])
 
             return
 

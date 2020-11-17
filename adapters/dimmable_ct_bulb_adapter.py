@@ -1,10 +1,10 @@
 import Domoticz
-import json
 from adapters.base_adapter import Adapter
+from adapters.generic.mixins.cct import CCTMixin
 from devices.switch.color_temp_dimmer_switch import ColorTempDimmerSwitch
 
 
-class DimmableCtBulbAdapter(Adapter):
+class DimmableCtBulbAdapter(Adapter, CCTMixin):
     def __init__(self, devices):
         super().__init__(devices)
 
@@ -21,34 +21,6 @@ class DimmableCtBulbAdapter(Adapter):
         return message
 
     def handleCommand(self, alias, device, device_data, command, level, color):
-        cmd = command.upper()
+        topic = device_data['friendly_name'] + '/set'
+        return self.set_cct(topic, command, level, color)
 
-        if cmd == 'ON' or cmd == 'OFF':
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': json.dumps({
-                    "state": command
-                })
-            }
-
-        if cmd == 'SET LEVEL':
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': json.dumps({
-                    "state": "ON",
-                    "brightness": int(level * 255 / 100)
-                })
-            }
-
-        if cmd == 'SET COLOR':
-            color_object = json.loads(color)
-            color_temp = color_object['t']
-
-            return {
-                'topic': device_data['friendly_name'] + '/set',
-                'payload': json.dumps({
-                    "state": "ON",
-                    "brightness": int(level * 255 / 100),
-                    "color_temp": int(color_temp * 500 / 255)
-                })
-            }
