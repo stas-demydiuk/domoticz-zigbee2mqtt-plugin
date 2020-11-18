@@ -180,7 +180,7 @@ class BasePlugin:
 
             if message['type'] == 'groups':
                 Domoticz.Log('Received groups list from bridge')
-                self.groups_manager.register_groups(Devices, message['message'])
+                self.groups_manager.register_groups(message['message'])
 
             if is_connected or is_removed or is_paired:
                 self.publishToMqtt('bridge/config/devices', '')

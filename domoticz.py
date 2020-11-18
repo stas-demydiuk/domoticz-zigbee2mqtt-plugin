@@ -13,7 +13,7 @@ def debug(message):
 def get_devices():
     return plugin.Devices
 
-def get_plugin_config(key):
+def get_plugin_config(key = None):
     config = {
         "trackLinkQuality": False if plugin.Parameters["Mode4"] == 'No' else True,
         "useBatteryDevices": False if plugin.Parameters["Mode5"] == 'No' else True
