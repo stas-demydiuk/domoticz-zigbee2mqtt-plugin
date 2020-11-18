@@ -8,7 +8,6 @@ from adapters.ikea.symfonisk import Symfonisk
 from adapters.ikea.tradfri_remote_control import TradfriRemoteControl
 from adapters.ikea.tradfri_wireless_dimmer import TradfriWirelessDimmer
 from adapters.ikea.tradfri_switch_on_off import TradfriRemoteSwitchOnOff
-from adapters.ikea.tradfri_remote_close_open import TradfriRemoteCloseOpen
 
 
 ikea_adapters = {
@@ -49,7 +48,6 @@ ikea_adapters = {
     'E1743': TradfriRemoteSwitchOnOff,  # IKEA TRADFRI ON/OFF switch
     'E1744': Symfonisk,                 # IKEA SYMFONISK sound controller
     'E1746': Adapter,                   # IKEA TRADFRI signal repeater
-    'E1766': TradfriRemoteCloseOpen,    # IKEA TRADFRI open close remote
     'E1757': BlindAdapter,              # IKEA TRADFRI roller blind
     'E1926': BlindAdapter,              # IKEA TRADFRI roller blind
 }

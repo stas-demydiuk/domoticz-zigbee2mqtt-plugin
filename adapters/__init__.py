@@ -39,7 +39,6 @@ from adapters.schneider_electric import schneider_adapters
 from adapters.sinope import sinope_adapters
 from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
-from adapters.swo.KEF1PA import KEF1PA
 from adapters.trust import trust_adapters
 from adapters.tuya import tuya_adapters
 from adapters.tuya.TS0002 import TS0002
@@ -160,7 +159,6 @@ adapter_by_model = dict({
     '74696': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
     # Swann One
-    'SWO-KEF1PA': KEF1PA,				# Swann Key fob remote (panic, home, away, sleep)
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
     # Weiser

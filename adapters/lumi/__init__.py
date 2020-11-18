@@ -13,11 +13,6 @@ from adapters.lumi.DJT11LM import DJT11LM
 from adapters.lumi.smart_lock import SmartLock
 from adapters.lumi.GZCGQ01LM import GZCGQ01LM
 from adapters.lumi.JTYJ_GD_01LM import JTYJ_GD_01LM
-from adapters.lumi.QBKG03LM import QBKG03LM
-from adapters.lumi.QBKG04LM import QBKG04LM
-from adapters.lumi.QBKG11LM import QBKG11LM
-from adapters.lumi.QBKG12LM import QBKG12LM
-from adapters.lumi.QBKG25LM import QBKG25LM
 from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
 from adapters.lumi.WXCJKG11LM import WXCJKG11LM
 from adapters.lumi.WXCJKG12LM import WXCJKG12LM
@@ -34,14 +29,6 @@ lumi_adapters = {
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
     'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
-    'QBKG03LM': QBKG03LM,               # Xiaomi Aqara double key wired wall switch
-    'QBKG04LM': QBKG04LM,               # Xiaomi Aqara single key wired wall switch
-    'QBKG11LM': QBKG11LM,               # Xiaomi Aqara single key wired wall switch
-    'QBKG12LM': QBKG12LM,               # Xiaomi Aqara double key wired wall switch
-    'QBKG21LM': QBKG04LM,               # Xiaomi Aqara D1 single gang smart wall switch (no neutral wire)
-    'QBKG23LM': QBKG11LM,               # Xiaomi Aqara D1 1 gang smart wall switch (with neutral wire)
-    'QBKG24LM': QBKG12LM,               # Xiaomi Aqara D1 2 gang smart wall switch (with neutral wire)
-    'QBKG25LM': QBKG25LM,               # Xiaomi Aqara D1 3 gang smart wall switch (no neutral wire)
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'SJCGQ11LM': WaterLeakSensorAdapter,# Xiaomi Aqara water leak sensor
