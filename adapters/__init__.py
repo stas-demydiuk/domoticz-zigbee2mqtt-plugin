@@ -37,6 +37,7 @@ from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
+from adapters.silvercrest import silvercrest_adapters
 from adapters.sinope import sinope_adapters
 from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
@@ -214,6 +215,7 @@ adapter_by_model = dict({
     **philips_adapters,
     **samsung_adapters,
     **schneider_adapters,
+    **silvercrest_adapters,
     **sinope_adapters,
     **sonoff_adapters,
     **trust_adapters,
