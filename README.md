@@ -24,7 +24,7 @@ You can use [Plugins Manager](https://github.com/stas-demydiuk/domoticz-plugins-
 1. Clone repository into your domoticz plugins folder
 ```
 cd domoticz/plugins
-git clone https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin.git zigbee2mqtt
+git clone -b v3.0 https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin.git zigbee2mqtt
 ```
 2. Restart domoticz
 3. Make sure that "Accept new Hardware Devices" is enabled in Domoticz settings
