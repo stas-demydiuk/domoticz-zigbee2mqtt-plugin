@@ -1,0 +1,9 @@
+from adapters.adapter_with_battery import AdapterWithBattery
+from devices.sensor.motion import MotionSensor
+from devices.sensor.contact import ContactSensor
+
+class HG06335(AdapterWithBattery):
+    def __init__(self, devices):
+        super().__init__(devices)
+        self.devices.append(MotionSensor(devices, 'motion', 'occupancy'))
+        self.devices.append(ContactSensor(devices, 'tamper', 'tamper'))
