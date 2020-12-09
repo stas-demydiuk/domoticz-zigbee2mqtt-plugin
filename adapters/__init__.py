@@ -37,6 +37,7 @@ from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
+from adapters.silvercrest import silvercrest_adapters
 from adapters.sinope import sinope_adapters
 from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
@@ -136,6 +137,7 @@ adapter_by_model = dict({
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Nue
+    'LXN59-1S7LX1.0': OnOffSwitchAdapter,     # Nue ZigBee one gang switch
     'FB56+ZSW05HG1.2': OnOffSwitchAdapter,      # Nue ZigBee one gang smart switch
     'HGZB-01A': OnOffSwitchAdapter,     # Nue ZigBee smart light controller
     'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
@@ -213,6 +215,7 @@ adapter_by_model = dict({
     **philips_adapters,
     **samsung_adapters,
     **schneider_adapters,
+    **silvercrest_adapters,
     **sinope_adapters,
     **sonoff_adapters,
     **trust_adapters,
