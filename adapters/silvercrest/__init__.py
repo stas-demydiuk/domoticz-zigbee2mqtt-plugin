@@ -14,5 +14,6 @@ silvercrest_adapters = {
     'TY0203': ContactAdapter,           # Silvercrest Smart Window or Door sensor
     'HG06336':HG06336,                  # Silvercrest Smart Window or Door sensor
     'HG06337':OnOffSwitchAdapter,       # Silvercrest Smart Home Socket sold by LIDL is labelled HG6337 by Z2M
+    'TS0505A':RGBWAdapter,              # Silvercrest RGB Light Sold By Lidl [ not tested yet ] 
     'TY0111': OnOffSwitchAdapter,       # Silvercrest Smart Home Socket
 }
