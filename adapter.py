@@ -12,6 +12,7 @@ from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.sensor.kwh import KwhSensor
 from devices.setpoint import SetPoint
+from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
@@ -113,6 +114,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
+        if (feature['name'] == 'away_mode' and state_access and write_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'away'
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
         domoticz.error(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
@@ -163,6 +169,10 @@ class UniversalAdapter(Adapter):
             self._add_device('spoint', feature, SetPoint, ' (Setpoint)')
             return
 
+        if (feature['name'] == 'position' and state_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'level'
+            self._add_device(alias, feature, LevelSwitch)
+            return
 
         domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
@@ -182,12 +192,13 @@ class UniversalAdapter(Adapter):
 
         if (feature['type'] == 'binary' and write_access):
             topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
+            key = feature['property']
             value = feature['value_on'] if command.upper() == 'ON' else feature['value_off']
                 
             return {
                 'topic': topic,
                 'payload': json.dumps({
-                    "state": value
+                    key: value
                 })
             }
 
