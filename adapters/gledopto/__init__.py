@@ -1,4 +1,3 @@
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
@@ -30,5 +29,4 @@ gledopto_adapters = {
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     'GL-S-007ZS': RGBWAdapter,          # Gledopto Smart RGB+CCT GU10
     'GL-S-008Z': RGBWAdapter,           # Gledopto Soposh dual white and color
-    'GL-W-001Z': OnOffSwitchAdapter,    # Gledopto Zigbee ON/OFF Wall Switch
 }

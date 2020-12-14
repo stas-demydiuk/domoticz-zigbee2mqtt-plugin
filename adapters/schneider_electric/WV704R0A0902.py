@@ -17,8 +17,8 @@ class WV704R0A0902(Adapter):
         self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature', ' (Temperature)'))
         self.devices.append(SetPoint(devices, 'spoint', 'occupied_heating_setpoint', ' (SetPoint)'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        topic = device_data['friendly_name'] + '/set'
+    def handle_command(self, alias, device, command, level, color):
+        topic = self.name + '/set'
 
         if alias == 'spoint' and command == 'Set Level':
             msg = json.dumps({'occupied_heating_setpoint': level})

@@ -19,7 +19,8 @@ class GS361AH04(ThermostatAdapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         topic = device_data['friendly_name'] + '/set'
 
         if alias == 'wnd':
@@ -46,4 +47,4 @@ class GS361AH04(ThermostatAdapter):
                 })
             }
 
-        return super().handleCommand(alias, device, device_data, command, level, color)
+        return super().handle_command(alias, device, command, level, color)

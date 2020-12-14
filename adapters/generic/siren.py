@@ -11,7 +11,8 @@ class SirenAdapter(Adapter):
         self.switch.set_icon(13)
         self.devices.append(self.switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         self.switch.handle_command(device_data, command, level, color)
 
         mode = 'emergency' if command.upper() == 'ON' else 'stop'
@@ -33,7 +34,8 @@ class SirenAdapterWithBattery(AdapterWithBattery):
         self.switch.set_icon(13)
         self.devices.append(self.switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         self.switch.handle_command(device_data, command, level, color)
 
         mode = 'emergency' if command.upper() == 'ON' else 'stop'

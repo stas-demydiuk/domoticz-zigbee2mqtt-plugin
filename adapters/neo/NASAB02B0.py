@@ -33,7 +33,9 @@ class NASAB02B0(Adapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+
         if alias == 'alarm':
             switch = self.get_device_by_alias(alias)
             switch.handle_command(device_data, command, level, color)

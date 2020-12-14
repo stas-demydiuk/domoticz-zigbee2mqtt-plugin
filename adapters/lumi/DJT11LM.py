@@ -19,7 +19,8 @@ class DJT11LM(AdapterWithBattery):
         self.devices.append(CustomSensor(devices, 'stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor(devices, 'angle', 'angle_raw', ' (Angle)'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         self.switch.handle_command(device_data, command, level, color)
 
     def convert_message(self, message):

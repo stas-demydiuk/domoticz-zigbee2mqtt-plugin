@@ -23,14 +23,16 @@ class ZYCT202(AdapterWithBattery):
 
         return button
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         device = self.get_device_by_alias(alias)
         device.handle_command(device_data, command, level, color)
 
-    def handleMqttMessage(self, device_data, message):
+    def handle_mqtt_message(self, message):
         if 'action' not in message.raw or 'action_group' not in message.raw:
             return
 
+        device_data = self._get_legacy_device_data()
         converted_message = self.convert_message(message)
         btn_index = message.raw['action_group'] - 144
 

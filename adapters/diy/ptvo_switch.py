@@ -23,8 +23,10 @@ class PtvoSwitch(Adapter):
             self.switch[ptvo] = OnOffSwitch(devices, ptvo, 'state_' + ptvo, ' (' + ptvo + ')')
             self.devices.append(self.switch[ptvo])
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         self.switch[alias].handle_command(device_data, command, level, color)
+        
         return {
             'topic': '/'.join([device_data['friendly_name'], PTVOID[alias], 'set']),
             'payload': command.upper()

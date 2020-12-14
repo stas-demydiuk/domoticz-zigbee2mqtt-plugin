@@ -17,7 +17,8 @@ class KPD14S(AdapterWithBattery):
         self.devices.append(button)
         self.devices.append(DimmerSwitch(devices, 'light', 'brightness', ' (Brightness)'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         device = self.get_device_by_alias(alias)
 
         if device != None:

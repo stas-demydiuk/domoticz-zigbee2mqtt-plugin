@@ -23,8 +23,8 @@ class TH1124ZB(ContactAdapter):
         mode_switch.set_icon(15)
         self.devices.append(mode_switch)
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        topic = device_data['friendly_name'] + '/set'
+    def handle_command(self, alias, device, command, level, color):
+        topic = self.name + '/set'
 
         if alias == 'sp1' and command == 'Set Level':
             msg = json.dumps({ 'occupied_heating_setpoint': level })

@@ -1,4 +1,3 @@
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgb_adapter import RGBAdapter
@@ -10,7 +9,6 @@ from adapters.philips.hue_motion_sensor import HueMotionSensor
 philips_adapters = {
     '046677476816': DimmableBulbAdapter,    # Philips Hue white PAR38 outdoor
     '046677551780': DimmableBulbAdapter,    # Philips Hue white filament Edison ST19 LED
-    '046677552343': OnOffSwitchAdapter,     # Philips Hue smart plug bluetooth
     '1741830P7': RGBWAdapter,               # Philips Hue Lily outdoor spot light
     '1741830P7': RGBWAdapter,               # Philips Hue lily outdoor spotlight
     '1742930P7': RGBWAdapter,               # Philips Hue outdoor Impress wall lamp
@@ -93,8 +91,6 @@ philips_adapters = {
     '9290022167': DimmableCtBulbAdapter,    # Philips Hue white ambiance E26 with Bluetooth
     '9290022169': DimmableCtBulbAdapter,    # Philips Hue white ambiance E27 with Bluetooth
     '9290022268': DimmableBulbAdapter,      # Philips Hue white A19 bulb with Bluetooth
-    '929002240401': OnOffSwitchAdapter,     # Philips Hue smart plug - EU
-    '9290022408': OnOffSwitchAdapter,       # Philips Hue smart plug - AU
     '9290022411': DimmableBulbAdapter,      # Philips Hue white single filament bulb A19 E26 with Bluetooth
     '929002241201': DimmableBulbAdapter,    # Philips Hue white filament Edison E27 LED
     '929002277501': DimmableBulbAdapter,    # Philips Hue white A19 bulb E26 with Bluetooth

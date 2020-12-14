@@ -8,7 +8,6 @@ from devices.switch.selector_switch import SelectorSwitch
 from devices.setpoint import SetPoint
 
 
-
 class TS0601(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
@@ -60,8 +59,8 @@ class TS0601(AdapterWithBattery):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
-        topic = device_data['friendly_name'] + '/set'
+    def handle_command(self, alias, device, command, level, color):
+        topic = self.name + '/set'
 
         if (alias == 'spoint' or alias == 'sp_eco' or alias == 'sp_cmf') and command == 'Set Level':
             switch = self.get_device_by_alias(alias)
