@@ -10,6 +10,7 @@ from adapters.heiman.HS1CAE import HS1CAE
 from adapters.heiman.HS1WLE import HS1WLE
 from adapters.heiman.HS2SK import HS2SK
 from adapters.heiman.SMHMI1 import SMHMI1
+from adapters.heiman.HS1RC import HeimanAlarmRemoteAdapter
 
 
 heiman_adapters = {
@@ -38,4 +39,5 @@ heiman_adapters = {
     'HS1CG_M': GasAdapter,              # HEIMAN Combustible gas sensor
     'SGMHM-I1': GasAdapter,             # HEIMAN Combustible gas sensor
     'FS1RG': GasAdapter,                # Ferguson Combustible gas sensor
+	'HS1RC-EM': HeimanAlarmRemoteAdapter, # HEIMAN Alarm remote
 }

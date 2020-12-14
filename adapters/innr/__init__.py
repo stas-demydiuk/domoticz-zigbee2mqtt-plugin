@@ -27,7 +27,7 @@ innr_adapters = {
     'RB 248 T': DimmableCtBulbAdapter,  # Innr E14 Candle with white spectrum
     'RB 250 C': RGBWAdapter,            # Innr E14 Bulb RGBW
     'RB 265': DimmableBulbAdapter,      # Innr E27 Bulb
-    'RB 278 T': DimmableBulbAdapter,    # Innr E27 Bulb
+    'RB 278 T': RGBWAdapter,    # Innr E27 Bulb tunable white
     'RB 285 C': RGBWAdapter,            # Innr E27 Bulb RGBW
     'RF 261': DimmableBulbAdapter,      # Innr E27 filament bulb dimmable
     'RF 263': DimmableBulbAdapter,      # Innr E27 filament bulb dimmable
