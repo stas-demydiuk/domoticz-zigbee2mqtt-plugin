@@ -183,7 +183,7 @@ class BasePlugin:
                 self.groups_manager.register_groups(message['message'])
 
             if is_connected or is_removed or is_paired:
-                self.publishToMqtt('bridge/config/devices', '')
+                self.publishToMqtt('bridge/config/devices/get', '')
 
             if message['type'] == 'ota_update':
                 Domoticz.Log(message['message'])
