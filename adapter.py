@@ -12,6 +12,7 @@ from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.sensor.kwh import KwhSensor
 from devices.setpoint import SetPoint
+from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
@@ -135,6 +136,11 @@ class UniversalAdapter(Adapter):
                 self._add_device('btperc', feature, PercentageSensor, ' (Battery)')
             return
 
+        if (feature['name'] == 'brightness' and state_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'light'
+            self._add_device(alias, feature, DimmerSwitch)
+            return
+
         if (feature['name'] == 'humidity' and state_access):
             self._add_device('hum', feature, HumiditySensor, ' (Humidity)')
             return
@@ -209,6 +215,21 @@ class UniversalAdapter(Adapter):
             return {
                 'topic': topic,
                 'payload': msg
+            }
+
+        if feature['type'] == 'numeric' and feature['name'] == 'brightness' and write_access:
+            cmd = command.upper()
+            topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
+
+            if (cmd == 'SET LEVEL'):
+                value_max = feature['value_max'] if 'value_max' in feature else 255
+                msg = { feature['property']: int(level * value_max / 100) }
+            elif (cmd == 'ON' or cmd == 'OFF'):
+                msg = { 'state': cmd }
+
+            return {
+                'topic': topic,
+                'payload': json.dumps(msg)
             }
 
         if feature['type'] == 'enum' and write_access:
