@@ -3,18 +3,16 @@ Python plugin for Domoticz to add integration with [zigbee2mqtt](https://github.
 
 ![image](https://user-images.githubusercontent.com/2734836/79760084-363b2e00-8328-11ea-994f-32b7b58ea6be.png)
 
-## IMPORTANT!
+## IMPORTANT! Upgrade notice
 
-This version of plugin doesn't fully compatible with all previous versions
-It requires zigbee2mqtt dev version only and `new_api` feature enabled
+If you are upgrading from plugin version < 3.0 be aware that this version doesn't fully compatible with previous versions.
 
-https://github.com/Koenkk/zigbee2mqtt/issues/3281
-https://github.com/Koenkk/zigbee2mqtt/issues/4466
-
+It is recommended to remove plugin instance from Domoticz `Hardware` before upgrade and create new instance afterwards, otherwise some duplicated devices might be created
 
 ## Prerequisites
 
-- Setup and run zigbee2mqtt server (https://www.zigbee2mqtt.io).
+- Setup and run zigbee2mqtt 1.16+ server (https://www.zigbee2mqtt.io).
+- Make sure that you've enabled `new_api` feature in your zigbee2mqtt instance (https://github.com/Koenkk/zigbee2mqtt/issues/3281)
 - Make sure that your Domoticz supports Python plugins (https://www.domoticz.com/wiki/Using_Python_plugins)
 
 ## Installation
