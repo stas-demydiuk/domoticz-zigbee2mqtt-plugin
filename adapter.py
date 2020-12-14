@@ -137,6 +137,10 @@ class UniversalAdapter(Adapter):
             self._add_device('temp', feature, TemperatureSensor, ' (Temperature)')
             return
 
+        if (feature['name'] == 'local_temperature' and state_access):
+            self._add_device('ltemp', feature, TemperatureSensor, ' (Local Temperature)')
+            return
+
         if (feature['name'] == 'pressure' and state_access):
             self._add_device('pres', feature, PressureSensor, ' (Pressure)')
             return
