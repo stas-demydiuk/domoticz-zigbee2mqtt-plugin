@@ -18,12 +18,12 @@ class DimmableBulbAdapter(Adapter):
 
         return message
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
         cmd = command.upper()
 
         if cmd == 'ON' or cmd == 'OFF':
             return {
-                'topic': device_data['friendly_name'] + '/set',
+                'topic': self.name + '/set',
                 'payload': json.dumps({
                     "state": cmd
                 })
@@ -31,7 +31,7 @@ class DimmableBulbAdapter(Adapter):
 
         if cmd == 'SET LEVEL':
             return {
-                'topic': device_data['friendly_name'] + '/set',
+                'topic': self.name + '/set',
                 'payload': json.dumps({
                     "state": "ON",
                     "brightness": int(level * 255 / 100)

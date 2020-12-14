@@ -14,7 +14,8 @@ class ZigupAdapter(Adapter):
         self.devices.append(TemperatureSensor(devices, 'temp_e', 'external_temperature', ' (External Temperature)'))
         self.devices.append(VoltageSensor(devices, 'adc', 'adc_volt', ' (ADC Voltage)'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
         device = self.get_device_by_alias(alias)
         device.handle_command(device_data, command, level, color)
 

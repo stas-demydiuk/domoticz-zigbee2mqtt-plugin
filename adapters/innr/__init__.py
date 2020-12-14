@@ -1,7 +1,6 @@
 from adapters.generic.plug import PlugAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 
 
@@ -45,9 +44,6 @@ innr_adapters = {
     'SL 110 N': DimmableBulbAdapter,    # Innr Spot Flex narrow
     'SL 110 W': DimmableBulbAdapter,    # Innr Spot Flex wide
     'SP 120': PlugAdapter,              # Innr Smart plug
-    'SP 220': OnOffSwitchAdapter,       # Innr Smart plug
-    'SP 222': OnOffSwitchAdapter,       # Innr Smart plug
-    'SP 224': OnOffSwitchAdapter,       # Innr Smart plug
     'ST 110': DimmableBulbAdapter,      # Innr Strip Light
     'UC 110': DimmableBulbAdapter,      # Innr Under Cabinet Light
 }

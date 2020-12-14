@@ -18,7 +18,9 @@ class JTYJ_GD_01LM(SmokeSensorAdapter):
         self.devices.append(sensitivity_switch)
         self.devices.append(CustomSensor(devices, 'dnsty', 'smoke_density', ' (Smoke Density)'))
 
-    def handleCommand(self, alias, device, device_data, command, level, color):
+    def handle_command(self, alias, device, command, level, color):
+        device_data = self._get_legacy_device_data()
+
         if alias == 'test':
             return {
                 'topic': device_data['friendly_name'] + '/set',

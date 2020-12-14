@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="0.2.1">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.0.0">
     <description>
       Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
       Specify MQTT server and port.<br/>
@@ -13,6 +13,18 @@
         <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
         <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
+        <param field="Mode4" label="Track Link Quality" width="300px">
+            <options>
+                <option label="Yes" value="Yes" default="true"/>
+                <option label="No" value="No" />
+            </options>
+        </param>
+        <param field="Mode5" label="Use Battery Devices" width="300px">
+            <options>
+                <option label="Yes" value="Yes" default="true"/>
+                <option label="No" value="No" />
+            </options>
+        </param>
         <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="Verbose" value="Verbose"/>
@@ -76,7 +88,7 @@ class BasePlugin:
         entity_id = device_params[0]
 
         if (self.devices_manager.get_device_by_id(entity_id) != None):
-            message = self.devices_manager.handle_command(Devices, device, Command, Level, Color)
+            message = self.devices_manager.handle_command(device, Command, Level, Color)
         elif(self.groups_manager.get_group_by_deviceid(device.DeviceID) != None):
             message = self.groups_manager.handle_command(device, Command, Level, Color)
         else:
@@ -89,7 +101,7 @@ class BasePlugin:
         if command == 'publish_mqtt':
             return self.publishToMqtt(data['topic'], data['payload'])
         elif command == 'remove_device':
-            return self.devices_manager.remove(Devices, data)
+            return self.devices_manager.remove(data)
         else:
             Domoticz.Error('Internal API command "' + command +'" is not supported by plugin')
 
@@ -124,12 +136,26 @@ class BasePlugin:
         Domoticz.Debug("onMQTTSubscribed")
 
     def onMQTTPublish(self, topic, message):
-        Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        # Domoticz.Debug("MQTT message: " + topic + " " + str(message))
         topic = topic.replace(self.base_topic + '/', '')
 
         self.api.handle_mqtt_message(topic, message)
 
-        if (topic == 'bridge/config/permit_join' or topic == 'bridge/config/devices'):
+        if (topic == 'bridge/config/permit_join'):
+            return
+
+        if (topic == 'bridge/config/logging'):
+            # TODO: Add log feature
+            return
+
+        if (topic == 'bridge/devices'):
+            Domoticz.Log('Received available devices list from bridge')
+            self.devices_manager.set_devices(message)
+
+            if self.subscribed_for_devices == False:
+                self.mqttClient.subscribe([self.base_topic + '/+'])
+                self.subscribed_for_devices = True
+
             return
 
         if (topic == 'bridge/config'):
@@ -142,7 +168,7 @@ class BasePlugin:
             Domoticz.Log('Zigbee2mqtt bridge is ' + message)
 
             if message == 'online':
-                self.publishToMqtt('bridge/config/devices', '')
+                # self.publishToMqtt('bridge/config/devices', '')
                 self.publishToMqtt('bridge/config/groups', '')
 
             return
@@ -152,22 +178,12 @@ class BasePlugin:
             is_removed = message['type'] == 'device_removed'
             is_paired = message['type'] == 'pairing' and message['message'] == 'interview_successful'
 
-            if message['type'] == 'devices':
-                Domoticz.Log('Received available devices list from bridge')
-                
-                self.devices_manager.clear()
-                self.devices_manager.update(Devices, message['message'])
-                
-                if self.subscribed_for_devices == False:
-                    self.mqttClient.subscribe([self.base_topic + '/+'])
-                    self.subscribed_for_devices = True
-
             if message['type'] == 'groups':
                 Domoticz.Log('Received groups list from bridge')
-                self.groups_manager.register_groups(Devices, message['message'])
+                self.groups_manager.register_groups(message['message'])
 
             if is_connected or is_removed or is_paired:
-                self.publishToMqtt('bridge/config/devices', '')
+                self.publishToMqtt('bridge/config/devices/get', '')
 
             if message['type'] == 'ota_update':
                 Domoticz.Log(message['message'])
@@ -180,7 +196,7 @@ class BasePlugin:
             return
 
         if (self.devices_manager.get_device_by_name(topic) != None):
-            self.devices_manager.handle_mqtt_message(Devices, topic, message)
+            self.devices_manager.handle_mqtt_message(topic, message)
         elif (self.groups_manager.get_group_by_name(topic) != None):
             self.groups_manager.handle_mqtt_message(topic, message)
 

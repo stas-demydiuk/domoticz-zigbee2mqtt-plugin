@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0
+- Add Universal Adapter
+- Ability to disable link quality and battery devices
+
 ## 0.2.1
 - Add strength and angle sensor for Xiaomi DJT11LM
 - Add smoke density, self test and sensivity support for Xiaomi JTYJ-GD-01LM/BW

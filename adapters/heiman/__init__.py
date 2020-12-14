@@ -5,7 +5,6 @@ from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter as
 from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.siren import SirenAdapterWithBattery
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.heiman.gas_sensor import HeimanGasSensorAdapter as GasAdapter
 from adapters.heiman.HS1CAE import HS1CAE
 from adapters.heiman.HS1WLE import HS1WLE
@@ -15,7 +14,6 @@ from adapters.heiman.HS1RC import HeimanAlarmRemoteAdapter
 
 
 heiman_adapters = {
-    'HM-900SW_1': OnOffSwitchAdapter,   # HEIMAN Smart switch - 1 gang with neutral wire
     'HS1-WL-E': HS1WLE,                 # HEIMAN Water leakage sensor
     'HS1CA-E': HS1CAE,                  # HEIMAN Monoxyde detector
     'HS1CA-M': HS1CAE,                  # HEIMAN Monoxyde detector

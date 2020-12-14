@@ -1,5 +1,4 @@
 from adapters.contact_adapter import ContactAdapter
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.siren import SirenAdapter
@@ -15,12 +14,10 @@ samsung_adapters = {
     '3305-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2014 model)
     '3325-S': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor (2015 model)
     'IM6001-MTP01': MotionAndTemperatureSensorAdapter, # SmartThings Motion sensor
-    'IM6001-OTP05': OnOffSwitchAdapter, # SmartThings Outlet
     'IM6001-MPP01': ContactAdapter,     # SmartThings Multipurpose sensor (2018 model)
     '3300-S': SmartThingsDoorSensor,    # SmartThings Door sensor
     '3321-S': SmartThingsDoorSensor,    # SmartThings Multi Sensor (2015 model)
     'STS-OUT-US-2': OnOffKwhAdapter,    # SmartThings Zigbee smart plug with power meter
-    'F-APP-UK-V2': OnOffSwitchAdapter,  # SmartThings Outlet
     'GP-WOU019BBDWG': OnOffKwhAdapter,  # SmartThings Outlet with power meter
     'F-APP-UK-V2': OnOffKwhAdapter,     # SmartThings Zigbee Outlet UK with power meter
     'SZ-SRN12N': SirenAdapter,          # SmartThings Smart siren

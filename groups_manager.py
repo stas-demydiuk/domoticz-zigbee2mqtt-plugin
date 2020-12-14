@@ -1,6 +1,6 @@
-import Domoticz
 import json
 import re
+import domoticz
 from zigbee_message import ZigbeeMessage
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
@@ -12,7 +12,7 @@ class GroupsManager:
     def __init__(self):
         self.groups = {}
 
-    def register_groups(self, domoticz_devices, groups):
+    def register_groups(self, groups):
         self.groups = {}
 
         for item in groups:
@@ -21,22 +21,25 @@ class GroupsManager:
 
             device_data = {
                 'type': 'Group',
-                'model': 'Group',
-                'ieee_addr': group_id,
+                'definition': {
+                    'model': 'Group',
+                },
+                'ieee_address': group_id,
                 'friendly_name': group_name
             }
 
-            Domoticz.Log('Group ' + group_name)
+            domoticz.log('Group ' + group_name)
 
-            adapter = self._get_adapter(domoticz_devices, group_name)
-            adapter.register(device_data)
+            adapter = self._get_adapter(group_name)
+            adapter.name = group_name
+            adapter.zigbee_device = device_data
+            adapter.register()
 
-            self.groups[group_id] = {
-                'friendly_name': group_name,
-                'adapter': adapter
-            }
+            self.groups[group_id] = adapter
 
-    def _get_adapter(self, domoticz_devices, group_name):
+    def _get_adapter(self, group_name):
+        domoticz_devices = domoticz.get_devices()
+
         if (group_name.endswith('_dimmer')):
             adapter = DimmableBulbAdapter(domoticz_devices)
         elif (group_name.endswith('_ct')):
@@ -49,7 +52,9 @@ class GroupsManager:
             adapter = OnOffSwitchAdapter(domoticz_devices)
 
         # Remove LinkQuality device from adapter
-        adapter.devices.pop(0)
+        if domoticz.get_plugin_config('trackLinkQuality'):
+            adapter.devices.pop(0)
+
         return adapter
 
     def _get_group_by_id(self, group_id):
@@ -66,37 +71,23 @@ class GroupsManager:
         return self._get_group_by_id(self._get_group_address_by_name(friendly_name))
 
     def handle_mqtt_message(self, group_name, message):
-        group = self.get_group_by_name(group_name)
+        adapter = self.get_group_by_name(group_name)
 
-        if group == None:
-            Domoticz.Debug('Group "' + group_name + '" not found')
+        if adapter == None:
+            domoticz.debug('Group "' + group_name + '" not found')
             return None
 
-        adapter = group['adapter']
         zigbee_message = ZigbeeMessage(message)
-        device_data = {
-            'ieee_addr': self._get_group_address_by_name(group_name),
-            'friendly_name': group_name
-        }
-
-        adapter.handleMqttMessage(device_data, zigbee_message)
+        adapter.handle_mqtt_message(zigbee_message)
 
     def handle_command(self, device, command, level, color):
-        group = self.get_group_by_deviceid(device.DeviceID)
+        alias = device.DeviceID.split('_').pop()
+        adapter = self.get_group_by_deviceid(device.DeviceID)
 
-        if group == None:
+        if adapter == None:
             return None
 
-        alias = device.DeviceID.split('_').pop()
-        group_name = group['friendly_name']
-        adapter = group['adapter']
-
-        device_data = {
-            'ieee_addr': self._get_group_address_by_name(group_name),
-            'friendly_name': group['friendly_name']
-        }
-
-        return adapter.handleCommand(alias, device, device_data, command, level, color)
+        return adapter.handle_command(alias, device, command, level, color)
 
     def _get_group_address_by_name(self, friendly_name):
         # Only first 12 characters of group name (to match ieee address length) due to Domoticz Length limitation

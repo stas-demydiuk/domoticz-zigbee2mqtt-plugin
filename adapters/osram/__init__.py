@@ -1,4 +1,3 @@
-from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
@@ -19,7 +18,6 @@ osram_adapters = {
     'AA68199': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED PAR16 50 GU10 tunable white
     'AA69697': RGBWAdapter,             # OSRAM Classic A60 RGBW
     'AA70155': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED A19 tunable white / Classic A60 TW
-    'AB3257001NJ': OnOffSwitchAdapter,  # OSRAM Smart+ plug
     'AB32840': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY LED Classic B40 tunable white
     'AB35996': RGBWAdapter,             # OSRAM Smart+ Spot GU10 Multicolor
     'AB401130055': DimmableCtBulbAdapter,   # OSRAM LIGHTIFY Surface Light LED Tunable White
@@ -35,7 +33,6 @@ osram_adapters = {
     'AC08559': RGBWAdapter,             # OSRAM SMART+ Spot GU10 Multicolor
     'AC08560': DimmableBulbAdapter,     # OSRAM SMART+ LED PAR16 GU10
     'AC08562': DimmableBulbAdapter,     # OSRAM SMART+ Candle E14 Dimmable White
-    'AC10691': OnOffSwitchAdapter,      # OSRAM Smart+ plug
     'AC10786-DIM': DimmableBulbAdapter, # OSRAM SMART+ classic E27 dimmable
     'AC10787': DimmableCtBulbAdapter,   # OSRAM SMART+ classic E27 TW
     'ST8AU-CON': DimmableBulbAdapter,   # OSRAM OSRAM SubstiTUBE T8 Advanced UO Connected
