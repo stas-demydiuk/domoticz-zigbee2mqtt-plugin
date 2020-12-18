@@ -76,6 +76,8 @@ adapter_by_model = dict({
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
+    # EcoDim
+    'Eco-Dim.07': DimmableBulbAdapter,      # Eco-dim Zigbee dimmer
     # EcoSmart
     'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
     'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)

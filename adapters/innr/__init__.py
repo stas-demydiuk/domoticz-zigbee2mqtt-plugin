@@ -17,6 +17,7 @@ innr_adapters = {
     'OFL 140 C': RGBWAdapter,           # Innr Outdoor flex light colour LED strip 4m, 1000lm, RGBW
     'OSL 130 C': RGBWAdapter,           # Innr Outdoor smart spot colour, 230lm/spot, RGBW
     'PL 110': DimmableBulbAdapter,      # Innr Puck Light
+    'PL 115': DimmableBulbAdapter,      # Innr Puck Light
     'RB 145': DimmableBulbAdapter,      # Innr E14 Candle
     'RB 148 T': DimmableCtBulbAdapter,  # Innr E14 candle with white spectrum
     'RB 165': DimmableBulbAdapter,      # Innr E27 Bulb
