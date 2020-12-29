@@ -53,6 +53,10 @@ class UniversalAdapter(Adapter):
                 self._add_devices(item['features'])
                 continue
 
+            if item['type'] == 'light':
+                self._add_devices(item['features'])
+                continue
+
             if item['type'] == 'lock':
                 self._add_devices(item['features'])
                 continue
