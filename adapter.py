@@ -128,7 +128,8 @@ class UniversalAdapter(Adapter):
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
         if (feature['name'] == 'linkquality' and state_access):
-            # self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
+            if domoticz.get_plugin_config('trackLinkQuality'):
+                self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
             return
 
         if (feature['name'] == 'battery' and state_access):
