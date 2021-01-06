@@ -98,4 +98,5 @@ philips_adapters = {
     '9290023349': DimmableBulbAdapter,      # Philips Hue white A67 bulb E26 with Bluetooth (1600 Lumen)
     '929002335001': DimmableBulbAdapter,    # Philips Hue white A21 bulb B22 with Bluetooth (1600 Lumen)
     'LWG004': DimmableBulbAdapter,          # Philips Hue white GU10 bluetooth
+    '9290022890': RGBWAdapter,              # Hue white and color ambiance LightStrip outdoor 2m
 }
