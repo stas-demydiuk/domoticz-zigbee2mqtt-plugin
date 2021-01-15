@@ -20,6 +20,7 @@ class DevicesManager:
 
             if 'definition' not in item:
                 domoticz.error(item['friendly_name'] + ': device definiton not found')
+                continue
 
             model = item['definition']['model']
 
