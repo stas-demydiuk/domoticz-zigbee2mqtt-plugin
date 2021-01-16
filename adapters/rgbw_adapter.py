@@ -1,7 +1,7 @@
 import Domoticz
 from adapters.base_adapter import Adapter
 from adapters.generic.mixins.rgb import RGBMixin
-from devices.color_colortemp_light import RGBWLight
+from devices.rgbw_light import RGBWLight
 
 
 class RGBWAdapter(Adapter, RGBMixin):
