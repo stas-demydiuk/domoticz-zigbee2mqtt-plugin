@@ -16,6 +16,11 @@ from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
+from devices.light.on_off import OnOffLight
+from devices.light.dimmer import DimmerLight
+from devices.light.ct import CTLight
+from devices.light.rgb import RGBLight
+from devices.light.rgbw import RGBWLight
 from devices.custom_sensor import CustomSensor
 
 ACCESS_STATE = 0
@@ -32,41 +37,80 @@ class UniversalAdapter(Adapter):
             domoticz.error(self.name + ': device exposes not found')
             return
 
-        self._add_devices(zigbee_device['definition']['exposes'])
+        self._add_features(zigbee_device['definition']['exposes'])
         self.register()
 
-    def _add_devices(self, items):
-        for item in items:
-            if item['type'] == 'binary':
-                self.add_binary_device(item)
-                continue
+    def _add_features(self, features):
+        for item in features:
+            self._add_feature(item)
 
-            if item['type'] == 'enum':
-                self._add_selector_device(item['name'][0: 5], item)
-                continue
-
-            if item['type'] == 'numeric':
-                self.add_numeric_device(item)
-                continue
-
-            if item['type'] == 'switch':
-                self._add_devices(item['features'])
-                continue
-
-            if item['type'] == 'light':
-                self._add_devices(item['features'])
-                continue
-
-            if item['type'] == 'lock':
-                self._add_devices(item['features'])
-                continue
-
-            if item['type'] == 'climate':
-                self._add_devices(item['features'])
-                continue
-
+    def _add_feature(self, item):
+        if item['type'] == 'binary':
+            self.add_binary_device(item)
+        elif item['type'] == 'enum':
+            self._add_selector_device(item['name'][0: 5], item)
+        elif item['type'] == 'numeric':
+            self.add_numeric_device(item)
+        elif item['type'] == 'switch':
+            self._add_features(item['features'])
+        elif item['type'] == 'light':
+            self._add_light_feature(item)
+        elif item['type'] == 'lock':
+            self._add_features(item['features'])
+        elif item['type'] == 'climate':
+            self._add_features(item['features'])
+        else:
             domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
+
+    def _add_light_feature(self, feature):
+        light_features = feature['features']
+        
+        state = self._get_feature(light_features, 'state')
+        brightness = self._get_feature(light_features, 'brightness')
+        color_temp = self._get_feature(light_features, 'color_temp')
+        color = self._get_feature(light_features, 'color_xy')
+        
+        alias = 'light'
+        devices = domoticz.get_devices()
+
+        if state and brightness and color_temp and color:
+            device = RGBWLight(devices, alias)
+            device.set_state_feature(state)
+            device.set_brightness_feature(brightness)
+            device.set_color_temp_feature(color_temp)
+            device.set_color_feature(color)
+        elif state and brightness and color:
+            device = RGBLight(devices, alias)
+            device.set_state_feature(state)
+            device.set_brightness_feature(brightness)
+            device.set_color_feature(color)
+        elif state and brightness and color_temp:
+            device = CTLight(devices, alias)
+            device.set_state_feature(state)
+            device.set_brightness_feature(brightness)
+            device.set_color_temp_feature(color_temp)
+        elif state and brightness:
+            device = DimmerLight(devices, alias)
+            device.set_state_feature(state)
+            device.set_brightness_feature(brightness)
+        elif state:
+            device = OnOffLight(devices, 'switch')
+            device.set_state_feature(state)
+        else:
+            domoticz.error(self.name + ': can not find appropriate device type to handle light feature')
+            domoticz.debug(json.dumps(feature))
+            
+        if device:
+            device.feature = feature
+            self.devices.append(device)
+        
+        # Add rest light features
+        for item in light_features:
+            name = item['name']
+            
+            if name != 'state' and name != 'brightness' and name != 'color_temp' and name != 'color_xy':
+                self._add_feature(item)
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
@@ -74,6 +118,13 @@ class UniversalAdapter(Adapter):
         device.feature = feature
 
         self.devices.append(device)
+
+    def _get_feature(self, features, feature_name):
+        for item in features:
+            if item['name'] == feature_name:
+                return item
+
+        return False
 
     def _add_selector_device(self, alias, feature, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
@@ -195,7 +246,7 @@ class UniversalAdapter(Adapter):
             return
 
         feature = device.feature
-        write_access = self._has_access(feature['access'], ACCESS_WRITE)
+        write_access = self._has_access(feature['access'], ACCESS_WRITE) if 'access' in feature else False
 
         # Optimistic update
         device_data = self._get_legacy_device_data()
@@ -245,6 +296,15 @@ class UniversalAdapter(Adapter):
             return {
                 'topic': topic,
                 'payload': msg
+            }
+
+        if feature['type'] == 'light':
+            state_feature = device.state_feature
+            topic = self.name + '/' + ((state_feature['endpoint'] + '/set') if 'endpoint' in state_feature else 'set')
+
+            return {
+                'topic': topic,
+                'payload': json.dumps(device.generate_command(command, level, color))
             }
 
         return None

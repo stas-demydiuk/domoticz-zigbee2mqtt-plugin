@@ -1,13 +1,13 @@
 import Domoticz
 from adapters.base_adapter import Adapter
 from adapters.generic.mixins.rgb import RGBMixin
-from devices.color_light import ColorLight
+from devices.rgb_light import RGBLight
 
 class RGBAdapter(Adapter, RGBMixin):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.dimmer = ColorLight(devices, 'light', 'state_brightness_color')
+        self.dimmer = RGBLight(devices, 'light', 'state_brightness_color')
         self.devices.append(self.dimmer)
 
     def convert_message(self, message):
