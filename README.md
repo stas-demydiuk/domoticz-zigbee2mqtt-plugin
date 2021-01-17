@@ -11,8 +11,7 @@ It is recommended to remove plugin instance from Domoticz `Hardware` before upgr
 
 ## Prerequisites
 
-- Setup and run zigbee2mqtt 1.16+ server (https://www.zigbee2mqtt.io).
-- Make sure that you've enabled `new_api` feature in your zigbee2mqtt instance (https://github.com/Koenkk/zigbee2mqtt/issues/3281)
+- Setup and run zigbee2mqtt 1.17+ server (https://www.zigbee2mqtt.io).
 - Make sure that your Domoticz supports Python plugins (https://www.domoticz.com/wiki/Using_Python_plugins)
 
 ## Installation
