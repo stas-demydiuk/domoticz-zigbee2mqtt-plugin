@@ -38,7 +38,7 @@ class DimmerLight(OnOffLight):
         brightness = self.get_brightness_value(value)
 
         if state != None:
-            return super().get_numeric_value(self, value, device)
+            return super().get_numeric_value(value, device)
         elif brightness != None:
             return 1 if brightness > 0 else 0
         else:
