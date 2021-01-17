@@ -149,6 +149,10 @@ class UniversalAdapter(Adapter):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
+        if (feature['name'] == 'battery_low' and state_access):
+            self._add_device('lowbtr', feature, ContactSensor, ' (Low Battery)')
+            return
+
         if (feature['name'] == 'contact' and state_access):
             self._add_device('sensor', feature, ContactSensor)
             return
