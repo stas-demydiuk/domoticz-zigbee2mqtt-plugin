@@ -169,9 +169,28 @@ class UniversalAdapter(Adapter):
             self._add_device('tamper', feature, ContactSensor)
             return
 
+        if (feature['name'] == 'consumer_connected' and state_access):
+            self._add_device('consmr', feature, ContactSensor, ' (Consumer Connected)')
+            return
+
         if (feature['name'] == 'state' and state_access and write_access):
             alias = feature['endpoint'] if 'endpoint' in feature else 'state'
             self._add_device(alias, feature, OnOffSwitch)
+            return
+
+        if (feature['name'] == 'led_disabled_night' and state_access and write_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'nled'
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
+        if (feature['name'] == 'power_outage_memory' and state_access and write_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'pwrmem'
+            self._add_device(alias, feature, OnOffSwitch, ' (Power Outage Memory)')
+            return
+
+        if (feature['name'] == 'auto_off' and state_access and write_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'autoff'
+            self._add_device(alias, feature, OnOffSwitch, ' (Auto Off)')
             return
 
         if (feature['name'] == 'away_mode' and state_access and write_access):
