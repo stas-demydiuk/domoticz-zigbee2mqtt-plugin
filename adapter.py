@@ -186,6 +186,10 @@ class UniversalAdapter(Adapter):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
+        # TODO: Use energy value for `power` feature
+        if feature['name'] == 'energy':
+            return
+
         if (feature['name'] == 'linkquality' and state_access):
             if domoticz.get_plugin_config('trackLinkQuality'):
                 self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
