@@ -14,9 +14,16 @@ class OnOffSwitch(Device):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon).Create()
 
     def get_numeric_value(self, value, device):
-        if (value.lower() == 'on'):
+        if self.feature != None:
+            if 'value_on' in self.feature and value == self.feature['value_on']:
+                return 1
+            if 'value_off' in self.feature and value == self.feature['value_off']:
+                return 0
+            else:
+                return device.nValue
+        elif value.lower() == 'on':
             return 1
-        elif (value.lower() == 'off'):
+        elif value.lower() == 'off':
             return 0
         else:
             return device.nValue
