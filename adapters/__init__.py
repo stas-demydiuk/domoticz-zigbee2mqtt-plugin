@@ -1,6 +1,5 @@
 from adapters.base_adapter import Adapter
 from adapters.contact_adapter import ContactAdapter
-from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
@@ -23,7 +22,6 @@ from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
-from adapters.immax import immax_adapters
 from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
 from adapters.life_control import life_control_adapters
@@ -55,19 +53,11 @@ adapter_by_model = dict({
     'RH3052': TemperatureHumiditySensorAdapter,   # Alecto Smart Home branded Smart sensor temp and humidity / TUYATEC - TT001ZAV20 temp and humidity sensor
     # AduroSmart
     '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
-    # Airam
-    '4713407': DimmableBulbAdapter,     # Airam LED OP A60 ZB 9W/827 E27
-    # Belkin
-    'F7C033': DimmableBulbAdapter,      # Belkin WeMo smart LED bulb
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
-    # Calex
-    '421786': DimmableBulbAdapter,      # Calex LED A60 Zigbee GLS-lamp
     # Commercial Electric
     '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
-    # Connex
-    'ZG9101SAC-HP': DimmableBulbAdapter,# CONNEX Zigbee Phasendimmer 230V bis 400W
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
@@ -77,24 +67,14 @@ adapter_by_model = dict({
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
     'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
     # EcoSmart
-    'D1531': DimmableBulbAdapter,       # EcoSmart A19 bright white bulb
-    'D1532': DimmableBulbAdapter,       # EcoSmart A19 soft white bulb (on/off, brightness)
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
     # Essentials
     '120112': GS361AH04,                # Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
     # Eurotronic
     'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
-    # ELKO
-    '316GLEDRF': DimmableBulbAdapter,   # Elko ESH RS16 316GLED dimmer RF PH. ZigBee in-wall smart dimmer. (on/off, brightness)
-    # GE
-    '22670': DimmableBulbAdapter,       # GE Link smart LED light bulb, BR30 soft white (2700K)
-    '45852GE': DimmableBulbAdapter,     # GE ZigBee plug-in smart dimmer
-    '45857GE': DimmableBulbAdapter,     # GE ZigBee in-wall smart dimmer
     # Gira
     '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
     # Hive
-    'HALIGHTDIMWWB22': DimmableBulbAdapter,     # Hive Active smart bulb white LED (B22)
-    'HALIGHTDIMWWE27': DimmableBulbAdapter,     # Hive Active light dimmable
     '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # Iris
     '3320-L': ContactAdapter,           # Iris Contact sensor
@@ -110,39 +90,22 @@ adapter_by_model = dict({
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
-    # Nanoleaf
-    'NL08-0800': DimmableBulbAdapter,   # Nanoleaf Ivy smart bulb
     # Netvox
     'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
-    # Nue
-    'HGZB-02A': DimmableBulbAdapter,    # Nue / 3A ZigBee smart light controller
     # Oujiabao
     'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
     # Paulmann
-    '50045': DimmableBulbAdapter,       # Paulmann SmartHome Zigbee LED-stripe
     '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
-    # ROBB
-    'ROB_200-004-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut dimmer
-    'ROB_200-014-0': DimmableBulbAdapter,   # ROBB ZigBee AC phase-cut rotary dimmer
     # Salus
     'SP600': OnOffKwhAdapter,               # Salus Smart plug
     # Sengled
-    'E1ACA4ABE38A': DimmableBulbAdapter,    # Sengled Element downlight smart LED bulb
-    'E11-G13': DimmableBulbAdapter,         # Sengled Element Classic (A19)
-    'E11-G23': DimmableBulbAdapter,         # Sengled Element Classic (A60)
     'E11-N1EA': RGBWAdapter,                # Sengled Element Plus Color (A19)
-    'E12-N14': DimmableBulbAdapter,         # Sengled Element Classic (BR30)
     'Z01-A19NAE26': DimmableCtBulbAdapter,  # Sengled Element Plus (A19)
-    'Z01-CIA19NAE26': DimmableBulbAdapter,  # Sengled Element Touch (A19)
-    # Shenzhen Homa
-    'HLD812-Z-SC': DimmableBulbAdapter, # Shenzhen Homa Smart LED driver
-    'HLC610-Z': DimmableBulbAdapter,    # Shenzhen Homa Wireless dimmable controller
-    'HLC821-Z-SC': DimmableBulbAdapter, # Shenzhen Homa ZigBee AC phase-cut dimmer
     # Siterwell
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Smart Home Pty
@@ -156,8 +119,6 @@ adapter_by_model = dict({
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
     '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
     '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb
-    '74283': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
-    '74696': DimmableBulbAdapter,       # Sylvania LIGHTIFY LED soft white dimmable A19
     'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
     # Swann One
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
@@ -165,8 +126,6 @@ adapter_by_model = dict({
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
-    # ilux
-    '900008-WW': DimmableBulbAdapter,   # ilux Dimmable A60 E27 LED Bulb
     # Unbranded DIY adapters
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 },
@@ -178,7 +137,6 @@ adapter_by_model = dict({
     **heiman_adapters,
     **icasa_adapters,
     **ikea_adapters,
-    **immax_adapters,
     **innr_adapters,
     **konke_adapters,
     **life_control_adapters,

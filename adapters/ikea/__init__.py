@@ -1,5 +1,4 @@
 from adapters.base_adapter import Adapter
-from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgb_adapter import RGBAdapter
 from adapters.generic.blind_adapter import BlindAdapter
@@ -16,22 +15,12 @@ ikea_adapters = {
     'LED1537R6/LED1739R5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable, white spectrum
     'LED1545G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white
     'LED1546G12': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E26/E27 950 lumen, dimmable, white spectrum, clear
-    'LED1622G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E26 1000 lumen, dimmable, opal white
-    'LED1623G12': DimmableBulbAdapter,  # IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white
-    'LED1649C5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E14 400 lumen, dimmable warm white, chandelier opal
-    'LED1650R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
     'LED1732G11': DimmableCtBulbAdapter,# IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, white spectrum, opal white
     'LED1733G7': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E14 600 lumen, dimmable, white spectrum, opal white
     'LED1736G9': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E27 806 lumen, dimmable, white spectrum, clear
     'LED1738G7': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E12 600 lumen, dimmable, white spectrum, opal white
-    'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 805 lumen, dimmable, opal white
-    'LED1837R5': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb GU10 400 lumen, dimmable
-    'LED1836G9': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E26/E27 806 lumen, dimmable, warm white
-    'LED1842G3': DimmableBulbAdapter,   # IKEA TRADFRI LED bulb E27 250 lumen, dimmable, clear
     'LED1903C5': DimmableCtBulbAdapter, # IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
     'LED1903C5/LED1835C6': DimmableCtBulbAdapter,   # IKEA TRADFRI LED bulb E14 470 lumen, dimmable, white spectrum, opal white
-    'ICPSHC24-10EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (10 watt)
-    'ICPSHC24-30EU-IL-1': DimmableBulbAdapter,  # IKEA TRADFRI driver for wireless control (30 watt)
     'ICTC-G-1': TradfriWirelessDimmer,  # IKEA TRADFRI wireless dimmer
     'L1527': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (30x30 cm)
     'L1528': DimmableCtBulbAdapter,     # IKEA FLOALT LED light panel, dimmable, white spectrum (30x90 cm)
