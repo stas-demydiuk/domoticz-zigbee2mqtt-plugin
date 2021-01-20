@@ -178,10 +178,10 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
-        if (feature['name'] == 'led_disabled_night' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'nled'
-            self._add_device(alias, feature, OnOffSwitch)
-            return
+        # if (feature['name'] == 'led_disabled_night' and state_access and write_access):
+        #     alias = feature['endpoint'] if 'endpoint' in feature else 'nled'
+        #     self._add_device(alias, feature, OnOffSwitch)
+        #     return
 
         # if (feature['name'] == 'power_outage_memory' and state_access and write_access):
         #     alias = feature['endpoint'] if 'endpoint' in feature else 'pwrmem'
