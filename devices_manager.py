@@ -22,6 +22,11 @@ class DevicesManager:
                 domoticz.error(item['friendly_name'] + ': device definiton not found')
                 continue
 
+            if 'model' not in item['definition']:
+                domoticz.error(item['friendly_name'] + ': device definiton does not contain model')
+                domoticz.debug(json.dumps(item))
+                continue
+
             model = item['definition']['model']
 
             if model in adapter_by_model:
