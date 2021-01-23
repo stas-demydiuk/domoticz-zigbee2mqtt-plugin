@@ -19,11 +19,15 @@ class DevicesManager:
                 continue
 
             if 'definition' not in item:
-                domoticz.error(item['friendly_name'] + ': device definiton not found')
+                domoticz.log(item['friendly_name'] + ': device definiton not found, skipping...')
+                continue
+
+            if item['definition'] == None:
+                domoticz.log(item['friendly_name'] + ': device definiton not found, skipping...')
                 continue
 
             if 'model' not in item['definition']:
-                domoticz.error(item['friendly_name'] + ': device definiton does not contain model')
+                domoticz.log(item['friendly_name'] + ': device definiton does not contain model, skipping...')
                 domoticz.debug(json.dumps(item))
                 continue
 
