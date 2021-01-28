@@ -1,4 +1,3 @@
-from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.gledopto.GLC0082ID import GLC0082ID
 
@@ -8,7 +7,6 @@ gledopto_adapters = {
     'GL-B-007Z': RGBWAdapter,           # Gledopto Smart 6W E27 RGB / CW LED bulb
     'GL-B-008Z': RGBWAdapter,           # Gledopto Smart 12W E27 RGB / CW LED bulb
     'GL-B-008ZS': RGBWAdapter,          # Gledopto Smart 12W E27 RGB / CW LED bulb
-    'GL-C-006': DimmableCtBulbAdapter,  # Gledopto Zigbee LED controller WW/CW Dimmer
     'GL-C-007': RGBWAdapter,            # Gledopto Zigbee LED controller RGBW
     'GL-C-007S': RGBWAdapter,           # Gledopto Zigbee LED controller RGBW plus model    
     'GL-C-007-1ID': RGBWAdapter,        # Gledopto Zigbee LED controller RGBW (1 ID)
@@ -22,7 +20,6 @@ gledopto_adapters = {
     'GL-FL-004TZ': RGBWAdapter,         # Gledopto Zigbee 10W floodlight RGB CCT
     'GL-MC-001': RGBWAdapter,           # Gledopto Zigbee USB mini LED controller RGB + CCT
     'GL-S-003Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
-    'GL-S-004Z': DimmableCtBulbAdapter, # Gledopto Smart Wnite GU10
     'GL-S-007Z': RGBWAdapter,           # Gledopto Smart RGBW GU10
     'GL-S-007ZS': RGBWAdapter,          # Gledopto Smart RGB+CCT GU10
     'GL-S-008Z': RGBWAdapter,           # Gledopto Soposh dual white and color
