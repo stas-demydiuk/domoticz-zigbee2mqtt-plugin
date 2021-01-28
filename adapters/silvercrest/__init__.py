@@ -2,7 +2,6 @@ from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.contact_adapter import ContactAdapter
 from devices.sensor.door_contact import DoorContactSensor
 from adapters.generic.motion_sensor import MotionSensorAdapter
-from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.silvercrest.HG06336 import HG06336
 

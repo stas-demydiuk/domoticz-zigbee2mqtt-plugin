@@ -1,6 +1,5 @@
 from adapters.base_adapter import Adapter
 from adapters.contact_adapter import ContactAdapter
-from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
@@ -55,8 +54,6 @@ adapter_by_model = dict({
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
-    # Commercial Electric
-    '53170161': DimmableCtBulbAdapter,  # Commercial Electric Matte White Recessed Retrofit Smart Led Downlight - 4 Inch
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
@@ -64,7 +61,6 @@ adapter_by_model = dict({
     'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
     # Dresden Elektronik
     'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
-    'XVV-Mega23M12': DimmableCtBulbAdapter, # Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
     # EcoSmart
     'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
     # Essentials
@@ -88,7 +84,6 @@ adapter_by_model = dict({
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
     # Müller Licht
     '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
-    '404006/404008/404004': DimmableCtBulbAdapter,  # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, opal white
     # Netvox
     'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
@@ -96,13 +91,11 @@ adapter_by_model = dict({
     # Oujiabao
     'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
     # Paul Neuhaus
-    '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
     # Salus
     'SP600': OnOffKwhAdapter,               # Salus Smart plug
     # Sengled
     'E11-N1EA': RGBWAdapter,                # Sengled Element Plus Color (A19)
-    'Z01-A19NAE26': DimmableCtBulbAdapter,  # Sengled Element Plus (A19)
     # Siterwell
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Smart Home Pty
@@ -110,12 +103,8 @@ adapter_by_model = dict({
     # Stelpro
     'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
     # Sylvania
-    '71831': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white A19 LED bulb
     '73693': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW A19
     '73739': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW BR30
-    '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
-    '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
-    '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb
     # Swann One
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
