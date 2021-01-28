@@ -20,7 +20,15 @@ class BooleanSensor(Device):
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=self.sensor_type).Create()
 
     def get_numeric_value(self, value, device):
-        return 1 if value else 0
+        if hasattr(self, 'feature'):
+            if 'value_on' in self.feature and value == self.feature['value_on']:
+                return 1
+            if 'value_off' in self.feature and value == self.feature['value_off']:
+                return 0
+            else:
+                return device.nValue
+        else:
+            return 1 if value else 0
 
     def get_string_value(self, value, device):
         return str(self.get_numeric_value(value, device))
