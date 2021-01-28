@@ -1,7 +1,6 @@
 from adapters.base_adapter import Adapter
 from adapters.contact_adapter import ContactAdapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
-from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
@@ -99,8 +98,6 @@ adapter_by_model = dict({
     # Paul Neuhaus
     '100.424.11': DimmableCtBulbAdapter,    # Paul Neuhaus Q-INIGO LED ceiling light
     '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
-    # Paulmann
-    '50049': RGBAdapter,                # Paulmann SmartHome Yourled RGB Controller
     # Salus
     'SP600': OnOffKwhAdapter,               # Salus Smart plug
     # Sengled
@@ -119,7 +116,6 @@ adapter_by_model = dict({
     '73740': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white BR30
     '73742': DimmableCtBulbAdapter,     # Sylvania LIGHTIFY LED adjustable white RT 5/6
     '74282': DimmableCtBulbAdapter,     # Sylvania Smart Home adjustable white MR16 LED bulb
-    'LTFY004': RGBAdapter,              # Sylvania LIGHTIFY LED gardenspot mini RGB
     # Swann One
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor

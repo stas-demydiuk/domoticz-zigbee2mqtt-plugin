@@ -1,5 +1,4 @@
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
-from adapters.rgb_adapter import RGBAdapter
 from adapters.rgbw_adapter import RGBWAdapter
 from adapters.philips.hue_dimmer_switch import HueDimmerSwitch
 from adapters.philips.hue_motion_sensor import HueMotionSensor
@@ -12,7 +11,6 @@ philips_adapters = {
     '1743030P7': RGBWAdapter,               # Philips Hue outdoor Impress wall lamp
     '1743130P7': RGBWAdapter,               # Philips Hue Impress outdoor Pedestal
     '1743230P7': RGBWAdapter,               # Philips Hue outdoor Impress lantern
-    '17435/30/P7': RGBAdapter,              # Philips Hue Discover white and color ambiance flood light
     '1744130P7': RGBWAdapter,               # Philips Hue Econic outdoor Pedestal
     '1746130P7': RGBWAdapter,               # Philips Hue Attract
     '3115331PH': RGBWAdapter,               # Philips Phoenix light
@@ -46,13 +44,8 @@ philips_adapters = {
     '5062431P7': RGBWAdapter,               # Philips Hue white and color ambience Argenta spot (4 spots)
     '548727': RGBWAdapter,                  # Philips Hue white and color ambiance BR30 with bluetooth
     '5900131C5': RGBWAdapter,               # Philips Hue Aphelion downlight
-    '7099860PH': RGBAdapter,                # Philips LivingColors Aura
-    '7099930PH': RGBAdapter,                # Philips Hue Iris (Generation 2)
     '7121131PU': RGBWAdapter,               # Philips Hue Beyond white and color ambiance suspension light
     '7146060PH': RGBWAdapter,               # Philips Hue Go
-    '7199960PH': RGBAdapter,                # Philips Hue Iris
-    '7299355PH': RGBAdapter,                # Philips Hue white and color ambiance LightStrip
-    '7299760PH': RGBAdapter,                # Philips Hue Bloom
     '7602031P7': RGBWAdapter,               # Philips Hue Go with Bluetooth
     '8718696167991': RGBWAdapter,           # Philips Hue Calla outdoor
     '8718696170557': RGBWAdapter,           # Philips Hue Calla outdoor

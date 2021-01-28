@@ -1,6 +1,5 @@
 from adapters.base_adapter import Adapter
 from adapters.dimmable_ct_bulb_adapter import DimmableCtBulbAdapter
-from adapters.rgb_adapter import RGBAdapter
 from adapters.generic.blind_adapter import BlindAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.ikea.symfonisk import Symfonisk
