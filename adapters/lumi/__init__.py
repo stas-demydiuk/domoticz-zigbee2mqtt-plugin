@@ -17,6 +17,7 @@ from adapters.lumi.WXCJKG11LM import WXCJKG11LM
 from adapters.lumi.WXCJKG12LM import WXCJKG12LM
 from adapters.lumi.WXCJKG13LM import WXCJKG13LM
 from adapters.lumi.LLKZMK11LM import LLKZMK11LM
+from adapters.lumi.MCCGQ11LM import MCCGQ11LM
 
 
 lumi_adapters = {
@@ -26,7 +27,7 @@ lumi_adapters = {
     'JTYJ-GD-01LM/BW': JTYJ_GD_01LM,    # Xiaomi MiJia Honeywell smoke detector
     'JTQJ-BF-01LM/BW': GasSensorAdapter,    # Xiaomi MiJia gas leak detector
     'MCCGQ01LM': SensorMagnet,          # Xiaomi MiJia door & window contact sensor
-    'MCCGQ11LM': SensorMagnet,          # Xiaomi Aqara door & window contact sensor
+    'MCCGQ11LM': MCCGQ11LM,          	# Xiaomi Aqara door & window contact with temperature sensor
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
     'RTCGQ01LM': MotionSensorAdapter,   # Xiaomi MiJia human body movement sensor
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
