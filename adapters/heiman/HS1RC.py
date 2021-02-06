@@ -12,6 +12,7 @@ class HeimanAlarmRemoteAdapter(AdapterWithBattery):
         self.switch.add_level('Disarm', 'disarm')
         self.switch.add_level('Emergency', 'emergency')
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        self.switch.disable_value_check_on_update()
         self.devices.append(self.switch)
 
     def convert_message(self, message):
