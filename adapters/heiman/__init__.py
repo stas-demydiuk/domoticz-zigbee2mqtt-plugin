@@ -1,4 +1,3 @@
-from adapters.contact_adapter import ContactAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter as TempHumAdapter
@@ -17,8 +16,6 @@ heiman_adapters = {
     'HS1-WL-E': HS1WLE,                 # HEIMAN Water leakage sensor
     'HS1CA-E': HS1CAE,                  # HEIMAN Monoxyde detector
     'HS1CA-M': HS1CAE,                  # HEIMAN Monoxyde detector
-    'HS1DS': ContactAdapter,            # HEIMAN Door sensor
-    'HS1DS-E': ContactAdapter,          # HEIMAN Door sensor
     'HS1HT': TempHumAdapter,            # HEIMAN Smart temperature & humidity Sensor
     'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'HS1SA-M': SmokeSensorAdapter,      # HEIMAN Smoke detector
@@ -30,7 +27,6 @@ heiman_adapters = {
     'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'SKHMP30-I1': HS2SK,                # HEIMAN Smart metering plug
     'SMHM-I1': SMHMI1,                  # HEIMAN Smart motion sensor
-    'SOHM-I1': ContactAdapter,          # HEIMAN Door contact sensor
     'STHM-I1H': TempHumAdapter,         # HEIMAN temperature & humidity sensor
     'SWHM-I1': WaterLeakSensorAdapter,  # HEIMAN Water leakage sensor
     'HS3CG': GasAdapter,                # HEIMAN Combustible gas sensor

@@ -1,5 +1,4 @@
 from adapters.base_adapter import Adapter
-from adapters.contact_adapter import ContactAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
@@ -46,7 +45,6 @@ from adapters.diy.diyruzrt import DIYRuZ_RT
 
 adapter_by_model = dict({
     # Alecto Smart Home
-    'RH3001': ContactAdapter,                   # Alecto Smart Home - Smart sensor door / window
     'RH3052': TemperatureHumiditySensorAdapter,   # Alecto Smart Home branded Smart sensor temp and humidity / TUYATEC - TT001ZAV20 temp and humidity sensor
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
@@ -54,7 +52,6 @@ adapter_by_model = dict({
     # Custom devices (DiY)
     'CC2530.ROUTER': Adapter,           # Zigbee router based on CC2530 chip
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
-    'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
     'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
     # Essentials
     '120112': GS361AH04,                # Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
@@ -65,7 +62,6 @@ adapter_by_model = dict({
     # Hive
     '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # Iris
-    '3320-L': ContactAdapter,           # Iris Contact sensor
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # Livolo
     'TI0001': TI0001,                   # Livolo Switch TI0001
@@ -86,7 +82,6 @@ adapter_by_model = dict({
     # Stelpro
     'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
     # Swann One
-    'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
