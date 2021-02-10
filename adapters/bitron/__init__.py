@@ -1,6 +1,5 @@
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
-from adapters.bitron.AV201021 import AV201021
 from adapters.bitron.AV201032 import AV201032
 
 
