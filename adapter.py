@@ -254,8 +254,9 @@ class UniversalAdapter(Adapter):
             self.devices.append(device)
             return
 
-        if feature['name'] == 'current_heating_setpoint' and feature['unit'] == '°C' and write_access:
-            self._add_device('spoint', feature, SetPoint, ' (Setpoint)')
+        if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:
+            alias = feature['endpoint'] if 'endpoint' in feature else 'spoint'
+            self._add_device(alias, feature, SetPoint, ' (Setpoint)')
             return
 
         if (feature['name'] == 'position' and state_access):
@@ -291,7 +292,7 @@ class UniversalAdapter(Adapter):
                 })
             }
 
-        if feature['type'] == 'numeric' and feature['name'] == 'current_heating_setpoint' and feature['unit'] == '°C' and write_access and command == 'Set Level':
+        if feature['type'] == 'numeric' and 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access and command == 'Set Level':
             topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
             msg = json.dumps({ feature['property']: level })
 
