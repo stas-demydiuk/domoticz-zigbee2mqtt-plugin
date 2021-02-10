@@ -1,6 +1,5 @@
 from adapters.base_adapter import Adapter
 from adapters.contact_adapter import ContactAdapter
-from adapters.rgbw_adapter import RGBWAdapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
@@ -49,8 +48,6 @@ adapter_by_model = dict({
     # Alecto Smart Home
     'RH3001': ContactAdapter,                   # Alecto Smart Home - Smart sensor door / window
     'RH3052': TemperatureHumiditySensorAdapter,   # Alecto Smart Home branded Smart sensor temp and humidity / TUYATEC - TT001ZAV20 temp and humidity sensor
-    # AduroSmart
-    '81809': RGBWAdapter,               # AduroSmart ERIA colors and white shades smart light bulb A19
     # Bosch
     'RADON TriTech ZB': MotionAndTemperatureSensorAdapter,  # Bosch Wireless motion detector
     'ISW-ZPR1-WP13': MotionAndTemperatureSensorAdapter,     # Bosch Motion sensor
@@ -59,10 +56,6 @@ adapter_by_model = dict({
     'ZigUP': ZigupAdapter,              # Custom devices (DiY) ZigUP
     'DIYRuZ_magnet': ContactAdapter,    # DIYRuZ DIYRuZ_magnet
     'DIYRuZ_RT': DIYRuZ_RT,             # DIYRuZ_RT SonoffBasic ZBR2+DS18b20
-    # Dresden Elektronik
-    'Mega23M12': RGBWAdapter,           # Dresden Elektronik ZigBee Light Link wireless electronic ballast
-    # EcoSmart
-    'D1821': RGBWAdapter,               # EcoSmart A19 RGB bulb (on/off, brightness, color temperature, color xy)
     # Essentials
     '120112': GS361AH04,                # Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
     # Eurotronic
@@ -74,37 +67,24 @@ adapter_by_model = dict({
     # Iris
     '3320-L': ContactAdapter,           # Iris Contact sensor
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
-    # JIAWEN
-    'K2RGBW01': RGBWAdapter,            # JIAWEN Wireless Bulb E27 9W RGBW
     # Livolo
     'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
-    # Müller Licht
-    '404000/404005/404012': RGBWAdapter,            # Müller Licht Tint LED bulb GU10/E14/E27 350/470/806 lumen, dimmable, color, opal white
     # Netvox
     'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
     # NET2GRID
     'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Oujiabao
     'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
-    # Paul Neuhaus
-    '100.110.39': RGBWAdapter,          # Paul Neuhaus Q-FLAG LED Panel, Smart-Home RGBW
     # Salus
     'SP600': OnOffKwhAdapter,               # Salus Smart plug
-    # Sengled
-    'E11-N1EA': RGBWAdapter,                # Sengled Element Plus Color (A19)
     # Siterwell
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
-    # Smart Home Pty
-    'HGZB-07A': RGBWAdapter,            # Smart Home Pty RGBW Downlight
     # Stelpro
     'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
-    # Sylvania
-    '73693': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW A19
-    '73739': RGBWAdapter,               # Sylvania LIGHTIFY LED RGBW BR30
     # Swann One
     'SWO-WDS1PA': ContactAdapter,       # Swann Window/door sensor
     'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
