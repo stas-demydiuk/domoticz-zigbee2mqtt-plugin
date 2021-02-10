@@ -12,6 +12,7 @@ from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.sensor.kwh import KwhSensor
 from devices.setpoint import SetPoint
+from devices.switch.blind_percentages_switch import BlindSwitch
 from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
@@ -59,6 +60,8 @@ class UniversalAdapter(Adapter):
             self._add_features(item['features'])
         elif item['type'] == 'climate':
             self._add_features(item['features'])
+        elif item['type'] == 'cover':
+            self._add_cover_feature(item)
         else:
             domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
@@ -110,6 +113,25 @@ class UniversalAdapter(Adapter):
             name = item['name']
             
             if name != 'state' and name != 'brightness' and name != 'color_temp' and name != 'color_xy':
+                self._add_feature(item)
+
+    def _add_cover_feature(self, feature):
+        cover_features = feature['features']
+        state = self._get_feature(cover_features, 'state')
+        position = self._get_feature(cover_features, 'position')
+
+        if state and position:
+            alias = state['endpoint'] if 'endpoint' in state else 'dimmer'
+            device = BlindSwitch(domoticz.get_devices(), alias, position['property'], ' (Position)')
+            device.set_state_feature(state)
+            device.feature = feature
+            self.devices.append(device)
+
+        # Add rest light features
+        for item in cover_features:
+            name = item['name']
+            
+            if name != 'state' and name != 'position':
                 self._add_feature(item)
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
@@ -326,7 +348,7 @@ class UniversalAdapter(Adapter):
                 'payload': msg
             }
 
-        if feature['type'] == 'light':
+        if feature['type'] == 'light' or feature['type'] == 'cover':
             state_feature = device.state_feature
             topic = self.name + '/' + ((state_feature['endpoint'] + '/set') if 'endpoint' in state_feature else 'set')
 

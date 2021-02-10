@@ -1,5 +1,4 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
-from adapters.generic.blind_adapter import BlindAdapter
 from adapters.generic.gas_sensor import GasSensorAdapter
 from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.smoke_sensor import SmokeSensorAdapter
@@ -36,7 +35,5 @@ lumi_adapters = {
     'WXCJKG11LM': WXCJKG11LM,           # Xiaomi Aqara Opple 2-button switch
     'WXCJKG12LM': WXCJKG12LM,           # Xiaomi Aqara Opple 4-button switch
     'WXCJKG13LM': WXCJKG13LM,           # Xiaomi Aqara Opple 6-button switch
-    'ZNCLDJ11LM': BlindAdapter,         # Xiaomi Aqara curtain motor
-    'ZNCLDJ12LM': BlindAdapter,         # Xiaomi Aqara B1 curtain motor
     'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
 }
