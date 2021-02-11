@@ -1,15 +1,17 @@
 import json
-from adapters.contact_adapter import ContactAdapter
+from adapters.adapter_with_battery import AdapterWithBattery
+from devices.sensor.contact import ContactSensor
 from devices.sensor.temperature import TemperatureSensor
 from devices.switch.selector_switch import SelectorSwitch
 from devices.setpoint import SetPoint
 
 
-class TH1124ZB(ContactAdapter):
+class TH1124ZB(AdapterWithBattery):
 
     def __init__(self, devices):
         super().__init__(devices)
 
+        self.devices.append(ContactSensor(devices, 'sensor', 'contact'))
         temperature_sensor = TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)')
         self.devices.append(temperature_sensor)
 

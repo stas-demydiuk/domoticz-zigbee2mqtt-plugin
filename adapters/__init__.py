@@ -4,7 +4,6 @@ from adapters.bitron import bitron_adapters
 from adapters.cr import cr_adapters
 from adapters.ewelink import ewelink_adapters
 from adapters.feibit import feibit_adapters
-from adapters.generic.motion_sensor import MotionSensorAdapter
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.plug import PlugAdapter
@@ -12,7 +11,6 @@ from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.generic.thermostat import ThermostatAdapter
-from adapters.generic.water_leak_sensor import WaterLeakSensorAdapter
 from adapters.gira.light_link import GiraLightLink
 from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
@@ -30,7 +28,6 @@ from adapters.oujiabao.CR701_YZ import CR701_YZ
 from adapters.siterwell.GS361AH04 import GS361AH04
 from adapters.samsung import samsung_adapters
 from adapters.schneider_electric import schneider_adapters
-from adapters.silvercrest import silvercrest_adapters
 from adapters.sinope import sinope_adapters
 from adapters.sonoff import sonoff_adapters
 from adapters.philips import philips_adapters
@@ -81,8 +78,6 @@ adapter_by_model = dict({
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Stelpro
     'ST218': TemperatureSensorAdapter,  # Stelpro Built-in electronic thermostat
-    # Swann One
-    'SWO-MOS1PA': MotionSensorAdapter,  # Swann Motion and temperature sensor
     # Weiser
     '9GED18000-009': WeiserLock,        # Weiser SmartCode 10
     '9GED21500-005': WeiserLock,        # Weiser SmartCode 10 Touch
@@ -106,7 +101,6 @@ adapter_by_model = dict({
     **philips_adapters,
     **samsung_adapters,
     **schneider_adapters,
-    **silvercrest_adapters,
     **sinope_adapters,
     **sonoff_adapters,
     **trust_adapters,
