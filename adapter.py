@@ -74,7 +74,7 @@ class UniversalAdapter(Adapter):
         color_temp = self._get_feature(light_features, 'color_temp')
         color = self._get_feature(light_features, 'color_xy')
         
-        alias = 'light'
+        alias = state['endpoint'] if 'endpoint' in state else 'light'
         devices = domoticz.get_devices()
 
         if state and brightness and color_temp and color:
