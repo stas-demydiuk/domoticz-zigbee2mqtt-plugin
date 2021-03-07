@@ -204,8 +204,8 @@ class BasePlugin:
         Domoticz.Log('Installing plugin custom page...')
 
         try:
-            source_path = os.path.dirname(os.path.abspath(__file__)) + '/frontend'
-            templates_path = os.path.abspath(source_path + '/../../../www/templates')
+            source_path = Parameters['HomeFolder'] + 'frontend'
+            templates_path = Parameters['StartupFolder'] + 'www/templates'
             dst_plugin_path = templates_path + '/zigbee2mqtt'
 
             Domoticz.Debug('Copying files from ' + source_path + ' to ' + templates_path)
@@ -231,7 +231,7 @@ class BasePlugin:
         Domoticz.Log('Uninstalling plugin custom page...')
 
         try:
-            templates_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../www/templates')
+            templates_path = Parameters['StartupFolder'] + 'www/templates'
             dst_plugin_path = templates_path + '/zigbee2mqtt'
 
             Domoticz.Debug('Removing files from ' + templates_path)
