@@ -12,7 +12,7 @@ from devices.switch.on_off_switch import OnOffSwitch
 #         'input5' : 'center'}
 
 #update to latest zigbee2MQTT 1.14.3 compatible
-PTVOID = {'input1' : 'l1', 'input2' : 'l2', 'input3' : 'l3', 'input4' : 'l4', 'input5' : 'l5'}
+PTVOID = {'input1' : 'l1', 'input2' : 'l2', 'input3' : 'l3', 'input4' : 'l4', 'input5' : 'l5', 'input6' : 'l6', 'input7' : 'l7', 'input8' : 'l8'}
 
 class PtvoSwitch(Adapter):
     def __init__(self, devices):
