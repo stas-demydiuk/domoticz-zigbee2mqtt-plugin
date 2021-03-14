@@ -1,10 +1,23 @@
 """
 <plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.0.0">
     <description>
-      Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project<br/><br/>
-      Specify MQTT server and port.<br/>
-      <br/>
-      Automatically creates Domoticz devices for connected device.<br/>
+        <h2>Zigbee2MQTT Plugin</h2>
+        <p>Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project</p>
+        <h3>Features</h3>
+        <ul style="list-style-type:square">
+            <li>Allows to manage and control zigbee devices</li>
+            <li>Allows to manage and control zigbee groups</li>
+            <li>Custom UI page to improve user experience</li>
+            <li>Zigbee network map visualization</li>
+        </ul>
+        <h3>Blacklist</h3>
+        <p>Plugin allows to skip processing of some devices by adding them to the blacklist. Blacklisted devices will ot be created as logical devices in Domoticz.</p>
+        <p>Blacklist could contain several entries devided by semi-colon. Each blacklist entry should be valid <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax">Python regexp</a>. For example:</p>
+        <ul style="list-style-type:square">
+            <li>Single item of a device - use full Device ID (ieee addr + alias) to block it i.e. <span class="label label-default">0x842e14fffe13971a_state</span></li>
+            <li>All items of a device - use Regexp to block all logical devices (aliases) of a specified zigbee device (ieee address) i.e. <span class="label label-default">0x842e14fffe13971a_.*</span></li>
+            <li>Specific item of all devices - use Regexp to block all devices (ieee address) with a specific alias i.e. <span class="label label-default">.*_state</span></li>
+        </ul>
     </description>
     <params>
         <param field="Address" label="MQTT Server address" width="300px" required="true" default="127.0.0.1"/>
@@ -13,6 +26,7 @@
         <param field="Password" label="MQTT Password (optional)" width="300px" required="false" default="" password="true"/>
         <param field="Mode3" label="MQTT Client ID (optional)" width="300px" required="false" default=""/>
         <param field="Mode1" label="Zigbee2Mqtt Topic" width="300px" required="true" default="zigbee2mqtt"/>
+        <param field="Mode2" label="Devices Blacklist" width="100%" required="false" default=""/>
         <param field="Mode4" label="Track Link Quality" width="300px">
             <options>
                 <option label="Yes" value="Yes" default="true"/>

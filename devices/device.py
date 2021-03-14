@@ -1,10 +1,12 @@
-import Domoticz
+import domoticz
+import blacklist
 import json
 
 class Device():
     MAX_ALIAS_LENGTH = 6
 
     def __init__(self, devices, alias, value_key, device_name_suffix = ''):
+        # TODO: Remove devices param
         self.devices = devices
         self.alias = alias
         self.value_key = value_key
@@ -14,34 +16,38 @@ class Device():
         if len(self.alias) > self.MAX_ALIAS_LENGTH:
             raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
 
-    def get_first_available_unit(self):
-        for i in range(1, 254):
-            if i not in self.devices:
-                return i
-
     def get_device(self, address, alias):
         device_id = address + '_' + alias
+        devices = domoticz.get_devices()
 
-        for unit, device in self.devices.items():
+        for unit, device in devices.items():
             if device.DeviceID == device_id:
                 return device
 
     def _create_device(self, device_data):
         device_address = device_data['ieee_addr']
 
-        Domoticz.Debug(
+        domoticz.debug(
             'Creating domoticz device to handle "' + self.value_key +
             '" key for device with ieeeAddr ' + device_address
         )
 
         device_id = device_address + '_' + self.alias
         device_name = device_data['friendly_name'] + self.device_name_suffix
-        unit = self.get_first_available_unit()
+        unit = domoticz.get_first_available_unit()
+
+        if blacklist.has(device_id):
+            domoticz.debug('Device is in blacklist, skipped.')
+            return None
+
+        if unit == None:
+            domoticz.error('Can not create new Domoticz device: maximum of 255 devices is reached.')
+            return None
 
         return self.create_device(unit, device_id, device_name)
 
     def create_device(self, unit, device_id, device_name):
-        Domoticz.Error(
+        domoticz.error(
             'Unable to create device to handle "' + self.value_key +
             '" value for device "' + device_name + '"'
         )
@@ -64,7 +70,7 @@ class Device():
         if hasattr(device, 'Touch') and callable(getattr(device, 'Touch')):
             device.Touch()
         else:
-            Domoticz.Debug('Received heartbeat message from device "' + device.Name + '"')
+            domoticz.debug('Received heartbeat message from device "' + device.Name + '"')
 
     # Register device in Domoticz
     def register(self, device_data):
@@ -88,13 +94,13 @@ class Device():
             return None
 
     def get_numeric_value(self, value, device):
-        Domoticz.Error(
+        domoticz.error(
             'Device with alias "' + self.alias + '" for key ' +
             self.value_key + ' can not calculate numeric value'
         )
 
     def get_string_value(self, value, device):
-        Domoticz.Error(
+        domoticz.error(
             'Device with alias "' + self.alias + '" for key ' +
             self.value_key + ' can not calculate string value'
         )
@@ -131,4 +137,4 @@ class Device():
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
 
-        Domoticz.Debug('Command "' + command + '" from device "' + device.Name + '"')
+        domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
