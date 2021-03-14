@@ -1,13 +1,11 @@
 from adapters.base_adapter import Adapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
-from adapters.cr import cr_adapters
 from adapters.ewelink import ewelink_adapters
 from adapters.feibit import feibit_adapters
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.plug import PlugAdapter
-from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.generic.thermostat import ThermostatAdapter
@@ -85,7 +83,6 @@ adapter_by_model = dict({
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 },
     **bitron_adapters,
-    **cr_adapters,
     **ewelink_adapters,
     **feibit_adapters,
     **gledopto_adapters,

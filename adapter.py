@@ -7,6 +7,7 @@ from devices.sensor.humidity import HumiditySensor
 from devices.sensor.motion import MotionSensor
 from devices.sensor.percentage import PercentageSensor
 from devices.sensor.pressure import PressureSensor
+from devices.sensor.smoke import SmokeSensor
 from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
@@ -182,6 +183,10 @@ class UniversalAdapter(Adapter):
 
         if (feature['name'] == 'occupancy' and state_access):
             self._add_device('motion', feature, MotionSensor)
+            return
+
+        if (feature['name'] == 'smoke' and state_access):
+            self._add_device('smoke', feature, SmokeSensor)
             return
 
         if (feature['name'] == 'water_leak' and state_access):

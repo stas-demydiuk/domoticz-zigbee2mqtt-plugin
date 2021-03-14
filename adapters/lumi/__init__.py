@@ -1,6 +1,5 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.generic.gas_sensor import GasSensorAdapter
-from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2

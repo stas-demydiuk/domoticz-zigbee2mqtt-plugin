@@ -1,11 +1,12 @@
 import json
-from adapters.generic.smoke_sensor import SmokeSensorAdapter
+from adapters.adapter_with_battery import AdapterWithBattery
+from devices.sensor.smoke import SmokeSensor
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
 
 
-class JTYJ_GD_01LM(SmokeSensorAdapter):
+class JTYJ_GD_01LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
@@ -14,6 +15,7 @@ class JTYJ_GD_01LM(SmokeSensorAdapter):
         sensitivity_switch.add_level('Medium', 'medium')
         sensitivity_switch.add_level('High', 'high')
 
+        self.devices.append(SmokeSensor(devices, 'smoke', 'smoke'))
         self.devices.append(OnOffSwitch(devices, 'test', 'test_state', ' (Test)'))
         self.devices.append(sensitivity_switch)
         self.devices.append(CustomSensor(devices, 'dnsty', 'smoke_density', ' (Smoke Density)'))

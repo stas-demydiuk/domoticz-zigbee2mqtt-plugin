@@ -1,4 +1,3 @@
-from adapters.generic.smoke_sensor import SmokeSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter as TempHumAdapter
 from adapters.generic.on_off_kwh import OnOffKwhAdapter
 from adapters.generic.siren import SirenAdapterWithBattery
@@ -12,12 +11,9 @@ heiman_adapters = {
     'HS1CA-E': HS1CAE,                  # HEIMAN Monoxyde detector
     'HS1CA-M': HS1CAE,                  # HEIMAN Monoxyde detector
     'HS1HT': TempHumAdapter,            # HEIMAN Smart temperature & humidity Sensor
-    'HS1SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
-    'HS1SA-M': SmokeSensorAdapter,      # HEIMAN Smoke detector
     'HS2ESK-E': OnOffKwhAdapter,        # HEIMAN Smart in wall plug
     'HS2SK': HS2SK,                     # HEIMAN Smart metering plug
     'HS2WD-E': SirenAdapterWithBattery, # HEIMAN Smart siren
-    'HS3SA': SmokeSensorAdapter,        # HEIMAN Smoke detector
     'SKHMP30-I1': HS2SK,                # HEIMAN Smart metering plug
     'STHM-I1H': TempHumAdapter,         # HEIMAN temperature & humidity sensor
     'HS3CG': GasAdapter,                # HEIMAN Combustible gas sensor
