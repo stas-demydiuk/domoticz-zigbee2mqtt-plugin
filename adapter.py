@@ -43,8 +43,13 @@ class UniversalAdapter(Adapter):
         self.register()
 
     def _add_features(self, features):
+        self._add_energy_device(features)
+
         for item in features:
-            self._add_feature(item)
+            if 'name' in item and item['name'] in ['energy', 'power']:
+                continue
+            else:
+                self._add_feature(item)
 
     def _add_feature(self, item):
         if item['type'] == 'binary':
@@ -136,6 +141,21 @@ class UniversalAdapter(Adapter):
             if name != 'state' and name != 'position':
                 self._add_feature(item)
 
+    def _add_energy_device(self, features):
+        power = self._get_feature(features, 'power')
+        energy = self._get_feature(features, 'energy')
+        device = None
+
+        if power and energy:
+            device = KwhSensor(domoticz.get_devices(), 'power', [power['property'], energy['property']], ' (Power)')
+        elif power:
+            device = KwhSensor(domoticz.get_devices(), 'power', [power['property']], ' (Power)')
+
+        if device:
+            device.feature = power
+            self.devices.append(device)
+            return
+
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
         device = device_type(domoticz.get_devices(), alias, feature['property'], suffix)
@@ -145,7 +165,7 @@ class UniversalAdapter(Adapter):
 
     def _get_feature(self, features, feature_name):
         for item in features:
-            if item['name'] == feature_name:
+            if 'name' in item and item['name'] == feature_name:
                 return item
 
         return False
@@ -274,12 +294,6 @@ class UniversalAdapter(Adapter):
 
         if (feature['name'] == 'current' and state_access):
             self._add_device('ampere', feature, CurrentSensor, ' (Current)')
-            return
-
-        if (feature['name'] == 'power' and state_access and feature['unit'] == 'W'):
-            device = KwhSensor(domoticz.get_devices(), 'power', [feature['property']], ' (Power)')
-            device.feature = feature
-            self.devices.append(device)
             return
 
         if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:

@@ -2,7 +2,6 @@ import Domoticz
 import json
 from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch
-from devices.sensor.kwh import KwhSensor
 from devices.sensor.temperature import TemperatureSensor
 
 

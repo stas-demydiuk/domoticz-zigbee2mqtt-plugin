@@ -4,8 +4,6 @@ from adapters.bitron import bitron_adapters
 from adapters.ewelink import ewelink_adapters
 from adapters.feibit import feibit_adapters
 from adapters.generic.motion_temp_sensor import MotionAndTemperatureSensorAdapter
-from adapters.generic.on_off_kwh import OnOffKwhAdapter
-from adapters.generic.plug import PlugAdapter
 from adapters.generic.temperature_sensor import TemperatureSensorAdapter
 from adapters.generic.temp_hum_sensor import TemperatureHumiditySensorAdapter
 from adapters.generic.thermostat import ThermostatAdapter
@@ -14,7 +12,6 @@ from adapters.gledopto import gledopto_adapters
 from adapters.heiman import heiman_adapters
 from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
-from adapters.innr import innr_adapters
 from adapters.konke import konke_adapters
 from adapters.life_control import life_control_adapters
 from adapters.livolo.TI0001 import TI0001
@@ -54,8 +51,6 @@ adapter_by_model = dict({
     'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
     # Gira
     '2430-100': GiraLightLink,          # Gira ZigBee Light Link wall transmitter
-    # Hive
-    '1613V': OnOffKwhAdapter,                   # Hive Active plug
     # Iris
     '3326-L': MotionAndTemperatureSensorAdapter,    # Iris Motion and temperature sensor
     # Livolo
@@ -64,14 +59,8 @@ adapter_by_model = dict({
     'X702': TS0002,                     # Lonhonso 2 gang switch
     # Meazon
     'MEAZON_DINRAIL': DinrailAdapter,   # Meazon DinRail 1-phase meter
-    # Netvox
-    'Z809A': PlugAdapter,               # Netvox Power socket with power consumption monitoring
-    # NET2GRID
-    'N2G-SP': OnOffKwhAdapter,          # NET2GRID N2G-SP
     # Oujiabao
     'CR701_YZ': CR701_YZ,               # Oujiabao Gas and carbon monoxide alarm
-    # Salus
-    'SP600': OnOffKwhAdapter,               # Salus Smart plug
     # Siterwell
     'GS361A-H04': GS361AH04,            # Siterwell Radiator valve with thermostat
     # Stelpro
@@ -89,7 +78,6 @@ adapter_by_model = dict({
     **heiman_adapters,
     **icasa_adapters,
     **ikea_adapters,
-    **innr_adapters,
     **konke_adapters,
     **life_control_adapters,
     **lumi_adapters,

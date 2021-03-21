@@ -11,7 +11,6 @@ from adapters.lumi.WSDCGQ11LM import WSDCGQ11LM
 from adapters.lumi.WXCJKG11LM import WXCJKG11LM
 from adapters.lumi.WXCJKG12LM import WXCJKG12LM
 from adapters.lumi.WXCJKG13LM import WXCJKG13LM
-from adapters.lumi.LLKZMK11LM import LLKZMK11LM
 
 
 lumi_adapters = {
@@ -27,5 +26,4 @@ lumi_adapters = {
     'WXCJKG11LM': WXCJKG11LM,           # Xiaomi Aqara Opple 2-button switch
     'WXCJKG12LM': WXCJKG12LM,           # Xiaomi Aqara Opple 4-button switch
     'WXCJKG13LM': WXCJKG13LM,           # Xiaomi Aqara Opple 6-button switch
-    'LLKZMK11LM':LLKZMK11LM,            # Xiaomi Aqara Two-way Control Module
 }
