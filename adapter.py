@@ -207,12 +207,16 @@ class UniversalAdapter(Adapter):
             self._add_device('sensor', feature, ContactSensor)
             return
 
+        if (feature['name'] == 'gas' and state_access):
+            self._add_device('gas', feature, SmokeSensor, ' (Gas sensor)')
+            return
+
         if (feature['name'] == 'occupancy' and state_access):
             self._add_device('motion', feature, MotionSensor)
             return
 
         if (feature['name'] == 'smoke' and state_access):
-            self._add_device('smoke', feature, SmokeSensor)
+            self._add_device('smoke', feature, SmokeSensor, ' (Smoke sensor)')
             return
 
         if (feature['name'] == 'water_leak' and state_access):

@@ -1,5 +1,4 @@
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
-from adapters.generic.gas_sensor import GasSensorAdapter
 from adapters.lumi.sensor_cube import SensorCube
 from adapters.lumi.sensor_motion_aq2 import SensorMotionAq2
 from adapters.lumi.DJT11LM import DJT11LM
@@ -17,7 +16,6 @@ lumi_adapters = {
     'DJT11LM': DJT11LM,                 # Xiaomi Aqara vibration sensor (drop, tilt and touch)
     'GZCGQ01LM': GZCGQ01LM,             # Xiaomi MiJia light intensity sensor
     'JTYJ-GD-01LM/BW': JTYJ_GD_01LM,    # Xiaomi MiJia Honeywell smoke detector
-    'JTQJ-BF-01LM/BW': GasSensorAdapter,    # Xiaomi MiJia gas leak detector
     'MFKZQ01LM': SensorCube,            # Xiaomi Mi smart home cube
     'RTCGQ11LM': SensorMotionAq2,       # Xiaomi Aqara human body movement and illuminance sensor
     'WSDCGQ11LM': WSDCGQ11LM,           # Xiaomi Aqara temperature, humidity and pressure sensor
