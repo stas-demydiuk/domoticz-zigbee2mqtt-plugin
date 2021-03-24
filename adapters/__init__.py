@@ -8,7 +8,6 @@ from adapters.heiman import heiman_adapters
 from adapters.icasa import icasa_adapters
 from adapters.ikea import ikea_adapters
 from adapters.life_control import life_control_adapters
-from adapters.livolo.TI0001 import TI0001
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
 from adapters.neo import neo_adapters
@@ -37,8 +36,6 @@ adapter_by_model = dict({
     '120112': GS361AH04,                # Essentials Smart home heizkörperthermostat premium (white-label of Siterwell GS361A-H04) 
     # Eurotronic
     'SPZB0001': ThermostatAdapter,      # SPZB0001 thermostat
-    # Livolo
-    'TI0001': TI0001,                   # Livolo Switch TI0001
     # Lonhonso
     'X702': TS0002,                     # Lonhonso 2 gang switch
     # Meazon
