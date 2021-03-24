@@ -18,6 +18,7 @@ from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
+from devices.switch.siren_switch import SirenSwitch
 from devices.light.on_off import OnOffLight
 from devices.light.dimmer import DimmerLight
 from devices.light.ct import CTLight
@@ -192,6 +193,11 @@ class UniversalAdapter(Adapter):
     def add_binary_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
+
+        if (feature['name'] == 'alarm' and state_access and write_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'alarm'
+            self._add_device(alias, feature, SirenSwitch)
+            return
 
         if (feature['name'] == 'battery_low' and state_access):
             self._add_device('lowbtr', feature, ContactSensor, ' (Low Battery)')

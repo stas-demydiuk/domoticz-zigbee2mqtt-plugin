@@ -1,6 +1,6 @@
 import json
 from adapters.base_adapter import Adapter
-from devices.switch.on_off_switch import OnOffSwitch
+from devices.switch.siren_switch import SirenSwitch
 from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.humidity import HumiditySensor
 from devices.switch.selector_switch import SelectorSwitch
@@ -11,7 +11,7 @@ class NASAB02B0(Adapter):
         super().__init__(devices)
         self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', 'temperature'))
         self.devices.append(HumiditySensor(devices, 'hum', 'humidity', ' (Humidity)'))
-        self.devices.append(OnOffSwitch(devices, 'alarm', 'alarm', ' (Alarm)'))
+        self.devices.append(SirenSwitch(devices, 'alarm', 'alarm', ' (Alarm)'))
 
         volume_switch = SelectorSwitch(devices, 'vol', 'volume', ' (Volume)')
         volume_switch.add_level('Low', 'low')
