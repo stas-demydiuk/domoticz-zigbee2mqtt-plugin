@@ -74,7 +74,6 @@ class BasePlugin:
         Domoticz.Debug("onStart called")
         self.install()
         self.base_topic = Parameters["Mode1"].strip()
-        self.subscribed_for_devices = False
 
         mqtt_server_address = Parameters["Address"].strip()
         mqtt_server_port = Parameters["Port"].strip()
@@ -141,13 +140,13 @@ class BasePlugin:
         self.mqttClient.onHeartbeat()
 
     def onMQTTConnected(self):
-        self.mqttClient.subscribe([self.base_topic + '/bridge/#'])
+        self.mqttClient.subscribe([self.base_topic + '/#'])
 
     def onMQTTDisconnected(self):
-        self.subscribed_for_devices = False
+        Domoticz.Debug('Disconnected from MQTT server')
 
     def onMQTTSubscribed(self):
-        Domoticz.Debug("onMQTTSubscribed")
+        Domoticz.Debug('Subscribed to "' + self.base_topic + '/#" topic')
 
     def onMQTTPublish(self, topic, message):
         # Domoticz.Debug("MQTT message: " + topic + " " + str(message))
@@ -165,11 +164,6 @@ class BasePlugin:
         if (topic == 'bridge/devices'):
             Domoticz.Log('Received available devices list from bridge')
             self.devices_manager.set_devices(message)
-
-            if self.subscribed_for_devices == False:
-                self.mqttClient.subscribe([self.base_topic + '/+'])
-                self.subscribed_for_devices = True
-
             return
 
         if (topic == 'bridge/config'):
