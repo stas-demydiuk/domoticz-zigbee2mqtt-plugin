@@ -4,6 +4,7 @@ from adapters.base_adapter import Adapter
 from devices.sensor.contact import ContactSensor
 from devices.sensor.current import CurrentSensor
 from devices.sensor.humidity import HumiditySensor
+from devices.sensor.lux import LuxSensor
 from devices.sensor.motion import MotionSensor
 from devices.sensor.percentage import PercentageSensor
 from devices.sensor.pressure import PressureSensor
@@ -280,6 +281,16 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'brightness' and state_access):
             alias = feature['endpoint'] if 'endpoint' in feature else 'light'
             self._add_device(alias, feature, DimmerSwitch)
+            return
+
+        if (feature['name'] == 'illuminance' and state_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'lux'
+            self._add_device(alias, feature, LuxSensor, ' (Illuminance)')
+            return
+
+        if (feature['name'] == 'illuminance_lux' and state_access):
+            alias = feature['endpoint'] if 'endpoint' in feature else 'lx'
+            self._add_device(alias, feature, LuxSensor, ' (Illuminance Lux)')
             return
 
         if (feature['name'] == 'humidity' and state_access):
