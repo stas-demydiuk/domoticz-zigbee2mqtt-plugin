@@ -150,7 +150,7 @@ class BasePlugin:
         Domoticz.Debug("onMQTTSubscribed")
 
     def onMQTTPublish(self, topic, message):
-        # Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        Domoticz.Debug("MQTT message: " + topic + " " + str(message))
         topic = topic.replace(self.base_topic + '/', '')
 
         self.api.handle_mqtt_message(topic, message)
@@ -158,7 +158,7 @@ class BasePlugin:
         if (topic == 'bridge/config/permit_join'):
             return
 
-        if (topic == 'bridge/config/logging'):
+        if (topic == 'bridge/config/logging') or (topic == 'bridge/logging'):
             # TODO: Add log feature
             return
 
@@ -202,6 +202,16 @@ class BasePlugin:
             if message['type'] == 'ota_update':
                 Domoticz.Log(message['message'])
 
+            if (message['type'] == 'device_renamed'):
+                Domoticz.Debug("Device renamed from '{0}' to '{1}'".format(message['message']['from'], message['message']['to']))
+                if (self.devices_manager.get_device_by_name(message['message']['from']) != None):
+                    Domoticz.Debug("attempt to rename on bridge/log")
+                    toRename = self.devices_manager.get_device_by_name(message['message']['from'])
+                    toRename.zigbee_device['friendly_name'] = message['message']['to']
+                    self.devices_manager.devices[toRename.zigbee_device['ieee_address']] = toRename
+                else:
+                    Domoticz.Debug("attempt to rename failed on bridge/log")
+                
             if message['type'] == 'zigbee_publish_error':
                 #an error occured on publish to the zigbee network
                 deviceMeta = message['meta']
