@@ -63,7 +63,7 @@ class MqttClient:
         self._connection.Connect()
 
     def ping(self):
-        Domoticz.Debug("MqttClient::ping")
+        #Domoticz.Debug("MqttClient::ping")
         if (self._connection == None or not self.isConnected):
             self._open()
         else:
