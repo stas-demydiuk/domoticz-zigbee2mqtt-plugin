@@ -1,5 +1,5 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.0.0">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.0.1">
     <description>
         <h2>Zigbee2MQTT Plugin</h2>
         <p>Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project</p>

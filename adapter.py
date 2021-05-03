@@ -10,9 +10,10 @@ from devices.sensor.percentage import PercentageSensor
 from devices.sensor.pressure import PressureSensor
 from devices.sensor.smoke import SmokeSensor
 from devices.sensor.temperature import TemperatureSensor
+from devices.temperature_humidity_sensor import TemperatureHumiditySensor
+from devices.temperature_humidity_barometer_sensor import TemperatureHumidityBarometerSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
-from devices.sensor.kwh import KwhSensor
 from devices.setpoint import SetPoint
 from devices.switch.blind_percentages_switch import BlindSwitch
 from devices.switch.dimmer_switch import DimmerSwitch
@@ -26,6 +27,10 @@ from devices.light.ct import CTLight
 from devices.light.rgb import RGBLight
 from devices.light.rgbw import RGBWLight
 from devices.custom_sensor import CustomSensor
+from features.cover import CoverFeatureProcessor
+from features.energy import EnergyFeatureProcessor
+from features.light import LightFeatureProcesor
+from features.temp_hum_pressure import TempHumPressureFeatureProcessor
 
 ACCESS_STATE = 0
 ACCESS_WRITE = 1
@@ -41,14 +46,23 @@ class UniversalAdapter(Adapter):
             domoticz.error(self.name + ': device exposes not found')
             return
 
+        self.feature_processors = [
+            CoverFeatureProcessor(self),
+            EnergyFeatureProcessor(),
+            LightFeatureProcesor(self),
+            TempHumPressureFeatureProcessor(),
+        ]
+
         self._add_features(zigbee_device['definition']['exposes'])
         self.register()
 
     def _add_features(self, features):
-        self._add_energy_device(features)
+        for processor in self.feature_processors:
+            devices = processor.register(features)
+            self.devices.extend(devices)
 
         for item in features:
-            if 'name' in item and item['name'] in ['energy', 'power']:
+            if 'name' in item and item['name'] in ['energy', 'power', 'temperature', 'humidity', 'pressure']:
                 continue
             else:
                 self._add_feature(item)
@@ -63,100 +77,16 @@ class UniversalAdapter(Adapter):
         elif item['type'] == 'switch':
             self._add_features(item['features'])
         elif item['type'] == 'light':
-            self._add_light_feature(item)
+            return None
         elif item['type'] == 'lock':
             self._add_features(item['features'])
         elif item['type'] == 'climate':
             self._add_features(item['features'])
         elif item['type'] == 'cover':
-            self._add_cover_feature(item)
+            return None
         else:
-            domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
+            domoticz.debug(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
-
-    def _add_light_feature(self, feature):
-        light_features = feature['features']
-        
-        state = self._get_feature(light_features, 'state')
-        brightness = self._get_feature(light_features, 'brightness')
-        color_temp = self._get_feature(light_features, 'color_temp')
-        color = self._get_feature(light_features, 'color_xy')
-        
-        alias = self._generate_alias(state, 'light')
-        devices = domoticz.get_devices()
-
-        if state and brightness and color_temp and color:
-            device = RGBWLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_temp_feature(color_temp)
-            device.set_color_feature(color)
-        elif state and brightness and color:
-            device = RGBLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_feature(color)
-        elif state and brightness and color_temp:
-            device = CTLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_temp_feature(color_temp)
-        elif state and brightness:
-            device = DimmerLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-        elif state:
-            device = OnOffLight(devices, 'switch')
-            device.set_state_feature(state)
-        else:
-            domoticz.error(self.name + ': can not find appropriate device type to handle light feature')
-            domoticz.debug(json.dumps(feature))
-            
-        if device:
-            device.feature = feature
-            self.devices.append(device)
-        
-        # Add rest light features
-        for item in light_features:
-            name = item['name']
-            
-            if name != 'state' and name != 'brightness' and name != 'color_temp' and name != 'color_xy':
-                self._add_feature(item)
-
-    def _add_cover_feature(self, feature):
-        cover_features = feature['features']
-        state = self._get_feature(cover_features, 'state')
-        position = self._get_feature(cover_features, 'position')
-
-        if state and position:
-            alias = state['endpoint'] if 'endpoint' in state else 'dimmer'
-            device = BlindSwitch(domoticz.get_devices(), alias, position['property'], ' (Position)')
-            device.set_state_feature(state)
-            device.set_position_feature(position)
-            device.feature = feature
-            self.devices.append(device)
-
-        # Add rest light features
-        for item in cover_features:
-            name = item['name']
-            
-            if name != 'state' and name != 'position':
-                self._add_feature(item)
-
-    def _add_energy_device(self, features):
-        power = self._get_feature(features, 'power')
-        energy = self._get_feature(features, 'energy')
-        device = None
-
-        if power and energy:
-            device = KwhSensor(domoticz.get_devices(), 'power', [power['property'], energy['property']], ' (Power)')
-        elif power:
-            device = KwhSensor(domoticz.get_devices(), 'power', [power['property']], ' (Power)')
-
-        if device:
-            device.feature = power
-            self.devices.append(device)
-            return
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
@@ -307,24 +237,9 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, LuxSensor, ' (Illuminance Lux)')
             return
 
-        if (feature['name'] == 'humidity' and state_access):
-            alias = self._generate_alias(feature, 'hum')
-            self._add_device(alias, feature, HumiditySensor, ' (Humidity)')
-            return
-
-        if (feature['name'] == 'temperature' and state_access):
-            alias = self._generate_alias(feature, 'temp')
-            self._add_device(alias, feature, TemperatureSensor, ' (Temperature)')
-            return
-
         if (feature['name'] == 'local_temperature' and state_access):
             alias = self._generate_alias(feature, 'ltemp')
             self._add_device(alias, feature, TemperatureSensor, ' (Local Temperature)')
-            return
-
-        if (feature['name'] == 'pressure' and state_access):
-            alias = self._generate_alias(feature, 'pres')
-            self._add_device(alias, feature, PressureSensor, ' (Pressure)')
             return
 
         if (feature['name'] == 'soil_moisture' and state_access):
