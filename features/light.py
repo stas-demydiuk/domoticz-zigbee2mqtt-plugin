@@ -48,6 +48,9 @@ class LightFeatureProcesor():
         else:
             domoticz.error(self.adapter.name + ': can not find appropriate device type to handle light feature')
             domoticz.debug(json.dumps(feature))
+
+        if device:
+            device.feature = feature
             
         # Add rest light features
         for item in light_features:
