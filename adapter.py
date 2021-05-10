@@ -4,26 +4,33 @@ from adapters.base_adapter import Adapter
 from devices.sensor.contact import ContactSensor
 from devices.sensor.current import CurrentSensor
 from devices.sensor.humidity import HumiditySensor
+from devices.sensor.lux import LuxSensor
 from devices.sensor.motion import MotionSensor
 from devices.sensor.percentage import PercentageSensor
 from devices.sensor.pressure import PressureSensor
 from devices.sensor.smoke import SmokeSensor
 from devices.sensor.temperature import TemperatureSensor
+from devices.temperature_humidity_sensor import TemperatureHumiditySensor
+from devices.temperature_humidity_barometer_sensor import TemperatureHumidityBarometerSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
-from devices.sensor.kwh import KwhSensor
 from devices.setpoint import SetPoint
 from devices.switch.blind_percentages_switch import BlindSwitch
 from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
+from devices.switch.siren_switch import SirenSwitch
 from devices.light.on_off import OnOffLight
 from devices.light.dimmer import DimmerLight
 from devices.light.ct import CTLight
 from devices.light.rgb import RGBLight
 from devices.light.rgbw import RGBWLight
 from devices.custom_sensor import CustomSensor
+from features.cover import CoverFeatureProcessor
+from features.energy import EnergyFeatureProcessor
+from features.light import LightFeatureProcesor
+from features.temp_hum_pressure import TempHumPressureFeatureProcessor
 
 ACCESS_STATE = 0
 ACCESS_WRITE = 1
@@ -39,12 +46,26 @@ class UniversalAdapter(Adapter):
             domoticz.error(self.name + ': device exposes not found')
             return
 
+        self.feature_processors = [
+            CoverFeatureProcessor(self),
+            EnergyFeatureProcessor(),
+            LightFeatureProcesor(self),
+            TempHumPressureFeatureProcessor(),
+        ]
+
         self._add_features(zigbee_device['definition']['exposes'])
         self.register()
 
     def _add_features(self, features):
+        for processor in self.feature_processors:
+            devices = processor.register(features)
+            self.devices.extend(devices)
+
         for item in features:
-            self._add_feature(item)
+            if 'name' in item and item['name'] in ['energy', 'power', 'temperature', 'humidity', 'pressure']:
+                continue
+            else:
+                self._add_feature(item)
 
     def _add_feature(self, item):
         if item['type'] == 'binary':
@@ -56,85 +77,16 @@ class UniversalAdapter(Adapter):
         elif item['type'] == 'switch':
             self._add_features(item['features'])
         elif item['type'] == 'light':
-            self._add_light_feature(item)
+            return None
         elif item['type'] == 'lock':
             self._add_features(item['features'])
         elif item['type'] == 'climate':
             self._add_features(item['features'])
         elif item['type'] == 'cover':
-            self._add_cover_feature(item)
+            return None
         else:
-            domoticz.error(self.name + ': can not process feature type "' + item['type'] + '"')
+            domoticz.debug(self.name + ': can not process feature type "' + item['type'] + '"')
             domoticz.debug(json.dumps(item))
-
-    def _add_light_feature(self, feature):
-        light_features = feature['features']
-        
-        state = self._get_feature(light_features, 'state')
-        brightness = self._get_feature(light_features, 'brightness')
-        color_temp = self._get_feature(light_features, 'color_temp')
-        color = self._get_feature(light_features, 'color_xy')
-        
-        alias = state['endpoint'] if 'endpoint' in state else 'light'
-        devices = domoticz.get_devices()
-
-        if state and brightness and color_temp and color:
-            device = RGBWLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_temp_feature(color_temp)
-            device.set_color_feature(color)
-        elif state and brightness and color:
-            device = RGBLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_feature(color)
-        elif state and brightness and color_temp:
-            device = CTLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-            device.set_color_temp_feature(color_temp)
-        elif state and brightness:
-            device = DimmerLight(devices, alias)
-            device.set_state_feature(state)
-            device.set_brightness_feature(brightness)
-        elif state:
-            device = OnOffLight(devices, 'switch')
-            device.set_state_feature(state)
-        else:
-            domoticz.error(self.name + ': can not find appropriate device type to handle light feature')
-            domoticz.debug(json.dumps(feature))
-            
-        if device:
-            device.feature = feature
-            self.devices.append(device)
-        
-        # Add rest light features
-        for item in light_features:
-            name = item['name']
-            
-            if name != 'state' and name != 'brightness' and name != 'color_temp' and name != 'color_xy':
-                self._add_feature(item)
-
-    def _add_cover_feature(self, feature):
-        cover_features = feature['features']
-        state = self._get_feature(cover_features, 'state')
-        position = self._get_feature(cover_features, 'position')
-
-        if state and position:
-            alias = state['endpoint'] if 'endpoint' in state else 'dimmer'
-            device = BlindSwitch(domoticz.get_devices(), alias, position['property'], ' (Position)')
-            device.set_state_feature(state)
-            device.set_position_feature(position)
-            device.feature = feature
-            self.devices.append(device)
-
-        # Add rest light features
-        for item in cover_features:
-            name = item['name']
-            
-            if name != 'state' and name != 'position':
-                self._add_feature(item)
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
@@ -145,7 +97,7 @@ class UniversalAdapter(Adapter):
 
     def _get_feature(self, features, feature_name):
         for item in features:
-            if item['name'] == feature_name:
+            if 'name' in item and item['name'] == feature_name:
                 return item
 
         return False
@@ -169,60 +121,83 @@ class UniversalAdapter(Adapter):
         mask = 1 << access_type
         return bool(access & mask)
 
+    def _generate_alias(self, feature, default_value):
+        if 'endpoint' in feature:
+            return feature['endpoint']
+        else:
+            return default_value
+
     def add_binary_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
 
+        if (feature['name'] == 'alarm' and state_access and write_access):
+            alias = self._generate_alias(feature, 'alarm')
+            self._add_device(alias, feature, SirenSwitch)
+            return
+
         if (feature['name'] == 'battery_low' and state_access):
-            self._add_device('lowbtr', feature, ContactSensor, ' (Low Battery)')
+            alias = self._generate_alias(feature, 'lowbtr')
+            self._add_device(alias, feature, ContactSensor, ' (Low Battery)')
             return
 
         if (feature['name'] == 'contact' and state_access):
-            self._add_device('sensor', feature, ContactSensor)
+            alias = self._generate_alias(feature, 'sensor')
+            self._add_device(alias, feature, ContactSensor)
+            return
+
+        if (feature['name'] == 'gas' and state_access):
+            alias = self._generate_alias(feature, 'gas')
+            self._add_device(alias, feature, SmokeSensor, ' (Gas sensor)')
             return
 
         if (feature['name'] == 'occupancy' and state_access):
-            self._add_device('motion', feature, MotionSensor)
+            alias = self._generate_alias(feature, 'motion')
+            self._add_device(alias, feature, MotionSensor)
             return
 
         if (feature['name'] == 'smoke' and state_access):
-            self._add_device('smoke', feature, SmokeSensor)
+            alias = self._generate_alias(feature, 'smoke')
+            self._add_device(alias, feature, SmokeSensor, ' (Smoke sensor)')
             return
 
         if (feature['name'] == 'water_leak' and state_access):
-            self._add_device('wleak', feature, WaterLeakSensor)
+            alias = self._generate_alias(feature, 'wleak')
+            self._add_device(alias, feature, WaterLeakSensor)
             return
 
         if (feature['name'] == 'tamper' and state_access):
-            self._add_device('tamper', feature, ContactSensor)
+            alias = self._generate_alias(feature, 'tamper')
+            self._add_device(alias, feature, ContactSensor)
             return
 
         if (feature['name'] == 'consumer_connected' and state_access):
-            self._add_device('consmr', feature, ContactSensor, ' (Consumer Connected)')
+            alias = self._generate_alias(feature, 'consmr')
+            self._add_device(alias, feature, ContactSensor, ' (Consumer Connected)')
             return
 
         if (feature['name'] == 'state' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'state'
+            alias = self._generate_alias(feature, 'state')
             self._add_device(alias, feature, OnOffSwitch)
             return
 
         if (feature['name'] == 'led_disabled_night' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'nled'
+            alias = self._generate_alias(feature, 'nled')
             self._add_device(alias, feature, OnOffSwitch)
             return
 
         if (feature['name'] == 'power_outage_memory' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'pwrmem'
+            alias = self._generate_alias(feature, 'pwrmem')
             self._add_device(alias, feature, OnOffSwitch, ' (Power Outage Memory)')
             return
 
         if (feature['name'] == 'auto_off' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'autoff'
+            alias = self._generate_alias(feature, 'autoff')
             self._add_device(alias, feature, OnOffSwitch, ' (Auto Off)')
             return
 
         if (feature['name'] == 'away_mode' and state_access and write_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'away'
+            alias = self._generate_alias(feature, 'away')
             self._add_device(alias, feature, OnOffSwitch)
             return
 
@@ -248,47 +223,47 @@ class UniversalAdapter(Adapter):
             return
 
         if (feature['name'] == 'brightness' and state_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'light'
+            alias = self._generate_alias(feature, 'light')
             self._add_device(alias, feature, DimmerSwitch)
             return
 
-        if (feature['name'] == 'humidity' and state_access):
-            self._add_device('hum', feature, HumiditySensor, ' (Humidity)')
+        if (feature['name'] == 'illuminance' and state_access):
+            alias = self._generate_alias(feature, 'lux')
+            self._add_device(alias, feature, LuxSensor, ' (Illuminance)')
             return
 
-        if (feature['name'] == 'temperature' and state_access):
-            self._add_device('temp', feature, TemperatureSensor, ' (Temperature)')
+        if (feature['name'] == 'illuminance_lux' and state_access):
+            alias = self._generate_alias(feature, 'lx')
+            self._add_device(alias, feature, LuxSensor, ' (Illuminance Lux)')
             return
 
         if (feature['name'] == 'local_temperature' and state_access):
-            self._add_device('ltemp', feature, TemperatureSensor, ' (Local Temperature)')
+            alias = self._generate_alias(feature, 'ltemp')
+            self._add_device(alias, feature, TemperatureSensor, ' (Local Temperature)')
             return
 
-        if (feature['name'] == 'pressure' and state_access):
-            self._add_device('pres', feature, PressureSensor, ' (Pressure)')
+        if (feature['name'] == 'soil_moisture' and state_access):
+            alias = self._generate_alias(feature, 'pres')
+            self._add_device(alias, feature, PercentageSensor, ' (Soil Moisture)')
             return
 
         if (feature['name'] == 'voltage' and state_access):
-            self._add_device('volt', feature, VoltageSensor, ' (Voltage)')
+            alias = self._generate_alias(feature, 'volt')
+            self._add_device(alias, feature, VoltageSensor, ' (Voltage)')
             return
 
         if (feature['name'] == 'current' and state_access):
-            self._add_device('ampere', feature, CurrentSensor, ' (Current)')
-            return
-
-        if (feature['name'] == 'power' and state_access and feature['unit'] == 'W'):
-            device = KwhSensor(domoticz.get_devices(), 'power', [feature['property']], ' (Power)')
-            device.feature = feature
-            self.devices.append(device)
+            alias = self._generate_alias(feature, 'ampere')
+            self._add_device(alias, feature, CurrentSensor, ' (Current)')
             return
 
         if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:
-            alias = feature['endpoint'] if 'endpoint' in feature else 'spoint'
+            alias = self._generate_alias(feature, 'spoint')
             self._add_device(alias, feature, SetPoint, ' (Setpoint)')
             return
 
         if (feature['name'] == 'position' and state_access):
-            alias = feature['endpoint'] if 'endpoint' in feature else 'level'
+            alias = self._generate_alias(feature, 'level')
             self._add_device(alias, feature, LevelSwitch)
             return
 

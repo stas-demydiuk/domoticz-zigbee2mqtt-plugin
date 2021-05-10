@@ -10,7 +10,7 @@ class KwhSensor(Device):
     
     def create_device(self, unit, device_id, device_name):
         options = {}
-        options['EnergyMeterMode'] = '1'
+        options['EnergyMeterMode'] = '0' if len(self.value_keys) == 2 else '1'
 
         return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="kWh", Options=options).Create()
 
@@ -30,6 +30,6 @@ class KwhSensor(Device):
 
     def get_string_value(self, value, device):
         if len(value) == 2:
-            return str(value[0]) + ";" + str(value[1] * self.energy_multiplier)
+            return str(value[0]) + ";" + str(int(value[1] * self.energy_multiplier))
         else:
             return str(value[0])
