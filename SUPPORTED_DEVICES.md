@@ -48,6 +48,9 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast
 - Dresden Elektronik ZigBee Light Link wireless electronic ballast color temperature
 
+### EcoDim
+- ED10011 - Zigbee 2 button wall switch - black
+
 ### EcoSmart
 - EcoSmart A19 RGB bulb
 - EcoSmart A19 bright white bulb
