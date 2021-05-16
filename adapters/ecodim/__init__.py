@@ -1,5 +1,5 @@
 from adapters.base_adapter import Adapter
-from adapters.ecodim.zigbee2buttonwallswitchBlack import Zigbee2ButtonWallSwitchBlack
+from adapters.ecodim.zigbee2buttonwallswitchblack import Zigbee2ButtonWallSwitchBlack
 
 
 ecodim_adapters = {
