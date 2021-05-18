@@ -30,11 +30,11 @@ class BlindSwitch(Device):
 
         if cmd == 'ON':
             return {
-                state_value_key: self.state_feature['value_on']
+                state_value_key: self.state_feature['value_off']
             }
         elif cmd == 'OFF':
             return {
-                state_value_key: self.state_feature['value_off']
+                state_value_key: self.state_feature['value_on']
             }
         elif cmd == 'SET LEVEL':
             return {
