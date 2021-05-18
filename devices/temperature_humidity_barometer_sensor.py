@@ -16,7 +16,7 @@ class TemperatureHumidityBarometerSensor(TemperatureHumiditySensor):
         else:
             value = value['pressure']
 
-        return str(value)
+        return value
 
     def get_string_value(self, value, device):
         pressure = self.get_pressure_value(value)
@@ -25,7 +25,7 @@ class TemperatureHumidityBarometerSensor(TemperatureHumiditySensor):
             self.get_temperature_value(value),
             self.get_humidity_value(value),
             self.get_humidity_status(value),
-            pressure,
+            str(pressure),
             # Forecast (0 - None, 1 - Sunny, 2 - PartlyCloudy, 3 - Cloudy, 4 - Rain)
             str(self.get_forecast(pressure))
         ])
