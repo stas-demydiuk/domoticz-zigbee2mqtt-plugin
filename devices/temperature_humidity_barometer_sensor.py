@@ -19,27 +19,27 @@ class TemperatureHumidityBarometerSensor(TemperatureHumiditySensor):
         return str(value)
 
     def get_string_value(self, value, device):
+        pressure = self.get_pressure_value(value)
+
         return ';'.join([
             self.get_temperature_value(value),
             self.get_humidity_value(value),
             self.get_humidity_status(value),
-            self.get_pressure_value(value),
+            pressure,
             # Forecast (0 - None, 1 - Sunny, 2 - PartlyCloudy, 3 - Cloudy, 4 - Rain)
-            str(self.get_forecast(value['pressure']))
+            str(self.get_forecast(pressure))
         ])
 
     def get_forecast(self, value):
         # Forecast is based on https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/102
 
         if (value < 996):
-            return 4  # Thunderstorm
+            return 4  # Rain
         elif (value < 993):
-            return 3  # Not stable
+            return 3  # Cloudy
         elif (value < 1007):
-            return 2  # Cloudy/Rain
+            return 2  # Paryly Cloudy
         elif (value < 1013):
-            return 1  # Clear/Sunny
-        elif (value < 1033):
-            return 0  # Stable
+            return 1  # Sunny
         else:
-            return 5  # Unknown
+            return 0  # No Info
