@@ -20,7 +20,7 @@ class PtvoSwitch(Adapter):
         self.devices.append(TextSensor(devices, 'click', 'click', ' (input)'))
         self.switch={}
         for ptvo in PTVOID:
-            self.switch[ptvo] = OnOffSwitch(devices, ptvo, 'state_' + ptvo, ' (' + ptvo + ')')
+            self.switch[ptvo] = OnOffSwitch(devices, ptvo, 'state_' + PTVOID[ptvo], ' (' + ptvo + ')')
             self.devices.append(self.switch[ptvo])
 
     def handle_command(self, alias, device, command, level, color):
