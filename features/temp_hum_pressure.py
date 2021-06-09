@@ -22,7 +22,7 @@ class TempHumPressureFeatureProcessor():
 
         if humidity:
             alias = generate_alias(humidity, 'hum')
-            device = TemperatureSensor(domoticz.get_devices(), alias, humidity['property'], ' (Humidity)')
+            device = HumiditySensor(domoticz.get_devices(), alias, humidity['property'], ' (Humidity)')
             device.feature = humidity
             devices.append(device)
 
