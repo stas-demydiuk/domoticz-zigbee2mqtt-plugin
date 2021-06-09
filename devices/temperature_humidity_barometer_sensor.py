@@ -33,7 +33,7 @@ class TemperatureHumidityBarometerSensor(TemperatureHumiditySensor):
     def get_forecast(self, value):
         # Forecast is based on https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin/issues/102
 
-        if (value < 996):
+        if (value < 966):
             return 4  # Rain
         elif (value < 993):
             return 3  # Cloudy
