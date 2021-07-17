@@ -63,6 +63,9 @@ class TradfriRemoteControl(AdapterWithBattery):
         converted_message = self.convert_message(message)
         action = message.raw['action']
         
+        if action == None:
+            return
+        
         if action == 'toggle':
             self.switch.handle_message(device_data, converted_message)
         
