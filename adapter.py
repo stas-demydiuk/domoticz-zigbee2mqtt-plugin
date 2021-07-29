@@ -256,6 +256,15 @@ class UniversalAdapter(Adapter):
             alias = self._generate_alias(feature, 'level')
             self._add_device(alias, feature, LevelSwitch)
             return
+        
+        if (feature['name'] == 'color_temp_startup' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_level' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_percent' and state_access):
+            return
 
         domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
