@@ -3,29 +3,19 @@ import domoticz
 from adapters.base_adapter import Adapter
 from devices.sensor.contact import ContactSensor
 from devices.sensor.current import CurrentSensor
-from devices.sensor.humidity import HumiditySensor
 from devices.sensor.lux import LuxSensor
 from devices.sensor.motion import MotionSensor
 from devices.sensor.percentage import PercentageSensor
-from devices.sensor.pressure import PressureSensor
 from devices.sensor.smoke import SmokeSensor
 from devices.sensor.temperature import TemperatureSensor
-from devices.temperature_humidity_sensor import TemperatureHumiditySensor
-from devices.temperature_humidity_barometer_sensor import TemperatureHumidityBarometerSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.setpoint import SetPoint
-from devices.switch.blind_percentages_switch import BlindSwitch
 from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.switch.siren_switch import SirenSwitch
-from devices.light.on_off import OnOffLight
-from devices.light.dimmer import DimmerLight
-from devices.light.ct import CTLight
-from devices.light.rgb import RGBLight
-from devices.light.rgbw import RGBWLight
 from devices.custom_sensor import CustomSensor
 from features.cover import CoverFeatureProcessor
 from features.energy import EnergyFeatureProcessor
@@ -265,6 +255,15 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'position' and state_access):
             alias = self._generate_alias(feature, 'level')
             self._add_device(alias, feature, LevelSwitch)
+            return
+        
+        if (feature['name'] == 'color_temp_startup' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_level' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_percent' and state_access):
             return
 
         domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')

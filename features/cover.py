@@ -1,5 +1,4 @@
 import domoticz
-import json
 from feature_utils import get_feature, generate_alias
 from devices.switch.blind_percentages_switch import BlindSwitch
 
