@@ -19,13 +19,21 @@ class BaseRGBWLight(Device):
         elif 'color' in message.raw: #use XY from zigbee
             bri = message.raw['brightness']/254 if 'brightness' in message.raw else 1
             color = message.raw['color']
-            color_values = self.get_rgb_from_xy_and_brightness(color['x'], color['y'], bri)
-            color_value = json.dumps({
-                'm': 3, #mode 3 is RGB for Domoticz
-                'r': int(color_values[0]),
-                'g': int(color_values[1]),
-                'b': int(color_values[2])
-            })
+            if 'x' in color:
+                color_values = self.get_rgb_from_xy_and_brightness(color['x'], color['y'], bri)
+                color_value = json.dumps({
+                    'm': 3, #mode 3 is RGB for Domoticz
+                    'r': int(color_values[0]),
+                    'g': int(color_values[1]),
+                    'b': int(color_values[2])
+                })
+            else:
+                color_value = json.dumps({
+                    'm': 3, #mode 3 is RGB for Domoticz
+                    'r': int(color['r']),
+                    'g': int(color['g']),
+                    'b': int(color['b'])
+                 })
         else:
             return None
 
