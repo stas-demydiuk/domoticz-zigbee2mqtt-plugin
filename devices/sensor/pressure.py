@@ -1,10 +1,10 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class PressureSensor(Device):
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Pressure").Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Pressure")
 
     def get_numeric_value(self, value, device):
         return 0

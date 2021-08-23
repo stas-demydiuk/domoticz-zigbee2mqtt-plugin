@@ -1,11 +1,11 @@
 from decimal import Decimal
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class TemperatureHumiditySensor(Device):
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Temp+Hum").Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Temp+Hum")
 
     def set_temp_feature(self, feature):
         self.temp_feature = feature

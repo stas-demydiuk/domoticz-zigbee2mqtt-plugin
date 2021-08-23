@@ -1,4 +1,3 @@
-import Domoticz
 import json
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor

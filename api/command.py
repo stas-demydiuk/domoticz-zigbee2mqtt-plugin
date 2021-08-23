@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 
 
 class APICommand():
@@ -31,7 +31,7 @@ class APICommand():
         })
 
     def execute(self, params):
-        Domoticz.Error('Command is not implemented')
+        domoticz.error('Command is not implemented')
 
     def handle_mqtt_message(self):
         return None

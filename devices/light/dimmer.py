@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.light.on_off import OnOffLight
 
 
@@ -6,7 +6,7 @@ class DimmerLight(OnOffLight):
     MAX_BRIGHTNESS = 100
 
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=7).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=7)
 
     def set_brightness_feature(self, feature):
         self.brightness_feature = feature

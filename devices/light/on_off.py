@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
@@ -8,7 +8,7 @@ class OnOffLight(Device):
         self.icon = 1
 
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon)
 
     def set_state_feature(self, feature):
         self.state_feature = feature

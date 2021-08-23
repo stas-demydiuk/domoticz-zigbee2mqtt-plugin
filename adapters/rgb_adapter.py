@@ -1,4 +1,3 @@
-import Domoticz
 from adapters.base_adapter import Adapter
 from adapters.generic.mixins.rgb import RGBMixin
 from devices.rgb_light import RGBLight

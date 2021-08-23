@@ -1,5 +1,5 @@
 import json
-import Domoticz
+import domoticz
 from devices.light.dimmer import DimmerLight
 
 
@@ -7,7 +7,7 @@ class CTLight(DimmerLight):
     MAX_CT_VALUE = 255
 
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=8, Switchtype=7).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=8, Switchtype=7)
 
     def set_color_temp_feature(self, feature):
         self.color_temp_feature = feature

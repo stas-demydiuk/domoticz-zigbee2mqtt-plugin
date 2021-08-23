@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
@@ -31,7 +31,7 @@ class SelectorSwitch(Device):
         options['LevelOffHiddden'] = 'false'
         options['SelectorStyle'] = self.selector_style
 
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=self.icon).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=self.icon)
 
     def get_numeric_value(self, value, device):
         return 1 if self.get_string_value(value, device) != '0' else 0
@@ -40,7 +40,7 @@ class SelectorSwitch(Device):
         try:
             index = self.level_values.index(value)
         except:
-            Domoticz.Debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
+            domoticz.Debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
             index = 0
 
         return str(index * 10)
@@ -49,7 +49,7 @@ class SelectorSwitch(Device):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
 
-        Domoticz.Debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
+        domoticz.Debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
 
         device.Update(
             nValue=1 if level > 0 else 0,

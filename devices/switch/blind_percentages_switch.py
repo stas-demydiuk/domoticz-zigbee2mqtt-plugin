@@ -1,10 +1,10 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class BlindSwitch(Device):
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=13).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=13)
 
     def set_state_feature(self, feature):
         self.state_feature = feature
@@ -45,5 +45,5 @@ class BlindSwitch(Device):
                 state_value_key: 'stop'
             }
         else:
-            Domoticz.Error('Blind switch: unable to handle command "' + command + '"')
+            domoticz.error('Blind switch: unable to handle command "' + command + '"')
         

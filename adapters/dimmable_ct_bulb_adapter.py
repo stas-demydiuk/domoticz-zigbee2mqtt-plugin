@@ -1,4 +1,3 @@
-import Domoticz
 from adapters.base_adapter import Adapter
 from adapters.generic.mixins.cct import CCTMixin
 from devices.switch.color_temp_dimmer_switch import ColorTempDimmerSwitch

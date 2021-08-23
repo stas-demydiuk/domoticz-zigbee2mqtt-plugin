@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 import json
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor
@@ -82,7 +82,7 @@ class TS0601(AdapterWithBattery):
             }
 
         if alias == 'week':
-            Domoticz.Log('zigbee2mqtt does not support week update')
+            domoticz.log('zigbee2mqtt does not support week update')
 
         if alias == 'wnd':
             return {
@@ -101,4 +101,4 @@ class TS0601(AdapterWithBattery):
             }
 
         if alias == 'level':
-            Domoticz.Log('zigbee2mqtt does not support valve position update')
+            domoticz.log('zigbee2mqtt does not support valve position update')

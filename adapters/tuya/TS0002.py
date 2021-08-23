@@ -1,4 +1,3 @@
-import Domoticz
 import json
 from adapters.base_adapter import Adapter
 from devices.switch.on_off_switch import OnOffSwitch

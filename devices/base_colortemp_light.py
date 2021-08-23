@@ -1,5 +1,5 @@
 import json
-import Domoticz
+import domoticz
 from devices.device import Device
 
 class BaseRGBWLight(Device):
@@ -43,14 +43,14 @@ class BaseRGBWLight(Device):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
     
-        Domoticz.Debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
+        domoticz.debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
         
         n_value = None
         s_value = None
         color_value = None
 
         if (device == None):
-            Domoticz.Status('no device in message')
+            domoticz.error('no device in message')
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
             # so just create and exit for now
             # device = self._create_device(device_data, message)
