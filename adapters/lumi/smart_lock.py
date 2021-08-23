@@ -4,8 +4,8 @@ from devices.sensor.contact import ContactSensor
 
 
 class SmartLock(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.switch = SelectorSwitch('key', 'inserted')
         self.switch.add_level('Key 1', '01')

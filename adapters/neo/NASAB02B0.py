@@ -7,8 +7,8 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class NASAB02B0(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.devices.append(TemperatureSensor('temp', 'temperature', 'temperature'))
         self.devices.append(HumiditySensor('hum', 'humidity', ' (Humidity)'))
         self.devices.append(SirenSwitch('alarm', 'alarm', ' (Alarm)'))

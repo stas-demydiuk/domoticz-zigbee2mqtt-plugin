@@ -38,18 +38,16 @@ class GroupsManager:
             self.groups[group_id] = adapter
 
     def _get_adapter(self, group_name):
-        domoticz_devices = domoticz.get_devices()
-
         if (group_name.endswith('_dimmer')):
-            adapter = DimmableBulbAdapter(domoticz_devices)
+            adapter = DimmableBulbAdapter()
         elif (group_name.endswith('_ct')):
-            adapter = DimmableCtBulbAdapter(domoticz_devices)
+            adapter = DimmableCtBulbAdapter()
         elif (group_name.endswith('_rgb')):
-            adapter = RGBAdapter(domoticz_devices)
+            adapter = RGBAdapter()
         elif (group_name.endswith('_rgbw')):
-            adapter = RGBWAdapter(domoticz_devices)
+            adapter = RGBWAdapter()
         else:
-            adapter = OnOffSwitchAdapter(domoticz_devices)
+            adapter = OnOffSwitchAdapter()
 
         # Remove LinkQuality device from adapter
         if domoticz.get_plugin_config('trackLinkQuality'):

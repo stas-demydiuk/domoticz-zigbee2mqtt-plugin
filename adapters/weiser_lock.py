@@ -4,8 +4,8 @@ from devices.switch.on_off_switch import OnOffSwitch
 
 
 class WeiserLock(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.switch = OnOffSwitch('switch', 'state')
         self.devices.append(self.switch)
 

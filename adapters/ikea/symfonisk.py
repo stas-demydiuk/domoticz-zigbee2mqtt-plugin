@@ -5,8 +5,8 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class Symfonisk(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.click_actions = ['play_pause','skip_forward','skip_backward']
 
         rotation_switch = SelectorSwitch('rotate', 'rotation', ' (Rotation)')

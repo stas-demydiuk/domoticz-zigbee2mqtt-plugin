@@ -4,8 +4,8 @@ from devices.switch.dimmer_switch import DimmerSwitch
 
 
 class DimmableBulbAdapter(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.devices.append(DimmerSwitch('light', 'value'))
 
     def convert_message(self, message):

@@ -5,8 +5,8 @@ from devices.sensor.percentage import PercentageSensor
 
 
 class AdapterWithBattery(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         if domoticz.get_plugin_config('useBatteryDevices'):
             self.devices.append(VoltageSensor('cell', 'battery_voltage', ' (Battery Voltage)'))

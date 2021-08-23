@@ -3,8 +3,8 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class ZYCT202(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         buttons_count = 6
 

@@ -8,8 +8,8 @@ from devices.setpoint import SetPoint
 
 class TH1124ZB(AdapterWithBattery):
 
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.devices.append(ContactSensor('sensor', 'contact'))
         temperature_sensor = TemperatureSensor('temp', 'local_temperature',' (Temperature)')

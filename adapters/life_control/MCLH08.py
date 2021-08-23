@@ -6,8 +6,8 @@ from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 from devices.custom_sensor import CustomSensor
 
 class MCLH08(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.devices.append(TemperatureSensor('temp', 'temperature', ' (Temperature)'))
         self.devices.append(HumiditySensor('hum', 'humidity', ' (Humidity)'))
         self.devices.append(TemperatureHumiditySensor('all', 'combined', ' (Temperature + Humidity)'))

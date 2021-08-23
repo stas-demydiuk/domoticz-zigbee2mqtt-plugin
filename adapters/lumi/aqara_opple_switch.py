@@ -4,8 +4,8 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class AqaraOppleSwitch(AdapterWithBattery):
-    def __init__(self, devices, buttons_count):
-        super().__init__(devices)
+    def __init__(self, buttons_count):
+        super().__init__()
 
         self.buttons_count = buttons_count
 

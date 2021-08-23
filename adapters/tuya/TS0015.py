@@ -4,8 +4,8 @@ from devices.switch.on_off_switch import OnOffSwitch
 
 
 class TS0015(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.devices.append(OnOffSwitch('l1', 'state_l1'))
         self.devices.append(OnOffSwitch('l2', 'state_l2'))

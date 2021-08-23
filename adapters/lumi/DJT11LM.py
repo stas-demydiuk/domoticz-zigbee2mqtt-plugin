@@ -5,8 +5,8 @@ from devices.json_sensor import JSONSensor
 
 
 class DJT11LM(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.switch = SelectorSwitch('action', 'action')
         self.switch.add_level('Off', None)

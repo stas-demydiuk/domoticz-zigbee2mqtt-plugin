@@ -4,8 +4,8 @@ from devices.switch.dimmer_switch import DimmerSwitch
 
 
 class KPD18S(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         button = SelectorSwitch('click', 'click', ' (State)')
         button.add_level('Off', 'off')

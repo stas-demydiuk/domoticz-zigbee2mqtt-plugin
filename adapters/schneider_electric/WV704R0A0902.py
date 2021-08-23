@@ -8,8 +8,8 @@ from devices.setpoint import SetPoint
 
 
 class WV704R0A0902(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.devices.append(VoltageSensor('cell', 'voltage', ' (Battery Voltage)'))
         self.devices.append(PercentageSensor('btperc', 'battery', ' (Battery)'))

@@ -7,8 +7,8 @@ from devices.custom_sensor import CustomSensor
 
 
 class JTYJ_GD_01LM(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         sensitivity_switch = SelectorSwitch('sens', 'sensitivity', ' (Sensivity)')
         sensitivity_switch.add_level('Low', 'low')

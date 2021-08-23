@@ -4,8 +4,8 @@ from devices.rgbw_light import RGBWLight
 
 
 class RGBWAdapter(Adapter, RGBMixin):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.dimmer = RGBWLight('light', 'state_brightness_color')
         self.devices.append(self.dimmer)

@@ -3,8 +3,8 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class TradfriRemoteSwitchOnOff(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.switch = SelectorSwitch('switch', 'click')
         self.switch.add_level('Off', 'off')

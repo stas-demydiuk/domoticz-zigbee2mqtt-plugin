@@ -3,8 +3,8 @@ from adapters.generic.mixins.rgb import RGBMixin
 from devices.rgb_light import RGBLight
 
 class RGBAdapter(Adapter, RGBMixin):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.dimmer = RGBLight('light', 'state_brightness_color')
         self.devices.append(self.dimmer)

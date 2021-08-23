@@ -2,8 +2,8 @@ from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
 
 class HeimanAlarmRemoteAdapter(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.switch = SelectorSwitch('Remote', 'action')
         self.switch.add_level('Off', None)

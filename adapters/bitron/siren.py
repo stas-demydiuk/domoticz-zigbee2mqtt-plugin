@@ -4,8 +4,8 @@ from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.on_off_switch import OnOffSwitch
 
 class BitronSirenAdapterWithBattery(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.switch = OnOffSwitch('switch', 'state')
         self.switch.set_icon(13)
         self.devices.append(self.switch)

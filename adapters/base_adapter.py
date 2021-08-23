@@ -3,7 +3,7 @@ from devices.custom_sensor import CustomSensor
 
 
 class Adapter():
-    def __init__(self, domoticz_devices):
+    def __init__(self):
         self.devices = []
 
         if domoticz.get_plugin_config('trackLinkQuality'):

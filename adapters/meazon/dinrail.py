@@ -6,8 +6,8 @@ from devices.sensor.temperature import TemperatureSensor
 
 
 class DinrailAdapter(OnOffSwitchAdapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         kwh_consumed = KwhSensor('cons', ['power', 'energyconsumed'], ' (Consumed)')
         kwh_consumed.energy_multiplier = 1

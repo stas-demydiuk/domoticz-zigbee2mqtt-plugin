@@ -4,8 +4,8 @@ from devices.switch.toggle_switch import ToggleSwitch
 
 
 class TradfriRemoteControl(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.switch = ToggleSwitch('switch', 'action')
 

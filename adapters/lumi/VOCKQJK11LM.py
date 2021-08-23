@@ -5,8 +5,8 @@ from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 from devices.custom_sensor import CustomSensor
 
 class VOCKQJK11LM(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.devices.append(TemperatureHumiditySensor('all', 'combined', ' (Temperature + Humidity)'))
         self.devices.append(CustomSensor('voc', 'voc', ' (Voc)'))
 

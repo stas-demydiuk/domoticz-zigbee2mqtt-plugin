@@ -3,8 +3,8 @@ from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.selector_switch import SelectorSwitch
 
 class Zigbee2ButtonWallSwitchBlack(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         self.devices.append(DimmerSwitch('dimmer', 'brightness'))
 
         self.switch = SelectorSwitch('switch', 'action')

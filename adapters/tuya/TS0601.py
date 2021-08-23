@@ -9,8 +9,8 @@ from devices.setpoint import SetPoint
 
 
 class TS0601(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         mode_switch = SelectorSwitch('mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')

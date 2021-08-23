@@ -4,8 +4,8 @@ from devices.switch.on_off_switch import OnOffSwitch
 
 
 class GS361AH04(ThermostatAdapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         self.devices.append(OnOffSwitch('wnd', 'window_detection', ' (Window Detection)'))
         self.devices.append(OnOffSwitch('valve', 'valve_detection', ' (Valve Detection)'))

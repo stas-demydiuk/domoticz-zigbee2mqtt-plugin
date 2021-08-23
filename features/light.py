@@ -20,7 +20,6 @@ class LightFeatureProcesor():
         color = get_feature(light_features, 'color_xy')
         
         alias = generate_alias(state, 'light')
-        devices = domoticz.get_devices()
 
         if state and brightness and color_temp and color:
             device = RGBWLight(alias)

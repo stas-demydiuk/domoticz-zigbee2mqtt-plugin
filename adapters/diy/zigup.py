@@ -6,8 +6,8 @@ from devices.sensor.voltage import VoltageSensor
 
 
 class ZigupAdapter(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         
         self.devices.append(OnOffSwitch('switch', 'state', ' (State)'))
         self.devices.append(TemperatureSensor('temp', 'cpu_temperature', ' (CPU Temperature)'))
