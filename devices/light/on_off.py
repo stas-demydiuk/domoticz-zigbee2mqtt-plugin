@@ -3,8 +3,8 @@ from devices.device import Device
 
 
 class OnOffLight(Device):
-    def __init__(self, devices, alias, device_name_suffix=' (Light)'):
-        super().__init__(devices, alias, 'light', device_name_suffix)
+    def __init__(self, alias, device_name_suffix=' (Light)'):
+        super().__init__(alias, 'light', device_name_suffix)
         self.icon = 1
 
     def create_device(self, unit, device_id, device_name):

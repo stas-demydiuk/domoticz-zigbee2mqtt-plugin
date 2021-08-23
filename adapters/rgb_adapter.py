@@ -6,7 +6,7 @@ class RGBAdapter(Adapter, RGBMixin):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.dimmer = RGBLight(devices, 'light', 'state_brightness_color')
+        self.dimmer = RGBLight('light', 'state_brightness_color')
         self.devices.append(self.dimmer)
 
     def convert_message(self, message):

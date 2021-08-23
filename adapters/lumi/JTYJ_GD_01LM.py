@@ -10,15 +10,15 @@ class JTYJ_GD_01LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        sensitivity_switch = SelectorSwitch(devices, 'sens', 'sensitivity', ' (Sensivity)')
+        sensitivity_switch = SelectorSwitch('sens', 'sensitivity', ' (Sensivity)')
         sensitivity_switch.add_level('Low', 'low')
         sensitivity_switch.add_level('Medium', 'medium')
         sensitivity_switch.add_level('High', 'high')
 
-        self.devices.append(SmokeSensor(devices, 'smoke', 'smoke'))
-        self.devices.append(OnOffSwitch(devices, 'test', 'test_state', ' (Test)'))
+        self.devices.append(SmokeSensor('smoke', 'smoke'))
+        self.devices.append(OnOffSwitch('test', 'test_state', ' (Test)'))
         self.devices.append(sensitivity_switch)
-        self.devices.append(CustomSensor(devices, 'dnsty', 'smoke_density', ' (Smoke Density)'))
+        self.devices.append(CustomSensor('dnsty', 'smoke_density', ' (Smoke Density)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()

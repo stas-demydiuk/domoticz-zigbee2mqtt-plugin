@@ -5,7 +5,7 @@ class HeimanAlarmRemoteAdapter(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'Remote', 'action')
+        self.switch = SelectorSwitch('Remote', 'action')
         self.switch.add_level('Off', None)
         self.switch.add_level('Arm all zones', 'arm_all_zones')
         self.switch.add_level('Arm partial zones', 'arm_partial_zones')

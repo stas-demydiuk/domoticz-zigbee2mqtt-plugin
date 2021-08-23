@@ -6,9 +6,9 @@ class ZML03EZ(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.devices.append(OnOffSwitch(devices, 'left', 'state_left'))
-        self.devices.append(OnOffSwitch(devices, 'center', 'state_center'))
-        self.devices.append(OnOffSwitch(devices, 'right', 'state_right'))
+        self.devices.append(OnOffSwitch('left', 'state_left'))
+        self.devices.append(OnOffSwitch('center', 'state_center'))
+        self.devices.append(OnOffSwitch('right', 'state_right'))
 
     def handle_command(self, alias, device, command, level, color):
         return {

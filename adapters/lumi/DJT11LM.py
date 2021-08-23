@@ -8,7 +8,7 @@ class DJT11LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'action', 'action')
+        self.switch = SelectorSwitch('action', 'action')
         self.switch.add_level('Off', None)
         self.switch.add_level('Vibration', 'vibration')
         self.switch.add_level('Drop', 'drop')
@@ -16,8 +16,8 @@ class DJT11LM(AdapterWithBattery):
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
         self.devices.append(self.switch)
-        self.devices.append(CustomSensor(devices, 'stgth', 'strength', ' (Strength)'))
-        self.devices.append(JSONSensor(devices, 'angle', 'angle_raw', ' (Angle)'))
+        self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
+        self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()

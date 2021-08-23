@@ -12,7 +12,7 @@ class TS0601(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
+        mode_switch = SelectorSwitch('mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')
         mode_switch.add_level('Auto', 'auto')
         mode_switch.add_level('Manual', 'manual')
@@ -23,7 +23,7 @@ class TS0601(AdapterWithBattery):
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         mode_switch.set_icon(15)
 
-        preset = SelectorSwitch(devices, 'preset', 'preset', ' (Preset)')
+        preset = SelectorSwitch('preset', 'preset', ' (Preset)')
         preset.add_level('Away', 'away')
         preset.add_level('Schedule', 'schedule')
         preset.add_level('Manual', 'manual')
@@ -34,7 +34,7 @@ class TS0601(AdapterWithBattery):
         preset.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         preset.set_icon(15)
 
-        week_format = SelectorSwitch(devices, 'week', 'week', ' (Week Format)')
+        week_format = SelectorSwitch('week', 'week', ' (Week Format)')
         week_format.add_level('5+2', '5+2')
         week_format.add_level('6+1', '6+1')
         week_format.add_level('7', '7')
@@ -42,13 +42,13 @@ class TS0601(AdapterWithBattery):
         self.devices.append(mode_switch)
         self.devices.append(preset)
         self.devices.append(week_format)
-        self.devices.append(SetPoint(devices, 'spoint', 'current_heating_setpoint',' (Setpoint)'))
-        self.devices.append(SetPoint(devices, 'sp_eco', 'eco_temperature',' (Eco Setpoint)'))
-        self.devices.append(SetPoint(devices, 'sp_cmf', 'comfort_temperature',' (Comfort Setpoint)'))
-        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)'))
-        self.devices.append(LevelSwitch(devices, 'level', 'position', ' (Valve position)'))
-        self.devices.append(OnOffSwitch(devices, 'wnd', 'window_detection', ' (Window Detection)'))
-        self.devices.append(OnOffSwitch(devices, 'child', 'child_lock', ' (Child Lock)'))
+        self.devices.append(SetPoint('spoint', 'current_heating_setpoint',' (Setpoint)'))
+        self.devices.append(SetPoint('sp_eco', 'eco_temperature',' (Eco Setpoint)'))
+        self.devices.append(SetPoint('sp_cmf', 'comfort_temperature',' (Comfort Setpoint)'))
+        self.devices.append(TemperatureSensor('temp', 'local_temperature',' (Temperature)'))
+        self.devices.append(LevelSwitch('level', 'position', ' (Valve position)'))
+        self.devices.append(OnOffSwitch('wnd', 'window_detection', ' (Window Detection)'))
+        self.devices.append(OnOffSwitch('child', 'child_lock', ' (Child Lock)'))
 
     def convert_message(self, message):
         message = super().convert_message(message)

@@ -9,14 +9,14 @@ class DinrailAdapter(OnOffSwitchAdapter):
     def __init__(self, devices):
         super().__init__(devices)
 
-        kwh_consumed = KwhSensor(devices, 'cons', ['power', 'energyconsumed'], ' (Consumed)')
+        kwh_consumed = KwhSensor('cons', ['power', 'energyconsumed'], ' (Consumed)')
         kwh_consumed.energy_multiplier = 1
 
-        kwh_produced = KwhSensor(devices, 'prod', ['power', 'energyproduced'], ' (Produced)')
+        kwh_produced = KwhSensor('prod', ['power', 'energyproduced'], ' (Produced)')
         kwh_produced.energy_multiplier = 1
 
-        self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
-        self.devices.append(VoltageSensor(devices, 'volt', 'voltage', ' (Voltage)'))
-        self.devices.append(CurrentSensor(devices, 'ampere', 'current', ' (Current)'))
+        self.devices.append(TemperatureSensor('temp', 'temperature', ' (Temperature)'))
+        self.devices.append(VoltageSensor('volt', 'voltage', ' (Voltage)'))
+        self.devices.append(CurrentSensor('ampere', 'current', ' (Current)'))
         self.devices.append(kwh_consumed)
         self.devices.append(kwh_produced)

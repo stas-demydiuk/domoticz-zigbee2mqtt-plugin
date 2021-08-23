@@ -80,7 +80,7 @@ class UniversalAdapter(Adapter):
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
-        device = device_type(domoticz.get_devices(), alias, feature['property'], suffix)
+        device = device_type(alias, feature['property'], suffix)
         device.feature = feature
 
         self.devices.append(device)
@@ -94,7 +94,7 @@ class UniversalAdapter(Adapter):
 
     def _add_selector_device(self, alias, feature, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
-        device = SelectorSwitch(domoticz.get_devices(), alias, feature['property'], suffix)
+        device = SelectorSwitch(alias, feature['property'], suffix)
         device.disable_value_check_on_update()
         device.add_level('Off', None)
         for value in feature['values']:

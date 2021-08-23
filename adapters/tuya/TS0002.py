@@ -7,8 +7,8 @@ class TS0002(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.devices.append(OnOffSwitch(devices, 'l1', 'state_l1'))
-        self.devices.append(OnOffSwitch(devices, 'l2', 'state_l2'))
+        self.devices.append(OnOffSwitch('l1', 'state_l1'))
+        self.devices.append(OnOffSwitch('l2', 'state_l2'))
 
     def handle_command(self, alias, device, command, level, color):
         return {

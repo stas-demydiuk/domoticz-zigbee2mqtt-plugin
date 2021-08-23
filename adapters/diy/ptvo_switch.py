@@ -17,10 +17,10 @@ PTVOID = {'input1' : 'l1', 'input2' : 'l2', 'input3' : 'l3', 'input4' : 'l4', 'i
 class PtvoSwitch(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(TextSensor(devices, 'click', 'click', ' (input)'))
+        self.devices.append(TextSensor('click', 'click', ' (input)'))
         self.switch={}
         for ptvo in PTVOID:
-            self.switch[ptvo] = OnOffSwitch(devices, ptvo, 'state_' + PTVOID[ptvo], ' (' + ptvo + ')')
+            self.switch[ptvo] = OnOffSwitch(ptvo, 'state_' + PTVOID[ptvo], ' (' + ptvo + ')')
             self.devices.append(self.switch[ptvo])
 
     def handle_command(self, alias, device, command, level, color):

@@ -7,9 +7,9 @@ class TradfriRemoteControl(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = ToggleSwitch(devices, 'switch', 'action')
+        self.switch = ToggleSwitch('switch', 'action')
 
-        self.arrow_left = SelectorSwitch(devices, 'arrowL', 'action', ' (Left Arrow)')
+        self.arrow_left = SelectorSwitch('arrowL', 'action', ' (Left Arrow)')
         self.arrow_left.add_level('Off', None)
         self.arrow_left.add_level('Click', 'arrow_left_click')
         self.arrow_left.add_level('Hold', 'arrow_left_hold')
@@ -17,7 +17,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.arrow_left.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         self.arrow_left.disable_value_check_on_update()
 
-        self.arrow_right = SelectorSwitch(devices, 'arrowR', 'action', ' (Right Arrow)')
+        self.arrow_right = SelectorSwitch('arrowR', 'action', ' (Right Arrow)')
         self.arrow_right.add_level('Off', None)
         self.arrow_right.add_level('Click', 'arrow_right_click')
         self.arrow_right.add_level('Hold', 'arrow_right_hold')
@@ -25,7 +25,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.arrow_right.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         self.arrow_right.disable_value_check_on_update()
 
-        self.brightness_up = SelectorSwitch(devices, 'brUp', 'action', ' (Brightness Up)')
+        self.brightness_up = SelectorSwitch('brUp', 'action', ' (Brightness Up)')
         self.brightness_up.add_level('Off', None)
         self.brightness_up.add_level('Click', 'brightness_up_click')
         self.brightness_up.add_level('Hold', 'brightness_up_hold')
@@ -33,7 +33,7 @@ class TradfriRemoteControl(AdapterWithBattery):
         self.brightness_up.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         self.brightness_up.disable_value_check_on_update()
 
-        self.brightness_down = SelectorSwitch(devices, 'brDown', 'action', ' (Brightness Down)')
+        self.brightness_down = SelectorSwitch('brDown', 'action', ' (Brightness Down)')
         self.brightness_down.add_level('Off', None)
         self.brightness_down.add_level('Click', 'brightness_down_click')
         self.brightness_down.add_level('Hold', 'brightness_down_hold')

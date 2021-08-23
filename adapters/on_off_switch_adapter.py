@@ -6,7 +6,7 @@ from devices.switch.on_off_switch import OnOffSwitch
 class OnOffSwitchAdapter(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.switch = OnOffSwitch(devices, 'switch', 'state')
+        self.switch = OnOffSwitch('switch', 'state')
         self.devices.append(self.switch)
 
     def handle_command(self, alias, device, command, level, color):

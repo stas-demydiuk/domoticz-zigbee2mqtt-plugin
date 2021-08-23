@@ -9,8 +9,8 @@ class GLC0082ID(Adapter, RGBMixin, CCTMixin):
         super().__init__(devices)
 
         values = ['state', 'brightness', 'color_temp']
-        self.devices.append(ColorTempDimmerSwitch(devices, 'cct', values))
-        self.devices.append(RGBLight(devices, 'rgb', 'state_brightness_color'))
+        self.devices.append(ColorTempDimmerSwitch('cct', values))
+        self.devices.append(RGBLight('rgb', 'state_brightness_color'))
 
     def convert_message(self, message):
         message = super().convert_message(message)

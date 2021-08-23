@@ -11,14 +11,14 @@ class TH1124ZB(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.devices.append(ContactSensor(devices, 'sensor', 'contact'))
-        temperature_sensor = TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)')
+        self.devices.append(ContactSensor('sensor', 'contact'))
+        temperature_sensor = TemperatureSensor('temp', 'local_temperature',' (Temperature)')
         self.devices.append(temperature_sensor)
 
-        setpoint = SetPoint(devices, 'sp1', 'occupied_heating_setpoint',' (Occupied Setpoint)')
+        setpoint = SetPoint('sp1', 'occupied_heating_setpoint',' (Occupied Setpoint)')
         self.devices.append(setpoint)
 
-        mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
+        mode_switch = SelectorSwitch('mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'idle')
         mode_switch.add_level('Heat', 'heat')
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)

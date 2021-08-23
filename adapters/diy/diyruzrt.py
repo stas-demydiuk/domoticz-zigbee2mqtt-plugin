@@ -5,4 +5,4 @@ from devices.sensor.temperature import TemperatureSensor
 class DIYRuZ_RT(OnOffSwitchAdapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
+        self.devices.append(TemperatureSensor('temp', 'temperature', ' (Temperature)'))

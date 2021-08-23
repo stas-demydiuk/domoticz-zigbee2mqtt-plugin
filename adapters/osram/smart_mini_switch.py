@@ -6,7 +6,7 @@ class SmartMiniSwitch(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'switch', 'action')
+        self.switch = SelectorSwitch('switch', 'action')
         self.switch.add_level('Off', None)
         self.switch.add_level('Up', 'up')
         self.switch.add_level('Up: hold', 'up_hold')

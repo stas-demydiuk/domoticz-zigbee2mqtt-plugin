@@ -23,27 +23,27 @@ class LightFeatureProcesor():
         devices = domoticz.get_devices()
 
         if state and brightness and color_temp and color:
-            device = RGBWLight(devices, alias)
+            device = RGBWLight(alias)
             device.set_state_feature(state)
             device.set_brightness_feature(brightness)
             device.set_color_temp_feature(color_temp)
             device.set_color_feature(color)
         elif state and brightness and color:
-            device = RGBLight(devices, alias)
+            device = RGBLight(alias)
             device.set_state_feature(state)
             device.set_brightness_feature(brightness)
             device.set_color_feature(color)
         elif state and brightness and color_temp:
-            device = CTLight(devices, alias)
+            device = CTLight(alias)
             device.set_state_feature(state)
             device.set_brightness_feature(brightness)
             device.set_color_temp_feature(color_temp)
         elif state and brightness:
-            device = DimmerLight(devices, alias)
+            device = DimmerLight(alias)
             device.set_state_feature(state)
             device.set_brightness_feature(brightness)
         elif state:
-            device = OnOffLight(devices, 'switch')
+            device = OnOffLight('switch')
             device.set_state_feature(state)
         else:
             domoticz.error(self.adapter.name + ': can not find appropriate device type to handle light feature')

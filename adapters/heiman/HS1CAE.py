@@ -4,4 +4,4 @@ from devices.sensor.smoke import SmokeSensor
 class HS1CAE(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(SmokeSensor(devices, 'co', 'carbon_monoxide'))
+        self.devices.append(SmokeSensor('co', 'carbon_monoxide'))

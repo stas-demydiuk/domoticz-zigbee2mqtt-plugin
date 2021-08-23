@@ -8,7 +8,7 @@ class DimmableCtBulbAdapter(Adapter, CCTMixin):
         super().__init__(devices)
 
         values = ['state', 'brightness', 'color_temp']
-        self.dimmer = ColorTempDimmerSwitch(devices, 'light', values)
+        self.dimmer = ColorTempDimmerSwitch('light', values)
         self.devices.append(self.dimmer)
 
     def convert_message(self, message):

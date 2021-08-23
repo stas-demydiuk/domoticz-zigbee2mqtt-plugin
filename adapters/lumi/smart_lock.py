@@ -7,7 +7,7 @@ class SmartLock(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'key', 'inserted')
+        self.switch = SelectorSwitch('key', 'inserted')
         self.switch.add_level('Key 1', '01')
         self.switch.add_level('Key 2', '02')
         self.switch.add_level('Key 3', '03')
@@ -18,4 +18,4 @@ class SmartLock(Adapter):
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         self.devices.append(self.switch)
 
-        self.devices.append(ContactSensor(devices, 'error', 'keyerror'))
+        self.devices.append(ContactSensor('error', 'keyerror'))

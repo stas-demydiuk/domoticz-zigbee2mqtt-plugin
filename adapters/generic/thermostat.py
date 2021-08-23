@@ -10,15 +10,15 @@ class ThermostatAdapter(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
+        mode_switch = SelectorSwitch('mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')
         mode_switch.add_level('Auto', 'auto')
         mode_switch.add_level('Heat', 'heat')
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_BUTTONS)
         mode_switch.set_icon(15)
 
-        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)'))
-        self.devices.append(SetPoint(devices, 'spoint', 'current_heating_setpoint',' (Setpoint)'))
+        self.devices.append(TemperatureSensor('temp', 'local_temperature',' (Temperature)'))
+        self.devices.append(SetPoint('spoint', 'current_heating_setpoint',' (Setpoint)'))
         self.devices.append(mode_switch)
 
     def handle_command(self, alias, device, command, level, color):

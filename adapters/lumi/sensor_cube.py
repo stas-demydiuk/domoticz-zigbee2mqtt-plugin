@@ -6,7 +6,7 @@ class SensorCube(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
 
-        self.switch = SelectorSwitch(devices, 'cube', 'action')
+        self.switch = SelectorSwitch('cube', 'action')
         self.switch.add_level('Off', None)
         self.switch.add_level('Flip 90', 'flip90')
         self.switch.add_level('Flip 180', 'flip180')
@@ -19,8 +19,8 @@ class SensorCube(AdapterWithBattery):
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         self.devices.append(self.switch)
         
-        self.devices.append(CustomSensor(devices, 'angle', 'angle', ' (Rotation Angle)'))
-        self.devices.append(CustomSensor(devices, 'side', 'side', ' (Side)'))
+        self.devices.append(CustomSensor('angle', 'angle', ' (Rotation Angle)'))
+        self.devices.append(CustomSensor('side', 'side', ' (Side)'))
         
     def convert_message(self, message):
         message = super().convert_message(message)

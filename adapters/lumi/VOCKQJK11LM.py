@@ -7,10 +7,8 @@ from devices.custom_sensor import CustomSensor
 class VOCKQJK11LM(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
-        # self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
-        # self.devices.append(HumiditySensor(devices, 'hum', 'humidity', ' (Humidity)'))
-        self.devices.append(TemperatureHumiditySensor(devices, 'all', 'combined', ' (Temperature + Humidity)'))
-        self.devices.append(CustomSensor(devices, 'voc', 'voc', ' (Voc)'))
+        self.devices.append(TemperatureHumiditySensor('all', 'combined', ' (Temperature + Humidity)'))
+        self.devices.append(CustomSensor('voc', 'voc', ' (Voc)'))
 
     def convert_message(self, message):
         message = super().convert_message(message)

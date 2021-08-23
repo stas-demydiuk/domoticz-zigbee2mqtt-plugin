@@ -5,9 +5,9 @@ from devices.switch.selector_switch import SelectorSwitch
 class Zigbee2ButtonWallSwitchBlack(AdapterWithBattery):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(DimmerSwitch(devices, 'dimmer', 'brightness'))
+        self.devices.append(DimmerSwitch('dimmer', 'brightness'))
 
-        self.switch = SelectorSwitch(devices, 'switch', 'action')
+        self.switch = SelectorSwitch('switch', 'action')
         self.switch.add_level('Off', 'off')
         self.switch.add_level('On', 'on')
         self.switch.add_level('Up', 'brightness_move_up')

@@ -9,10 +9,10 @@ class ZYCT202(AdapterWithBattery):
         buttons_count = 6
 
         for btn_index in range(1, buttons_count + 1):
-            self.devices.append(self.create_button(devices, btn_index))
+            self.devices.append(self.create_button(btn_index))
 
-    def create_button(self, devices, index):
-        button = SelectorSwitch(devices, 'btn' + str(index), 'action', ' (Button ' + str(index) + ')')
+    def create_button(self, index):
+        button = SelectorSwitch('btn' + str(index), 'action', ' (Button ' + str(index) + ')')
         button.add_level('Off', None)
         button.add_level('On', 'on')
         button.add_level('Up', 'up-press')

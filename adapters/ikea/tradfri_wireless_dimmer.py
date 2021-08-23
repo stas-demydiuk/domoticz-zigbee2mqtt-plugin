@@ -4,4 +4,4 @@ from devices.switch.dimmer_switch import DimmerSwitch
 class TradfriWirelessDimmer(Adapter):
     def __init__(self, devices):
         super().__init__(devices)
-        self.devices.append(DimmerSwitch(devices, 'dimmer', 'brightness'))
+        self.devices.append(DimmerSwitch('dimmer', 'brightness'))
