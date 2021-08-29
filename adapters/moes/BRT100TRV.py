@@ -9,10 +9,10 @@ from devices.setpoint import SetPoint
 
 
 class BRT100TRV(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
-        preset = SelectorSwitch(devices, 'preset', 'preset', ' (Preset)')
+        preset = SelectorSwitch('preset', 'preset', ' (Preset)')
         preset.add_level('Programming', 'programming')
         preset.add_level('Manual', 'manual')
         preset.add_level('Temporary_manual', 'temporary_manual')
@@ -21,19 +21,19 @@ class BRT100TRV(AdapterWithBattery):
         preset.set_icon(15)
 
         self.devices.append(preset)
-        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)'))
-        self.devices.append(SetPoint(devices, 'spoint', 'current_heating_setpoint',' (Setpoint)'))
-        self.devices.append(SetPoint(devices, 'sp_eco', 'eco_temperature',' (Eco Setpoint)'))
-        self.devices.append(OnOffSwitch(devices, 'child', 'child_lock', ' (Child Lock)'))
-        self.devices.append(OnOffSwitch(devices, 'eco', 'eco_mode', ' (Eco Mode)'))
+        self.devices.append(TemperatureSensor('temp', 'local_temperature',' (Temperature)'))
+        self.devices.append(SetPoint('spoint', 'current_heating_setpoint',' (Setpoint)'))
+        self.devices.append(SetPoint('sp_eco', 'eco_temperature',' (Eco Setpoint)'))
+        self.devices.append(OnOffSwitch('child', 'child_lock', ' (Child Lock)'))
+        self.devices.append(OnOffSwitch('eco', 'eco_mode', ' (Eco Mode)'))
         
 ########      Please do not delete is temporarily canceled.
 
-#        self.devices.append(SetPoint(devices, 'sp_min_temp', 'min_temperature',' (Min_Temperature)'))
-#        self.devices.append(SetPoint(devices, 'sp_max_temp', 'max_temperature',' (Max_Temp Setpoint)'))
-#        self.devices.append(SetPoint(devices, 'temp_cal', 'local_temperature_calibration',' (Temperature_calibration)'))
-#        self.devices.append(LevelSwitch(devices, 'level', 'position', ' (Valve position)'))
-#        self.devices.append(OnOffSwitch(devices, 'wnd', 'window_detection', ' (Window Detection)'))
+#        self.devices.append(SetPoint('sp_min_temp', 'min_temperature',' (Min_Temperature)'))
+#        self.devices.append(SetPoint('sp_max_temp', 'max_temperature',' (Max_Temp Setpoint)'))
+#        self.devices.append(SetPoint('temp_cal', 'local_temperature_calibration',' (Temperature_calibration)'))
+#        self.devices.append(LevelSwitch('level', 'position', ' (Valve position)'))
+#        self.devices.append(OnOffSwitch('wnd', 'window_detection', ' (Window Detection)'))
         
 
     def convert_message(self, message):
