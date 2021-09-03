@@ -11,9 +11,9 @@ class EnergyFeatureProcessor():
         device = None
 
         if power and energy:
-            device = KwhSensor(domoticz.get_devices(), 'power', [power['property'], energy['property']], ' (Power)')
+            device = KwhSensor('power', [power['property'], energy['property']], ' (Power)')
         elif power:
-            device = KwhSensor(domoticz.get_devices(), 'power', [power['property']], ' (Power)')
+            device = KwhSensor('power', [power['property']], ' (Power)')
 
         if device:
             device.feature = power

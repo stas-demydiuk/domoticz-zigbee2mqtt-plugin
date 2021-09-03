@@ -5,9 +5,8 @@ import json
 class Device():
     MAX_ALIAS_LENGTH = 6
 
-    def __init__(self, devices, alias, value_key, device_name_suffix = ''):
+    def __init__(self, alias, value_key, device_name_suffix = ''):
         # TODO: Remove devices param
-        self.devices = devices
         self.alias = alias
         self.value_key = value_key
         self.device_name_suffix = device_name_suffix

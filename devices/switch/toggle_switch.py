@@ -1,4 +1,3 @@
-import Domoticz
 from devices.switch.on_off_switch import OnOffSwitch
 
 

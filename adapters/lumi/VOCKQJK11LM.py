@@ -1,18 +1,14 @@
-from adapters.base_adapter import Adapter
-from devices.sensor.co2 import CO2Sensor
+from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.humidity import HumiditySensor
 from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 from devices.custom_sensor import CustomSensor
 
-class MCLH08(Adapter):
+class VOCKQJK11LM(AdapterWithBattery):
     def __init__(self):
         super().__init__()
-        self.devices.append(TemperatureSensor('temp', 'temperature', ' (Temperature)'))
-        self.devices.append(HumiditySensor('hum', 'humidity', ' (Humidity)'))
         self.devices.append(TemperatureHumiditySensor('all', 'combined', ' (Temperature + Humidity)'))
-        self.devices.append(CO2Sensor('eco2', 'eco2', ' (CO2)'))
-        self.devices.append(CustomSensor('voc', 'voc', ' (Vok)'))
+        self.devices.append(CustomSensor('voc', 'voc', ' (Voc)'))
 
     def convert_message(self, message):
         message = super().convert_message(message)

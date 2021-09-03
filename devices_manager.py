@@ -34,7 +34,7 @@ class DevicesManager:
             model = item['definition']['model']
 
             if model in adapter_by_model:
-                adapter = adapter_by_model[model](domoticz.get_devices())
+                adapter = adapter_by_model[model]()
                 adapter.name = item['friendly_name']
                 adapter.zigbee_device = item
                 adapter.register()

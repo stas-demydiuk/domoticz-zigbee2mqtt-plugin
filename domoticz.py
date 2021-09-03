@@ -13,6 +13,9 @@ def debug(message):
 def get_devices():
     return plugin.Devices
 
+def create_device(**kwargs):
+    return Domoticz.Device(**kwargs).Create()
+
 def get_first_available_unit():
     devices = get_devices()
 

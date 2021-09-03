@@ -1,10 +1,10 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class PushOnButton(Device):
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=9).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=9)
 
     def get_numeric_value(self, value, device):
         return 1 if value.lower() == 'on' else 0
@@ -16,7 +16,7 @@ class PushOnButton(Device):
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address, self.alias)
 
-        Domoticz.Debug('Command "' + command + '" from device "' + device.Name + '"')
+        domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
 
         device.Update(
             nValue=self.get_numeric_value(command, device),

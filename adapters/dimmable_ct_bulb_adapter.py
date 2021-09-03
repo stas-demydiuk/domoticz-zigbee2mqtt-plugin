@@ -1,15 +1,14 @@
-import Domoticz
 from adapters.base_adapter import Adapter
 from adapters.generic.mixins.cct import CCTMixin
 from devices.switch.color_temp_dimmer_switch import ColorTempDimmerSwitch
 
 
 class DimmableCtBulbAdapter(Adapter, CCTMixin):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         values = ['state', 'brightness', 'color_temp']
-        self.dimmer = ColorTempDimmerSwitch(devices, 'light', values)
+        self.dimmer = ColorTempDimmerSwitch('light', values)
         self.devices.append(self.dimmer)
 
     def convert_message(self, message):

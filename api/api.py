@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 import json
 from api.commands import commands
 
@@ -17,7 +17,7 @@ class API:
 
         if (data['type'] == 'request'):
             request_id = data['requestId']
-            Domoticz.Debug('New request: [' + str(request_id) + '] ' + data['command'] + '(' + json.dumps(data['params']) + ')')
+            domoticz.debug('New request: [' + str(request_id) + '] ' + data['command'] + '(' + json.dumps(data['params']) + ')')
 
             if data['command'] in commands:
                 command = commands[data['command']](
@@ -50,12 +50,12 @@ class API:
         if self.unit in self.devices:
             return
 
-        Domoticz.Device(
+        domoticz.create_device(
             Unit=self.unit,
             DeviceID='api_transport',
             Name='Zigbee2MQTT API Transport',
             TypeName="Text"
-        ).Create()
+        )
 
     def _send_response(self, request_id, is_error, payload):
         if request_id in self.requests:

@@ -1,4 +1,3 @@
-import Domoticz
 import json
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor
@@ -8,10 +7,10 @@ from devices.setpoint import SetPoint
 
 class AV201032(AdapterWithBattery):
 
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
-        mode_switch = SelectorSwitch(devices, 'mode', 'system_mode', ' (Mode)')
+        mode_switch = SelectorSwitch('mode', 'system_mode', ' (Mode)')
         mode_switch.add_level('Off', 'off')
         mode_switch.add_level('Auto', 'auto')
         mode_switch.add_level('Cool', 'cool')
@@ -24,9 +23,9 @@ class AV201032(AdapterWithBattery):
         mode_switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
         mode_switch.set_icon(15)
 
-        self.devices.append(TemperatureSensor(devices, 'temp', 'local_temperature',' (Temperature)'))
-        self.devices.append(SetPoint(devices, 'sp1', 'occupied_heating_setpoint',' (Occupied Setpoint)'))
-        self.devices.append(SetPoint(devices, 'sp2', 'unoccupied_heating_setpoint',' (Unoccupied Setpoint)'))
+        self.devices.append(TemperatureSensor('temp', 'local_temperature',' (Temperature)'))
+        self.devices.append(SetPoint('sp1', 'occupied_heating_setpoint',' (Occupied Setpoint)'))
+        self.devices.append(SetPoint('sp2', 'unoccupied_heating_setpoint',' (Unoccupied Setpoint)'))
         self.devices.append(mode_switch)
 
     def handle_command(self, alias, device, command, level, color):
