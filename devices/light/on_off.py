@@ -7,6 +7,15 @@ class OnOffLight(Device):
         super().__init__(alias, 'light', device_name_suffix)
         self.icon = 1
 
+    def _get_feature_name(self):
+        return 'light'
+
+    def _get_zigbee_endpoint(self):
+        try:
+            return self.state_feature['endpoint']
+        except:
+            return 'n/a'
+
     def create_device(self, unit, device_id, device_name):
         return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon)
 

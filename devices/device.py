@@ -1,27 +1,43 @@
 import domoticz
+import configuration
 import blacklist
-import json
 
 class Device():
-    MAX_ALIAS_LENGTH = 6
-
     def __init__(self, alias, value_key, device_name_suffix = ''):
-        # TODO: Remove devices param
         self.alias = alias
         self.value_key = value_key
         self.device_name_suffix = device_name_suffix
         self.check_values_on_update = True
 
-        if len(self.alias) > self.MAX_ALIAS_LENGTH:
-            raise ValueError('Alias "' + self.alias + '" is too long to generate valid DeviceID')
+    def _get_feature_name(self):
+        if hasattr(self, 'feature'):
+            return self.feature['property']
+        else:
+            return self.alias
 
-    def get_device(self, address, alias):
+    def _get_zigbee_endpoint(self):
+        try:
+            return self.feature['endpoint']
+        except:
+            return 'n/a'
+
+    def get_device(self, address):
+        feature_name = self._get_feature_name()
+        endpoint = self._get_zigbee_endpoint()
+        return configuration.get_zigbee_feature_device(address, feature_name, endpoint)
+
+    def get_legacy_device(self, address, alias):
+        domoticz.debug('Trying to get legacy device ' + address + '(' + alias + ')')
         device_id = address + '_' + alias
         devices = domoticz.get_devices()
 
-        for unit, device in devices.items():
-            if device.DeviceID == device_id:
-                return device
+        try:
+            device = list(devices[device_id].Units.values())[0]
+            domoticz.debug('Success!')
+            return device
+        except:
+            domoticz.debug('No such device found')
+            return None
 
     def _create_device(self, device_data):
         device_address = device_data['ieee_addr']
@@ -31,17 +47,28 @@ class Device():
             '" key for device with ieeeAddr ' + device_address
         )
 
-        device_id = device_address + '_' + self.alias
-        device_name = device_data['friendly_name'] + self.device_name_suffix
-        unit = domoticz.get_first_available_unit()
+        device_id = device_address
 
-        if blacklist.has(device_id):
+        if self.device_name_suffix != '':
+            device_name = device_data['friendly_name'] + self.device_name_suffix
+        elif hasattr(self, 'feature'):
+            device_name = device_data['friendly_name'] + ' (' + self.feature['property'] + ')'
+        else:
+            device_name = device_data['friendly_name']
+
+        unit = configuration.get_device_available_unit(device_address)
+        feature_name = self._get_feature_name()
+        endpoint = self._get_zigbee_endpoint()
+
+        if blacklist.has(device_id + '_' + feature_name):
             domoticz.debug('Device is in blacklist, skipped.')
             return None
 
         if unit == None:
-            domoticz.error('Can not create new Domoticz device: maximum of 255 devices is reached.')
+            domoticz.error('Can not create new Domoticz device: maximum of 255 logical devices per phisical is reached.')
             return None
+
+        configuration.set_zigbee_feature_device(device_address, feature_name, endpoint, device_id, unit, self.alias)
 
         return self.create_device(unit, device_id, device_name)
 
@@ -60,7 +87,15 @@ class Device():
         colorChanged = 'Color' in values and values['Color'] != device.Color
 
         if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
-            device.Update(**values)
+            device.nValue = values['nValue']
+            device.sValue = values['sValue']
+            device.SignalLevel = values['SignalLevel']
+            device.BatteryLevel = values['BatteryLevel']
+
+            if (colorChanged):
+                device.Color = values['Color']
+
+            device.Update()
         else:
             self.touch_device(device)
 
@@ -74,14 +109,26 @@ class Device():
     # Register device in Domoticz
     def register(self, device_data):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
-        if (device == None):
+        if device != None:
+            return
+        
+        # Try to find legacy device from plugin < 4.x version with device id "address_alias"
+        device = self.get_legacy_device(device_address, self.alias)
+        
+        if device != None:
+            feature_name = self._get_feature_name()
+            device_id = device_address + '_' + self.alias
+            endpoint = self._get_zigbee_endpoint()
+            configuration.set_zigbee_feature_device(device_address, feature_name, endpoint, device_id, device.Unit, self.alias)
+            return device
+        else:
             self._create_device(device_data)
 
     # Removes device from Domoticz
     def remove(self, ieee_addr):
-        device = self.get_device(ieee_addr, self.alias)
+        device = self.get_device(ieee_addr)
 
         if (device != None):
             device.Delete()
@@ -112,14 +159,11 @@ class Device():
 
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
         value = self.get_message_value(message)
 
         if (device == None):
-            # Due to internal domoticz bug, app crashes if we try to use device just after we create it
-            # so just create and exit for now
-            # device = self._create_device(device_data, message)
-            return self._create_device(device_data)
+            device = self._create_device(device_data)
 
         if (value == None):
             self.touch_device(device)
@@ -134,6 +178,6 @@ class Device():
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
         domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')

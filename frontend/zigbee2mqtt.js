@@ -3,6 +3,7 @@ define([
     '../templates/zigbee2mqtt/viz',
     '../templates/zigbee2mqtt/viz.full.render',
     '../templates/zigbee2mqtt/leaflet',
+    '../templates/zigbee2mqtt/plugin_config',
     '../templates/zigbee2mqtt/zigbee_devices',
     '../templates/zigbee2mqtt/zigbee_groups',
     'app/devices/Devices.js'
@@ -21,14 +22,17 @@ function(app, Viz, vizRenderer, leaflet) {
     });
 
     app.factory('zigbee2mqtt', function($q, $rootScope, domoticzApi) {
-        var deviceIdx = 0;
         var requestsCount = 0;
         var requestsQueue = [];
+        var deviceIdxDefer = $q.defer();
+        var commandsQueue = $q.resolve();
 
         $rootScope.$on('device_update', function(e, device) {
-            if (device.idx === deviceIdx) {
-                handleResponse(JSON.parse(device.Data))
-            }
+            getControlDeviceIndex().then(function(deviceIdx) {
+                if (device.idx === deviceIdx) {
+                    handleResponse(JSON.parse(device.Data))
+                }
+            })
         });
 
         return {
@@ -37,7 +41,11 @@ function(app, Viz, vizRenderer, leaflet) {
         };
 
         function setControlDeviceIdx(idx) {
-            deviceIdx = idx;
+            deviceIdxDefer.resolve(idx);
+            
+            // In case idx was already resolved before
+            deviceIdxDefer = $q.defer();
+            deviceIdxDefer.resolve(idx);
 
             domoticzApi.sendCommand('clearlightlog', {
                 idx: idx
@@ -46,30 +54,41 @@ function(app, Viz, vizRenderer, leaflet) {
             });
         }
 
+        function getControlDeviceIndex() {
+            return deviceIdxDefer.promise;
+        }
+
         function sendRequest(command, params) {
-            var deferred = $q.defer();
-            var requestId = ++requestsCount;
+            return getControlDeviceIndex().then(function(deviceIdx) {
+                function sendDomoticzRequest() {
+                    var deferred = $q.defer();
+                    var requestId = ++requestsCount;
+        
+                    var requestInfo = {
+                        requestId: requestId,
+                        deferred: deferred,
+                    };
+        
+                    requestsQueue.push(requestInfo);
+    
+                    domoticzApi.sendCommand('udevice', {
+                        idx: deviceIdx,
+                        svalue: JSON.stringify({
+                            type: 'request',
+                            requestId: requestId,
+                            command: command,
+                            params: params || {}
+                        })
+                    }).catch(function(error) {
+                        deferred.reject(error);
+                    });
+    
+                    return deferred.promise;
+                }
 
-            var requestInfo = {
-                requestId: requestId,
-                deferred: deferred,
-            };
-
-            requestsQueue.push(requestInfo);
-
-            domoticzApi.sendCommand('udevice', {
-                idx: deviceIdx,
-                svalue: JSON.stringify({
-                    type: 'request',
-                    requestId: requestId,
-                    command: command,
-                    params: params || {}
-                })
-            }).catch(function(error) {
-                deferred.reject(error);
+                commandsQueue = commandsQueue.then(sendDomoticzRequest, sendDomoticzRequest)
+                return commandsQueue;
             });
-
-            return deferred.promise;
         }
 
         function handleResponse(data) {
@@ -143,13 +162,15 @@ function(app, Viz, vizRenderer, leaflet) {
             zigbee2mqtt.setControlDeviceIdx(apiDeviceIdx);
 
             $ctrl.controllerInfo = null;
+            $ctrl.pluginInfo = null;
             $ctrl.zigbeeDevices = null;
             $ctrl.zigbeeGroups = null;
             $ctrl.isMapLoaded = false;
 
-            fetchControllerInfo()
-                .then(fetchZigbeeDevices)
-                .then(fetchZigbeeGroups);
+            fetchControllerInfo();
+            fetchPluginInfo();
+            fetchZigbeeDevices();
+            fetchZigbeeGroups();
         }
 
         function fetchZigbeeDevices() {
@@ -181,6 +202,12 @@ function(app, Viz, vizRenderer, leaflet) {
             });
         }
 
+        function fetchPluginInfo() {
+            return zigbee2mqtt.sendRequest('plugin_info').then(function(data) {
+                $ctrl.pluginInfo = data;
+            });
+        }
+
         function renderNetworkMap() {
             if ($ctrl.isMapLoaded) {
                 return;
@@ -206,7 +233,9 @@ function(app, Viz, vizRenderer, leaflet) {
         }
 
         function getVersionString() {
-            return `v.${$ctrl.controllerInfo.version} (${$ctrl.controllerInfo.coordinator.type} ${$ctrl.controllerInfo.coordinator.meta.revision})`;
+            var zigbee2mqtt = `v.${$ctrl.controllerInfo.version} (${$ctrl.controllerInfo.coordinator.type} ${$ctrl.controllerInfo.coordinator.meta.revision})`;
+            var plugin = `v.${$ctrl.pluginInfo.Version}`
+            return `plugin: ${plugin}, zigbee2mqtt: ${zigbee2mqtt}`;
         }
 
         function renderSvg(svgData) {

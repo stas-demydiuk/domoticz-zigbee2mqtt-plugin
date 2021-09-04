@@ -8,6 +8,8 @@ Python plugin for Domoticz to add integration with [zigbee2mqtt](https://github.
 - Setup and run zigbee2mqtt 1.17+ server (https://www.zigbee2mqtt.io).
 - Make sure that your Domoticz supports Python plugins (https://www.domoticz.com/wiki/Using_Python_plugins)
 
+** Plugin now uses [Extended Domoticz Plugins Framework](https://www.domoticz.com/wiki/Developing_a_Python_plugin#Extended_Plugin_Framework) which is available only in latest Domoticz betas
+
 ## Installation
 
 You can use [Plugins Manager](https://github.com/stas-demydiuk/domoticz-plugins-manager) for automatic installation or follow manual steps:
@@ -46,6 +48,31 @@ Plugin supports [zigbee groups](https://www.zigbee2mqtt.io/information/groups.ht
 
 if no suffix will be found then On/Off switch will be created by default
 
-## Supported zigbee devices
+## Configuration
 
-see the full list [here](SUPPORTED_DEVICES.md)
+Plugin uses internal configuration to associate physical zigbee devices to logical ones in Domoticz. Configuration is a plain JSON object with the following structure:
+
+```ts
+{
+    "aliases": Alias[]
+}
+```
+
+where `Alias` type is used to associate single zigbee device feature to Domoticz logical device and viceversa. It has the following structure
+
+```ts
+{
+    "domoticz": {
+        "device_id": String     // Domoticz Device ID (not idx) in Domoticz
+        "legacy_alias": String  // Alias, legacy key that was used in zigbee2mqtt plugin <= 3.0, required to support logical devices that were created before
+        "unit": Number          // Domoticz Device Unit
+    },
+    "zigbee": {
+        "adress": String        // Zigbee IEEE Address
+        "endpoint": String      // Zigbee endpoint (for devices that have multiple ones like switches with several buttons)
+        "feture": String        // zigbee2mqtt feature name (power, state, temperature, etc.)
+    }
+}
+```
+
+in case if you manually remove the device or want a custom association please make sure that you've updated the configuration accordingly
