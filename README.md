@@ -73,7 +73,7 @@ where `Alias` type is used to associate single zigbee device feature to Domoticz
         "unit": Number          // Domoticz Device Unit
     },
     "zigbee": {
-        "adress": String        // Zigbee IEEE Address
+        "address": String        // Zigbee IEEE Address
         "endpoint": String      // Zigbee endpoint (for devices that have multiple ones like switches with several buttons)
         "feture": String        // zigbee2mqtt feature name (power, state, temperature, etc.)
     }
