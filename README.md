@@ -35,6 +35,11 @@ git pull
 ```
 2. Restart domoticz
 
+Note: if you did any changes to plugin files and `git pull` command doesn't work for you anymore, you could stash all local changes using
+```
+git stash
+```
+
 ## Zigbee groups support
 
 Plugin supports [zigbee groups](https://www.zigbee2mqtt.io/information/groups.html). It is impossible to automatically identify what device should represent the group (OnOff switch, dimmer, etc.), so plugin relies on suffixes in zigbee group name. Currently following suffixes are supported:
