@@ -8,6 +8,9 @@ class API:
         self.execute_command = on_command
         self.requests = {}
 
+        # Check that api_device exists
+        self._get_transport_device()
+
     def handle_request(self, request):
         data = json.loads(request)
 
