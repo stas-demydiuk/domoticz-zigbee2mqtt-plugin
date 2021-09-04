@@ -2,6 +2,7 @@ import json
 import domoticz
 from adapters.base_adapter import Adapter
 from devices.sensor.contact import ContactSensor
+from devices.sensor.co2 import CO2Sensor
 from devices.sensor.current import CurrentSensor
 from devices.sensor.lux import LuxSensor
 from devices.sensor.motion import MotionSensor
@@ -240,6 +241,11 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'voltage' and state_access):
             alias = self._generate_alias(feature, 'volt')
             self._add_device(alias, feature, VoltageSensor, ' (Voltage)')
+            return
+
+        if feature['name'] == 'co2' and feature['unit'] == 'ppm' and state_access:
+            alias = self._generate_alias(feature, 'co2')
+            self._add_device(alias, feature, CO2Sensor)
             return
 
         if (feature['name'] == 'current' and state_access):
