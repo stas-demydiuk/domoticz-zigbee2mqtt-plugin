@@ -1,3 +1,4 @@
+import json
 import domoticz
 import configuration
 import blacklist
@@ -164,6 +165,11 @@ class Device():
 
         if (device == None):
             device = self._create_device(device_data)
+
+        if (device == None):
+            domoticz.error('Device creation failed')
+            domoticz.error(json.dumps(device_data))
+            return None
 
         if (value == None):
             self.touch_device(device)
