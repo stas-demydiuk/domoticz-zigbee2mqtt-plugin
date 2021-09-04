@@ -167,8 +167,6 @@ class Device():
             device = self._create_device(device_data)
 
         if (device == None):
-            domoticz.error('Device creation failed')
-            domoticz.error(json.dumps(device_data))
             return None
 
         if (value == None):
