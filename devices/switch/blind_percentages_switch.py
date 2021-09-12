@@ -6,6 +6,15 @@ class BlindSwitch(Device):
     def create_device(self, unit, device_id, device_name):
         return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=13)
 
+    def _get_feature_name(self):
+        return 'dimmer'
+
+    def _get_zigbee_endpoint(self):
+        try:
+            return self.state_feature['endpoint']
+        except:
+            return 'n/a'
+
     def set_state_feature(self, feature):
         self.state_feature = feature
 
