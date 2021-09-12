@@ -59,6 +59,10 @@ class UniversalAdapter(Adapter):
                 self._add_feature(item)
 
     def _add_feature(self, item):
+        # Avoid creating devices for settings as it is ususally one-time op
+        if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration']:
+            return
+
         if item['type'] == 'binary':
             self.add_binary_device(item)
         elif item['type'] == 'enum':
