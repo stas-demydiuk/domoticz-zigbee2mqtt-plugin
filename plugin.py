@@ -97,12 +97,13 @@ class BasePlugin:
         domoticz_device = domoticz.get_device(device_id, unit)
         zigbee_device_alias = configuration.get_zigbee_feature_data(device_id, unit)
         
-        if zigbee_device_alias != None:
-            message = self.devices_manager.handle_command(device_id, unit, command, Level, Color)
-        elif self.groups_manager.get_group_by_deviceid(device_id) != None:
-            message = self.groups_manager.handle_command(domoticz_device, command, Level, Color)
-        else:
+        if zigbee_device_alias == None:
             domoticz.log('Can\'t process command from device "' + domoticz_device.Name + '"')
+
+        if self.groups_manager.get_group_by_id(zigbee_device_alias['zigbee']['address']) != None:
+            message = self.groups_manager.handle_command(device_id, unit, command, Level, Color)
+        else:
+            message = self.devices_manager.handle_command(device_id, unit, command, Level, Color)
 
         if (message != None):
             self.publishToMqtt(message['topic'], message['payload'])
@@ -211,10 +212,10 @@ class BasePlugin:
 
             return
 
-        if (self.devices_manager.get_device_by_name(topic) != None):
-            self.devices_manager.handle_mqtt_message(topic, message)
-        elif (self.groups_manager.get_group_by_name(topic) != None):
+        if (self.groups_manager.get_group_by_name(topic) != None):
             self.groups_manager.handle_mqtt_message(topic, message)
+        elif (self.devices_manager.get_device_by_name(topic) != None):
+            self.devices_manager.handle_mqtt_message(topic, message)
 
     def install(self):
         domoticz.log('Installing plugin custom page...')

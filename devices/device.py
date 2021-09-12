@@ -90,8 +90,12 @@ class Device():
         if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
             device.nValue = values['nValue']
             device.sValue = values['sValue']
-            device.SignalLevel = values['SignalLevel']
-            device.BatteryLevel = values['BatteryLevel']
+
+            if 'SignalLevel' in values:
+                device.SignalLevel = values['SignalLevel']
+
+            if 'BatteryLevel' in values:
+                device.BatteryLevel = values['BatteryLevel']
 
             if (colorChanged):
                 device.Color = values['Color']

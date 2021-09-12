@@ -1,6 +1,7 @@
 import json
 import re
 import domoticz
+import configuration
 from zigbee_message import ZigbeeMessage
 from adapters.on_off_switch_adapter import OnOffSwitchAdapter
 from adapters.dimmable_bulb_adapter import DimmableBulbAdapter
@@ -55,18 +56,11 @@ class GroupsManager:
 
         return adapter
 
-    def _get_group_by_id(self, group_id):
+    def get_group_by_id(self, group_id):
         return self.groups[group_id] if group_id in self.groups else None
 
-    def get_group_by_deviceid(self, device_id):
-        parts = device_id.split('_')
-        parts.pop()
-        group_id = '_'.join(parts)
-
-        return self._get_group_by_id(group_id)
-
     def get_group_by_name(self, friendly_name):
-        return self._get_group_by_id(self._get_group_address_by_name(friendly_name))
+        return self.get_group_by_id(self._get_group_address_by_name(friendly_name))
 
     def handle_mqtt_message(self, group_name, message):
         adapter = self.get_group_by_name(group_name)
@@ -78,9 +72,10 @@ class GroupsManager:
         zigbee_message = ZigbeeMessage(message)
         adapter.handle_mqtt_message(zigbee_message)
 
-    def handle_command(self, device, command, level, color):
-        alias = device.DeviceID.split('_').pop()
-        adapter = self.get_group_by_deviceid(device.DeviceID)
+    def handle_command(self, device_id, unit, command, level, color):
+        alias = configuration.get_zigbee_feature_data(device_id, unit)
+        device = domoticz.get_device(device_id, unit)
+        adapter = self.get_group_by_id(alias['zigbee']['address'])
 
         if adapter == None:
             return None
