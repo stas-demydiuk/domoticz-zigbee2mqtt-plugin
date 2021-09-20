@@ -69,9 +69,10 @@ class Device():
             domoticz.error('Can not create new Domoticz device: maximum of 255 logical devices per phisical is reached.')
             return None
 
+        device = self.create_device(unit, device_id, device_name)
         configuration.set_zigbee_feature_device(device_address, feature_name, endpoint, device_id, unit, self.alias)
 
-        return self.create_device(unit, device_id, device_name)
+        return device
 
     def create_device(self, unit, device_id, device_name):
         domoticz.error(
