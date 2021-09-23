@@ -51,6 +51,7 @@
 """
 import DomoticzEx as Domoticz
 import domoticz
+import bridge
 import os
 from shutil import copy2, rmtree
 from mqtt import MqttClient
@@ -152,6 +153,7 @@ class BasePlugin:
         topic = topic.replace(self.base_topic + '/', '')
 
         self.api.handle_mqtt_message(topic, message)
+        bridge.handle_mqtt_message(topic, message)
 
         if (topic == 'bridge/config/permit_join'):
             return
@@ -161,7 +163,6 @@ class BasePlugin:
             return
 
         if (topic == 'bridge/devices'):
-            domoticz.log('Received available devices list from bridge')
             self.devices_manager.set_devices(message)
             return
 
@@ -173,11 +174,6 @@ class BasePlugin:
 
         if (topic == 'bridge/state'):
             domoticz.log('Zigbee2mqtt bridge is ' + message)
-
-            if message == 'online':
-                # self.publishToMqtt('bridge/config/devices', '')
-                self.publishToMqtt('bridge/config/groups', '')
-
             return
 
         if (topic == 'bridge/log'):

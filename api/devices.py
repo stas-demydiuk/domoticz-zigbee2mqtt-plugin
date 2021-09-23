@@ -1,15 +1,11 @@
 import json
+import bridge
 from api.command import APICommand
 
 
 class GetDevices(APICommand):
     def execute(self, params):
-        self.publish_mqtt('bridge/config/devices/get', '')
-
-    def handle_mqtt_message(self, topic, message):
-        if topic == 'bridge/config/devices':
-            self.send_response(message)
-
+        self.send_response(bridge.zigbee_devices)
 
 class GetDeviceState(APICommand):
     def execute(self, params):
@@ -29,11 +25,16 @@ class SetDeviceState(APICommand):
 
 class RenameDevice(APICommand):
     def execute(self, params):
-        self.publish_mqtt('bridge/config/rename', json.dumps(params))
+        self.publish_mqtt('bridge/request/device/rename', json.dumps(params))
 
     def handle_mqtt_message(self, topic, message):
-        if topic == 'bridge/log' and message['type'] == 'device_renamed':
-            self.send_response(message)
+        if topic == 'bridge/response/device/rename':
+            if message['status'] == 'ok':
+                self.send_response(message)
+            elif message['status'] == 'error':
+                self.send_error(message['error'])
+            else:
+                self.send_error('Unable to rename a device')
 
 class RemoveDevice(APICommand):
     def execute(self, params):

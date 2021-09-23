@@ -81,7 +81,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
         $ctrl.$onChanges = function(changes) {
             if (changes.groups && $ctrl.selectedGroup) {
                 var group = $ctrl.groups.find(function(group) {
-                    return group.ID === $ctrl.selectedGroup.ID
+                    return group.id === $ctrl.selectedGroup.id
                 });
 
                 $ctrl.selectZigbeeGroup(group);
@@ -111,16 +111,16 @@ define(['app', 'app/devices/Devices.js'], function(app) {
             $ctrl.selectedGroup = group;
 
             if (group) {
-                $ctrl.selectedGroupDevices = $ctrl.selectedGroup.devices.map(function(device) {
+                $ctrl.selectedGroupDevices = $ctrl.selectedGroup.members.map(function(device) {
                     var zigbeeDevice = $ctrl.zigbeeDevices.find(function(zigbeeDevice) {
-                        return device.indexOf(zigbeeDevice.ieeeAddr) === 0
+                        return device.ieee_address === zigbeeDevice.ieee_address;
                     });
 
                     return Object.assign({ binding: device }, zigbeeDevice);
                 });
 
                 $ctrl.associatedDevices = $ctrl.domoticzDevices.filter(function(device) {
-                    return device.ID.indexOf(group.friendly_name + '_') === 0;
+                    return device.ID.indexOf(group.friendly_name) === 0;
                 });
             } else {
                 $ctrl.associatedDevices = [];
@@ -137,7 +137,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
             table = $element.find('table').dataTable(Object.assign({}, dataTableDefaultSettings, {
                 order: [[0, 'asc']],
                 columns: [
-                    { title: $.t('ID'), width: '70px', data: 'ID' },
+                    { title: $.t('ID'), width: '70px', data: 'id' },
                     { title: $.t('Friendly Name'), data: 'friendly_name' },
                     {
                         title: '',
@@ -221,9 +221,9 @@ define(['app', 'app/devices/Devices.js'], function(app) {
                 select: false,
                 columns: [
                     { title: $.t('Friendly Name'), data: 'friendly_name' },
-                    { title: $.t('Binding'), width: '170px', data: 'binding' },
-                    { title: $.t('Model'), data: 'model' },
-                    { title: $.t('Description'), data: 'description' },
+                    { title: $.t('Binding'), width: '170px', data: 'binding', render: bindingRenderer },
+                    { title: $.t('Model'), data: 'definition.model' },
+                    { title: $.t('Description'), data: 'definition.description' },
                     {
                         title: '',
                         className: 'actions-column',
@@ -271,6 +271,10 @@ define(['app', 'app/devices/Devices.js'], function(app) {
             table.api().rows
                 .add(items)
                 .draw();
+        }
+
+        function bindingRenderer(data) {
+            return data.ieee_address + '/' + data.endpoint;
         }
 
         function actionsRenderer() {

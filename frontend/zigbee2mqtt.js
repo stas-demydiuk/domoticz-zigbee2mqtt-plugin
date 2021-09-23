@@ -177,12 +177,14 @@ function(app, Viz, vizRenderer, leaflet) {
             return zigbee2mqtt.sendRequest('devices_get').then(function(devices) {
                 $ctrl.zigbeeDevices = devices.map(function(device) {
                     return Object.assign({
-                        model: null,
+                        lastSeen: 'N/A',
+                        type: 'N/A'
                     }, device, {
-                        lastSeen: device.lastSeen || 'N/A',
-                        description: device.description || '',
-                        model: device.model || 'N/A',
-                        type: device.type || 'N/A'
+                        definition: Object.assign({
+                            model: 'N/A', 
+                            description: 'N/A',
+                            vendor: 'N/A'
+                        }, device.definition)
                     });
                 }).sort(function(a, b) {
                     return a.friendly_name < b.friendly_name ? -1 : 1
