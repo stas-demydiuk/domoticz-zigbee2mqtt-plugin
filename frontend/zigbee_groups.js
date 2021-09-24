@@ -143,7 +143,6 @@ define(['app', 'app/devices/Devices.js'], function(app) {
                         title: '',
                         className: 'actions-column',
                         width: '40px',
-                        data: 'ieeeAddr',
                         orderable: false,
                         render: actionsRenderer
                     },
@@ -228,7 +227,6 @@ define(['app', 'app/devices/Devices.js'], function(app) {
                         title: '',
                         className: 'actions-column',
                         width: '40px',
-                        data: 'ieeeAddr',
                         orderable: false,
                         render: actionsRenderer
                     },

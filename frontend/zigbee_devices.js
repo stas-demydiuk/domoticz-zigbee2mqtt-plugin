@@ -175,7 +175,6 @@ define(['app', 'app/devices/Devices.js'], function(app) {
                         title: '',
                         className: 'actions-column',
                         width: '80px',
-                        data: 'ieeeAddr',
                         orderable: false,
                         render: actionsRenderer
                     },
