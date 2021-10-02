@@ -60,7 +60,7 @@ class UniversalAdapter(Adapter):
 
     def _add_feature(self, item):
         # Avoid creating devices for settings as it is ususally one-time op
-        if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration']:
+        if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration', 'temperature_setpoint_hold_duration']:
             return
 
         if item['type'] == 'binary':
@@ -176,6 +176,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
+        if (feature['name'] == 'temperature_setpoint_hold' and state_access and write_access):
+            alias = self._generate_alias(feature, 'temphld')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
         if (feature['name'] == 'led_disabled_night' and state_access and write_access):
             alias = self._generate_alias(feature, 'nled')
             self._add_device(alias, feature, OnOffSwitch)
@@ -257,7 +262,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CurrentSensor, ' (Current)')
             return
 
-        if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:
+        if 'setpoint' in feature['name'] and 'unit' in feature and feature['unit'] == '°C' and write_access:
             alias = self._generate_alias(feature, 'spoint')
             self._add_device(alias, feature, SetPoint, ' (Setpoint)')
             return
