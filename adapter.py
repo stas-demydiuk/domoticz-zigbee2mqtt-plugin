@@ -171,6 +171,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, ContactSensor, ' (Consumer Connected)')
             return
 
+        if (feature['name'] == 'temperature_setpoint_hold' and state_access and write_access):
+            alias = self._generate_alias(feature, 'temphld')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
         if (feature['name'] == 'state' and state_access and write_access):
             alias = self._generate_alias(feature, 'state')
             self._add_device(alias, feature, OnOffSwitch)
@@ -257,16 +262,25 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CurrentSensor, ' (Current)')
             return
 
-        if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:
-            alias = self._generate_alias(feature, 'spoint')
-            self._add_device(alias, feature, SetPoint, ' (Setpoint)')
+        if 'setpoint' in feature['name']:
+            try:
+                unit=feature['unit']
+            except:
+                unit=''
+
+            if unit == '°C' and write_access:
+                alias = self._generate_alias(feature, 'spoint')
+                self._add_device(alias, feature, SetPoint, ' (Setpoint)')
+            elif unit == '':
+                alias = self._generate_alias(feature, 'duration')
+                self._add_device(alias, feature, CustomSensor, ' (Hold Duration)')
             return
 
         if (feature['name'] == 'position' and state_access):
             alias = self._generate_alias(feature, 'level')
             self._add_device(alias, feature, LevelSwitch)
             return
-        
+
         if (feature['name'] == 'color_temp_startup' and state_access):
             return
 
@@ -296,7 +310,7 @@ class UniversalAdapter(Adapter):
             topic = self.name + '/' + ((feature['endpoint'] + '/set') if 'endpoint' in feature else 'set')
             key = feature['property']
             value = feature['value_on'] if command.upper() == 'ON' else feature['value_off']
-                
+
             return {
                 'topic': topic,
                 'payload': json.dumps({

@@ -50,9 +50,11 @@ class Device():
 
         device_id = device_address
 
-        if self.device_name_suffix != '':
+        if self.device_name_suffix != self.value_key:
+            device_name = device_data['friendly_name'] + ' (' + self.value_key + ')'
+        elif self.device_name_suffix != '':
             device_name = device_data['friendly_name'] + self.device_name_suffix
-        elif hasattr(self, 'feature'):
+        elif hasattr(self, 'property'):
             device_name = device_data['friendly_name'] + ' (' + self.feature['property'] + ')'
         else:
             device_name = device_data['friendly_name']
@@ -66,7 +68,7 @@ class Device():
             return None
 
         if unit == None:
-            domoticz.error('Can not create new Domoticz device: maximum of 255 logical devices per phisical is reached.')
+            domoticz.error('Can not create new Domoticz device: maximum of 255 logical devices per physical is reached.')
             return None
 
         device = self.create_device(unit, device_id, device_name)
@@ -119,10 +121,10 @@ class Device():
 
         if device != None:
             return
-        
+
         # Try to find legacy device from plugin < 4.x version with device id "address_alias"
         device = self.get_legacy_device(device_address, self.alias)
-        
+ 
         if device != None:
             feature_name = self._get_feature_name()
             device_id = device_address + '_' + self.alias
@@ -182,7 +184,7 @@ class Device():
             'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
             'SignalLevel': message.get_signal_level() or device.SignalLevel,
         }, **self.get_device_args(value, device, message))
-        
+
         self.update_device(device, device_values)
 
     def handle_command(self, device_data, command, level, color):
