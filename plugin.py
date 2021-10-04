@@ -1,7 +1,7 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.0.1">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.1.0-beta">
     <description>
-        <h2>Zigbee2MQTT Plugin</h2>
+        <h2>Zigbee2MQTT Plugin (v. 3.1.0-beta)</h2>
         <p>Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project</p>
         <h3>Features</h3>
         <ul style="list-style-type:square">
@@ -14,7 +14,7 @@
         <p>Plugin allows to skip processing of some devices by adding them to the blacklist. Blacklisted devices will ot be created as logical devices in Domoticz.</p>
         <p>Blacklist could contain several entries devided by semi-colon. Each blacklist entry should be valid <a href="https://docs.python.org/3/library/re.html#regular-expression-syntax">Python regexp</a>. For example:</p>
         <ul style="list-style-type:square">
-            <li>Single item of a device - use full Device ID (ieee addr + alias) to block it i.e. <span class="label label-default">0x842e14fffe13971a_state</span></li>
+            <li>Single feature of a device - use full Device Address + '_' + Feature Name pattern to block it i.e. <span class="label label-default">0x842e14fffe13971a_state</span></li>
             <li>All items of a device - use Regexp to block all logical devices (aliases) of a specified zigbee device (ieee address) i.e. <span class="label label-default">0x842e14fffe13971a_.*</span></li>
             <li>Specific item of all devices - use Regexp to block all devices (ieee address) with a specific alias i.e. <span class="label label-default">.*_state</span></li>
         </ul>
@@ -49,14 +49,14 @@
     </params>
 </plugin>
 """
-import Domoticz
-import json
-import time
-import re
+import DomoticzEx as Domoticz
+import domoticz
+import bridge
 import os
 from shutil import copy2, rmtree
 from mqtt import MqttClient
 from api import API
+import configuration
 from devices_manager import DevicesManager
 from groups_manager import GroupsManager
 
@@ -71,7 +71,6 @@ class BasePlugin:
         if self.debugging == "Debug":
             Domoticz.Debugging(2)
 
-        Domoticz.Debug("onStart called")
         self.install()
         self.base_topic = Parameters["Mode1"].strip()
 
@@ -80,32 +79,32 @@ class BasePlugin:
         mqtt_client_id = Parameters["Mode3"].strip()
         self.mqttClient = MqttClient(mqtt_server_address, mqtt_server_port, mqtt_client_id, self.onMQTTConnected, self.onMQTTDisconnected, self.onMQTTPublish, self.onMQTTSubscribed)
 
-        self.api = API(Devices, self.onApiCommand)
+        self.api = API(self.onApiCommand)
         self.devices_manager = DevicesManager()
         self.groups_manager = GroupsManager()
 
     def checkDevices(self):
-        Domoticz.Debug("checkDevices called")
+        domoticz.debug("checkDevices called")
 
     def onStop(self):
-        Domoticz.Debug("onStop called")
+        domoticz.debug("onStop called")
         self.uninstall()
 
 
-    def onCommand(self, Unit, Command, Level, Color):
-        Domoticz.Debug("onCommand: " + Command + ", level (" + str(Level) + ") Color:" + Color)
+    def onCommand(self, device_id, unit, command, Level, Color):
+        domoticz.debug("[Command] Device " + device_id + '(' + str(unit) + '): ' + command + "(level = " + str(Level) + ", color = " + Color + ')')
 
         message = None
-        device = Devices[Unit] #Devices is Domoticz collection of devices for this hardware
-        device_params = device.DeviceID.split('_')
-        entity_id = device_params[0]
+        domoticz_device = domoticz.get_device(device_id, unit)
+        zigbee_device_alias = configuration.get_zigbee_feature_data(device_id, unit)
+        
+        if zigbee_device_alias == None:
+            domoticz.log('Can\'t process command from device "' + domoticz_device.Name + '"')
 
-        if (self.devices_manager.get_device_by_id(entity_id) != None):
-            message = self.devices_manager.handle_command(device, Command, Level, Color)
-        elif(self.groups_manager.get_group_by_deviceid(device.DeviceID) != None):
-            message = self.groups_manager.handle_command(device, Command, Level, Color)
+        if self.groups_manager.get_group_by_id(zigbee_device_alias['zigbee']['address']) != None:
+            message = self.groups_manager.handle_command(device_id, unit, command, Level, Color)
         else:
-            Domoticz.Log('Can\'t process command from device "' + device.Name + '"')
+            message = self.devices_manager.handle_command(device_id, unit, command, Level, Color)
 
         if (message != None):
             self.publishToMqtt(message['topic'], message['payload'])
@@ -116,21 +115,22 @@ class BasePlugin:
         elif command == 'remove_device':
             return self.devices_manager.remove(data)
         else:
-            Domoticz.Error('Internal API command "' + command +'" is not supported by plugin')
+            domoticz.error('Internal API command "' + command +'" is not supported by plugin')
 
     def publishToMqtt(self, topic, payload):
         self.mqttClient.publish(self.base_topic + '/' + topic, payload)
 
     def onConnect(self, Connection, Status, Description):
-        Domoticz.Debug("onConnect called")
+        domoticz.debug("onConnect called")
         self.mqttClient.onConnect(Connection, Status, Description)
 
     def onDisconnect(self, Connection):
         self.mqttClient.onDisconnect(Connection)
 
-    def onDeviceModified(self, unit):
-        if (unit == 255):
-            self.api.handle_request(Devices[unit].sValue)
+    def onDeviceModified(self, device_id, unit):
+        if device_id == 'api_transport' and unit == 255:
+            device = domoticz.get_device(device_id, unit)
+            self.api.handle_request(device.sValue)
             return
 
     def onMessage(self, Connection, Data):
@@ -143,16 +143,17 @@ class BasePlugin:
         self.mqttClient.subscribe([self.base_topic + '/#'])
 
     def onMQTTDisconnected(self):
-        Domoticz.Debug('Disconnected from MQTT server')
+        domoticz.debug('Disconnected from MQTT server')
 
     def onMQTTSubscribed(self):
-        Domoticz.Debug('Subscribed to "' + self.base_topic + '/#" topic')
+        domoticz.debug('Subscribed to "' + self.base_topic + '/#" topic')
 
     def onMQTTPublish(self, topic, message):
-        Domoticz.Debug("MQTT message: " + topic + " " + str(message))
+        # domoticz.debug("MQTT message: " + topic + " " + str(message))
         topic = topic.replace(self.base_topic + '/', '')
 
         self.api.handle_mqtt_message(topic, message)
+        bridge.handle_mqtt_message(topic, message)
 
         if (topic == 'bridge/config/permit_join'):
             return
@@ -162,23 +163,17 @@ class BasePlugin:
             return
 
         if (topic == 'bridge/devices'):
-            Domoticz.Log('Received available devices list from bridge')
             self.devices_manager.set_devices(message)
             return
 
         if (topic == 'bridge/config'):
             permit_join = 'enabled' if message['permit_join'] else 'disabled'
-            Domoticz.Debug('Zigbee2mqtt log level is ' + message['log_level'])
-            Domoticz.Log('Joining new devices is ' + permit_join + ' on the zigbee bridge')
+            domoticz.debug('Zigbee2mqtt log level is ' + message['log_level'])
+            domoticz.log('Joining new devices is ' + permit_join + ' on the zigbee bridge')
             return
 
         if (topic == 'bridge/state'):
-            Domoticz.Log('Zigbee2mqtt bridge is ' + message)
-
-            if message == 'online':
-                # self.publishToMqtt('bridge/config/devices', '')
-                self.publishToMqtt('bridge/config/groups', '')
-
+            domoticz.log('Zigbee2mqtt bridge is ' + message)
             return
 
         if (topic == 'bridge/log'):
@@ -187,72 +182,75 @@ class BasePlugin:
             is_paired = message['type'] == 'pairing' and message['message'] == 'interview_successful'
 
             if message['type'] == 'groups':
-                Domoticz.Log('Received groups list from bridge')
+                domoticz.log('Received groups list from bridge')
                 self.groups_manager.register_groups(message['message'])
 
             if is_connected or is_removed or is_paired:
                 self.publishToMqtt('bridge/config/devices/get', '')
 
             if message['type'] == 'ota_update':
-                Domoticz.Log(message['message'])
+                domoticz.log(message['message'])
 
             if (message['type'] == 'device_renamed'):
-                Domoticz.Debug("Device renamed from '{0}' to '{1}'".format(message['message']['from'], message['message']['to']))
+                domoticz.debug("Device renamed from '{0}' to '{1}'".format(message['message']['from'], message['message']['to']))
                 if (self.devices_manager.get_device_by_name(message['message']['from']) != None):
-                    Domoticz.Debug("attempt to rename on bridge/log")
+                    domoticz.debug("attempt to rename on bridge/log")
                     toRename = self.devices_manager.get_device_by_name(message['message']['from'])
                     toRename.zigbee_device['friendly_name'] = message['message']['to']
                     self.devices_manager.devices[toRename.zigbee_device['ieee_address']] = toRename
                 else:
-                    Domoticz.Debug("attempt to rename failed on bridge/log")
+                    domoticz.debug("attempt to rename failed on bridge/log")
                 
             if message['type'] == 'zigbee_publish_error':
                 #an error occured on publish to the zigbee network
                 deviceMeta = message['meta']
-                Domoticz.Error("A Zigbee publish error occured for device '" + deviceMeta['friendly_name'] + "' with error message: " + message['message'])
+                domoticz.error("A Zigbee publish error occured for device '" + deviceMeta['friendly_name'] + "' with error message: " + message['message'])
 
             return
 
-        if (self.devices_manager.get_device_by_name(topic) != None):
-            self.devices_manager.handle_mqtt_message(topic, message)
-        elif (self.groups_manager.get_group_by_name(topic) != None):
+        if (self.groups_manager.get_group_by_name(topic) != None):
             self.groups_manager.handle_mqtt_message(topic, message)
+        elif (self.devices_manager.get_device_by_name(topic) != None):
+            self.devices_manager.handle_mqtt_message(topic, message)
 
     def install(self):
-        Domoticz.Log('Installing plugin custom page...')
+        domoticz.log('Installing plugin custom page...')
 
         try:
             source_path = Parameters['HomeFolder'] + 'frontend'
             templates_path = Parameters['StartupFolder'] + 'www/templates'
             dst_plugin_path = templates_path + '/zigbee2mqtt'
 
-            Domoticz.Debug('Copying files from ' + source_path + ' to ' + templates_path)
+            domoticz.debug('Copying files from ' + source_path + ' to ' + templates_path)
 
             if not (os.path.isdir(dst_plugin_path)):
                 os.makedirs(dst_plugin_path)
 
             copy2(source_path + '/zigbee2mqtt.html', templates_path)
             copy2(source_path + '/zigbee2mqtt.js', templates_path)
+            copy2(source_path + '/plugin_config.js', dst_plugin_path)
             copy2(source_path + '/zigbee_devices.js', dst_plugin_path)
             copy2(source_path + '/zigbee_groups.js', dst_plugin_path)
             copy2(source_path + '/libs/leaflet.js', dst_plugin_path)
             copy2(source_path + '/libs/leaflet.css', dst_plugin_path)
             copy2(source_path + '/libs/viz.js', dst_plugin_path)
             copy2(source_path + '/libs/viz.full.render.js', dst_plugin_path)
+            copy2(source_path + '/libs/ace_json_mode.js', dst_plugin_path)
+            copy2(source_path + '/libs/ace_worker_json.js', dst_plugin_path)
             
-            Domoticz.Log('Installing plugin custom page completed.')
+            domoticz.log('Installing plugin custom page completed.')
         except Exception as e:
-            Domoticz.Error('Error during installing plugin custom page')
-            Domoticz.Error(repr(e))
+            domoticz.error('Error during installing plugin custom page')
+            domoticz.error(repr(e))
 
     def uninstall(self):
-        Domoticz.Log('Uninstalling plugin custom page...')
+        domoticz.log('Uninstalling plugin custom page...')
 
         try:
             templates_path = Parameters['StartupFolder'] + 'www/templates'
             dst_plugin_path = templates_path + '/zigbee2mqtt'
 
-            Domoticz.Debug('Removing files from ' + templates_path)
+            domoticz.debug('Removing files from ' + templates_path)
 
             if (os.path.isdir(dst_plugin_path)):
                 rmtree(dst_plugin_path)
@@ -263,10 +261,10 @@ class BasePlugin:
             if os.path.exists(templates_path + "/zigbee2mqtt.js"):
                 os.remove(templates_path + "/zigbee2mqtt.js")
 
-            Domoticz.Log('Uninstalling plugin custom page completed.')
+            domoticz.log('Uninstalling plugin custom page completed.')
         except Exception as e:
-            Domoticz.Error('Error during uninstalling plugin custom page')
-            Domoticz.Error(repr(e))
+            domoticz.error('Error during uninstalling plugin custom page')
+            domoticz.error(repr(e))
 
 
 global _plugin
@@ -284,9 +282,12 @@ def onConnect(Connection, Status, Description):
     global _plugin
     _plugin.onConnect(Connection, Status, Description)
 
-def onDeviceModified(Unit):
+def onDeviceModified(DeviceId, Unit):
     global _plugin
-    _plugin.onDeviceModified(Unit)
+    _plugin.onDeviceModified(DeviceId, Unit)
+
+def onDeviceRemoved(DeviceId, Unit):
+    configuration.remove_device(DeviceId, Unit)
 
 def onDisconnect(Connection):
     global _plugin
@@ -296,9 +297,9 @@ def onMessage(Connection, Data):
     global _plugin
     _plugin.onMessage(Connection, Data)
 
-def onCommand(Unit, Command, Level, Color):
+def onCommand(DeviceId, Unit, Command, Level, Color):
     global _plugin
-    _plugin.onCommand(Unit, Command, Level, Color)
+    _plugin.onCommand(DeviceId, Unit, Command, Level, Color)
 
 def onHeartbeat():
     global _plugin

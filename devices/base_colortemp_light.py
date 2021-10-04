@@ -41,7 +41,7 @@ class BaseRGBWLight(Device):
         
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
     
         domoticz.debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
         

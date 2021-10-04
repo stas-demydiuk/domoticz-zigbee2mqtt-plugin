@@ -5,7 +5,7 @@
 # 1.0.1: Aligned with PEP8 styleguide
 
 
-import Domoticz
+import DomoticzEx as Domoticz
 import time
 import json
 import random

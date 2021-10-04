@@ -14,11 +14,10 @@ class PushOnButton(Device):
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
         domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
 
-        device.Update(
-            nValue=self.get_numeric_value(command, device),
-            sValue=self.get_string_value(command, device)
-        )
+        device.nValue = self.get_numeric_value(command, device)
+        device.sValue = self.get_string_value(command, device)
+        device.Update()

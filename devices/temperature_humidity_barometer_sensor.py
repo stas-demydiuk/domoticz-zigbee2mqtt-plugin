@@ -7,6 +7,9 @@ class TemperatureHumidityBarometerSensor(TemperatureHumiditySensor):
     def create_device(self, unit, device_id, device_name):
         return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=84, Subtype=16)
 
+    def _get_feature_name(self):
+        return 'temp+hum+bar'
+
     def set_pressure_feature(self, feature):
         self.pressure_feature = feature
 

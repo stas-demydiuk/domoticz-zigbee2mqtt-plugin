@@ -1,15 +1,11 @@
 import json
+import bridge
 from api.command import APICommand
 
 
 class GetGroups(APICommand):
     def execute(self, params):
-        self.publish_mqtt('bridge/config/groups', '')
-
-    def handle_mqtt_message(self, topic, message):
-        if topic == 'bridge/log' and message['type'] == 'groups':
-            self.send_response(message['message'])
-
+        self.send_response(bridge.zigbee_groups)
 
 class AddGroup(APICommand):
     def execute(self, params):

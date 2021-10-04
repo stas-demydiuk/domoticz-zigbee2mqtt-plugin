@@ -40,18 +40,17 @@ class SelectorSwitch(Device):
         try:
             index = self.level_values.index(value)
         except:
-            domoticz.Debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
+            domoticz.debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
             index = 0
 
         return str(index * 10)
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
-        domoticz.Debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
+        domoticz.debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
 
-        device.Update(
-            nValue=1 if level > 0 else 0,
-            sValue=str(level)
-        )
+        device.nValue = 1 if level > 0 else 0
+        device.sValue = str(level)
+        device.Update()

@@ -34,7 +34,7 @@ class OnOffSwitch(Device):
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
         domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
 
