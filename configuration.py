@@ -33,15 +33,23 @@ def set_config_item(key, value):
 
     return config
 
-def get_zigbee_feature_device(device_address, feature_name, endpoint):
+def get_alias_by_zigbee(device_address, feature_name, endpoint):
     aliases = get_config_item('aliases', [])
 
     for item in aliases:
         zigbee_data = item['zigbee']
-        domoticz_data = item['domoticz']
 
         if zigbee_data['address'] == device_address and zigbee_data['feature'] == feature_name and zigbee_data['endpoint'] == endpoint:
-            return domoticz.get_device(domoticz_data['device_id'], domoticz_data['unit'])
+            return item
+
+    return None
+
+def get_zigbee_feature_device(device_address, feature_name, endpoint):
+    item = get_alias_by_zigbee(device_address, feature_name, endpoint)
+
+    if item != None:
+        domoticz_data = item['domoticz']
+        return domoticz.get_device(domoticz_data['device_id'], domoticz_data['unit'])
 
     return None
 
