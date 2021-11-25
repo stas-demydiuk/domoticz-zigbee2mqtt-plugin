@@ -186,6 +186,16 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
+        if (feature['name'] == 'led_feedback' and state_access and write_access):
+            alias = self._generate_alias(feature, 'ledfbk')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
+        if (feature['name'] == 'buzzer_feedback' and state_access and write_access):
+            alias = self._generate_alias(feature, 'bzrfbk')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
         if (feature['name'] == 'power_outage_memory' and state_access and write_access):
             alias = self._generate_alias(feature, 'pwrmem')
             self._add_device(alias, feature, OnOffSwitch, ' (Power Outage Memory)')
@@ -281,7 +291,22 @@ class UniversalAdapter(Adapter):
             alias = self._generate_alias(feature, 'level')
             self._add_device(alias, feature, LevelSwitch)
             return
+
+        if feature['name'] == 'radioactive_events_per_minute' and state_access:
+            alias = self._generate_alias(feature, 'repm')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'radiation_dose_per_hour' and state_access:
+            alias = self._generate_alias(feature, 'reph')
+            self._add_device(alias, feature, CustomSensor)
+            return
         
+        if (feature['name'] == 'sensors_count' and state_access):
+            alias = self._generate_alias(feature, 'snscnt')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         if (feature['name'] == 'color_temp_startup' and state_access):
             return
 
