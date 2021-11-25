@@ -257,6 +257,16 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CO2Sensor)
             return
 
+        if feature['name'] == 'voc' and state_access:
+            alias = self._generate_alias(feature, 'voc')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'formaldehyd' and state_access:
+            alias = self._generate_alias(feature, 'fmdhd')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         if (feature['name'] == 'current' and state_access):
             alias = self._generate_alias(feature, 'ampere')
             self._add_device(alias, feature, CurrentSensor, ' (Current)')
