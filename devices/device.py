@@ -42,6 +42,13 @@ class Device():
 
     def _create_device(self, device_data):
         device_address = device_data['ieee_addr']
+        feature_name = self._get_feature_name()
+        endpoint = self._get_zigbee_endpoint()
+        alias_config = configuration.get_alias_by_zigbee(device_address, feature_name, endpoint)
+
+        if alias_config:
+            domoticz.log('Alias for handling ' + feature_name + '(endpoint: ' + str(endpoint) + ') feature of device ' + device_address + ' already exists in plugin configuration but Domoticz logical device with ID ' + alias_config['domoticz']['device_id'] + '(unit: ' + str(alias_config['domoticz']['unit']) + ') is not found. If you have removed device and want plugin to recreate it, please remove alias from configuration as well.')
+            return None
 
         domoticz.debug(
             'Creating domoticz device to handle "' + self.value_key +

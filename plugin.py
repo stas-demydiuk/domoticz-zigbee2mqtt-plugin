@@ -166,6 +166,10 @@ class BasePlugin:
             self.devices_manager.set_devices(message)
             return
 
+        if (topic == 'bridge/groups'):
+            self.groups_manager.register_groups(message)
+            return
+
         if (topic == 'bridge/config'):
             permit_join = 'enabled' if message['permit_join'] else 'disabled'
             domoticz.debug('Zigbee2mqtt log level is ' + message['log_level'])
@@ -180,10 +184,6 @@ class BasePlugin:
             is_connected = message['type'] == 'device_connected'
             is_removed = message['type'] == 'device_removed'
             is_paired = message['type'] == 'pairing' and message['message'] == 'interview_successful'
-
-            if message['type'] == 'groups':
-                domoticz.log('Received groups list from bridge')
-                self.groups_manager.register_groups(message['message'])
 
             if is_connected or is_removed or is_paired:
                 self.publishToMqtt('bridge/config/devices/get', '')

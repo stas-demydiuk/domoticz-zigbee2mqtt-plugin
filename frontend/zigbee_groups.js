@@ -120,7 +120,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
                 });
 
                 $ctrl.associatedDevices = $ctrl.domoticzDevices.filter(function(device) {
-                    return device.ID.indexOf(group.friendly_name) === 0;
+                    return group.friendly_name.indexOf(device.ID) === 0;
                 });
             } else {
                 $ctrl.associatedDevices = [];
