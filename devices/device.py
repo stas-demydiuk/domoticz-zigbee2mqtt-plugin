@@ -108,7 +108,7 @@ class Device():
             if (colorChanged):
                 device.Color = values['Color']
 
-            device.Update()
+            device.Update(Log=True)
         else:
             self.touch_device(device)
 
