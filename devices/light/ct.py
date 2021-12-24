@@ -28,8 +28,7 @@ class CTLight(DimmerLight):
 
     def get_device_args(self, value, device, message):
         args = super().get_device_args(value, device, message)
-
-        return dict(args, Color=self.get_color_value(value, device))
+        return dict(args, Color=self.get_color_value(value, device), LastLevel = int(args['sValue']))
 
     def generate_command(self, command, level, color):
         cmd = command.upper()
