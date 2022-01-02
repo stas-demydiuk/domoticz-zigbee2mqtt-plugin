@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 import json
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.sensor.temperature import TemperatureSensor
@@ -68,7 +68,7 @@ class BRT100TRV(AdapterWithBattery):
             }
 
         if alias == 'wnd':
-            Domoticz.Log('zigbee2mqtt does not support window update')
+            domoticz.Log('zigbee2mqtt does not support window update')
 
         if alias == 'wnd':
             return {
@@ -95,4 +95,4 @@ class BRT100TRV(AdapterWithBattery):
             }
 
         if alias == 'level':
-            Domoticz.Log('zigbee2mqtt does not support valve position update')
+            domoticz.Log('zigbee2mqtt does not support valve position update')
