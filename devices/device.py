@@ -1,4 +1,3 @@
-import json
 import domoticz
 import configuration
 import blacklist
@@ -98,6 +97,9 @@ class Device():
         if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
             device.nValue = values['nValue']
             device.sValue = values['sValue']
+
+            if 'LastLevel' in values:
+                device.LastLevel = values['LastLevel']
 
             if 'SignalLevel' in values:
                 device.SignalLevel = values['SignalLevel']

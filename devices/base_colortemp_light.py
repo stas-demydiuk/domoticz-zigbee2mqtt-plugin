@@ -91,7 +91,9 @@ class BaseRGBWLight(Device):
             if not 'nValue' in payload:
                 payload['nValue'] = device.nValue
             if not 'sValue' in payload:
-                payload['sValue'] = device.sValue            
+                payload['sValue'] = device.sValue
+
+            payload['LastLevel'] = int(payload['sValue'])
 
             self.update_device(device, payload)
         else:

@@ -25,6 +25,7 @@ git clone https://github.com/stas-demydiuk/domoticz-zigbee2mqtt-plugin.git zigbe
 3. Make sure that "Accept new Hardware Devices" is enabled in Domoticz settings
 4. Go to "Hardware" page and add new item with type "Zigbee2MQTT"
 5. Set your MQTT server address and port to plugin settings
+6. Add the device "api_transport" in 'Setup -> Devices'. The device can be hidden by adding a "$" in front of the name.
 
 Once plugin receive device list from zigbee2mqtt server it will create appropriate domoticz devices. You will find these devices on `Setup -> Devices` page.
 
@@ -41,6 +42,15 @@ Note: if you did any changes to plugin files and `git pull` command doesn't work
 ```
 git stash
 ```
+
+## Plugin downgrade
+
+1. Go to plugin folder and pull older version
+```
+cd domoticz/plugins/zigbee2mqtt
+git reset --hard f8c22fc330229b39f06ff11bbfcea38e3a492306
+```
+2. Restart domoticz or disable and re-enable plugin in 'Setup -> Hardware' (clearing browser cache might be necessary!)
 
 ## Zigbee groups support
 

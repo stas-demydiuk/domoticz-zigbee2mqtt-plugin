@@ -257,8 +257,12 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, PercentageSensor, ' (Soil Moisture)')
             return
 
-        if (feature['name'] == 'voltage' and state_access):
-            alias = self._generate_alias(feature, 'volt')
+        if feature['name'] == 'voltage' and state_access:
+            if feature['description'] == 'Voltage of the battery in millivolts':
+                alias = 'cell' # For migration from 0.2.x
+            else:
+                alias = self._generate_alias(feature, 'volt')
+
             self._add_device(alias, feature, VoltageSensor, ' (Voltage)')
             return
 
