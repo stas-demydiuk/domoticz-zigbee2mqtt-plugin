@@ -11,4 +11,4 @@ class TemperatureSensor(Device):
         return 0
 
     def get_string_value(self, value, device):
-        return str(round(Decimal(value), 1))
+        return str(round(Decimal(value)+Decimal(device.Adjustment), 1))
