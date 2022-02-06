@@ -1,6 +1,7 @@
 import domoticz
 import json
 from adapters.adapter_with_battery import AdapterWithBattery
+from devices.sensor.percentage import PercentageSensor
 from devices.sensor.temperature import TemperatureSensor
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.level_switch import LevelSwitch
@@ -46,7 +47,7 @@ class TS0601(AdapterWithBattery):
         self.devices.append(SetPoint('sp_eco', 'eco_temperature',' (Eco Setpoint)'))
         self.devices.append(SetPoint('sp_cmf', 'comfort_temperature',' (Comfort Setpoint)'))
         self.devices.append(TemperatureSensor('temp', 'local_temperature',' (Temperature)'))
-        self.devices.append(LevelSwitch('level', 'position', ' (Valve position)'))
+        self.devices.append(PercentageSensor('level', 'position', ' (Valve position)'))
         self.devices.append(OnOffSwitch('wnd', 'window_detection', ' (Window Detection)'))
         self.devices.append(OnOffSwitch('child', 'child_lock', ' (Child Lock)'))
 

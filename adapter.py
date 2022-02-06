@@ -311,6 +311,16 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CustomSensor)
             return
 
+        if (feature['name'] == 'water_consumed' and state_access):
+            alias = self._generate_alias(feature, 'wtrcns')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if (feature['name'] == 'last_valve_open_duration' and state_access):
+            alias = self._generate_alias(feature, 'lvod')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         if (feature['name'] == 'color_temp_startup' and state_access):
             return
 
