@@ -1,17 +1,17 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class OnOffSwitch(Device):
-    def __init__(self, devices, alias, value_key, device_name_suffix=''):
-        super().__init__(devices, alias, value_key, device_name_suffix)
+    def __init__(self, alias, value_key, device_name_suffix=''):
+        super().__init__(alias, value_key, device_name_suffix)
         self.icon = 1
 
     def set_icon(self, icon_number):
         self.icon = icon_number
 
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Switch", Image=self.icon)
 
     def get_numeric_value(self, value, device):
         if hasattr(self, 'feature'):
@@ -34,9 +34,9 @@ class OnOffSwitch(Device):
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
-        Domoticz.Debug('Command "' + command + '" from device "' + device.Name + '"')
+        domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
 
         self.update_device(device, {
             'nValue': self.get_numeric_value(command, device),

@@ -1,25 +1,25 @@
 import json
 from adapters.base_adapter import Adapter
-from devices.switch.on_off_switch import OnOffSwitch
+from devices.switch.siren_switch import SirenSwitch
 from devices.sensor.temperature import TemperatureSensor
 from devices.sensor.humidity import HumiditySensor
 from devices.switch.selector_switch import SelectorSwitch
 
 
 class NASAB02B0(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', 'temperature'))
-        self.devices.append(HumiditySensor(devices, 'hum', 'humidity', ' (Humidity)'))
-        self.devices.append(OnOffSwitch(devices, 'alarm', 'alarm', ' (Alarm)'))
+    def __init__(self):
+        super().__init__()
+        self.devices.append(TemperatureSensor('temp', 'temperature', 'temperature'))
+        self.devices.append(HumiditySensor('hum', 'humidity', ' (Humidity)'))
+        self.devices.append(SirenSwitch('alarm', 'alarm', ' (Alarm)'))
 
-        volume_switch = SelectorSwitch(devices, 'vol', 'volume', ' (Volume)')
+        volume_switch = SelectorSwitch('vol', 'volume', ' (Volume)')
         volume_switch.add_level('Low', 'low')
         volume_switch.add_level('Medium', 'medium')
         volume_switch.add_level('High', 'high')
         self.devices.append(volume_switch)
 
-        melody_switch = SelectorSwitch(devices, 'mel', 'melody', ' (Melody)')
+        melody_switch = SelectorSwitch('mel', 'melody', ' (Melody)')
         for melody in range(1, 19):
             melody_switch.add_level(str(melody), melody)
        

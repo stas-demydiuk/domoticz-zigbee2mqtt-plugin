@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
@@ -6,8 +6,8 @@ class SelectorSwitch(Device):
     SELECTOR_TYPE_BUTTONS = '0'
     SELECTOR_TYPE_MENU = '1'
 
-    def __init__(self, devices, alias, value_key, device_name_suffix = ''):
-        super().__init__(devices, alias, value_key, device_name_suffix)
+    def __init__(self, alias, value_key, device_name_suffix = ''):
+        super().__init__(alias, value_key, device_name_suffix)
 
         self.level_names = []
         self.level_values = []
@@ -31,7 +31,7 @@ class SelectorSwitch(Device):
         options['LevelOffHiddden'] = 'false'
         options['SelectorStyle'] = self.selector_style
 
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=self.icon).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="Selector Switch", Options=options, Image=self.icon)
 
     def get_numeric_value(self, value, device):
         return 1 if self.get_string_value(value, device) != '0' else 0
@@ -40,18 +40,17 @@ class SelectorSwitch(Device):
         try:
             index = self.level_values.index(value)
         except:
-            Domoticz.Debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
+            domoticz.debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
             index = 0
 
         return str(index * 10)
 
     def handle_command(self, device_data, command, level, color):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
 
-        Domoticz.Debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
+        domoticz.debug('Command "' + command + ' (' + str(level) + ')" from device "' + device.Name + '"')
 
-        device.Update(
-            nValue=1 if level > 0 else 0,
-            sValue=str(level)
-        )
+        device.nValue = 1 if level > 0 else 0
+        device.sValue = str(level)
+        device.Update()

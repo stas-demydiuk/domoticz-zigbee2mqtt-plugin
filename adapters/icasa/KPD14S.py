@@ -4,10 +4,10 @@ from devices.switch.dimmer_switch import DimmerSwitch
 
 
 class KPD14S(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
-        button = SelectorSwitch(devices, 'click', 'click', ' (State)')
+        button = SelectorSwitch('click', 'click', ' (State)')
         button.add_level('Off', 'off')
         button.add_level('On', 'on')
         button.add_level('S1', 1)
@@ -15,7 +15,7 @@ class KPD14S(AdapterWithBattery):
         button.disable_value_check_on_update()
 
         self.devices.append(button)
-        self.devices.append(DimmerSwitch(devices, 'light', 'brightness', ' (Brightness)'))
+        self.devices.append(DimmerSwitch('light', 'brightness', ' (Brightness)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()

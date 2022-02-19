@@ -1,15 +1,15 @@
 import json
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class ColorTempDimmerSwitch(Device):
-    def __init__(self, devices, alias, value_key, device_name_suffix=''):
-        super().__init__(devices, alias, ';'.join(value_key), device_name_suffix)
+    def __init__(self, alias, value_key, device_name_suffix=''):
+        super().__init__(alias, ';'.join(value_key), device_name_suffix)
         self.value_keys = value_key
 
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=8, Switchtype=7).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=241, Subtype=8, Switchtype=7)
 
     def get_message_value(self, message):
         value = {}

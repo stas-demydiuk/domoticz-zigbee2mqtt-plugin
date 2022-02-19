@@ -6,13 +6,13 @@ from devices.sensor.voltage import VoltageSensor
 
 
 class ZigupAdapter(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
         
-        self.devices.append(OnOffSwitch(devices, 'switch', 'state', ' (State)'))
-        self.devices.append(TemperatureSensor(devices, 'temp', 'cpu_temperature', ' (CPU Temperature)'))
-        self.devices.append(TemperatureSensor(devices, 'temp_e', 'external_temperature', ' (External Temperature)'))
-        self.devices.append(VoltageSensor(devices, 'adc', 'adc_volt', ' (ADC Voltage)'))
+        self.devices.append(OnOffSwitch('switch', 'state', ' (State)'))
+        self.devices.append(TemperatureSensor('temp', 'cpu_temperature', ' (CPU Temperature)'))
+        self.devices.append(TemperatureSensor('temp_e', 'external_temperature', ' (External Temperature)'))
+        self.devices.append(VoltageSensor('adc', 'adc_volt', ' (ADC Voltage)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()

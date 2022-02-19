@@ -1,4 +1,4 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
@@ -8,16 +8,16 @@ class BooleanSensor(Device):
     SENSOR_TYPE_MOTION = 8
     SENSOR_TYPE_DOOR_CONTACT = 11
 
-    def __init__(self, devices, alias, value_key, sensor_type, device_name_suffix = ''):
-        super().__init__(devices, alias, value_key, device_name_suffix)
+    def __init__(self, alias, value_key, sensor_type, device_name_suffix = ''):
+        super().__init__(alias, value_key, device_name_suffix)
         self.sensor_type = sensor_type
 
     def create_device(self, unit, device_id, device_name):
         if (self.sensor_type == None):
-            Domoticz.Error('Sensor type is not specified')
+            domoticz.error('Sensor type is not specified')
             return
 
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=self.sensor_type).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=self.sensor_type)
 
     def get_numeric_value(self, value, device):
         if hasattr(self, 'feature'):

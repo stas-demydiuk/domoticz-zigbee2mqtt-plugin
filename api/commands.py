@@ -1,4 +1,5 @@
 from api.bridge import GetBridgeStatus, SetBridgePermitJoinStatus, PairDevice
+from api.plugin import GetConfig, SetConfig, Info
 from api.devices import GetDevices, GetDeviceState, SetDeviceState, RenameDevice, RemoveDevice, GetDeviceOTAUpdateStatus, UpdateDeviceFirmware
 from api.groups import GetGroups, AddGroup, RemoveGroup, IncludeDevice, ExcludeDevice
 from api.network_map import NetworkMap
@@ -16,9 +17,12 @@ commands = dict({
     'bridge_getstatus': GetBridgeStatus,
     'bridge_set_permitjoin': SetBridgePermitJoinStatus,
     'bridge_pair': PairDevice,
+    'config_get': GetConfig,
+    'config_set': SetConfig,
     'groups_get': GetGroups,
     'group_add': AddGroup,
     'group_remove': RemoveGroup,
     'group_include': IncludeDevice,
     'group_exclude': ExcludeDevice,
+    'plugin_info': Info,
 })

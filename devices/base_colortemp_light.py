@@ -1,5 +1,5 @@
 import json
-import Domoticz
+import domoticz
 from devices.device import Device
 
 class BaseRGBWLight(Device):
@@ -19,13 +19,21 @@ class BaseRGBWLight(Device):
         elif 'color' in message.raw: #use XY from zigbee
             bri = message.raw['brightness']/254 if 'brightness' in message.raw else 1
             color = message.raw['color']
-            color_values = self.get_rgb_from_xy_and_brightness(color['x'], color['y'], bri)
-            color_value = json.dumps({
-                'm': 3, #mode 3 is RGB for Domoticz
-                'r': int(color_values[0]),
-                'g': int(color_values[1]),
-                'b': int(color_values[2])
-            })
+            if 'x' in color:
+                color_values = self.get_rgb_from_xy_and_brightness(color['x'], color['y'], bri)
+                color_value = json.dumps({
+                    'm': 3, #mode 3 is RGB for Domoticz
+                    'r': int(color_values[0]),
+                    'g': int(color_values[1]),
+                    'b': int(color_values[2])
+                })
+            else:
+                color_value = json.dumps({
+                    'm': 3, #mode 3 is RGB for Domoticz
+                    'r': int(color['r']),
+                    'g': int(color['g']),
+                    'b': int(color['b'])
+                 })
         else:
             return None
 
@@ -33,16 +41,16 @@ class BaseRGBWLight(Device):
         
     def handle_message(self, device_data, message):
         device_address = device_data['ieee_addr']
-        device = self.get_device(device_address, self.alias)
+        device = self.get_device(device_address)
     
-        Domoticz.Debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
+        domoticz.debug('zigbee device:' + str(device_address)+ ' sent message:' + str(message.raw))
         
         n_value = None
         s_value = None
         color_value = None
 
         if (device == None):
-            Domoticz.Status('no device in message')
+            domoticz.error('no device in message')
             # Due to internal domoticz bug, app crashes if we try to use device just after we create it
             # so just create and exit for now
             # device = self._create_device(device_data, message)
@@ -83,7 +91,9 @@ class BaseRGBWLight(Device):
             if not 'nValue' in payload:
                 payload['nValue'] = device.nValue
             if not 'sValue' in payload:
-                payload['sValue'] = device.sValue            
+                payload['sValue'] = device.sValue
+
+            payload['LastLevel'] = int(payload['sValue'])
 
             self.update_device(device, payload)
         else:

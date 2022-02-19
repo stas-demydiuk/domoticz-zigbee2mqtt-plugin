@@ -3,6 +3,42 @@
 ## v3.0
 - Add Universal Adapter
 - Ability to disable link quality and battery devices
+- Blacklist support to overcome limit of 255 logical devices in Domoticz
+
+Breaking changes:
+- Requires at least zigbee2mqtt 1.17.0 version
+- Some logical devices have changed their keys. It is recommended to remove old plugin and then install new version rather than doing an upgrade.
+
+New device features support:
+- alarm
+- auto_off
+- away_mode
+- battery
+- battery_low
+- brightness
+- consumer_connected
+- contact
+- current
+- gas
+- humidity
+- illuminance
+- illuminance_lux
+- led_disabled_night
+- light
+- linkquality
+- local_temperature
+- occupancy
+- position
+- power_outage_memory
+- pressure
+- setpoint
+- smoke
+- soil_moisture
+- state
+- tamper
+- temperature
+- voltage
+- water_leak
 
 ## 0.2.1
 - Add strength and angle sensor for Xiaomi DJT11LM

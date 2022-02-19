@@ -5,12 +5,12 @@ from devices.rgb_light import RGBLight
 from devices.switch.color_temp_dimmer_switch import ColorTempDimmerSwitch
 
 class GLC0082ID(Adapter, RGBMixin, CCTMixin):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
         values = ['state', 'brightness', 'color_temp']
-        self.devices.append(ColorTempDimmerSwitch(devices, 'cct', values))
-        self.devices.append(RGBLight(devices, 'rgb', 'state_brightness_color'))
+        self.devices.append(ColorTempDimmerSwitch('cct', values))
+        self.devices.append(RGBLight('rgb', 'state_brightness_color'))
 
     def convert_message(self, message):
         message = super().convert_message(message)

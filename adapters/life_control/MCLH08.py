@@ -6,13 +6,13 @@ from devices.temperature_humidity_sensor import TemperatureHumiditySensor
 from devices.custom_sensor import CustomSensor
 
 class MCLH08(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.devices.append(TemperatureSensor(devices, 'temp', 'temperature', ' (Temperature)'))
-        self.devices.append(HumiditySensor(devices, 'hum', 'humidity', ' (Humidity)'))
-        self.devices.append(TemperatureHumiditySensor(devices, 'all', 'combined', ' (Temperature + Humidity)'))
-        self.devices.append(CO2Sensor(devices, 'eco2', 'eco2', ' (CO2)'))
-        self.devices.append(CustomSensor(devices, 'voc', 'voc', ' (Vok)'))
+    def __init__(self):
+        super().__init__()
+        self.devices.append(TemperatureSensor('temp', 'temperature', ' (Temperature)'))
+        self.devices.append(HumiditySensor('hum', 'humidity', ' (Humidity)'))
+        self.devices.append(TemperatureHumiditySensor('all', 'combined', ' (Temperature + Humidity)'))
+        self.devices.append(CO2Sensor('eco2', 'eco2', ' (CO2)'))
+        self.devices.append(CustomSensor('voc', 'voc', ' (Vok)'))
 
     def convert_message(self, message):
         message = super().convert_message(message)
