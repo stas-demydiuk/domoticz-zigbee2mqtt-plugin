@@ -54,8 +54,12 @@ class DimmerLight(OnOffLight):
 
     def get_device_args(self, value, device, message):
         args = super().get_device_args(value, device, message)
-        return dict(args, LastLevel = int(args['sValue']))
-
+        if len(args['sValue'])>0: 
+            ll = int(args['sValue'])
+        else:
+            ll = 0
+        return dict(args, LastLevel=ll)
+        
     def generate_command(self, command, level, color):
         cmd = command.upper()
 
