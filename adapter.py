@@ -330,6 +330,11 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'requested_brightness_percent' and state_access):
             return
 
+        if (feature['name'] == 'pi_heating_demand' and state_access):
+            alias = self._generate_alias(feature, 'phd')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
