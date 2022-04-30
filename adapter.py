@@ -221,7 +221,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
-        domoticz.error(self.name + ': can not process binary item "' + feature['name'] + '"')
+        domoticz.debug(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def add_numeric_device(self, feature):
@@ -345,7 +345,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CustomSensor)
             return
 
-        domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
+        domoticz.debug(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def handle_command(self, alias, domoticz_device, command, level, color):
