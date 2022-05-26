@@ -4,17 +4,17 @@ from devices.switch.selector_switch import SelectorSwitch
 
 
 class AqaraOppleSwitch(AdapterWithBattery):
-    def __init__(self, devices, buttons_count):
-        super().__init__(devices)
+    def __init__(self, buttons_count):
+        super().__init__()
 
         self.buttons_count = buttons_count
 
         for btn_index in range(1, self.buttons_count + 1):
-            self.devices.append(self.create_button(devices, btn_index))
+            self.devices.append(self.create_button(btn_index))
 
-    def create_button(self, devices, index):
+    def create_button(self, index):
         action_prefix = 'button_' + str(index) + '_'
-        button = SelectorSwitch(devices, 'btn' + str(index), 'action', ' (Button ' + str(index) + ')')
+        button = SelectorSwitch('btn' + str(index), 'action', ' (Button ' + str(index) + ')')
         button.add_level('Off', None)
         button.add_level('Click', action_prefix + 'single')
         button.add_level('Double', action_prefix + 'double')

@@ -15,6 +15,10 @@
     .zigbee2mqtt-header > .btn-group {
         text-align: center;
     }
+
+    .zigbee2mqtt-ace-editor {
+        height: calc(100vh - 270px);
+    }
 </style>
 
 <script type="text/ng-template" id="app/zigbee2mqtt/index.html">
@@ -34,7 +38,7 @@
                 </button>
             </div>
 
-            <div class="align-right" ng-if="$ctrl.controllerInfo">
+            <div class="align-right" ng-if="$ctrl.controllerInfo && $ctrl.pluginInfo">
                 <div>{{ $ctrl.getVersionString() }}</div>
                 <label>
                     <input type="checkbox"
@@ -57,6 +61,7 @@
                    ng-click="$ctrl.renderNetworkMap()"
                 >Network Map</a>
             </li>
+            <li><a data-target="#zigbee-plugin-config" data-toggle="tab">Plugin Configuration</a></li>
         </ul>
 
         <div class="tab-content">
@@ -86,6 +91,10 @@
             <div class="tab-pane" id="zigbee-map">
                 <page-loading-indicator ng-hide="$ctrl.isMapLoaded"></page-loading-indicator>
                 <div id="image-map" style="height: calc(100vh - 235px);" ng-show="$ctrl.isMapLoaded"></div>
+            </div>
+
+            <div class="tab-pane" id="zigbee-plugin-config">
+                <zigbee2mqtt-plugin-config />
             </div>
         </div>
     </div>
@@ -407,6 +416,20 @@
             {{:: 'Cancel' | translate }}
         </button>
     </div>
+</script>
+
+<script type="text/ng-template" id="app/zigbee2mqtt/zigbee2mqttPluginConfig.html">
+    <page-loading-indicator ng-hide="$ctrl.config"></page-loading-indicator>
+
+    <div class="btn-panel align-right">
+        <button 
+            class="btn btn-default" 
+            ng-disabled="!$ctrl.isModified"
+            ng-click="$ctrl.updateConfig()"
+        >{{:: 'Save' | translate }}</button>
+    </div>
+
+    <div class="zigbee2mqtt-ace-editor js-script-content"></div>
 </script>
 
 <script>

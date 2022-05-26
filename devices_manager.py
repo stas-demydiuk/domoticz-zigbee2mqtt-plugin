@@ -1,5 +1,6 @@
 import json
 import domoticz
+import configuration
 from adapters import adapter_by_model
 from zigbee_message import ZigbeeMessage
 from adapter import UniversalAdapter
@@ -12,10 +13,10 @@ class DevicesManager:
         self.devices = {}
 
         for item in zigbee_devices:
-            device_id = item['ieee_address']
+            device_adress = item['ieee_address']
             
             if 'type' in item and item['type'] == 'Coordinator':
-                domoticz.debug('Coordinator address is ' + device_id)
+                domoticz.debug('Coordinator address is ' + device_adress)
                 continue
 
             if 'definition' not in item:
@@ -34,18 +35,15 @@ class DevicesManager:
             model = item['definition']['model']
 
             if model in adapter_by_model:
-                adapter = adapter_by_model[model](domoticz.get_devices())
+                adapter = adapter_by_model[model]()
                 adapter.name = item['friendly_name']
                 adapter.zigbee_device = item
                 adapter.register()
 
-                self.devices[device_id] = adapter
+                self.devices[device_adress] = adapter
             else:
-                self.devices[device_id] = UniversalAdapter(item)
+                self.devices[device_adress] = UniversalAdapter(item)
 
-
-    def get_device_by_id(self, ieee_addr):
-        return self.devices[ieee_addr] if ieee_addr in self.devices else None
 
     def get_device_by_name(self, friendly_name):
         for key, adapter in self.devices.items():
@@ -62,17 +60,19 @@ class DevicesManager:
         zigbee_message = ZigbeeMessage(message)
         adapter.handle_mqtt_message(zigbee_message)
 
-    def handle_command(self, device, command, level, color):
-        device_params = device.DeviceID.split('_', 1)
-        device_id = device_params[0]
-        alias = device_params[1]
-
-        adapter = self.get_device_by_id(device_id)
-
-        if (adapter == None):
+    def handle_command(self, device_id, unit, command, level, color):
+        try:
+            domoticz_device = domoticz.get_device(device_id, unit)
+            config = configuration.get_zigbee_feature_data(device_id, unit)
+            
+            alias = config['domoticz']['legacy_alias']
+            device_address = config['zigbee']['address']
+            adapter = self.devices[device_address]
+        except:
             return
 
-        return adapter.handle_command(alias, device, command, level, color)
+        return adapter.handle_command(alias, domoticz_device, command, level, color)
+
 
     def remove(self, friendly_name):
         adapter = self.get_device_by_name(friendly_name)

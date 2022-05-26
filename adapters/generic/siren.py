@@ -5,9 +5,9 @@ from devices.switch.on_off_switch import OnOffSwitch
 
 # TODO: Think how to reuse the code between classes
 class SirenAdapter(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.switch = OnOffSwitch(devices, 'switch', 'state')
+    def __init__(self):
+        super().__init__()
+        self.switch = OnOffSwitch('switch', 'state')
         self.switch.set_icon(13)
         self.devices.append(self.switch)
 
@@ -28,9 +28,9 @@ class SirenAdapter(Adapter):
         }
 
 class SirenAdapterWithBattery(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.switch = OnOffSwitch(devices, 'switch', 'state')
+    def __init__(self):
+        super().__init__()
+        self.switch = OnOffSwitch('switch', 'state')
         self.switch.set_icon(13)
         self.devices.append(self.switch)
 

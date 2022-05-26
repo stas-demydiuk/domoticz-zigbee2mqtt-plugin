@@ -15,12 +15,12 @@ from devices.switch.on_off_switch import OnOffSwitch
 PTVOID = {'input1' : 'l1', 'input2' : 'l2', 'input3' : 'l3', 'input4' : 'l4', 'input5' : 'l5', 'input6' : 'l6', 'input7' : 'l7', 'input8' : 'l8'}
 
 class PtvoSwitch(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.devices.append(TextSensor(devices, 'click', 'click', ' (input)'))
+    def __init__(self):
+        super().__init__()
+        self.devices.append(TextSensor('click', 'click', ' (input)'))
         self.switch={}
         for ptvo in PTVOID:
-            self.switch[ptvo] = OnOffSwitch(devices, ptvo, 'state_' + ptvo, ' (' + ptvo + ')')
+            self.switch[ptvo] = OnOffSwitch(ptvo, 'state_' + PTVOID[ptvo], ' (' + ptvo + ')')
             self.devices.append(self.switch[ptvo])
 
     def handle_command(self, alias, device, command, level, color):

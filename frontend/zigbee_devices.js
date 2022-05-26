@@ -1,6 +1,4 @@
-define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
-    var DateTime = luxon.DateTime;
-
+define(['app', 'app/devices/Devices.js'], function(app) {
     var renameDeviceModal = {
         templateUrl: 'app/zigbee2mqtt/deviceRenameModal.html',
         controllerAs: '$ctrl',
@@ -13,10 +11,13 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                 $ctrl.isSaving = true;
 
                 zigbee2mqtt.sendRequest('device_rename', {
-                    old: $ctrl.oldName,
-                    new: $ctrl.newName
+                    from: $ctrl.oldName,
+                    to: $ctrl.newName
                 }).then(function() {
                     $scope.$close();
+                }).catch(function(error) {
+                    $ctrl.isSaving = false;
+                    bootbox.alert(error);
                 });
             }
         }
@@ -38,6 +39,9 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                     state: JSON.parse($ctrl.state)
                 }).then(function() {
                     $scope.$close();
+                }).catch(function(error) {
+                    $ctrl.isSaving = false;
+                    bootbox.alert(error);
                 });
             }
         }
@@ -121,7 +125,7 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                 $ctrl.associatedDevices = []
             } else {
                 $ctrl.associatedDevices = $ctrl.domoticzDevices.filter(function(device) {
-                    return device.ID.indexOf(zigbeeDevice.ieeeAddr) === 0;
+                    return device.ID.indexOf(zigbeeDevice.ieee_address) === 0;
                 });
             }
         }
@@ -163,16 +167,14 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
                 order: [[0, 'asc']],
                 columns: [
                     { title: 'Friendly Name', data: 'friendly_name' },
-                    { title: 'Model', data: 'model' },
-                    { title: 'Description', data: 'description' },
+                    { title: 'Model', data: 'definition.model' },
+                    { title: 'Description', data: 'definition.description' },
                     { title: 'Type', width: '150px', data: 'type' },
-                    { title: 'IEEE Address', width: '170px', data: 'ieeeAddr' },
-                    { title: 'Last Seen', data: 'lastSeen', width: '150px', render: dateRenderer },
+                    { title: 'IEEE Address', width: '170px', data: 'ieee_address' },
                     {
                         title: '',
                         className: 'actions-column',
                         width: '80px',
-                        data: 'ieeeAddr',
                         orderable: false,
                         render: actionsRenderer
                     },
@@ -288,14 +290,6 @@ define(['app', 'luxon', 'app/devices/Devices.js'], function(app, luxon) {
             table.api().rows
                 .add(items)
                 .draw();
-        }
-
-        function dateRenderer(data, type, row) {
-            if (type === 'sort' || type === 'type' || !Number.isInteger(data)) {
-                return data;
-            }
-
-            return DateTime.fromMillis(data).toFormat(dzSettings.serverDateFormat);
         }
 
         function actionsRenderer(data, type, row) {

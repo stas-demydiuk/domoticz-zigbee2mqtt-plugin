@@ -1,22 +1,21 @@
+import json
+import bridge
 from api.command import APICommand
 
 
 class GetBridgeStatus(APICommand):
     def execute(self, params):
-        self.publish_mqtt('bridge/config/permit_join', '')
-
-    def handle_mqtt_message(self, topic, message):
-        if topic == 'bridge/config':
-            self.send_response(message)
-
-
+        self.send_response(bridge.bridge_info)
+        
 class SetBridgePermitJoinStatus(APICommand):
     def execute(self, params):
-        self.publish_mqtt('bridge/config/permit_join', params)
+        self.publish_mqtt('bridge/request/permit_join', json.dumps({
+            'value': params
+        }))
 
     def handle_mqtt_message(self, topic, message):
-        if topic == 'bridge/config':
-            self.send_response(message)
+        if topic == 'bridge/response/permit_join':
+            self.send_response(message['data']['value'])
 
 
 class PairDevice(APICommand):

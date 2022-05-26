@@ -1,10 +1,10 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class KwhSensor(Device):
-    def __init__(self, devices, alias, value_key, device_name_suffix=''):
-        super().__init__(devices, alias, ';'.join(value_key), device_name_suffix)
+    def __init__(self, alias, value_key, device_name_suffix=''):
+        super().__init__(alias, ';'.join(value_key), device_name_suffix)
         self.value_keys = value_key
         self.energy_multiplier = 1000
     
@@ -12,7 +12,7 @@ class KwhSensor(Device):
         options = {}
         options['EnergyMeterMode'] = '0' if len(self.value_keys) == 2 else '1'
 
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="kWh", Options=options).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, TypeName="kWh", Options=options)
 
     def get_message_value(self, message):
         value = []

@@ -10,6 +10,9 @@ def has(device_id):
     blacklist = blacklist_raw.split(';')
 
     for pattern in blacklist:
+        if len(pattern.strip()) == 0:
+            continue
+        
         if re.match(pattern.strip(), device_id):
             return True
     

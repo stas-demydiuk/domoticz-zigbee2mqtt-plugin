@@ -4,10 +4,10 @@ from devices.switch.dimmer_switch import DimmerSwitch
 
 
 class HueDimmerSwitch(AdapterWithBattery):
-    def __init__(self, devices):
-        super().__init__(devices)
+    def __init__(self):
+        super().__init__()
 
-        self.switch = SelectorSwitch(devices, 'dimmer', 'action')
+        self.switch = SelectorSwitch('dimmer', 'action')
         self.switch.add_level('off-press', 'off-press')
         self.switch.add_level('off-press-double', 'off-press-double')
         self.switch.add_level('off-press-triple', 'off-press-triple')
@@ -32,7 +32,7 @@ class HueDimmerSwitch(AdapterWithBattery):
         self.switch.disable_value_check_on_update()
         self.devices.append(self.switch)
         # Add dimmer
-        self.dimmer = DimmerSwitch(devices, 'bright', 'brightness')
+        self.dimmer = DimmerSwitch('bright', 'brightness')
         self.devices.append(self.dimmer)
         
     def convert_message(self, message):

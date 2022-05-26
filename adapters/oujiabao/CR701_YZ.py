@@ -4,12 +4,12 @@ from devices.sensor.contact import ContactSensor
 
 
 class CR701_YZ(Adapter):
-    def __init__(self, devices):
-        super().__init__(devices)
-        self.devices.append(SmokeSensor(devices, 'gas', 'gas'))
-        self.devices.append(SmokeSensor(devices, 'co', 'carbon_monoxide'))
-        self.devices.append(ContactSensor(devices, 'err', 'trouble'))
-        self.devices.append(ContactSensor(devices, 'ac', 'ac_connected'))
-        self.devices.append(ContactSensor(devices, 'tamper', 'tamper'))
-        self.devices.append(ContactSensor(devices, 'test', 'test'))
+    def __init__(self):
+        super().__init__()
+        self.devices.append(SmokeSensor('gas', 'gas'))
+        self.devices.append(SmokeSensor('co', 'carbon_monoxide'))
+        self.devices.append(ContactSensor('err', 'trouble'))
+        self.devices.append(ContactSensor('ac', 'ac_connected'))
+        self.devices.append(ContactSensor('tamper', 'tamper'))
+        self.devices.append(ContactSensor('test', 'test'))
 

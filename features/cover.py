@@ -1,5 +1,4 @@
 import domoticz
-import json
 from feature_utils import get_feature, generate_alias
 from devices.switch.blind_percentages_switch import BlindSwitch
 
@@ -16,7 +15,7 @@ class CoverFeatureProcessor():
 
         if state and position:
             alias = generate_alias(state, 'dimmer')
-            device = BlindSwitch(domoticz.get_devices(), alias, position['property'], ' (Position)')
+            device = BlindSwitch(alias, position['property'], ' (Position)')
             device.set_state_feature(state)
             device.set_position_feature(position)
             device.feature = feature

@@ -1,10 +1,19 @@
-import Domoticz
+import domoticz
 from devices.device import Device
 
 
 class BlindSwitch(Device):
     def create_device(self, unit, device_id, device_name):
-        return Domoticz.Device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=13).Create()
+        return domoticz.create_device(Unit=unit, DeviceID=device_id, Name=device_name, Type=244, Subtype=73, Switchtype=13)
+
+    def _get_feature_name(self):
+        return 'dimmer'
+
+    def _get_zigbee_endpoint(self):
+        try:
+            return self.state_feature['endpoint']
+        except:
+            return 'n/a'
 
     def set_state_feature(self, feature):
         self.state_feature = feature
@@ -30,11 +39,11 @@ class BlindSwitch(Device):
 
         if cmd == 'ON':
             return {
-                state_value_key: self.state_feature['value_on']
+                state_value_key: 'close'
             }
         elif cmd == 'OFF':
             return {
-                state_value_key: self.state_feature['value_off']
+                state_value_key: 'open'
             }
         elif cmd == 'SET LEVEL':
             return {
@@ -45,5 +54,5 @@ class BlindSwitch(Device):
                 state_value_key: 'stop'
             }
         else:
-            Domoticz.Error('Blind switch: unable to handle command "' + command + '"')
+            domoticz.error('Blind switch: unable to handle command "' + command + '"')
         

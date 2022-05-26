@@ -1,6 +1,7 @@
 from adapters.base_adapter import Adapter
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
+from adapters.ecodim import ecodim_adapters
 from adapters.feibit import feibit_adapters
 from adapters.generic.thermostat import ThermostatAdapter
 from adapters.gledopto import gledopto_adapters
@@ -10,6 +11,7 @@ from adapters.ikea import ikea_adapters
 from adapters.life_control import life_control_adapters
 from adapters.lumi import lumi_adapters
 from adapters.meazon.dinrail import DinrailAdapter
+from adapters.moes import moes_adapters
 from adapters.neo import neo_adapters
 from adapters.osram import osram_adapters
 from adapters.oujiabao.CR701_YZ import CR701_YZ
@@ -51,6 +53,7 @@ adapter_by_model = dict({
     'ptvo.switch': PtvoSwitch           # cc2530 zigbee module with pvto.switch firmware (buttons only for now!)
 },
     **bitron_adapters,
+    **ecodim_adapters,
     **feibit_adapters,
     **gledopto_adapters,
     **heiman_adapters,
@@ -58,6 +61,7 @@ adapter_by_model = dict({
     **ikea_adapters,
     **life_control_adapters,
     **lumi_adapters,
+    **moes_adapters,
     **neo_adapters,
     **osram_adapters,
     **philips_adapters,

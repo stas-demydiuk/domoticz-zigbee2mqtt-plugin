@@ -2,30 +2,21 @@ import json
 import domoticz
 from adapters.base_adapter import Adapter
 from devices.sensor.contact import ContactSensor
+from devices.sensor.co2 import CO2Sensor
 from devices.sensor.current import CurrentSensor
-from devices.sensor.humidity import HumiditySensor
 from devices.sensor.lux import LuxSensor
 from devices.sensor.motion import MotionSensor
 from devices.sensor.percentage import PercentageSensor
-from devices.sensor.pressure import PressureSensor
 from devices.sensor.smoke import SmokeSensor
 from devices.sensor.temperature import TemperatureSensor
-from devices.temperature_humidity_sensor import TemperatureHumiditySensor
-from devices.temperature_humidity_barometer_sensor import TemperatureHumidityBarometerSensor
 from devices.sensor.voltage import VoltageSensor
 from devices.sensor.water_leak import WaterLeakSensor
 from devices.setpoint import SetPoint
-from devices.switch.blind_percentages_switch import BlindSwitch
 from devices.switch.dimmer_switch import DimmerSwitch
 from devices.switch.level_switch import LevelSwitch
 from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.switch.siren_switch import SirenSwitch
-from devices.light.on_off import OnOffLight
-from devices.light.dimmer import DimmerLight
-from devices.light.ct import CTLight
-from devices.light.rgb import RGBLight
-from devices.light.rgbw import RGBWLight
 from devices.custom_sensor import CustomSensor
 from features.cover import CoverFeatureProcessor
 from features.energy import EnergyFeatureProcessor
@@ -68,6 +59,10 @@ class UniversalAdapter(Adapter):
                 self._add_feature(item)
 
     def _add_feature(self, item):
+        # Avoid creating devices for settings as it is ususally one-time op
+        if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration', 'temperature_setpoint_hold_duration']:
+            return
+
         if item['type'] == 'binary':
             self.add_binary_device(item)
         elif item['type'] == 'enum':
@@ -90,7 +85,7 @@ class UniversalAdapter(Adapter):
 
     def _add_device(self, alias, feature, device_type, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
-        device = device_type(domoticz.get_devices(), alias, feature['property'], suffix)
+        device = device_type(alias, feature['property'], suffix)
         device.feature = feature
 
         self.devices.append(device)
@@ -104,7 +99,7 @@ class UniversalAdapter(Adapter):
 
     def _add_selector_device(self, alias, feature, device_name_suffix = ''):
         suffix = device_name_suffix if device_name_suffix != '' else (' (' + feature['name'] + ')')
-        device = SelectorSwitch(domoticz.get_devices(), alias, feature['property'], suffix)
+        device = SelectorSwitch(alias, feature['property'], suffix)
         device.disable_value_check_on_update()
         device.add_level('Off', None)
         for value in feature['values']:
@@ -146,6 +141,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, ContactSensor)
             return
 
+        if (feature['name'] == 'charging_status' and state_access):
+            alias = self._generate_alias(feature, 'chrgst')
+            self._add_device(alias, feature, ContactSensor, ' (Charging Status)')
+            return
+
         if (feature['name'] == 'gas' and state_access):
             alias = self._generate_alias(feature, 'gas')
             self._add_device(alias, feature, SmokeSensor, ' (Gas sensor)')
@@ -176,13 +176,33 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, ContactSensor, ' (Consumer Connected)')
             return
 
+        if (feature['name'] == 'running' and state_access):
+            alias = self._generate_alias(feature, 'runng')
+            self._add_device(alias, feature, ContactSensor, ' (Running)')
+            return
+
         if (feature['name'] == 'state' and state_access and write_access):
             alias = self._generate_alias(feature, 'state')
             self._add_device(alias, feature, OnOffSwitch)
             return
 
+        if (feature['name'] == 'temperature_setpoint_hold' and state_access and write_access):
+            alias = self._generate_alias(feature, 'temphld')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
         if (feature['name'] == 'led_disabled_night' and state_access and write_access):
             alias = self._generate_alias(feature, 'nled')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
+        if (feature['name'] == 'led_feedback' and state_access and write_access):
+            alias = self._generate_alias(feature, 'ledfbk')
+            self._add_device(alias, feature, OnOffSwitch)
+            return
+
+        if (feature['name'] == 'buzzer_feedback' and state_access and write_access):
+            alias = self._generate_alias(feature, 'bzrfbk')
             self._add_device(alias, feature, OnOffSwitch)
             return
 
@@ -201,7 +221,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
-        domoticz.error(self.name + ': can not process binary item "' + feature['name'] + '"')
+        domoticz.debug(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def add_numeric_device(self, feature):
@@ -247,9 +267,28 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, PercentageSensor, ' (Soil Moisture)')
             return
 
-        if (feature['name'] == 'voltage' and state_access):
-            alias = self._generate_alias(feature, 'volt')
+        if feature['name'] == 'voltage' and state_access:
+            if feature['description'] == 'Voltage of the battery in millivolts':
+                alias = 'cell' # For migration from 0.2.x
+            else:
+                alias = self._generate_alias(feature, 'volt')
+
             self._add_device(alias, feature, VoltageSensor, ' (Voltage)')
+            return
+
+        if feature['name'] == 'co2' and feature['unit'] == 'ppm' and state_access:
+            alias = self._generate_alias(feature, 'co2')
+            self._add_device(alias, feature, CO2Sensor)
+            return
+
+        if feature['name'] == 'voc' and state_access:
+            alias = self._generate_alias(feature, 'voc')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'formaldehyd' and state_access:
+            alias = self._generate_alias(feature, 'fmdhd')
+            self._add_device(alias, feature, CustomSensor)
             return
 
         if (feature['name'] == 'current' and state_access):
@@ -257,7 +296,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CurrentSensor, ' (Current)')
             return
 
-        if 'setpoint' in feature['name'] and feature['unit'] == '°C' and write_access:
+        if 'setpoint' in feature['name'] and 'unit' in feature and feature['unit'] == '°C' and write_access:
             alias = self._generate_alias(feature, 'spoint')
             self._add_device(alias, feature, SetPoint, ' (Setpoint)')
             return
@@ -267,7 +306,46 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, LevelSwitch)
             return
 
-        domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
+        if feature['name'] == 'radioactive_events_per_minute' and state_access:
+            alias = self._generate_alias(feature, 'repm')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'radiation_dose_per_hour' and state_access:
+            alias = self._generate_alias(feature, 'reph')
+            self._add_device(alias, feature, CustomSensor)
+            return
+        
+        if (feature['name'] == 'sensors_count' and state_access):
+            alias = self._generate_alias(feature, 'snscnt')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if (feature['name'] == 'water_consumed' and state_access):
+            alias = self._generate_alias(feature, 'wtrcns')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if (feature['name'] == 'last_valve_open_duration' and state_access):
+            alias = self._generate_alias(feature, 'lvod')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if (feature['name'] == 'color_temp_startup' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_level' and state_access):
+            return
+
+        if (feature['name'] == 'requested_brightness_percent' and state_access):
+            return
+
+        if (feature['name'] == 'pi_heating_demand' and state_access):
+            alias = self._generate_alias(feature, 'phd')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        domoticz.debug(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def handle_command(self, alias, domoticz_device, command, level, color):
