@@ -141,6 +141,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, ContactSensor)
             return
 
+        if (feature['name'] == 'charging_status' and state_access):
+            alias = self._generate_alias(feature, 'chrgst')
+            self._add_device(alias, feature, ContactSensor, ' (Charging Status)')
+            return
+
         if (feature['name'] == 'gas' and state_access):
             alias = self._generate_alias(feature, 'gas')
             self._add_device(alias, feature, SmokeSensor, ' (Gas sensor)')
@@ -169,6 +174,11 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'consumer_connected' and state_access):
             alias = self._generate_alias(feature, 'consmr')
             self._add_device(alias, feature, ContactSensor, ' (Consumer Connected)')
+            return
+
+        if (feature['name'] == 'running' and state_access):
+            alias = self._generate_alias(feature, 'runng')
+            self._add_device(alias, feature, ContactSensor, ' (Running)')
             return
 
         if (feature['name'] == 'state' and state_access and write_access):
@@ -211,7 +221,7 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, OnOffSwitch)
             return
 
-        domoticz.error(self.name + ': can not process binary item "' + feature['name'] + '"')
+        domoticz.debug(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def add_numeric_device(self, feature):
@@ -330,7 +340,12 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'requested_brightness_percent' and state_access):
             return
 
-        domoticz.error(self.name + ': can not process numeric item "' + feature['name'] + '"')
+        if (feature['name'] == 'pi_heating_demand' and state_access):
+            alias = self._generate_alias(feature, 'phd')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        domoticz.debug(self.name + ': can not process numeric item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
     def handle_command(self, alias, domoticz_device, command, level, color):
