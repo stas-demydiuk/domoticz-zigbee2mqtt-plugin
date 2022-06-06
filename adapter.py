@@ -261,6 +261,11 @@ class UniversalAdapter(Adapter):
             alias = self._generate_alias(feature, 'ltemp')
             self._add_device(alias, feature, TemperatureSensor, ' (Local Temperature)')
             return
+ 
+        if (feature['name'] == 'device_temperature' and state_access):
+            alias = self._generate_alias(feature, 'ltemp')
+            self._add_device(alias, feature, TemperatureSensor, ' (Device Temperature)')
+            return
 
         if (feature['name'] == 'soil_moisture' and state_access):
             alias = self._generate_alias(feature, 'pres')
