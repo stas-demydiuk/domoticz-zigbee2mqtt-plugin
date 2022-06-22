@@ -177,7 +177,8 @@ class BasePlugin:
             return
 
         if (topic == 'bridge/state'):
-            domoticz.log('Zigbee2mqtt bridge is ' + message)
+            bridge_status = str(message['state']) if type(message) is dict else str(message)
+            domoticz.log('Zigbee2mqtt bridge is ' + bridge_status)
             return
 
         if (topic == 'bridge/log'):
