@@ -326,6 +326,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, CustomSensor)
             return
 
+        if (feature['name'] == 'power_outage_count' and state_access):
+            alias = self._generate_alias(feature, 'poutcnt')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         if (feature['name'] == 'water_consumed' and state_access):
             alias = self._generate_alias(feature, 'wtrcns')
             self._add_device(alias, feature, CustomSensor)
