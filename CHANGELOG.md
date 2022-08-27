@@ -1,5 +1,7 @@
 # Changelog
 
+## 3.2.0-beta
+
 ## v3.1
 - Invert blind on/off behavior
 - Support combined temp, hum, baro sensors
