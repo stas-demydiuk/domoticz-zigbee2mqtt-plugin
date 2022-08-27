@@ -237,6 +237,21 @@ class UniversalAdapter(Adapter):
                 self._add_device('signal', feature, CustomSensor, ' (Link Quality)')
             return
 
+        if feature['name'] == 'action_code' and state_access:
+            alias = self._generate_alias(feature, 'accode')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'action_transaction' and state_access:
+            alias = self._generate_alias(feature, 'actran')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
+        if feature['name'] == 'action_zone' and state_access:
+            alias = self._generate_alias(feature, 'aczone')
+            self._add_device(alias, feature, CustomSensor)
+            return
+
         if (feature['name'] == 'battery' and state_access):
             if domoticz.get_plugin_config('useBatteryDevices'):
                 self._add_device('btperc', feature, PercentageSensor, ' (Battery)')
