@@ -198,4 +198,5 @@ class Device():
         device_address = device_data['ieee_addr']
         device = self.get_device(device_address)
 
-        domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
+        if device != None:
+            domoticz.debug('Command "' + command + '" from device "' + device.Name + '"')
