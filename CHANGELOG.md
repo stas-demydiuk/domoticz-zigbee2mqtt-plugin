@@ -1,5 +1,30 @@
 # Changelog
 
+## v3.1
+- Invert blind on/off behavior
+- Support combined temp, hum, baro sensors
+- zigbee2mqtt 1.20.0+ support
+
+Breaking changes
+- Switched to the new DomoticzEx API that requires at least Domoticz 2022.1 and allows plugin to support more than 255 logical devices. Migration from 3.0 should be smooth in most cases but for some cases may require fresh plugin install.
+
+New device features support:
+- action_code
+- action_transaction
+- action_zone
+- buzzer_feedback
+- formaldehyd
+- last_valve_open_duration
+- led_feedback
+- local_temperature_calibration
+- pi_heating_demand
+- power_outage_count
+- radiation_dose_per_hour
+- radioactive_events_per_minute
+- sensors_count
+- voc
+- water_consumed
+
 ## v3.0
 - Add Universal Adapter
 - Ability to disable link quality and battery devices

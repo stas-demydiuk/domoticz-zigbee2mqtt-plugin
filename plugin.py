@@ -1,7 +1,7 @@
 """
-<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.1.0-beta">
+<plugin key="Zigbee2MQTT" name="Zigbee2MQTT" version="3.1.0">
     <description>
-        <h2>Zigbee2MQTT Plugin (v. 3.1.0-beta)</h2>
+        <h2>Zigbee2MQTT Plugin (v. 3.1.0)</h2>
         <p>Plugin to add support for <a href="https://github.com/Koenkk/zigbee2mqtt">zigbee2mqtt</a> project</p>
         <h3>Features</h3>
         <ul style="list-style-type:square">
