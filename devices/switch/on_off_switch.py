@@ -21,6 +21,10 @@ class OnOffSwitch(Device):
                 return 0
             else:
                 return device.nValue
+        elif value == True:
+            return 1
+        elif value == False:
+            return 0
         elif value.lower() == 'on':
             return 1
         elif value.lower() == 'off':

@@ -1,4 +1,5 @@
 from adapters.adapter_with_battery import AdapterWithBattery
+from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
 from devices.json_sensor import JSONSensor
@@ -8,14 +9,17 @@ class DJT11LM(AdapterWithBattery):
     def __init__(self):
         super().__init__()
 
-        self.switch = SelectorSwitch('action', 'action')
-        self.switch.add_level('Off', None)
-        self.switch.add_level('Vibration', 'vibration')
-        self.switch.add_level('Drop', 'drop')
-        self.switch.add_level('Tilt', 'tilt')
-        self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
+        selector = SelectorSwitch('action', 'action')
+        selector.add_level('Off', None)
+        selector.add_level('Vibration', 'vibration')
+        selector.add_level('Drop', 'drop')
+        selector.add_level('Tilt', 'tilt')
+        selector.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
-        self.devices.append(self.switch)
+        vibration = OnOffSwitch('vibration', 'vibration', ' (Vibration)')
+
+        self.devices.append(selector)
+        self.devices.append(vibration)
         self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
 
