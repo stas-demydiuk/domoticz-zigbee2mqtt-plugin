@@ -294,7 +294,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
 
         function actionsRenderer(data, type, row) {
             var actions = [];
-            var placeholder = '<img src="../../images/empty16.png" width="16" height="16" />';
+            var placeholder = '<img src="images/empty16.png" width="16" height="16" />';
 
             actions.push('<button class="btn btn-icon js-check-updates" title="' + $.t('Check for OTA firmware updates') + '"><img src="images/hardware.png" /></button>');
             actions.push(placeholder)
