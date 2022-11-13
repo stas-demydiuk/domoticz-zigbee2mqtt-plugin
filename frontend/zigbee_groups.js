@@ -204,7 +204,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
 
         function actionsRenderer() {
             var actions = [];
-            actions.push('<button class="btn btn-icon js-remove" title="' + $.t('Remove') + '"><img src="../../images/delete.png" /></button>');
+            actions.push('<button class="btn btn-icon js-remove" title="' + $.t('Remove') + '"><img src="/images/delete.png" /></button>');
             return actions.join('&nbsp;');
         }
     }
@@ -277,7 +277,7 @@ define(['app', 'app/devices/Devices.js'], function(app) {
 
         function actionsRenderer() {
             var actions = [];
-            actions.push('<button class="btn btn-icon js-remove" title="' + $.t('Remove') + '"><img src="../../images/delete.png" /></button>');
+            actions.push('<button class="btn btn-icon js-remove" title="' + $.t('Remove') + '"><img src="/images/delete.png" /></button>');
             return actions.join('&nbsp;');
         }
     }
