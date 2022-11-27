@@ -90,8 +90,8 @@ class Device():
         self.check_values_on_update = False
 
     def update_device(self, device, values):
-        nValueChanged = values['nValue'] != device.nValue
-        sValueChanged = values['sValue'] != device.sValue
+        nValueChanged = 'nValue' in values and values['nValue'] != device.nValue
+        sValueChanged = 'sValue' in values and values['sValue'] != device.sValue
         colorChanged = 'Color' in values and values['Color'] != device.Color
 
         if nValueChanged or sValueChanged or colorChanged or self.check_values_on_update == False:
@@ -187,10 +187,14 @@ class Device():
             self.touch_device(device)
             return None
 
-        device_values = dict({
-            'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
-            'SignalLevel': message.get_signal_level() or device.SignalLevel,
-        }, **self.get_device_args(value, device, message))
+        try:
+            device_values = dict({
+                'BatteryLevel': message.get_battery_level() or device.BatteryLevel,
+                'SignalLevel': message.get_signal_level() or device.SignalLevel,
+            }, **self.get_device_args(value, device, message))
+        except:
+            domoticz.error('Can\'t calculate the value for device ' + device.ID + ' from raw value "' + str(value) + '"')
+            device_values = dict({})
         
         self.update_device(device, device_values)
 

@@ -89,6 +89,7 @@ class UniversalAdapter(Adapter):
         device.feature = feature
 
         self.devices.append(device)
+        return device
 
     def _get_feature(self, features, feature_name):
         for item in features:
@@ -164,6 +165,17 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'water_leak' and state_access):
             alias = self._generate_alias(feature, 'wleak')
             self._add_device(alias, feature, WaterLeakSensor)
+            return
+
+        if (feature['name'] == 'window' and state_access):
+            alias = self._generate_alias(feature, 'window')
+            self._add_device(alias, feature, ContactSensor, ' (Window Closed Status)')
+            return
+
+        if (feature['name'] == 'heating' and state_access):
+            alias = self._generate_alias(feature, 'heating')
+            device = self._add_device(alias, feature, ContactSensor, ' (Heating)')
+            device.set_icon(15)
             return
 
         if (feature['name'] == 'tamper' and state_access):
@@ -321,10 +333,19 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, SetPoint, ' (Setpoint)')
             return
 
-        if (feature['name'] == 'position' and state_access):
-            alias = self._generate_alias(feature, 'level')
-            self._add_device(alias, feature, LevelSwitch)
-            return
+        if feature['name'] == 'position':
+            if write_access:
+                alias = self._generate_alias(feature, 'level')
+                self._add_device(alias, feature, LevelSwitch)
+                return
+            elif state_access and feature['unit'] == '%':
+                alias = self._generate_alias(feature, 'level')
+                self._add_device(alias, feature, PercentageSensor)
+                return
+            elif state_access:
+                alias = self._generate_alias(feature, 'level')
+                self._add_device(alias, feature, CustomSensor)
+                return
 
         if feature['name'] == 'radioactive_events_per_minute' and state_access:
             alias = self._generate_alias(feature, 'repm')
