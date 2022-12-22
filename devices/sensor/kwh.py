@@ -32,4 +32,4 @@ class KwhSensor(Device):
         if len(value) == 2:
             return str(value[0]) + ";" + str(int(value[1] * self.energy_multiplier))
         else:
-            return str(value[0])
+            return str(value[0]) + ";0"
