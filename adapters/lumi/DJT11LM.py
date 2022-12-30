@@ -21,7 +21,7 @@ class DJT11LM(AdapterWithBattery):
         self.devices.append(OnOffSwitch('vibration', 'vibration', ' (Vibration)'))
         self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
-        self.devices.append(TemperatureSensor('device_temperature', 'temperature', ' (Temperature)'))
+        self.devices.append(TemperatureSensor('temp', 'device_temperature', ' (Temperature)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()
