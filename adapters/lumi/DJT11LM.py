@@ -16,12 +16,11 @@ class DJT11LM(AdapterWithBattery):
         selector.add_level('Tilt', 'tilt')
         selector.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
-        vibration = OnOffSwitch('vibration', 'vibration', ' (Vibration)')
-
         self.devices.append(selector)
-        self.devices.append(vibration)
+        self.devices.append(OnOffSwitch('vibration', 'vibration', ' (Vibration)'))
         self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
+        self.devices.append(TemperatureHumiditySensor('device_temperature', 'temperature', ' (Temperature)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()
