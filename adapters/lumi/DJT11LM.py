@@ -3,6 +3,7 @@ from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.custom_sensor import CustomSensor
 from devices.json_sensor import JSONSensor
+from devices.sensor.TemperatureSensor import TemperatureSensor
 
 
 class DJT11LM(AdapterWithBattery):
@@ -20,7 +21,7 @@ class DJT11LM(AdapterWithBattery):
         self.devices.append(OnOffSwitch('vibration', 'vibration', ' (Vibration)'))
         self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
-        self.devices.append(TemperatureHumiditySensor('device_temperature', 'temperature', ' (Temperature)'))
+        self.devices.append(TemperatureSensor('device_temperature', 'temperature', ' (Temperature)'))
 
     def handle_command(self, alias, device, command, level, color):
         device_data = self._get_legacy_device_data()
