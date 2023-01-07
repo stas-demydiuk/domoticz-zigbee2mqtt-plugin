@@ -15,7 +15,7 @@ class SelectorSwitch(Device):
         self.icon = 9
 
     def add_level(self, name, value):
-        self.level_names.append(name)
+        self.level_names.append(str(name))
         self.level_values.append(value)
 
     def set_selector_style(self, selector_style):
