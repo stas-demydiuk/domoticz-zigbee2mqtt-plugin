@@ -157,6 +157,11 @@ class UniversalAdapter(Adapter):
             self._add_device(alias, feature, MotionSensor)
             return
 
+        if (feature['name'] == 'presence' and state_access):
+            alias = self._generate_alias(feature, 'motion')
+            self._add_device(alias, feature, MotionSensor)
+            return
+
         if (feature['name'] == 'smoke' and state_access):
             alias = self._generate_alias(feature, 'smoke')
             self._add_device(alias, feature, SmokeSensor, ' (Smoke sensor)')
