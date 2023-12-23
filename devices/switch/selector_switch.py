@@ -40,7 +40,7 @@ class SelectorSwitch(Device):
         try:
             index = self.level_values.index(value)
         except:
-            domoticz.debug('Unable to find selector switch level for value "' + value + '", device: ' + device.Name)
+            domoticz.debug('Unable to find selector switch level for value "' + str(value) + '", device: ' + device.Name)
             index = 0
 
         return str(index * 10)

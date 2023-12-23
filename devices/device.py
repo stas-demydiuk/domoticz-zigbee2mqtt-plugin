@@ -193,7 +193,7 @@ class Device():
                 'SignalLevel': message.get_signal_level() or device.SignalLevel,
             }, **self.get_device_args(value, device, message))
         except:
-            domoticz.error('Can\'t calculate the value for device ' + device.ID + ' from raw value "' + str(value) + '"')
+            domoticz.error('Can\'t calculate the value for device ' + str(device.ID) + ' from raw value "' + str(value) + '"')
             device_values = dict({})
         
         self.update_device(device, device_values)
