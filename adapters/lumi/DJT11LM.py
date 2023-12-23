@@ -1,5 +1,6 @@
 from adapters.adapter_with_battery import AdapterWithBattery
 from devices.switch.selector_switch import SelectorSwitch
+from devices.sensor.contact import ContactSensor
 from devices.custom_sensor import CustomSensor
 from devices.json_sensor import JSONSensor
 
@@ -16,6 +17,7 @@ class DJT11LM(AdapterWithBattery):
         self.switch.set_selector_style(SelectorSwitch.SELECTOR_TYPE_MENU)
 
         self.devices.append(self.switch)
+        self.devices.append(ContactSensor('vibrtn', 'vibration', ' (Vibration)'))
         self.devices.append(CustomSensor('stgth', 'strength', ' (Strength)'))
         self.devices.append(JSONSensor('angle', 'angle_raw', ' (Angle)'))
 

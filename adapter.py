@@ -187,6 +187,11 @@ class UniversalAdapter(Adapter):
             alias = self._generate_alias(feature, 'tamper')
             self._add_device(alias, feature, ContactSensor)
             return
+        
+        if (feature['name'] == 'vibration' and state_access):
+            alias = self._generate_alias(feature, 'vibrtn')
+            self._add_device(alias, feature, ContactSensor, ' (Vibration)')
+            return
 
         if (feature['name'] == 'consumer_connected' and state_access):
             alias = self._generate_alias(feature, 'consmr')
