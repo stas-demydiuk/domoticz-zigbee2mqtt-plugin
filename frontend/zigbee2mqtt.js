@@ -261,7 +261,8 @@ function(app, Viz, vizRenderer, leaflet) {
 
         function refreshDomoticzDevices() {
             return domoticzApi.sendRequest({
-                type: 'devices',
+                type: 'command',
+                param: 'getdevices',
                 displayhidden: 1,
                 filter: 'all',
                 used: 'all'
