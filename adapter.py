@@ -18,6 +18,7 @@ from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.switch.siren_switch import SirenSwitch
 from devices.custom_sensor import CustomSensor
+from devices.text_sensor import TextSensor
 from features.cover import CoverFeatureProcessor
 from features.energy import EnergyFeatureProcessor
 from features.light import LightFeatureProcesor
@@ -59,6 +60,7 @@ class UniversalAdapter(Adapter):
                 self._add_feature(item)
 
     def _add_feature(self, item):
+        domoticz.debug(item)
         # Avoid creating devices for settings as it is ususally one-time op
         if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration', 'temperature_setpoint_hold_duration']:
             return
@@ -69,6 +71,8 @@ class UniversalAdapter(Adapter):
             self._add_selector_device(item['name'][0: 5], item)
         elif item['type'] == 'numeric':
             self.add_numeric_device(item)
+        elif item['type'] == 'text':
+            self.add_text_device(item)
         elif item['type'] == 'switch':
             self._add_features(item['features'])
         elif item['type'] == 'light':
@@ -122,6 +126,11 @@ class UniversalAdapter(Adapter):
             return feature['endpoint']
         else:
             return default_value
+
+    def add_text_device(self, feature):
+       alias = self._generate_alias(feature, feature['name'])
+       self._add_device(alias, feature, TextSensor)
+
 
     def add_binary_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
@@ -186,11 +195,6 @@ class UniversalAdapter(Adapter):
         if (feature['name'] == 'tamper' and state_access):
             alias = self._generate_alias(feature, 'tamper')
             self._add_device(alias, feature, ContactSensor)
-            return
-        
-        if (feature['name'] == 'vibration' and state_access):
-            alias = self._generate_alias(feature, 'vibrtn')
-            self._add_device(alias, feature, ContactSensor, ' (Vibration)')
             return
 
         if (feature['name'] == 'consumer_connected' and state_access):
@@ -260,6 +264,9 @@ class UniversalAdapter(Adapter):
             return
 
         if feature['name'] == 'action_code' and state_access:
+            domoticz.debug('addnumer')
+            domoticz.debug(alias)
+            domoticz.debug(feature)
             alias = self._generate_alias(feature, 'accode')
             self._add_device(alias, feature, CustomSensor)
             return
