@@ -60,7 +60,6 @@ class UniversalAdapter(Adapter):
                 self._add_feature(item)
 
     def _add_feature(self, item):
-        domoticz.debug(item)
         # Avoid creating devices for settings as it is ususally one-time op
         if 'name' in item and item['name'] in ['temperature_offset', 'humidity_offset', 'pressure_offset', 'local_temperature_calibration', 'temperature_setpoint_hold_duration']:
             return
@@ -127,11 +126,6 @@ class UniversalAdapter(Adapter):
         else:
             return default_value
 
-    def add_text_device(self, feature):
-       alias = self._generate_alias(feature, feature['name'])
-       self._add_device(alias, feature, TextSensor)
-
-
     def add_binary_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
@@ -196,6 +190,11 @@ class UniversalAdapter(Adapter):
             alias = self._generate_alias(feature, 'tamper')
             self._add_device(alias, feature, ContactSensor)
             return
+        
+        if (feature['name'] == 'vibration' and state_access):
+            alias = self._generate_alias(feature, 'vibrtn')
+            self._add_device(alias, feature, ContactSensor, ' (Vibration)')
+            return
 
         if (feature['name'] == 'consumer_connected' and state_access):
             alias = self._generate_alias(feature, 'consmr')
@@ -250,6 +249,12 @@ class UniversalAdapter(Adapter):
         domoticz.debug(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
+
+    def add_text_device(self, feature):
+       alias = self._generate_alias(feature, feature['name'])
+       self._add_device(alias, feature, TextSensor)
+
+    
     def add_numeric_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
@@ -264,9 +269,6 @@ class UniversalAdapter(Adapter):
             return
 
         if feature['name'] == 'action_code' and state_access:
-            domoticz.debug('addnumer')
-            domoticz.debug(alias)
-            domoticz.debug(feature)
             alias = self._generate_alias(feature, 'accode')
             self._add_device(alias, feature, CustomSensor)
             return
