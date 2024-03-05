@@ -18,6 +18,7 @@ from devices.switch.on_off_switch import OnOffSwitch
 from devices.switch.selector_switch import SelectorSwitch
 from devices.switch.siren_switch import SirenSwitch
 from devices.custom_sensor import CustomSensor
+from devices.text_sensor import TextSensor
 from features.cover import CoverFeatureProcessor
 from features.energy import EnergyFeatureProcessor
 from features.light import LightFeatureProcesor
@@ -69,6 +70,8 @@ class UniversalAdapter(Adapter):
             self._add_selector_device(item['name'][0: 5], item)
         elif item['type'] == 'numeric':
             self.add_numeric_device(item)
+        elif item['type'] == 'text':
+            self.add_text_device(item)
         elif item['type'] == 'switch':
             self._add_features(item['features'])
         elif item['type'] == 'light':
@@ -246,6 +249,12 @@ class UniversalAdapter(Adapter):
         domoticz.debug(self.name + ': can not process binary item "' + feature['name'] + '"')
         domoticz.debug(json.dumps(feature))
 
+
+    def add_text_device(self, feature):
+       alias = self._generate_alias(feature, feature['name'])
+       self._add_device(alias, feature, TextSensor)
+
+    
     def add_numeric_device(self, feature):
         state_access = self._has_access(feature['access'], ACCESS_STATE)
         write_access = self._has_access(feature['access'], ACCESS_WRITE)
