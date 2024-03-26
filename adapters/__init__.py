@@ -1,4 +1,5 @@
 from adapters.base_adapter import Adapter
+from adapters.onesti import onesti_adapters
 from adapters.weiser_lock import WeiserLock
 from adapters.bitron import bitron_adapters
 from adapters.ecodim import ecodim_adapters
@@ -72,4 +73,5 @@ adapter_by_model = dict({
     **tuya_adapters,
     **tuyatec_adapters,
     **zemismart_adapters,
+    **onesti_adapters,
 )
