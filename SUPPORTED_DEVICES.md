@@ -247,6 +247,15 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - Nue ZigBee one gang smart switch
 - Nue ZigBee smart light controller
 
+### Onesti
+- EasyCodeTouch
+- EasyFingerTouch
+- Nimly Touch Pro
+- Nilmy Touch
+- Nimly Code
+- Nimly In
+- Relax smart plug S4RX-110
+
 ### OSRAM
 - OSRAM Classic A60 RGBW
 - OSRAM Flex RGBW
