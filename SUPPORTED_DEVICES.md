@@ -160,6 +160,7 @@ If your device is not listed in the list below but [zigbee2mqtt supports](https:
 - IKEA SURTE door light panel, dimmable, white spectrum (38x64 cm)
 - IKEA LEPTITER Recessed spot light
 - IKEA FYRTUR block-out roller blind
+- IKEA STYRBAR remote control
 
 ### Itead
 - ITEAD SONOFF ZigBee DIY Smart Switch
